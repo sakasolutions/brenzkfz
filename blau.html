@@ -328,44 +328,10 @@ a{color:inherit;text-decoration:none}
 .r-buehne .schritt{color:var(--akzent-hell)}
 .r-buehne .dia .k-stage{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--akzent-hell) 50%,transparent))}
 
-/* ===== Vergleich: Schriften ===== */
+/* Überschriften in Saira Condensed */
 @font-face{font-family:"Saira Condensed";font-style:normal;font-weight:900;font-display:swap;src:url("fonts/SairaCondensed-900.woff2") format("woff2")}
-@font-face{font-family:"Manrope";font-style:normal;font-weight:200 800;font-display:swap;src:url("fonts/Manrope-variabel.woff2") format("woff2")}
-[data-schrift="aufrecht"] .titel,[data-schrift="aufrecht"] .r-titel,[data-schrift="aufrecht"] .ergebnis .gesamt,
-[data-schrift="aufrecht"] .r-buehne .fahrzeug,[data-schrift="aufrecht"] .r-buehne .wert{font-style:normal}
-[data-schrift="saira"]{--f-titel:"Saira Condensed","Arial Narrow",system-ui,sans-serif}
-[data-schrift="saira"] .titel,[data-schrift="saira"] .r-titel,[data-schrift="saira"] .ergebnis .gesamt,
-[data-schrift="saira"] .r-buehne .fahrzeug,[data-schrift="saira"] .r-buehne .wert{font-style:normal;font-weight:900;letter-spacing:.01em}
-[data-schrift="manrope"]{--f-titel:"Manrope",system-ui,sans-serif;--f-text:"Manrope",system-ui,sans-serif}
-[data-schrift="manrope"] .titel,[data-schrift="manrope"] .r-titel{font-style:normal;font-weight:800;text-transform:none;letter-spacing:-.03em;line-height:1.02}
-[data-schrift="manrope"] .titel{font-size:clamp(2.3rem,10vw,4rem)}
-[data-schrift="manrope"] .r-titel{font-size:clamp(2rem,8vw,3rem)}
-[data-schrift="manrope"] .ergebnis .gesamt,[data-schrift="manrope"] .r-buehne .fahrzeug,[data-schrift="manrope"] .r-buehne .wert{font-style:normal;font-weight:800;letter-spacing:-.02em}
-[data-schrift="manrope"] .r-buehne .fahrzeug{text-transform:none}
-@media (min-width:900px){[data-schrift="manrope"] .titel{font-size:clamp(3rem,4.8vw,4.5rem)}}
-/* ===== Vergleich: Logos ===== */
-.marke{color:var(--text)}
-[data-logo^="wm"] .marke{width:auto;height:22px;border-radius:0}
-[data-logo="wm2"] .marke{height:26px}
-[data-logo^="wm"] .marke svg{width:auto;height:100%}
-@media (min-width:900px){[data-logo^="wm"] .marke{height:28px}[data-logo="wm2"] .marke{height:34px}}
-/* ===== Vergleichsleiste (nur in den Vergleichsfassungen) ===== */
-.vergleich{position:fixed;z-index:60;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));
-  width:min(680px,calc(100% - 24px));color:#ffffff;font:500 13px/1.3 "Barlow",system-ui,sans-serif;
-  background:rgb(17 17 17 / .95);border:1px solid #3a3a3a;border-radius:12px;box-shadow:0 12px 40px rgb(0 0 0 / .45);
-  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.vg-kopf{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px 10px 14px}
-.vg-kopf b{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#bdbdbd}
-.vg-kopf button{border:0;background:#2a2a2a;color:#ffffff;border-radius:999px;padding:6px 12px;font:inherit;font-weight:600;font-size:12px;line-height:1;cursor:pointer}
-.vg-panel{display:grid;gap:8px;padding:0 12px 12px}
-.vg-gruppe{display:grid;grid-template-columns:62px 1fr;align-items:center;gap:8px}
-.vg-gruppe>span{color:#9a9a9a;font-size:12px}
-.vg-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
-.vg-chips::-webkit-scrollbar{display:none}
-.vg-chips a{flex:none;padding:7px 11px;border:1px solid #3a3a3a;border-radius:999px;color:#e6e6e6;text-decoration:none;white-space:nowrap}
-.vg-chips a:hover{border-color:#8b8b8b}
-.vg-chips a[aria-current]{background:#ffffff;color:#111111;border-color:#ffffff}
-.vergleich.zu .vg-panel{display:none}
+:root{--f-titel:"Saira Condensed","Arial Narrow",system-ui,sans-serif}
+.titel,.r-titel,.ergebnis .gesamt,.r-buehne .fahrzeug,.r-buehne .wert{font-style:normal;font-weight:900;letter-spacing:.01em}
 </style>
 </head>
 <body>
@@ -1050,49 +1016,6 @@ ruhig.addEventListener("change", film);
   $("weiter-2").addEventListener("click",function(){zeige(2,true)});
   [].forEach.call(form.querySelectorAll("[data-zurueck]"),function(b){b.addEventListener("click",function(){zeige(aktiv-1,true)})});
   zeige(0,false);
-})();
-</script>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><!-- Wortmarken 01 bis 03 aus Sinans Entwürfen (brenz_kfz_logoentwuerfe_vektor), einfarbig über currentColor -->
-<symbol id="wm1" viewBox="83 63 1025 155"><g><g fill="currentColor" transform="translate(76.49,216.00) scale(0.106409,-0.101342)"><path d="M80 0H782C1105 0 1296 178 1296 422C1296 632 1150 776 958 783V785C1131 818 1246 945 1246 1118C1246 1335 1066 1490 726 1490H80ZM484 312V606H704C805 606 870 548 870 459C870 370 805 312 704 312ZM484 900V1178H679C771 1178 830 1123 830 1039C830 955 771 900 679 900Z" transform="translate(0.0,0)"/><path d="M80 0H496V466H682L905 0H1338L1065 556C1210 642 1292 785 1292 970C1292 1289 1069 1490 713 1490H80ZM496 788V1152H682C807 1152 886 1079 886 970C886 861 807 788 682 788Z" transform="translate(1317.0,0)"/><path d="M80 0H1234V352H496V574H1177V914H496V1138H1234V1490H80Z" transform="translate(2666.0,0)"/><path d="M80 0H496V544C496 604 496 721 491 855C561 726 627 611 669 544L1008 0H1432V1490H1016V944C1016 873 1017 752 1021 631C963 738 902 849 867 905L504 1490H80Z" transform="translate(3946.0,0)"/><path d="M50 0H1286V352H575C628 411 680 469 730 528L1280 1178V1490H64V1138H767C712 1078 659 1019 607 959L50 312Z" transform="translate(5444.0,0)"/></g><rect x="854" y="132" width="2" height="82" fill="currentColor" fill-opacity="0.45"/><g fill="currentColor" transform="translate(904.80,213.00) scale(0.052919,-0.055705)"><path d="M136 0H358V462L568 694L1053 0H1313L720 845L1308 1490H1027L603 1023C520 930 439 840 358 748V1490H136Z" transform="translate(0.0,0)"/><path d="M136 0H358V657H1049V849H358V1295H1106V1490H136Z" transform="translate(1389.0,0)"/><path d="M57 0H1214V195H323C378 259 431 324 482 389L1206 1309V1490H85V1295H941C891 1236 842 1177 796 1118L57 181Z" transform="translate(2598.0,0)"/></g></g></symbol>
-<symbol id="wm2" viewBox="85 50 884 200"><g fill="currentColor" transform="translate(72.94,230.13) scale(0.125528,-0.119551)"><path d="M682 -21C958 -21 1139 200 1139 529C1139 854 955 1077 683 1077C546 1077 434 1022 366 906H364V1490H112V0H360V161H362C428 39 544 -21 682 -21ZM623 190C458 190 350 323 350 529C350 734 458 868 623 868C779 868 884 747 884 529C884 310 779 190 623 190Z" transform="translate(0.0,0)"/><path d="M112 0H364V598C364 763 457 846 577 846C627 846 677 841 696 838V1062C676 1064 648 1066 614 1066C478 1066 397 1002 358 881H355V1056H112Z" transform="translate(1170.0,0)"/><path d="M578 -24C825 -24 1021 119 1061 326H825C796 236 711 175 584 175C414 175 316 290 310 462H1074V531C1074 855 872 1080 568 1080C272 1080 63 848 63 527C63 207 261 -24 578 -24ZM312 636C329 787 426 880 572 880C718 880 816 787 832 636Z" transform="translate(1867.0,0)"/><path d="M364 597C364 777 463 856 595 856C730 856 808 775 808 620V0H1061V660C1061 931 905 1077 684 1077C539 1077 432 1013 360 894V1056H112V0H364Z" transform="translate(2968.0,0)"/><path d="M95 0H945V206H406V209L939 871V1056H95V849H637V846L95 175Z" transform="translate(4109.0,0)"/></g><g fill="currentColor" transform="translate(793.67,233.00) scale(0.041611,-0.041611)"><path d="M80 0H496V346L677 568L1017 0H1493L945 850L1465 1490H984L688 1107C624 1024 560 942 496 859V1490H80Z" transform="translate(0.0,0)"/><path d="M80 0H496V536H1159V874H496V1138H1199V1490H80Z" transform="translate(1558.0,0)"/><path d="M50 0H1286V352H575C628 411 680 469 730 528L1280 1178V1490H64V1138H767C712 1078 659 1019 607 959L50 312Z" transform="translate(2862.0,0)"/></g><rect x="797" y="246" width="170" height="2" fill="currentColor"/></symbol>
-<symbol id="wm3" viewBox="91 48 1019 196"><g fill="currentColor" transform="translate(93,50) scale(1.4179104477611941)"><path d="M0 0 H57 L78 18 V54 L63 67 L80 79 V117 L63 134 H0 Z M17 17 V57 H51 L61 48 V27 L51 17 Z M17 81 V117 H54 L63 108 V91 L53 81 Z" fill-rule="evenodd" transform="translate(0.0,0)"/><path d="M0 0 H58 L79 19 V60 L62 78 H50 L83 134 H62 L29 78 H17 V134 H0 Z M17 17 V61 H52 L62 52 V27 L52 17 Z" fill-rule="evenodd" transform="translate(93.0,0)"/><path d="M0 0 H81 V18 H18 V57 H69 V75 H18 V116 H81 V134 H0 Z" fill-rule="evenodd" transform="translate(190.0,0)"/><path d="M0 134 V0 H19 L65 99 V0 H82 V134 H63 L17 35 V134 Z" fill-rule="evenodd" transform="translate(285.0,0)"/><path d="M0 0 H85 V18 L23 116 H85 V134 H0 V116 L62 18 H0 Z" fill-rule="evenodd" transform="translate(381.0,0)"/></g><g fill="currentColor" transform="translate(892,139) scale(0.753731343283582)"><path d="M0 0 H18 V61 H29 L66 0 H87 L46 66 L89 134 H67 L29 78 H18 V134 H0 Z" fill-rule="evenodd" transform="translate(0.0,0)"/><path d="M0 0 H80 V18 H18 V59 H69 V77 H18 V134 H0 Z" fill-rule="evenodd" transform="translate(106.0,0)"/><path d="M0 0 H85 V18 L23 116 H85 V134 H0 V116 L62 18 H0 Z" fill-rule="evenodd" transform="translate(202.0,0)"/></g><path d="M825 139 V240 H843" stroke="currentColor" stroke-width="4" fill="none"/></symbol>
-</svg>
-<div class="vergleich" id="vergleich" role="region" aria-label="Vergleich für Mert">
-  <div class="vg-kopf"><b>Vergleich</b><button type="button" id="vg-knopf" aria-expanded="true" aria-controls="vg-panel">Einklappen</button></div>
-  <div class="vg-panel" id="vg-panel">
-    <div class="vg-gruppe"><span>Farbe</span><div class="vg-chips"><a data-datei="gelb.html">Gelb</a><a data-datei="dezent.html">Dezent</a><a data-datei="gemischt.html">Gemischt</a><a data-datei="blau.html">Blau</a></div></div>
-    <div class="vg-gruppe"><span>Schrift</span><div class="vg-chips"><a data-schrift="kursiv">Kursiv</a><a data-schrift="aufrecht">Aufrecht</a><a data-schrift="saira">Saira</a><a data-schrift="manrope">Manrope</a></div></div>
-    <div class="vg-gruppe"><span>Logo</span><div class="vg-chips"><a data-logo="emblem">Emblem</a><a data-logo="wm1" aria-label="Wortmarke 01">01</a><a data-logo="wm2" aria-label="Wortmarke 02">02</a><a data-logo="wm3" aria-label="Wortmarke 03">03</a></div></div>
-  </div>
-</div>
-<script>
-// Vergleich: Schrift und Logo aus der Adresse lesen, Links der Leiste setzen
-(function(){
-  "use strict";
-  var p=new URLSearchParams(location.search), h=document.documentElement;
-  var schrift=p.get("schrift"), logo=p.get("logo");
-  if(["kursiv","aufrecht","saira","manrope"].indexOf(schrift)<0)schrift="kursiv";
-  var MASSE={wm1:[1025,155],wm2:[884,200],wm3:[1019,196]};
-  if(logo!=="emblem"&&!MASSE[logo])logo="emblem";
-  h.dataset.schrift=schrift;h.dataset.logo=logo;
-  if(MASSE[logo]){
-    var w=MASSE[logo][0],hh=MASSE[logo][1];
-    [].forEach.call(document.querySelectorAll(".marke"),function(m){
-      m.innerHTML='<svg viewBox="0 0 '+w+' '+hh+'" style="aspect-ratio:'+w+'/'+hh+'" aria-hidden="true"><use href="#'+logo+'" width="'+w+'" height="'+hh+'"/></svg>';
-    });
-  }
-  var datei=location.pathname.split("/").pop()||"gelb.html";
-  function link(d,s,l){return d+"?schrift="+s+"&logo="+l}
-  function setzen(sel,fn,aktiv){[].forEach.call(document.querySelectorAll(".vergleich "+sel),function(a){var v=fn(a);a.href=v[0];if(v[1]===aktiv)a.setAttribute("aria-current","true")})}
-  setzen("[data-datei]",function(a){return [link(a.dataset.datei,schrift,logo),a.dataset.datei]},datei);
-  setzen("[data-schrift]",function(a){return [link(datei,a.dataset.schrift,logo),a.dataset.schrift]},schrift);
-  setzen("[data-logo]",function(a){return [link(datei,schrift,a.dataset.logo),a.dataset.logo]},logo);
-  var leiste=document.getElementById("vergleich"), knopf=document.getElementById("vg-knopf");
-  function zu(z){leiste.classList.toggle("zu",z);knopf.textContent=z?"Aufklappen":"Einklappen";knopf.setAttribute("aria-expanded",String(!z));try{localStorage.setItem("brenz-vergleich-zu",z?"1":"0")}catch(e){}}
-  var start=false;try{start=localStorage.getItem("brenz-vergleich-zu")==="1"}catch(e){}
-  zu(start);
-  knopf.addEventListener("click",function(){zu(!leiste.classList.contains("zu"))});
 })();
 </script>
 </body>

@@ -5,25 +5,27 @@ Website von Brenz KFZ: Kfz-Service, Softwareoptimierung, Fahrzeugaufbereitung. G
 ## Aufbau
 
 - `index.html`: eine Datei mit CSS und JS, kein Framework, kein Build-Schritt
-- `fonts/`: Barlow und Barlow Condensed als woff2, dazu Saira Condensed und Manrope für den Vergleich, alles lokal (kein Abruf bei Google)
+- `fonts/`: Barlow und Barlow Condensed als woff2, dazu Saira Condensed für die beiden Fassungen, alles lokal (kein Abruf bei Google)
 - `img/`: Werkstatt-Videos für den Startbereich mit Standbildern. Hochformat fürs Handy, Querformat ab 900 px Breite. Es wird nur das passende Video geladen
 - `favicon.svg`: Logo 3 (Emblem), einfarbig weiß auf Schwarz
 
 Farben (Schema A, gemessen aus einer Dribbble-Vorlage): Grund `#111111`, Fläche `#181818`, Linie `#303030`, Text `#ffffff`, Text leise `#8b8b8b`, Akzent `#fdf325`, Schrift auf Akzent `#111111`. Logo und Regeln stehen im Plan-Repo unter `konzepte/brenz-kfz/marke/MARKE.md`.
 
-## Vergleich für Mert
+## Zwei Fassungen für Mert
 
-`gelb.html`, `dezent.html`, `gemischt.html` und `blau.html` sind Kopien der Startseite mit einer Vergleichsleiste unten. Darüber schaltet man **Farbe**, **Schrift** und **Logo** um, die Auswahl steht in der Adresse (zum Beispiel `blau.html?schrift=manrope&logo=wm1`), also lässt sich jede Kombination als Link verschicken. Alle sind für Google gesperrt. `index.html` bleibt ohne Leiste.
+`blau.html` und `champagner.html`, beide aus `index.html` erzeugt und für Google gesperrt (Sinan, 16.11.2026):
 
-- Farben: Gelb (Schema A), Dezent (Gold #e5c65f, gemessen aus Sinans Dribbble-Überblick), Gemischt (Kopf dunkel, Rechner hell, nach der Vorlage „AutoPlanet“), Blau (wie Gemischt, Akzent #1f5ae0 nach Augenmaß, nicht gemessen)
-- Schriften: Kursiv (Barlow Condensed kursiv), Aufrecht (dieselbe, nicht kursiv), Saira (Saira Condensed), Manrope (eine ruhige, moderne Schrift für alles)
-- Logos: Emblem (einfarbig) und die Wortmarken 01 bis 03 aus Sinans Entwürfen (`werkzeuge/wortmarken.svg`, einfarbig)
+- beide: Kopf dunkel, Rechner hell (nach der Vorlage „AutoPlanet“), Überschriften in Saira Condensed, rundes Emblem einfarbig
+- Blau: Akzent #1f5ae0 (nach Augenmaß, nicht gemessen), Schrift auf Blau weiß, auf Dunkel aufgehellt
+- Champagner: Akzent #e5c65f, Text #e0dfde, Grund #121212 (gemessen aus Sinans Dribbble-Überblick, Autoseite „Luxury Cars“)
 
 Nach jeder Änderung an `index.html` neu erzeugen:
 
 ```bash
 python3 werkzeuge/varianten.py
 ```
+
+Nach Merts Wahl kommt seine Fassung in `index.html`, die beiden Dateien fallen dann weg.
 
 ## Lokal ansehen
 
