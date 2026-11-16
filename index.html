@@ -94,7 +94,8 @@ a{color:inherit;text-decoration:none}
 .marke{flex:none;width:48px;height:48px;border-radius:50%}
 .marke svg{width:100%;height:100%}
 .menue{display:none}
-.wa{margin-left:auto;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:4px;background:var(--akzent);color:var(--auf-akzent);font:600 .9rem/1 var(--f-text);white-space:nowrap}
+.wa{margin-left:auto;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:4px;background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text) 45%,transparent);font:600 .9rem/1 var(--f-text);white-space:nowrap}
+.wa:hover{box-shadow:inset 0 0 0 1px var(--text)}
 .burger{flex:none;display:grid;place-items:center;width:44px;height:44px;margin-right:-10px;padding:0;border:0;background:transparent;color:var(--text);cursor:pointer}
 .burger span,.burger span::before,.burger span::after{display:block;width:24px;height:2px;background:currentColor}
 .burger span{position:relative}
@@ -108,7 +109,7 @@ a{color:inherit;text-decoration:none}
 /* Handy-Menü */
 .handymenue{position:fixed;z-index:19;left:0;right:0;bottom:0;top:calc(var(--kopf-h) + env(safe-area-inset-top,0px) + 1px);overflow-y:auto;background:var(--grund);padding-block:4px calc(28px + env(safe-area-inset-bottom,0px))}
 .handymenue nav{display:grid}
-.handymenue nav a{display:flex;align-items:center;justify-content:space-between;padding-block:20px;border-bottom:1px solid var(--linie);font:italic 800 2rem/1 var(--f-titel);text-transform:uppercase;letter-spacing:.01em}
+.handymenue nav a{display:flex;align-items:center;justify-content:space-between;padding-block:20px;border-bottom:1px solid var(--linie);font:600 1.375rem/1 var(--f-text)}
 .handymenue nav a svg{width:22px;height:22px;color:var(--leise)}
 .handymenue .knopf{width:100%;margin-top:28px}
 
@@ -129,13 +130,13 @@ a{color:inherit;text-decoration:none}
 /* h1 = Kennzeile (Suchbegriff und Region) plus große Überschrift */
 .held h1{margin:0;display:grid;gap:16px}
 .kennzeile{display:flex;align-items:center;gap:12px;font:600 .75rem/1.3 var(--f-text);letter-spacing:.12em;text-transform:uppercase}
-.kennzeile::before{content:"";flex:none;width:24px;height:2px;background:var(--akzent)}
+.kennzeile::before{content:"";flex:none;width:24px;height:1px;background:color-mix(in srgb,var(--text) 55%,transparent)}
 .titel{font:italic 800 clamp(2.75rem,12.8vw,5rem)/.9 var(--f-titel);text-transform:uppercase;letter-spacing:.005em}
 .titel span{display:block}
 .titel .akzent{color:var(--akzent)}
 .unterzeile{margin:0;max-width:38ch;color:color-mix(in srgb,var(--text) 74%,transparent);font-size:1.0625rem}
 .knoepfe{display:grid;gap:10px}
-.knopf{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:54px;padding:0 24px;border-radius:4px;font:italic 800 1.125rem/1 var(--f-titel);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:54px;padding:0 24px;border-radius:4px;font:600 1rem/1 var(--f-text);letter-spacing:.01em;white-space:nowrap}
 .knopf svg{flex:none;width:20px;height:20px}
 .knopf.voll{background:var(--akzent);color:var(--auf-akzent)}
 .knopf.voll:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
@@ -145,16 +146,16 @@ a{color:inherit;text-decoration:none}
 /* Leistungsleiste unten im Kopf, nur Handy und Tablet */
 .schnell{display:grid;margin-top:32px}
 .schnell a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:15px;border-top:1px solid color-mix(in srgb,var(--text) 16%,transparent);
-  font:italic 800 1.25rem/1 var(--f-titel);text-transform:uppercase;letter-spacing:.02em}
-.schnell svg{flex:none;width:18px;height:18px;color:var(--akzent)}
+  font:600 1.0625rem/1 var(--f-text)}
+.schnell svg{flex:none;width:18px;height:18px;color:var(--leise)}
 
 /* Karte zum Leistungsrechner, nur auf breiten Bildschirmen */
 .karte{display:none;position:absolute;z-index:1;right:max(var(--rand-r),calc((100vw - 1200px) / 2 + 20px));bottom:56px;width:300px;gap:8px;padding:18px 20px;
   border:1px solid var(--linie);border-radius:6px;background:color-mix(in srgb,var(--grund) 78%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .karte:hover{border-color:color-mix(in srgb,var(--akzent) 55%,var(--linie))}
-.karte-titel{font:600 .72rem/1 var(--f-text);letter-spacing:.16em;text-transform:uppercase;color:var(--akzent)}
+.karte-titel{font:600 .72rem/1 var(--f-text);letter-spacing:.16em;text-transform:uppercase;color:var(--leise)}
 .karte p{margin:0;font-size:.94rem;line-height:1.45}
-.karte-link{display:inline-flex;align-items:center;gap:8px;font:italic 800 1.02rem/1 var(--f-titel);text-transform:uppercase;letter-spacing:.04em;color:var(--leise)}
+.karte-link{display:inline-flex;align-items:center;gap:8px;font:600 .95rem/1 var(--f-text);color:var(--text)}
 .karte-link svg{width:16px;height:16px}
 
 @media (min-width:560px){
@@ -165,7 +166,7 @@ a{color:inherit;text-decoration:none}
   .marke{width:60px;height:60px}
   .menue{display:flex;gap:32px;margin-left:auto;font:500 .97rem/1 var(--f-text)}
   .menue a{position:relative;padding-block:10px;color:color-mix(in srgb,var(--text) 72%,transparent)}
-  .menue a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--akzent);transform:scaleX(0);transform-origin:left}
+  .menue a::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:var(--text);transform:scaleX(0);transform-origin:left}
   .menue a:hover{color:var(--text)}
   .menue a:hover::after{transform:scaleX(1)}
   .wa{margin-left:20px;height:42px;padding:0 18px}
@@ -180,7 +181,7 @@ a{color:inherit;text-decoration:none}
   .held h1{gap:20px}
   .kennzeile{letter-spacing:.18em}
   .unterzeile{max-width:48ch}
-  .titel{font-size:clamp(3.5rem,6.2vw,6rem)}
+  .titel{font-size:clamp(3.5rem,5.6vw,5.25rem)}
 }
 @media (min-width:1120px){
   .karte{display:grid}
@@ -188,39 +189,47 @@ a{color:inherit;text-decoration:none}
 /* Leistungsrechner. Steht vorerst direkt unter dem Kopf, damit Mert ihn sehen kann; kommt später auf die Seite
    Softwareoptimierung. Logik und Daten wie im Plan-Repo (konzepte/brenz-kfz/RECHNER.md, anfrage.html). */
 [hidden]{display:none!important}
-.rechner{padding-block:72px 88px;border-top:1px solid var(--linie)}
+.rechner{padding-block:96px 112px;border-top:1px solid var(--linie)}
 .rechner-raster{display:grid;gap:36px}
 .rechner-text{display:grid;gap:18px;align-content:start}
 .rechner h2{margin:0;display:grid;gap:14px}
 .r-titel{font:italic 800 clamp(2.4rem,10vw,3.75rem)/.92 var(--f-titel);text-transform:uppercase;letter-spacing:.005em;text-wrap:balance}
-.r-titel em{font-style:inherit;color:var(--akzent)}
+.r-titel em{font-style:inherit}
 .rechner-unter{margin:0;max-width:44ch;color:color-mix(in srgb,var(--text) 74%,transparent);font-size:1.0625rem}
 .ablauf{list-style:none;margin:6px 0 0;padding:0;display:grid;counter-reset:schritt}
 .ablauf li{counter-increment:schritt;display:grid;grid-template-columns:40px 1fr;column-gap:12px;row-gap:4px;padding-block:14px;border-top:1px solid var(--linie)}
-.ablauf li::before{content:counter(schritt);grid-row:span 2;font:italic 800 1.75rem/1 var(--f-titel);color:var(--akzent)}
-.ablauf b{font:italic 800 1.2rem/1.1 var(--f-titel);text-transform:uppercase;letter-spacing:.02em}
+.ablauf li::before{content:counter(schritt);grid-row:span 2;font:600 1rem/1.6 var(--f-text);color:var(--leise);font-variant-numeric:tabular-nums}
+.ablauf b{font:600 1.0625rem/1.3 var(--f-text)}
 .ablauf span{color:var(--leise);font-size:.95rem}
-.zettel{min-width:0;display:grid;gap:16px;padding:20px;background:var(--flaeche);border:1px solid var(--linie);border-top:3px solid var(--akzent);border-radius:6px}
-.zettel .reihe{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.zettel{min-width:0;display:grid;gap:22px;padding:24px 20px;background:var(--flaeche);border:1px solid var(--linie);border-radius:8px}
+.zettel .reihe{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
 .zettel label{display:grid;gap:6px;min-width:0}
 .zettel label>span,.r-feldtitel{display:block;font:600 .74rem/1.2 var(--f-text);letter-spacing:.12em;text-transform:uppercase;color:var(--leise)}
-.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:48px;padding:0 12px;font:500 1rem var(--f-text);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:4px}
+.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:500 1rem var(--f-text);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:4px}
 .zettel select:disabled{opacity:.55}
 .zettel select:focus-visible,.zettel input:focus-visible{outline:2px solid var(--akzent);outline-offset:1px}
 .zettel .stufen{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .zettel .stufen input{position:absolute;opacity:0;pointer-events:none}
 .zettel .stufen label{display:block}
 .zettel .stufen label span{display:block;padding:10px 14px;font:600 .95rem/1 var(--f-text);letter-spacing:0;text-transform:none;color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:999px;cursor:pointer}
-.zettel .stufen input:checked+span{background:var(--akzent);color:var(--auf-akzent);border-color:var(--akzent)}
+.zettel .stufen input:checked+span{background:var(--text);color:var(--grund);border-color:var(--text)}
 .zettel .stufen input:focus-visible+span{outline:2px solid var(--akzent);outline-offset:2px}
-.vorschau{padding:12px 14px;font-size:.95rem;white-space:pre-wrap;background:var(--grund);border-left:3px solid var(--akzent);border-radius:0 4px 4px 0}
+.vorschau{padding:12px 14px;font-size:.95rem;white-space:pre-wrap;background:var(--grund);border-left:2px solid var(--linie);border-radius:0 4px 4px 0}
+.vorschau-auf summary{display:inline-flex;align-items:center;gap:10px;cursor:pointer;list-style:none;font:600 .9rem/1.2 var(--f-text);color:var(--leise)}
+.vorschau-auf summary::-webkit-details-marker{display:none}
+.vorschau-auf summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.vorschau-auf[open] summary::after{transform:translateY(1px) rotate(-135deg)}
+.vorschau-auf summary:hover{color:var(--text)}
+.vorschau-auf .vorschau{margin-top:12px}
 .vorschau b{display:block;margin-bottom:4px;font:600 .72rem/1.2 var(--f-text);letter-spacing:.12em;text-transform:uppercase;color:var(--leise)}
-.r-senden,.berechnen{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:56px;border-radius:4px;font:italic 800 1.25rem/1 var(--f-titel);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
-.r-senden{background:var(--akzent);color:var(--auf-akzent)}
-.r-senden:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
+.r-senden,.berechnen{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:54px;border-radius:4px;font:600 1.0625rem/1 var(--f-text);cursor:pointer}
+.r-senden{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text) 40%,transparent)}
+.r-senden:hover{box-shadow:inset 0 0 0 1px var(--text)}
+#berechnen[hidden]~.r-senden{background:var(--akzent);color:var(--auf-akzent)}
+#berechnen[hidden]~.r-senden:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
 .r-senden[aria-disabled="true"]{opacity:.45;pointer-events:none}
-.berechnen{background:transparent;color:var(--akzent);border:2px solid var(--akzent)}
-.berechnen:hover{background:var(--akzent);color:var(--auf-akzent)}
+.berechnen{background:var(--akzent);color:var(--auf-akzent);border:0}
+.berechnen:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
 .fehlt{margin:-6px 0 0;font-size:.88rem;color:var(--leise)}
 .ergebnis{display:grid;gap:8px;padding:16px;background:var(--grund);border:1px solid var(--linie);border-radius:4px}
 .erg-kopf{font:600 .74rem/1.2 var(--f-text);letter-spacing:.12em;text-transform:uppercase;color:var(--leise)}
@@ -262,10 +271,10 @@ a{color:inherit;text-decoration:none}
 .r-buehne .tippen{font-size:.75rem;color:var(--leise)}
 @media (max-width:480px){.zettel .reihe{grid-template-columns:1fr}}
 @media (min-width:1000px){
-  .rechner{padding-block:112px 128px}
+  .rechner{padding-block:144px 160px}
   .rechner-raster{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
   .rechner-text{position:sticky;top:calc(var(--kopf-h) + 32px)}
-  .zettel{padding:28px}
+  .zettel{padding:36px}
 }
 @media (prefers-reduced-motion:no-preference){
   .r-buehne{transition:opacity .3s}
@@ -393,11 +402,11 @@ a{color:inherit;text-decoration:none}
             <label><input type="radio" name="wunsch" value="Beratung"><span>Erst mal Beratung</span></label>
           </div>
         </div>
-        <div class="vorschau" id="vorschau" aria-live="polite"><b>Ihre Nachricht</b><span id="text"></span></div>
         <!-- WhatsApp-Nummer fehlt noch: NUMMER im Skript unten -->
         <a class="r-senden" id="senden" href="#" target="_blank" rel="noopener" aria-disabled="true">Anfrage per WhatsApp</a>
         <p class="fehlt" id="fehlt">Bitte Marke, Modell und Baujahr wählen.</p>
-        <p class="hinweis">Die tatsächliche Leistung hängt unter anderem von Zustand, Laufleistung und vorhandener Software ab. Vor jeder Optimierung wird das Fahrzeug ausgelesen und geprüft. Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
+        <details class="vorschau-auf"><summary>Nachricht ansehen</summary><div class="vorschau" id="vorschau" aria-live="polite"><b>Ihre Nachricht</b><span id="text"></span></div></details>
+        <p class="hinweis">Vor jeder Optimierung wird das Fahrzeug ausgelesen und geprüft. Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
       </form>
     </div>
 
