@@ -18,6 +18,7 @@ Farben (Schema A, gemessen aus einer Dribbble-Vorlage): Grund `#111111`, Fläche
 - beide: Kopf dunkel, Rechner hell (nach der Vorlage „AutoPlanet“), Überschriften in Saira Condensed, rundes Emblem einfarbig
 - Blau: Akzent #1f5ae0 (nach Augenmaß, nicht gemessen), Schrift auf Blau weiß, auf Dunkel aufgehellt
 - Champagner: Akzent #e5c65f, Text #e0dfde, Grund #121212 (gemessen aus Sinans Dribbble-Überblick, Autoseite „Luxury Cars“)
+- Rechner-Abschnitt mit Motorbild als Hintergrund unter einer hellen Fläche (`img/motor-hintergrund.webp`, schwarz-weiß, Typenschild unscharf). Herkunft des Fotos offen, nur für den Entwurf
 
 Nach jeder Änderung an `index.html` neu erzeugen:
 
@@ -48,5 +49,6 @@ Steht vorerst direkt unter dem Startbereich (`#rechner`), damit Mert ihn sehen k
 - Abschnitte Service, Softwareoptimierung, Aufbereitung, Leistungsrechner und Kontakt (die Links im Menü zeigen schon auf `#service`, `#software`, `#aufbereitung`, `#rechner`, `#kontakt`)
 - Impressum und Datenschutz vor dem Livegang
 - Videos sind Platzhalter von Pexels (Nr. 8987289 und 4488712), später eigene Aufnahmen aus der Werkstatt
+- Motorbild im Rechner: Herkunft und Rechte offen (zeigt einen Motor des Tuners Litchfield), vor dem Livegang ersetzen
 - Kursivschnitt von Barlow Condensed als Datei ergänzen, bis dahin erzeugt der Browser die Schräglage
 - Lizenztexte der Schriften (alle SIL Open Font License 1.1) in `fonts/` legen

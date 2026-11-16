@@ -24,7 +24,11 @@ HELL = """
   --linie:color-mix(in srgb,#ffffff 80%,#8b8b8b);
   --text:#111111;
   --leise:color-mix(in srgb,#111111 45%,#8b8b8b);
-  background:var(--grund);color:var(--text)}
+  color:var(--text);
+  /* Motorbild (schwarz-weiß, Typenschild unscharf) unter einer fast deckenden hellen Fläche: Abschnitt bleibt hell.
+     Herkunft des Fotos offen, nur für den Entwurf; für die echte Seite ein Foto mit klaren Rechten nehmen. */
+  background:linear-gradient(color-mix(in srgb,var(--grund) 89%,transparent),color-mix(in srgb,var(--grund) 89%,transparent)),
+    url("img/motor-hintergrund.webp") center/cover no-repeat,var(--grund)}
 .rechner .zettel{box-shadow:0 1px 2px rgb(0 0 0 / .04),0 10px 30px rgb(0 0 0 / .06)}
 .rechner .zettel select,.rechner .zettel input[type="text"]{background:#ffffff}
 .rechner .r-buehne{color-scheme:dark;--grund:#111111;--flaeche:#181818;--linie:#303030;--text:#ffffff;--leise:#8b8b8b}
