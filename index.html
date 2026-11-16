@@ -3,11 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- SEO: Sobald der Ort feststeht, in Titel, Beschreibung, h1-Umfeld und strukturierte Daten aufnehmen (zum Beispiel „Kfz-Werkstatt in …“) -->
 <title>Brenz KFZ · Kfz-Service, Softwareoptimierung, Fahrzeugaufbereitung</title>
-<meta name="description" content="Brenz KFZ: Kfz-Service, Softwareoptimierung und Fahrzeugaufbereitung in einer Werkstatt. Leistung berechnen oder per WhatsApp anfragen.">
+<meta name="description" content="Brenz KFZ: Kfz-Service, Softwareoptimierung (Chiptuning) und Fahrzeugaufbereitung in einer Werkstatt. Leistung berechnen oder per WhatsApp anfragen.">
+<link rel="canonical" href="https://brenzkfz.de/">
+<meta name="robots" content="index,follow">
 <meta name="theme-color" content="#111111">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Brenz KFZ">
+<meta property="og:url" content="https://brenzkfz.de/">
+<meta property="og:title" content="Brenz KFZ · Service, Software, Aufbereitung">
+<meta property="og:description" content="Kfz-Service, Softwareoptimierung und Fahrzeugaufbereitung in einer Werkstatt.">
+<meta property="og:image" content="https://brenzkfz.de/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Brenz KFZ: Service, Software, Aufbereitung.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="fonts/BarlowCondensed-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/werkstatt-hoch.webp" as="image" media="(max-width: 899px)">
+<link rel="preload" href="img/werkstatt-quer.webp" as="image" media="(min-width: 900px)">
+<!-- Strukturierte Daten. Fehlen noch: address, telephone, openingHoursSpecification, geo, areaServed (kommen von Mert) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": "Brenz KFZ",
+  "url": "https://brenzkfz.de/",
+  "logo": "https://brenzkfz.de/img/logo-512.png",
+  "image": "https://brenzkfz.de/img/og.jpg",
+  "description": "Kfz-Service, Softwareoptimierung und Fahrzeugaufbereitung in einer Werkstatt.",
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kfz-Service" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Softwareoptimierung" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fahrzeugaufbereitung" } }
+  ]
+}
+</script>
 <style>
 /* Schriften liegen im Projekt (kein Abruf bei Google). Barlow, SIL Open Font License 1.1.
    Kursiv wird vom Browser aus dem aufrechten Schnitt erzeugt, bis die echten Kursivdateien im Ordner fonts/ liegen. */
