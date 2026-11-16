@@ -196,12 +196,24 @@ a{color:inherit;text-decoration:none}
 .r-titel{font:italic 800 clamp(2.4rem,10vw,3.75rem)/.92 var(--f-titel);text-transform:uppercase;letter-spacing:.005em;text-wrap:balance}
 .r-titel em{font-style:inherit}
 .rechner-unter{margin:0;max-width:44ch;color:color-mix(in srgb,var(--text) 74%,transparent);font-size:1.0625rem}
-.ablauf{list-style:none;margin:6px 0 0;padding:0;display:grid;counter-reset:schritt}
-.ablauf li{counter-increment:schritt;display:grid;grid-template-columns:40px 1fr;column-gap:12px;row-gap:4px;padding-block:14px;border-top:1px solid var(--linie)}
-.ablauf li::before{content:counter(schritt);grid-row:span 2;font:600 1rem/1.6 var(--f-text);color:var(--leise);font-variant-numeric:tabular-nums}
-.ablauf b{font:600 1.0625rem/1.3 var(--f-text)}
-.ablauf span{color:var(--leise);font-size:.95rem}
 .zettel{min-width:0;display:grid;gap:22px;padding:24px 20px;background:var(--flaeche);border:1px solid var(--linie);border-radius:8px}
+/* Schritte */
+.fortschritt{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;counter-reset:fs}
+.fortschritt li{counter-increment:fs;padding-top:10px;border-top:2px solid var(--linie);font:600 .78rem/1.3 var(--f-text);color:var(--leise)}
+.fortschritt li::before{content:counter(fs) ". "}
+.fortschritt li.fertig{border-top-color:color-mix(in srgb,var(--text) 55%,transparent);color:color-mix(in srgb,var(--text) 70%,transparent)}
+.fortschritt li[aria-current]{border-top-color:var(--text);color:var(--text)}
+.auswahl{margin:-4px 0 0;font-size:.92rem;color:var(--leise)}
+.schritt{display:grid;gap:18px}
+.schritt-frage{margin:4px 0 0;font:600 1.375rem/1.25 var(--f-text);outline:none}
+.schritt-knoepfe{display:flex;align-items:center;gap:12px;margin-top:6px}
+.weiter{flex:1;display:flex;align-items:center;justify-content:center;height:54px;border:0;border-radius:4px;background:var(--akzent);color:var(--auf-akzent);font:600 1.0625rem/1 var(--f-text);cursor:pointer}
+.weiter:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
+.weiter:disabled{background:var(--linie);color:var(--leise);cursor:not-allowed}
+.zurueck{height:54px;padding:0 6px;border:0;background:transparent;color:var(--leise);font:600 1rem/1 var(--f-text);cursor:pointer}
+.zurueck:hover{color:var(--text)}
+.anfrage{display:grid;gap:18px}
+.keine-schaetzung{margin:0;padding:14px 16px;background:var(--grund);border:1px solid var(--linie);border-radius:4px;font-size:.95rem}
 .zettel .reihe{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
 .zettel label{display:grid;gap:6px;min-width:0}
 .zettel label>span,.r-feldtitel{display:block;font:600 .74rem/1.2 var(--f-text);letter-spacing:.12em;text-transform:uppercase;color:var(--leise)}
@@ -225,8 +237,9 @@ a{color:inherit;text-decoration:none}
 .r-senden,.berechnen{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:54px;border-radius:4px;font:600 1.0625rem/1 var(--f-text);cursor:pointer}
 .r-senden{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--text) 40%,transparent)}
 .r-senden:hover{box-shadow:inset 0 0 0 1px var(--text)}
-#berechnen[hidden]~.r-senden{background:var(--akzent);color:var(--auf-akzent)}
-#berechnen[hidden]~.r-senden:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
+#berechnen[hidden]~.anfrage .r-senden{background:var(--akzent);color:var(--auf-akzent);box-shadow:none}
+#berechnen[hidden]~.anfrage .r-senden:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
+#erg-balken[hidden]~.schaetzung{display:none}
 .r-senden[aria-disabled="true"]{opacity:.45;pointer-events:none}
 .berechnen{background:var(--akzent);color:var(--auf-akzent);border:0}
 .berechnen:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
@@ -278,7 +291,7 @@ a{color:inherit;text-decoration:none}
 }
 @media (prefers-reduced-motion:no-preference){
   .r-buehne{transition:opacity .3s}
-  .r-senden,.berechnen{transition:background-color .15s,color .15s}
+  .r-senden,.berechnen,.weiter,.zurueck{transition:background-color .15s,color .15s,box-shadow .15s}
   .ergebnis .zahlen,.ergebnis .balken{transition:opacity .35s}
 }
 
@@ -358,55 +371,72 @@ a{color:inherit;text-decoration:none}
     <div class="innen rechner-raster">
       <div class="rechner-text">
         <h2 id="rechner-titel"><span class="kennzeile">Chiptuning-Rechner</span> <span class="r-titel">Was geht bei <em>Ihrem</em> Auto?</span></h2>
-        <p class="rechner-unter">Fahrzeug wählen, geschätzte Mehrleistung sehen und die genauen Werte für Ihr Fahrzeug per WhatsApp anfragen.</p>
-        <ol class="ablauf">
-          <li><b>Fahrzeug wählen</b><span>Marke, Modell, Baureihe und Motor.</span></li>
-          <li><b>Leistung berechnen</b><span>Grobe Schätzung für Stage 1 als Leistungsdiagramm.</span></li>
-          <li><b>Per WhatsApp anfragen</b><span>Die genauen Werte stehen erst nach dem Auslesen Ihres Fahrzeugs fest.</span></li>
-        </ol>
+        <p class="rechner-unter">In drei kurzen Schritten zur geschätzten Mehrleistung. Die genauen Werte für Ihr Fahrzeug bekommen Sie per WhatsApp.</p>
       </div>
 
       <form class="zettel" id="form" novalidate>
-        <div class="reihe">
+        <ol class="fortschritt" aria-label="Fortschritt">
+          <li aria-current="step">Fahrzeug</li>
+          <li>Motor und Baujahr</li>
+          <li>Leistung</li>
+        </ol>
+        <p class="auswahl" id="auswahl" hidden></p>
+
+        <div class="schritt" id="schritt-1" role="group" aria-labelledby="frage-1">
+          <h3 class="schritt-frage" id="frage-1" tabindex="-1">Welches Fahrzeug fahren Sie?</h3>
           <label for="marke"><span>Marke</span><select id="marke" required><option value="">Bitte wählen</option></select></label>
           <label for="modell"><span>Modell</span><select id="modell" required disabled><option value="">Erst Marke wählen</option></select></label>
+          <label for="modell-frei" id="modell-frei-feld" hidden><span>Modell eintragen</span><input type="text" id="modell-frei" maxlength="40" placeholder="z. B. Insignia Sports Tourer"></label>
+          <div class="schritt-knoepfe"><button type="button" class="weiter" id="weiter-1" disabled>Weiter</button></div>
         </div>
-        <div class="reihe" id="motor-wahl" hidden>
-          <label for="baureihe"><span>Baureihe</span><select id="baureihe"></select></label>
-          <label for="motor-liste"><span>Motor</span><select id="motor-liste"></select></label>
-        </div>
-        <label for="modell-frei" id="modell-frei-feld" hidden><span>Modell eintragen</span><input type="text" id="modell-frei" maxlength="40" placeholder="z. B. Insignia Sports Tourer"></label>
-        <div class="reihe">
-          <label for="baujahr"><span>Baujahr</span><select id="baujahr" required><option value="">Bitte wählen</option></select></label>
-          <label for="kraftstoff"><span>Kraftstoff</span><select id="kraftstoff"><option>Diesel</option><option>Benzin</option><option>Hybrid</option></select></label>
-        </div>
-        <label for="motor" id="motor-frei-feld"><span>Motor und Leistung</span><input type="text" id="motor" maxlength="50" placeholder="z. B. 2.0 TDI 190 PS (steht im Fahrzeugschein)"></label>
-        <button type="button" class="berechnen" id="berechnen" hidden>Leistung berechnen</button>
-        <div class="ergebnis" id="ergebnis" hidden aria-live="polite">
-          <span class="erg-kopf" id="erg-kopf">Geschätzt, Stage 1</span>
-          <div class="diagramm" id="diagramm" hidden aria-hidden="true"><svg viewBox="0 0 320 214" class="dia" id="dia-svg"></svg></div>
-          <div class="zahlen" id="erg-zahlen"></div>
-          <div class="balken" id="erg-balken" hidden>
-            <div class="zeile s"><span>Serie</span><span class="spur"><span class="fuell" id="b-serie"></span></span><span class="wert" id="b-serie-w"></span></div>
-            <div class="zeile t"><span>Stage 1</span><span class="spur"><span class="rest" id="b-rest"></span><span class="fuell" id="b-tuning"></span></span><span class="wert" id="b-tuning-w"></span></div>
+
+        <div class="schritt" id="schritt-2" role="group" aria-labelledby="frage-2" hidden>
+          <h3 class="schritt-frage" id="frage-2" tabindex="-1">Motor und Baujahr</h3>
+          <div class="reihe" id="motor-wahl" hidden>
+            <label for="baureihe"><span>Baureihe</span><select id="baureihe"></select></label>
+            <label for="motor-liste"><span>Motor</span><select id="motor-liste"></select></label>
           </div>
-          <p class="schaetzung">Grobe Schätzung auf Basis typischer Erfahrungswerte für diesen Motortyp, keine Zusage. Die tatsächliche Leistung hängt unter anderem von Zustand, Laufleistung und vorhandener Software ab und wird erst nach dem Auslesen des Fahrzeugs festgelegt.</p>
-        </div>
-        <p class="hinweis" id="motor-hinweis" hidden>Motoren und Serienleistung sind eine Auswahlhilfe. Bitte mit dem Fahrzeugschein abgleichen.</p>
-        <div>
-          <span class="r-feldtitel" id="wunsch-titel">Wunsch</span>
-          <div class="stufen" role="radiogroup" aria-labelledby="wunsch-titel">
-            <label><input type="radio" name="wunsch" value="Stage 1" checked><span>Stage 1</span></label>
-            <label><input type="radio" name="wunsch" value="Stage 2"><span>Stage 2</span></label>
-            <label><input type="radio" name="wunsch" value="Getriebe"><span>Getriebe</span></label>
-            <label><input type="radio" name="wunsch" value="Beratung"><span>Erst mal Beratung</span></label>
+          <label for="motor" id="motor-frei-feld"><span>Motor und Leistung</span><input type="text" id="motor" maxlength="50" placeholder="z. B. 2.0 TDI 190 PS (steht im Fahrzeugschein)"></label>
+          <p class="hinweis" id="motor-hinweis" hidden>Motoren und Serienleistung sind eine Auswahlhilfe. Bitte mit dem Fahrzeugschein abgleichen.</p>
+          <div class="reihe">
+            <label for="baujahr"><span>Baujahr</span><select id="baujahr" required><option value="">Bitte wählen</option></select></label>
+            <label for="kraftstoff"><span>Kraftstoff</span><select id="kraftstoff"><option>Diesel</option><option>Benzin</option><option>Hybrid</option></select></label>
           </div>
+          <div class="schritt-knoepfe"><button type="button" class="zurueck" data-zurueck>Zurück</button><button type="button" class="weiter" id="weiter-2" disabled>Weiter</button></div>
         </div>
-        <!-- WhatsApp-Nummer fehlt noch: NUMMER im Skript unten -->
-        <a class="r-senden" id="senden" href="#" target="_blank" rel="noopener" aria-disabled="true">Anfrage per WhatsApp</a>
-        <p class="fehlt" id="fehlt">Bitte Marke, Modell und Baujahr wählen.</p>
-        <details class="vorschau-auf"><summary>Nachricht ansehen</summary><div class="vorschau" id="vorschau" aria-live="polite"><b>Ihre Nachricht</b><span id="text"></span></div></details>
-        <p class="hinweis">Vor jeder Optimierung wird das Fahrzeug ausgelesen und geprüft. Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
+
+        <div class="schritt" id="schritt-3" role="group" aria-labelledby="frage-3" hidden>
+          <h3 class="schritt-frage" id="frage-3" tabindex="-1">Ihre geschätzte Leistung</h3>
+          <button type="button" class="berechnen" id="berechnen" hidden>Leistung berechnen</button>
+          <div class="ergebnis" id="ergebnis" hidden aria-live="polite">
+            <span class="erg-kopf" id="erg-kopf">Geschätzt, Stage 1</span>
+            <div class="diagramm" id="diagramm" hidden aria-hidden="true"><svg viewBox="0 0 320 214" class="dia" id="dia-svg"></svg></div>
+            <div class="zahlen" id="erg-zahlen"></div>
+            <div class="balken" id="erg-balken" hidden>
+              <div class="zeile s"><span>Serie</span><span class="spur"><span class="fuell" id="b-serie"></span></span><span class="wert" id="b-serie-w"></span></div>
+              <div class="zeile t"><span>Stage 1</span><span class="spur"><span class="rest" id="b-rest"></span><span class="fuell" id="b-tuning"></span></span><span class="wert" id="b-tuning-w"></span></div>
+            </div>
+            <p class="schaetzung">Grobe Schätzung auf Basis typischer Erfahrungswerte für diesen Motortyp, keine Zusage. Die tatsächliche Leistung hängt unter anderem von Zustand, Laufleistung und vorhandener Software ab und wird erst nach dem Auslesen des Fahrzeugs festgelegt.</p>
+          </div>
+          <p class="keine-schaetzung" id="keine-schaetzung" hidden>Für dieses Fahrzeug können wir hier keine Schätzung zeigen. Fragen Sie die Werte einfach per WhatsApp an.</p>
+          <div class="anfrage" id="anfrage" hidden>
+            <div>
+              <span class="r-feldtitel" id="wunsch-titel">Was möchten Sie?</span>
+              <div class="stufen" role="radiogroup" aria-labelledby="wunsch-titel">
+                <label><input type="radio" name="wunsch" value="Stage 1" checked><span>Stage 1</span></label>
+                <label><input type="radio" name="wunsch" value="Stage 2"><span>Stage 2</span></label>
+                <label><input type="radio" name="wunsch" value="Getriebe"><span>Getriebe</span></label>
+                <label><input type="radio" name="wunsch" value="Beratung"><span>Erst mal Beratung</span></label>
+              </div>
+            </div>
+            <!-- WhatsApp-Nummer fehlt noch: NUMMER im Skript unten -->
+            <a class="r-senden" id="senden" href="#" target="_blank" rel="noopener" aria-disabled="true">Anfrage per WhatsApp</a>
+            <p class="fehlt" id="fehlt">Bitte Marke, Modell und Baujahr wählen.</p>
+            <details class="vorschau-auf"><summary>Nachricht ansehen</summary><div class="vorschau" id="vorschau" aria-live="polite"><b>Ihre Nachricht</b><span id="text"></span></div></details>
+            <p class="hinweis">Vor jeder Optimierung wird das Fahrzeug ausgelesen und geprüft. Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
+          </div>
+          <div class="schritt-knoepfe"><button type="button" class="zurueck" data-zurueck>Zurück</button></div>
+        </div>
       </form>
     </div>
 
@@ -912,9 +942,51 @@ ruhig.addEventListener("change", film);
   document.querySelectorAll('input[name="wunsch"]').forEach(function(e){e.addEventListener("change",aktualisieren)});
   $("form").addEventListener("submit",function(e){e.preventDefault()});
 
-  // Beispiel vorausgefüllt, damit die Vorschau etwas zeigt
-  marke.value="BMW";modelleFuellen();modell.value="5er";motorenFuellen();baureihe.value="2";motorListeFuellen();motorListe.value="530d 265 PS";baujahr.value="2018";
   aktualisieren();
+})();
+</script>
+<script>
+// Rechner Schritt für Schritt: 1 Fahrzeug, 2 Motor und Baujahr, 3 Leistung. Rechnen und Daten bleiben im Skript oben.
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var form=$("form"), schritte=[$("schritt-1"),$("schritt-2"),$("schritt-3")];
+  var punkte=[].slice.call(form.querySelectorAll(".fortschritt li"));
+  var ruhig=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches, aktiv=0;
+  function text(sel){var o=sel.options[sel.selectedIndex];return o&&sel.value&&sel.value.indexOf("__")!==0?o.textContent:""}
+  function pruefen(){
+    var marke=$("marke").value, modell=$("modell").value, frei=$("modell-frei").value.trim();
+    var ok1=!!marke&&((marke!=="__andere"&&modell&&modell!=="__andere")||!!frei);
+    $("weiter-1").disabled=!ok1;
+    $("weiter-2").disabled=!$("baujahr").value;
+    // Auswahlzeile ab Schritt 2
+    var teile=[text($("marke")),text($("modell"))||frei];
+    if(aktiv>=2){var mo=text($("motor-liste"))||$("motor").value.trim();teile.push(mo,$("baujahr").value)}
+    $("auswahl").textContent=teile.filter(Boolean).join(" · ");
+    $("auswahl").hidden=aktiv===0||!ok1;
+    // Anfrage erst, wenn nichts mehr zu berechnen ist
+    var b=$("berechnen").hidden;
+    $("anfrage").hidden=!b;
+    $("keine-schaetzung").hidden=!(b&&$("ergebnis").hidden);
+  }
+  function zeige(i,fokus){
+    aktiv=i;
+    schritte.forEach(function(s,j){s.hidden=j!==i});
+    punkte.forEach(function(p,j){p.classList.toggle("fertig",j<i);if(j===i)p.setAttribute("aria-current","step");else p.removeAttribute("aria-current")});
+    pruefen();
+    if(fokus){
+      $("frage-"+(i+1)).focus({preventScroll:true});
+      var oben=form.getBoundingClientRect().top;
+      if(oben<0||oben>innerHeight*.4)form.scrollIntoView({block:"start",behavior:ruhig?"auto":"smooth"});
+    }
+  }
+  form.addEventListener("change",pruefen);
+  form.addEventListener("input",pruefen);
+  ["berechnen","ergebnis"].forEach(function(id){new MutationObserver(pruefen).observe($(id),{attributes:true,attributeFilter:["hidden"]})});
+  $("weiter-1").addEventListener("click",function(){zeige(1,true)});
+  $("weiter-2").addEventListener("click",function(){zeige(2,true)});
+  [].forEach.call(form.querySelectorAll("[data-zurueck]"),function(b){b.addEventListener("click",function(){zeige(aktiv-1,true)})});
+  zeige(0,false);
 })();
 </script>
 </body>
