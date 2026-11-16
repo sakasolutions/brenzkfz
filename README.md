@@ -5,19 +5,19 @@ Website von Brenz KFZ: Kfz-Service, Softwareoptimierung, Fahrzeugaufbereitung. G
 ## Aufbau
 
 - `index.html`: eine Datei mit CSS und JS, kein Framework, kein Build-Schritt
-- `fonts/`: Barlow und Barlow Condensed als woff2, lokal eingebunden (kein Abruf bei Google)
+- `fonts/`: Barlow und Barlow Condensed als woff2, dazu Saira Condensed und Manrope für den Vergleich, alles lokal (kein Abruf bei Google)
 - `img/`: Werkstatt-Videos für den Startbereich mit Standbildern. Hochformat fürs Handy, Querformat ab 900 px Breite. Es wird nur das passende Video geladen
-- `favicon.svg`: Logo 3 (Emblem)
+- `favicon.svg`: Logo 3 (Emblem), einfarbig weiß auf Schwarz
 
 Farben (Schema A, gemessen aus einer Dribbble-Vorlage): Grund `#111111`, Fläche `#181818`, Linie `#303030`, Text `#ffffff`, Text leise `#8b8b8b`, Akzent `#fdf325`, Schrift auf Akzent `#111111`. Logo und Regeln stehen im Plan-Repo unter `konzepte/brenz-kfz/marke/MARKE.md`.
 
-## Vergleichsfassungen
+## Vergleich für Mert
 
-Zum Vergleichen gibt es drei weitere Fassungen derselben Seite, beide aus `index.html` erzeugt und für Google gesperrt:
+`gelb.html`, `dezent.html`, `gemischt.html` und `blau.html` sind Kopien der Startseite mit einer Vergleichsleiste unten. Darüber schaltet man **Farbe**, **Schrift** und **Logo** um, die Auswahl steht in der Adresse (zum Beispiel `blau.html?schrift=manrope&logo=wm1`), also lässt sich jede Kombination als Link verschicken. Alle sind für Google gesperrt. `index.html` bleibt ohne Leiste.
 
-- `dezent.html`: dezentere Farben (Akzent #e5c65f, Text #e0dfde, Grund #121212, gemessen aus Sinans Dribbble-Überblick, Autoseite „Luxury Cars“)
-- `gemischt.html`: Kopf dunkel, der Rechner darunter hell (nach Sinans Vorlage „AutoPlanet“: dunkler Kopf, helle Abschnitte, eine Akzentfarbe, Rot nur als Signal). Helle Töne aus der vorhandenen Palette gemischt, Gelb auf Hell nur als Knopf
-- `blau.html`: Aufbau wie gemischt, Akzent Blau wie in der AutoPlanet-Vorlage (#1f5ae0, nach Augenmaß angesetzt, nicht gemessen; auf Dunkel aufgehellt #5783e8, Schrift auf Blau weiß)
+- Farben: Gelb (Schema A), Dezent (Gold #e5c65f, gemessen aus Sinans Dribbble-Überblick), Gemischt (Kopf dunkel, Rechner hell, nach der Vorlage „AutoPlanet“), Blau (wie Gemischt, Akzent #1f5ae0 nach Augenmaß, nicht gemessen)
+- Schriften: Kursiv (Barlow Condensed kursiv), Aufrecht (dieselbe, nicht kursiv), Saira (Saira Condensed), Manrope (eine ruhige, moderne Schrift für alles)
+- Logos: Emblem (einfarbig) und die Wortmarken 01 bis 03 aus Sinans Entwürfen (`werkzeuge/wortmarken.svg`, einfarbig)
 
 Nach jeder Änderung an `index.html` neu erzeugen:
 
@@ -47,4 +47,4 @@ Steht vorerst direkt unter dem Startbereich (`#rechner`), damit Mert ihn sehen k
 - Impressum und Datenschutz vor dem Livegang
 - Videos sind Platzhalter von Pexels (Nr. 8987289 und 4488712), später eigene Aufnahmen aus der Werkstatt
 - Kursivschnitt von Barlow Condensed als Datei ergänzen, bis dahin erzeugt der Browser die Schräglage
-- Lizenztext der Schrift (SIL Open Font License 1.1) in `fonts/` legen
+- Lizenztexte der Schriften (alle SIL Open Font License 1.1) in `fonts/` legen
