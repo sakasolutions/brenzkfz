@@ -28,6 +28,17 @@ python3 werkzeuge/varianten.py
 
 Nach Merts Wahl kommt seine Fassung in `index.html`, die beiden Dateien fallen dann weg.
 
+## Neuer Entwurf: champagner-neu.html
+
+Sinan fand die zwei Fassungen zu KI-generisch (Aufbau wie eine Startup-Landingpage, zwei Knöpfe, Großbuchstaben-Zeilen, keine Fakten). Neuer Entwurf zum Selber-Ansehen: https://sakasolutions.github.io/brenzkfz/champagner-neu.html (für Google gesperrt).
+
+- Erzeugt mit `python3 werkzeuge/neu.py` aus `werkzeuge/neu-vorlage.html`; Emblem, Rechner-Formular und Rechner-Skripte kommen unverändert aus `img/logo-champagner.svg` und `index.html`.
+- Ein Knopf je Bereich (WhatsApp), sonst unterstrichene Textlinks. Überschriften normal geschrieben, ohne Punkt. Keine Zeilen in Großbuchstaben, keine Pfeile.
+- Eigenes Element: Kennzeichen-Kürzel als Einzugsgebiet (HDH Landkreis Heidenheim, AA Ostalbkreis, UL Ulm und Alb-Donau-Kreis). AA und UL sind der Vorschlag für die Softwareoptimierung, noch abstimmen.
+- Leistungen als Verzeichnis, Rechner mit Datenliste daneben, Kontakt mit großer WhatsApp-Nummer und Einzugsgebiet.
+- Nur Standbilder, kein Video. Fotos weiter Platzhalter; echte Fotos aus der Werkstatt sind der größte Hebel.
+- Fehlt noch von Mert: Adresse, Öffnungszeiten, konkrete Leistungen.
+
 ## Lokal ansehen
 
 ```bash

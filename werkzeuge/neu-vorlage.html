@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="de">
+<head>
+<!-- Vorlage für champagner-neu.html. Nicht direkt öffnen: python3 werkzeuge/neu.py setzt Logo, Rechner und WhatsApp-Links ein. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>(Champagner neu) Kfz-Service und Chiptuning im Raum Heidenheim · Brenz KFZ</title>
+<meta name="description" content="Brenz KFZ: Kfz-Service und Fahrzeugaufbereitung für Heidenheim und Umgebung, Softwareoptimierung (Chiptuning) für die ganze Region. Leistung berechnen oder per WhatsApp anfragen.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#121212">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/SairaCondensed-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/werkstatt-hoch.webp" as="image">
+<style>
+/* Neuer Entwurf (Sinan, 16.11.2026): weniger Vorlage, mehr Werkstatt. Keine Großbuchstaben-Zeilen, ein Knopf pro Bereich,
+   Fakten statt Parolen. Eigenes Element: Kennzeichen-Kürzel als Einzugsgebiet (HDH, AA, UL).
+   Farben Champagner: Grund #121212, Text #e0dfde (gemessen), Akzent #e4cc7f (gemessenes Gold, etwas sanfter). */
+@font-face{font-family:"Saira Condensed";font-style:normal;font-weight:900;font-display:swap;src:url("fonts/SairaCondensed-900.woff2") format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-style:normal;font-weight:700;font-display:swap;src:url("fonts/BarlowCondensed-700.woff2") format("woff2")}
+@font-face{font-family:"Barlow";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/Barlow-500.woff2") format("woff2")}
+@font-face{font-family:"Barlow";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/Barlow-600.woff2") format("woff2")}
+
+:root{
+  --grund:#121212; --flaeche:#181818; --linie:#303030; --text:#e0dfde; --leise:#8b8b8b;
+  --akzent:#e4cc7f; --auf-akzent:#111111;
+  --fliess:color-mix(in srgb,var(--text) 74%,var(--grund));
+  --haar:color-mix(in srgb,var(--text) 13%,transparent);
+  --f-titel:"Saira Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-text:"Barlow","Segoe UI",system-ui,sans-serif;
+  --f-schild:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --kopf-h:64px;
+  --rand-l:max(20px,env(safe-area-inset-left,0px));
+  --rand-r:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--kopf-h) + 16px)}
+html.gesperrt{overflow:hidden}
+body{margin:0;background:var(--grund);color:var(--text);font:500 16px/1.6 var(--f-text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--akzent);outline-offset:3px}
+[hidden]{display:none!important}
+.innen{width:100%;max-width:1200px;margin-inline:auto;padding-left:var(--rand-l);padding-right:var(--rand-r)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* Kennzeichen: weißes Schild, schwarze Kante, blaues Feld mit D. Buchstaben per CSS, damit sie nicht im Text stehen. */
+.kz{display:inline-flex;flex:none;height:24px;padding:3px;border-radius:4px;background:#f3f2ee;
+  box-shadow:inset 0 0 0 2px #f3f2ee,inset 0 0 0 3px #1c1c1c;vertical-align:middle}
+.kz::before{content:"D";display:flex;align-items:flex-end;justify-content:center;width:9px;padding-bottom:1px;border-radius:1px;
+  background:#003399;color:#ffffff;font:600 6.5px/1 var(--f-text)}
+.kz::after{content:attr(data-kz);padding:0 5px;color:#151515;font:700 15px/18px var(--f-schild);letter-spacing:.06em}
+.schilder{display:inline-flex;flex-wrap:wrap;gap:6px}
+
+/* Kopf */
+.kopf{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:var(--grund);border-bottom:1px solid var(--haar)}
+.kopf-zeile{display:flex;align-items:center;gap:16px;height:var(--kopf-h)}
+.marke{flex:none;width:44px;height:44px}
+.marke svg{width:100%;height:100%}
+.menue,.kopf-wa{display:none}
+.burger{flex:none;display:grid;place-items:center;width:44px;height:44px;margin-left:auto;margin-right:-10px;padding:0;border:0;background:transparent;color:var(--text);cursor:pointer}
+.burger span,.burger span::before,.burger span::after{display:block;width:22px;height:2px;background:currentColor}
+.burger span{position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{transform:translateY(-7px)}
+.burger span::after{transform:translateY(7px)}
+.offen .burger span{background:transparent}
+.offen .burger span::before{transform:rotate(45deg)}
+.offen .burger span::after{transform:rotate(-45deg)}
+.handymenue{position:fixed;z-index:19;inset:calc(var(--kopf-h) + env(safe-area-inset-top,0px) + 1px) 0 0;overflow-y:auto;background:var(--grund);
+  padding-block:8px calc(32px + env(safe-area-inset-bottom,0px))}
+.handymenue nav{display:grid}
+.handymenue nav a{padding-block:20px;border-bottom:1px solid var(--haar);font:900 1.75rem/1 var(--f-titel)}
+.handymenue .knopf{width:100%;margin-top:32px}
+
+/* Knopf und Textlink: ein Knopf je Bereich, sonst unterstrichene Links */
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 22px;border-radius:4px;
+  background:var(--akzent);color:var(--auf-akzent);font:600 1rem/1 var(--f-text);white-space:nowrap}
+.knopf:hover{background:color-mix(in srgb,var(--akzent) 88%,#ffffff)}
+.knopf svg{flex:none;width:20px;height:20px}
+.link{justify-self:start;font-weight:600;color:var(--text);text-decoration:underline;text-decoration-color:var(--akzent);
+  text-decoration-thickness:2px;text-underline-offset:6px}
+.link:hover{color:var(--akzent)}
+
+h1,h2,h3{margin:0}
+.titel,.r-titel{font-family:var(--f-titel);font-weight:900;letter-spacing:.005em;text-wrap:balance}
+
+/* Start */
+.held{padding-block:36px 56px}
+.held-raster{display:grid;gap:36px}
+.held h1{display:grid;gap:18px}
+.ort{display:flex;align-items:center;gap:10px;font:600 .9375rem/1.3 var(--f-text);color:var(--fliess)}
+.titel{font-size:clamp(2.75rem,12.4vw,5.25rem);line-height:.96;color:var(--text)}
+.unter{margin:20px 0 0;max-width:44ch;color:var(--fliess);font-size:1.0625rem}
+.aktion{display:grid;gap:14px;margin-top:28px}
+.aktion .knopf{width:100%}
+.aktion p{margin:0;font-size:.9375rem;color:var(--leise)}
+.aktion p a{color:var(--text);font-variant-numeric:tabular-nums}
+.held-bild{margin:0}
+.held-bild img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 58%;border-radius:4px;filter:saturate(.72)}
+
+/* Leistungen als Verzeichnis */
+.leistungen{padding-block:64px 72px;border-top:1px solid var(--haar)}
+.abschnitt-kopf{display:grid;gap:12px}
+.r-titel{font-size:clamp(2.25rem,9.6vw,3.5rem);line-height:1}
+.abschnitt-kopf p{margin:0;max-width:40ch;color:var(--leise);font-size:.9375rem}
+.liste{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--haar)}
+.liste li{display:grid;gap:12px;padding-block:28px;border-bottom:1px solid var(--haar)}
+.liste h3{font:900 1.875rem/1 var(--f-titel)}
+.gebiet{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font:600 .875rem/1.3 var(--f-text);color:var(--leise)}
+.was{display:grid;gap:14px}
+.was p{margin:0;max-width:52ch;color:var(--fliess)}
+
+/* Rechner: hell, Motorbild unter einer fast deckenden Fläche (Herkunft des Fotos offen, nur für den Entwurf) */
+.rechner{color-scheme:light;
+  --grund:color-mix(in srgb,#ffffff 94%,#8b8b8b); --flaeche:#ffffff; --linie:color-mix(in srgb,#ffffff 80%,#8b8b8b);
+  --text:#111111; --leise:color-mix(in srgb,#111111 45%,#8b8b8b); --fliess:color-mix(in srgb,#111111 80%,#8b8b8b);
+  --haar:color-mix(in srgb,#111111 13%,transparent);
+  color:var(--text);padding-block:64px 80px;
+  background:linear-gradient(color-mix(in srgb,var(--grund) 90%,transparent),color-mix(in srgb,var(--grund) 90%,transparent)),
+    url("img/motor-hintergrund.webp") center/cover no-repeat,var(--grund)}
+.rechner-raster{display:grid;gap:32px}
+.rechner-text{display:grid;gap:16px;align-content:start}
+.rechner-unter{margin:0;max-width:44ch;color:var(--fliess);font-size:1.0625rem}
+.daten{margin:8px 0 0;border-top:1px solid var(--haar)}
+.daten div{display:grid;grid-template-columns:7.5em 1fr;gap:12px;padding-block:12px;border-bottom:1px solid var(--haar);font-size:.9375rem}
+.daten dt{color:var(--leise);font-weight:600}
+.daten dd{margin:0}
+.zettel{min-width:0;display:grid;gap:22px;padding:24px 20px;background:var(--flaeche);border:1px solid var(--haar);border-radius:6px;
+  box-shadow:0 1px 2px rgb(0 0 0 / .04),0 8px 24px rgb(0 0 0 / .05)}
+.fortschritt{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;counter-reset:fs}
+.fortschritt li{counter-increment:fs;padding-top:10px;border-top:2px solid var(--linie);font:600 .8125rem/1.3 var(--f-text);color:var(--leise)}
+.fortschritt li::before{content:counter(fs) ". "}
+.fortschritt li.fertig{border-top-color:color-mix(in srgb,var(--text) 45%,transparent);color:var(--fliess)}
+.fortschritt li[aria-current]{border-top-color:var(--text);color:var(--text)}
+.auswahl{margin:-4px 0 0;font-size:.9375rem;color:var(--leise)}
+.schritt{display:grid;gap:18px}
+.schritt-frage{margin:4px 0 0;font:600 1.375rem/1.25 var(--f-text);outline:none}
+.schritt-knoepfe{display:flex;align-items:center;gap:12px;margin-top:4px}
+.weiter{flex:1;display:flex;align-items:center;justify-content:center;height:52px;border:0;border-radius:4px;background:var(--akzent);color:var(--auf-akzent);font:600 1.0625rem/1 var(--f-text);cursor:pointer}
+.weiter:hover{background:color-mix(in srgb,var(--akzent) 90%,#000000)}
+.weiter:disabled{background:var(--linie);color:var(--leise);cursor:not-allowed}
+.zurueck{height:52px;padding:0 6px;border:0;background:transparent;color:var(--leise);font:600 1rem/1 var(--f-text);cursor:pointer}
+.zurueck:hover{color:var(--text)}
+.anfrage{display:grid;gap:18px}
+.keine-schaetzung{margin:0;padding:14px 16px;background:var(--grund);border:1px solid var(--haar);border-radius:4px;font-size:.9375rem}
+.zettel .reihe{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
+.zettel label{display:grid;gap:6px;min-width:0}
+.zettel label>span,.r-feldtitel{display:block;font:600 .875rem/1.2 var(--f-text);color:var(--fliess)}
+.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:500 1rem var(--f-text);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px}
+.zettel select:disabled{opacity:.55}
+.zettel select:focus-visible,.zettel input:focus-visible{outline:2px solid var(--text);outline-offset:1px}
+.zettel .stufen{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.zettel .stufen input{position:absolute;opacity:0;pointer-events:none}
+.zettel .stufen label{display:block}
+.zettel .stufen label span{display:block;padding:11px 14px;font:600 .9375rem/1 var(--f-text);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px;cursor:pointer}
+.zettel .stufen input:checked+span{background:var(--text);color:var(--flaeche);border-color:var(--text)}
+.zettel .stufen input:focus-visible+span{outline:2px solid var(--text);outline-offset:2px}
+.vorschau{padding:12px 14px;font-size:.9375rem;white-space:pre-wrap;background:var(--grund);border-left:2px solid var(--linie);border-radius:0 4px 4px 0}
+.vorschau-auf summary{display:inline-flex;align-items:center;gap:10px;cursor:pointer;list-style:none;font:600 .9rem/1.2 var(--f-text);color:var(--leise)}
+.vorschau-auf summary::-webkit-details-marker{display:none}
+.vorschau-auf summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.vorschau-auf[open] summary::after{transform:translateY(1px) rotate(-135deg)}
+.vorschau-auf summary:hover{color:var(--text)}
+.vorschau-auf .vorschau{margin-top:12px}
+.vorschau b{display:block;margin-bottom:4px;font:600 .8125rem/1.2 var(--f-text);color:var(--leise)}
+.r-senden,.berechnen{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;border-radius:4px;font:600 1.0625rem/1 var(--f-text);cursor:pointer}
+.r-senden{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--linie)}
+.r-senden:hover{box-shadow:inset 0 0 0 1px var(--text)}
+#berechnen[hidden]~.anfrage .r-senden{background:var(--akzent);color:var(--auf-akzent);box-shadow:none}
+#berechnen[hidden]~.anfrage .r-senden:hover{background:color-mix(in srgb,var(--akzent) 90%,#000000)}
+#erg-balken[hidden]~.schaetzung{display:none}
+.r-senden[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.berechnen{background:var(--akzent);color:var(--auf-akzent);border:0}
+.berechnen:hover{background:color-mix(in srgb,var(--akzent) 90%,#000000)}
+.fehlt{margin:-6px 0 0;font-size:.875rem;color:var(--leise)}
+.ergebnis{display:flex;flex-direction:column;gap:6px}
+.ergebnis .erg-kopf{order:0}.ergebnis .zahlen{order:1}.ergebnis .diagramm{order:2}.ergebnis .schaetzung{order:3}
+#erg-balken{display:none!important}
+.erg-kopf{font:600 .875rem/1.2 var(--f-text);color:var(--leise)}
+.ergebnis .zahlen{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.ergebnis .gesamt{order:-1;flex-basis:100%;font:900 clamp(2.5rem,10vw,3.25rem)/1 var(--f-titel);font-variant-numeric:tabular-nums}
+.ergebnis .serie{order:1;color:var(--leise)}
+.ergebnis .gesamt:only-child{font:600 1.125rem/1.35 var(--f-text)}
+.ergebnis .plus{font-weight:600;color:var(--text)}
+.ergebnis .schaetzung,.rechner .hinweis{margin:0;font-size:.875rem;color:var(--leise)}
+.diagramm{margin:14px 0 4px}
+.diagramm svg{width:100%;max-width:440px;height:auto}
+.dia .gitter{stroke:var(--linie);stroke-width:1}
+.dia .achse{fill:var(--leise);font:600 11px var(--f-text)}
+.dia .achse.mitte{text-anchor:middle}.dia .achse.rechts{text-anchor:end}
+.dia .k-serie{fill:none;stroke:var(--leise);stroke-width:2.5;stroke-linejoin:round}
+.dia .k-stage{fill:none;stroke:var(--akzent);stroke-width:2.5;stroke-linejoin:round}
+.dia .band{fill:var(--akzent);opacity:.2}
+.dia .zeiger{stroke:var(--text);stroke-width:1;stroke-opacity:.45}
+.dia .p-serie{fill:var(--leise)}.dia .p-stage{fill:var(--akzent)}
+.dia .leg-serie{stroke:var(--leise);stroke-width:3}.dia .leg-stage{stroke:var(--akzent);stroke-width:3}
+/* Auf Hell ist Champagner als Linie zu schwach: Stage-Kurve dunkel */
+.zettel .dia .k-stage,.zettel .dia .leg-stage{stroke:var(--text)}
+.zettel .dia .p-stage{fill:var(--text)}
+.zettel .dia .band{fill:var(--text);opacity:.1}
+.balken{display:grid;gap:8px}
+/* Vollbild beim Berechnen, dunkel */
+.r-buehne{position:fixed;inset:0;z-index:50;display:grid;place-items:center;align-content:center;gap:10px;cursor:pointer;opacity:0;
+  color-scheme:dark;--grund:#121212;--flaeche:#181818;--linie:#303030;--text:#e0dfde;--leise:#8b8b8b;background:var(--grund);color:var(--text);
+  padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.r-buehne.an{opacity:1}
+.r-buehne svg{width:min(92vw,560px);height:auto}
+.r-buehne .fahrzeug{font:900 clamp(1.5rem,6vw,2.125rem)/1.05 var(--f-titel);text-align:center}
+.r-buehne .wert{font:900 clamp(2.75rem,12vw,3.75rem)/1 var(--f-titel);font-variant-numeric:tabular-nums;text-align:center}
+.r-buehne .wert small{margin-left:6px;font:600 .9rem var(--f-text);color:var(--leise)}
+.r-buehne .schritt{min-height:1.2em;font:600 .875rem/1.2 var(--f-text);text-align:center;color:var(--akzent)}
+.r-buehne .tippen{font-size:.75rem;color:var(--leise)}
+@media (max-width:480px){.zettel .reihe{grid-template-columns:1fr}}
+
+/* Aufbereitung */
+.aufbereitung{padding-block:64px 72px}
+.aufb-raster{display:grid;gap:28px}
+.aufb-bild{margin:0}
+.aufb-bild img{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:32% center;border-radius:4px}
+.aufb-text{display:grid;gap:16px;align-content:start}
+.aufb-text p{margin:0;max-width:44ch;color:var(--fliess);font-size:1.0625rem}
+
+/* Kontakt */
+.kontakt{padding-block:64px 32px;background:#0d0d0d;border-top:1px solid var(--haar)}
+.kontakt-raster{display:grid;gap:44px}
+.kontakt-haupt{display:grid;gap:16px;justify-items:start}
+.kontakt-haupt p{margin:0;max-width:40ch;color:var(--fliess);font-size:1.0625rem}
+.nummer{font:900 clamp(2.5rem,11vw,4.25rem)/1 var(--f-titel);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.nummer:hover{color:var(--akzent)}
+.kontakt-haupt .knopf{margin-top:8px}
+.gebiete h3{font:600 .9375rem/1.3 var(--f-text);color:var(--leise)}
+.gebiete dl{margin:12px 0 0;border-top:1px solid var(--haar)}
+.gebiete div{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;padding-block:14px;border-bottom:1px solid var(--haar)}
+.gebiete dt{grid-row:span 2;align-self:start}
+.gebiete dd{margin:0;font-weight:600}
+.gebiete dd+dd{font-weight:500;color:var(--leise);font-size:.9375rem}
+.fuss{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:56px;padding-top:24px;border-top:1px solid var(--haar);font-size:.875rem;color:var(--leise)}
+.fuss svg{width:36px;height:36px}
+
+@media (min-width:900px){
+  :root{--kopf-h:80px;--rand-l:max(32px,env(safe-area-inset-left,0px));--rand-r:max(32px,env(safe-area-inset-right,0px))}
+  .marke{width:56px;height:56px}
+  .burger,.handymenue{display:none}
+  .menue{display:flex;gap:32px;margin-left:auto;font:500 .9375rem/1 var(--f-text)}
+  .menue a{padding-block:10px;color:var(--fliess)}
+  .menue a:hover{color:var(--text)}
+  .kopf-wa{display:inline-flex;align-items:center;gap:8px;margin-left:16px;padding-left:24px;border-left:1px solid var(--haar);font:600 .9375rem/1 var(--f-text);font-variant-numeric:tabular-nums}
+  .kopf-wa svg{width:18px;height:18px;color:var(--akzent)}
+  .kopf-wa:hover{color:var(--akzent)}
+
+  .held{padding-block:80px 96px}
+  .held-raster{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:center}
+  .held h1{gap:22px}
+  .aktion{grid-template-columns:auto 1fr;align-items:center;gap:24px;margin-top:36px}
+  .aktion .knopf{width:auto}
+  .held-bild img{aspect-ratio:4/5;object-position:50% 50%}
+
+  .leistungen{padding-block:104px 112px}
+  .abschnitt-kopf{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:end}
+  .liste{margin-top:40px}
+  .liste li{grid-template-columns:minmax(0,4fr) minmax(0,3fr) minmax(0,5fr);column-gap:40px;align-items:start;padding-block:36px}
+  .liste h3{font-size:2.25rem}
+  .gebiet{padding-top:8px}
+
+  .rechner{padding-block:120px 136px}
+  .rechner-raster{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
+  .rechner-text{position:sticky;top:calc(var(--kopf-h) + 32px)}
+  .zettel{padding:36px}
+
+  .aufbereitung{padding-block:104px 112px}
+  .aufb-raster{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:center}
+
+  .kontakt{padding-block:104px 32px}
+  .kontakt-raster{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:end}
+  .fuss{margin-top:88px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .burger span,.burger span::before,.burger span::after{transition:transform .25s,background-color .2s}
+  .knopf,.weiter,.berechnen,.r-senden,.zurueck,.link,.menue a,.kopf-wa,.nummer{transition:background-color .15s,color .15s,box-shadow .15s}
+  .r-buehne{transition:opacity .3s}
+  .ergebnis .zahlen{transition:opacity .35s}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Sprechblase (Lucide, ISC-Lizenz) für WhatsApp-Links -->
+  <symbol id="nachricht" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="kopf" id="kopf">
+  <div class="innen kopf-zeile">
+    <a class="marke" href="#start" aria-label="Brenz KFZ, zum Anfang"><!--LOGO--></a>
+    <nav class="menue" aria-label="Hauptmenü">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#rechner">Chiptuning-Rechner</a>
+      <a href="#aufbereitung">Aufbereitung</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="kopf-wa" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg><span><span class="sr">WhatsApp </span>0176 62794745</span></a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="handymenue" aria-label="Menü öffnen"><span></span></button>
+  </div>
+</header>
+
+<div class="handymenue" id="handymenue" hidden>
+  <div class="innen">
+    <nav aria-label="Hauptmenü">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#rechner">Chiptuning-Rechner</a>
+      <a href="#aufbereitung">Aufbereitung</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+  </div>
+</div>
+
+<main>
+  <section class="held" id="start" aria-labelledby="held-titel">
+    <div class="innen held-raster">
+      <div>
+        <h1 id="held-titel"><span class="ort"><span class="kz" data-kz="HDH" aria-hidden="true"></span>Kfz-Werkstatt im Raum Heidenheim</span> <span class="titel">Kfz-Service, Chiptuning und Aufbereitung</span></h1>
+        <p class="unter">Kfz-Service und Fahrzeugaufbereitung für Heidenheim und Umgebung. Softwareoptimierung auch für Fahrzeuge aus der ganzen Region.</p>
+        <div class="aktion">
+          <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+          <p><a href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener">0176 62794745</a> · Antwort per WhatsApp</p>
+        </div>
+      </div>
+      <!-- Platzhalter von Pexels (Nr. 4488712), bis es eigene Fotos aus der Werkstatt gibt -->
+      <figure class="held-bild"><img src="img/werkstatt-hoch.webp" width="540" height="960" alt="Mechaniker arbeitet mit einem Schraubenschlüssel an einem Motor" fetchpriority="high"></figure>
+    </div>
+  </section>
+
+  <section class="leistungen" id="leistungen" aria-labelledby="leistungen-titel">
+    <div class="innen">
+      <div class="abschnitt-kopf">
+        <h2 class="r-titel" id="leistungen-titel">Leistungen</h2>
+        <p>Das Kennzeichen zeigt, für welche Gegend die Leistung gilt.</p>
+      </div>
+      <ul class="liste">
+        <li id="service">
+          <h3>Kfz-Service</h3>
+          <div class="gebiet"><span class="schilder" aria-hidden="true"><span class="kz" data-kz="HDH"></span></span><span>Heidenheim und Umgebung</span></div>
+          <div class="was">
+            <p>Schreiben Sie uns per WhatsApp, was an Ihrem Fahrzeug ansteht. Wir melden uns zurück.</p>
+            <a class="link" href="{{WA_SERVICE}}" target="_blank" rel="noopener">Termin anfragen</a>
+          </div>
+        </li>
+        <li id="software">
+          <h3>Softwareoptimierung</h3>
+          <div class="gebiet"><span class="schilder" aria-hidden="true"><span class="kz" data-kz="HDH"></span><span class="kz" data-kz="AA"></span><span class="kz" data-kz="UL"></span></span><span>Heidenheim, Aalen, Ulm und Umgebung</span></div>
+          <div class="was">
+            <p>Mehr Leistung durch angepasste Motorsoftware, als Partner von Tuningfiles Germany. Stage 1 können Sie hier grob berechnen, Stage 2 auf Anfrage.</p>
+            <a class="link" href="#rechner">Zum Chiptuning-Rechner</a>
+          </div>
+        </li>
+        <li>
+          <h3>Fahrzeugaufbereitung</h3>
+          <div class="gebiet"><span class="schilder" aria-hidden="true"><span class="kz" data-kz="HDH"></span></span><span>Heidenheim und Umgebung</span></div>
+          <div class="was">
+            <p>Gründlich und nach vorheriger Absprache mit Ihnen.</p>
+            <a class="link" href="#aufbereitung">Mehr zur Aufbereitung</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="rechner" id="rechner" aria-labelledby="rechner-titel">
+    <div class="innen rechner-raster">
+      <div class="rechner-text">
+        <h2 class="r-titel" id="rechner-titel">Chiptuning-Rechner</h2>
+        <p class="rechner-unter">In drei Schritten zur geschätzten Mehrleistung. Die genauen Werte für Ihr Fahrzeug bekommen Sie per WhatsApp.</p>
+        <dl class="daten">
+          <div><dt>Schätzung</dt><dd>Stage 1, je Motortyp</dd></div>
+          <div><dt>Stage 2</dt><dd>auf Anfrage</dd></div>
+          <div><dt>Partner</dt><dd>Tuningfiles Germany</dd></div>
+          <div><dt>Genaue Werte</dt><dd>nach dem Auslesen Ihres Fahrzeugs</dd></div>
+        </dl>
+      </div>
+<!--RECHNER-FORM-->
+  </section>
+
+  <section class="aufbereitung" id="aufbereitung" aria-labelledby="aufb-titel">
+    <div class="innen aufb-raster">
+      <!-- Bild: Herkunft offen, nur für den Entwurf -->
+      <figure class="aufb-bild"><img src="img/aufbereitung.webp" width="1600" height="1067" loading="lazy" decoding="async" alt="Felge eines Autos wird mit einem Pinsel und Schaum gereinigt"></figure>
+      <div class="aufb-text">
+        <span class="ort"><span class="kz" data-kz="HDH" aria-hidden="true"></span>Im Raum Heidenheim</span>
+        <h2 class="r-titel" id="aufb-titel">Fahrzeugaufbereitung</h2>
+        <p>Ihr Fahrzeug wird bei uns gründlich aufbereitet. Was gemacht werden soll, besprechen wir vorher mit Ihnen, dann wissen Sie genau, was Sie bekommen.</p>
+        <a class="link" href="{{WA_AUFBEREITUNG}}" target="_blank" rel="noopener">Aufbereitung per WhatsApp anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
+    <div class="innen">
+      <div class="kontakt-raster">
+        <div class="kontakt-haupt">
+          <h2 class="r-titel" id="kontakt-titel">Kontakt</h2>
+          <p>Am schnellsten per WhatsApp. Schreiben Sie uns Fahrzeug und Anliegen, wir melden uns zurück.</p>
+          <a class="nummer" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><span class="sr">WhatsApp </span>0176 62794745</a>
+          <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+        </div>
+        <div class="gebiete">
+          <h3>Einzugsgebiet</h3>
+          <dl>
+            <div><dt><span class="kz" data-kz="HDH" aria-hidden="true"></span></dt><dd>Landkreis Heidenheim</dd><dd>Kfz-Service, Softwareoptimierung, Fahrzeugaufbereitung</dd></div>
+            <div><dt><span class="kz" data-kz="AA" aria-hidden="true"></span></dt><dd>Ostalbkreis</dd><dd>Softwareoptimierung</dd></div>
+            <div><dt><span class="kz" data-kz="UL" aria-hidden="true"></span></dt><dd>Ulm und Alb-Donau-Kreis</dd><dd>Softwareoptimierung</dd></div>
+          </dl>
+        </div>
+      </div>
+      <footer class="fuss"><!--LOGO--><span>© 2026 Brenz KFZ</span><span>Kfz-Werkstatt im Raum Heidenheim</span></footer>
+    </div>
+  </section>
+</main>
+
+<script>
+// Handy-Menü
+const kopf = document.getElementById("kopf");
+const burger = document.getElementById("burger");
+const handymenue = document.getElementById("handymenue");
+function menue(auf) {
+  burger.setAttribute("aria-expanded", String(auf));
+  burger.setAttribute("aria-label", auf ? "Menü schließen" : "Menü öffnen");
+  handymenue.hidden = !auf;
+  kopf.classList.toggle("offen", auf);
+  document.documentElement.classList.toggle("gesperrt", auf);
+}
+burger.addEventListener("click", () => menue(burger.getAttribute("aria-expanded") !== "true"));
+handymenue.addEventListener("click", (e) => { if (e.target.closest("a")) menue(false); });
+addEventListener("keydown", (e) => { if (e.key === "Escape" && !handymenue.hidden) { menue(false); burger.focus(); } });
+matchMedia("(min-width: 900px)").addEventListener("change", (e) => { if (e.matches) menue(false); });
+</script>
+<!--RECHNER-SKRIPTE-->
+</body>
+</html>
