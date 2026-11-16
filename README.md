@@ -19,10 +19,14 @@ python3 -m http.server 8000
 
 Dann http://localhost:8000 im Browser öffnen.
 
+## Leistungsrechner
+
+Steht vorerst direkt unter dem Startbereich (`#rechner`), damit Mert ihn sehen kann. Später kommt er auf die Seite Softwareoptimierung. Fahrzeugdaten, Faktoren und Show sind unverändert aus dem Entwurf übernommen, Logik und Grenzen der Schätzung stehen im Plan-Repo (`konzepte/brenz-kfz/RECHNER.md`). Die Serienleistungen sind eine Auswahlhilfe und noch nicht von Mert geprüft.
+
 ## Offen
 
 - Abschnitte Service, Softwareoptimierung, Aufbereitung, Leistungsrechner und Kontakt (die Links im Menü zeigen schon auf `#service`, `#software`, `#aufbereitung`, `#rechner`, `#kontakt`)
-- WhatsApp-Nummer, bis dahin zeigen die WhatsApp-Knöpfe auf `#kontakt`
+- WhatsApp-Nummer, bis dahin zeigen die WhatsApp-Knöpfe auf `#kontakt`, im Rechner steht ein Platzhalter (`NUMMER` im Skript)
 - Impressum und Datenschutz vor dem Livegang
 - Videos sind Platzhalter von Pexels (Nr. 8987289 und 4488712), später eigene Aufnahmen aus der Werkstatt
 - Kursivschnitt von Barlow Condensed als Datei ergänzen, bis dahin erzeugt der Browser die Schräglage
