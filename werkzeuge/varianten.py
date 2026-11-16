@@ -8,7 +8,9 @@ gemischt.html  Kopf dunkel wie index.html, der Rechner darunter hell (nach Sinan
                Studio: dunkler Kopf, helle Abschnitte, eine Akzentfarbe, Rot nur als Signal). Die hellen Töne sind aus
                der vorhandenen Palette gemischt (Weiß, #8b8b8b, #111111), kein neuer Farbton. Gelb auf Hell nur als
                Fläche mit dunkler Schrift.
-Beide Fassungen sind für Google gesperrt (sonst doppelte Inhalte).
+blau.html      Aufbau wie gemischt, Akzent Blau wie in der Vorlage „AutoPlanet“. Das Blau ist nach Augenmaß angesetzt,
+               nicht gemessen (Vorlage lag nur als Bild im Chat vor). Auf Dunkel ein aufgehelltes Blau, Schrift auf Blau weiß.
+Alle Fassungen sind für Google gesperrt (sonst doppelte Inhalte).
 """
 import os
 
@@ -57,6 +59,42 @@ GEMISCHT = [
     ("<title>", "<title>(gemischt) "),
 ]
 
+# blau.html: Aufbau wie gemischt, Akzent Blau wie in Sinans Vorlage „AutoPlanet“ (Origin UI/UX Studio).
+# Achtung: Blau nach Augenmaß aus dem Screenshot im Chat angesetzt, NICHT gemessen (die Vorlage lag nicht als Datei vor).
+BLAU_AKZENT = "#1f5ae0"
+
+
+def mischen(a, b, anteil_a):
+    """Farbe a mit b mischen wie color-mix(in srgb, a anteil, b), für das Logo-SVG (dort geht kein color-mix)."""
+    ca = [int(a[i:i + 2], 16) for i in (1, 3, 5)]
+    cb = [int(b[i:i + 2], 16) for i in (1, 3, 5)]
+    return "#" + "".join("%02x" % round(x * anteil_a + y * (1 - anteil_a)) for x, y in zip(ca, cb))
+
+
+BLAU_HELL = mischen(BLAU_AKZENT, "#ffffff", 0.75)   # für Akzent auf Dunkel (Wort in der Überschrift, Logo-Ring, Show)
+
+BLAU_CSS = HELL.replace("/* Gelbe Schrift und Linien sind auf Hell nicht lesbar: Mehrleistung und Stage-Kurve dunkel, Gelb bleibt für Knöpfe */\n"
+                        ".rechner .ergebnis .plus{color:var(--text)}\n"
+                        ".rechner .zettel .dia .k-stage,.rechner .zettel .dia .leg-stage{stroke:var(--text)}\n"
+                        ".rechner .zettel .dia .p-stage{fill:var(--text)}\n"
+                        ".rechner .zettel .dia .band{fill:var(--text);opacity:.1}\n", "") + """
+/* Fassung blau: Blau auf Dunkel aufgehellt, damit es lesbar bleibt. Rot bleibt Signalen vorbehalten (noch nirgends eingesetzt). */
+:root{--akzent-hell:""" + BLAU_HELL + """}
+.titel .akzent{color:var(--akzent-hell)}
+.r-buehne .dia .k-stage,.r-buehne .dia .leg-stage{stroke:var(--akzent-hell)}
+.r-buehne .dia .p-stage,.r-buehne .dia .band{fill:var(--akzent-hell)}
+.r-buehne .schritt{color:var(--akzent-hell)}
+.r-buehne .dia .k-stage{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--akzent-hell) 50%,transparent))}
+"""
+
+BLAU = [
+    ("--akzent:#fdf325;", "--akzent:" + BLAU_AKZENT + ";"),
+    ("--auf-akzent:#111111;", "--auf-akzent:#ffffff;"),     # Schrift auf Blau ist weiß
+    ('fill="#fdf325"', 'fill="' + BLAU_HELL + '"'),          # Logo-Ring
+    ("</style>", BLAU_CSS + "</style>"),
+    ("<title>", "<title>(blau) "),
+]
+
 
 def bauen(ziel, ersetzen):
     html = open(QUELLE, encoding="utf-8").read()
@@ -71,3 +109,4 @@ def bauen(ziel, ersetzen):
 if __name__ == "__main__":
     bauen("dezent.html", DEZENT)
     bauen("gemischt.html", GEMISCHT)
+    bauen("blau.html", BLAU)

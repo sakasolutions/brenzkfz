@@ -13,10 +13,11 @@ Farben (Schema A, gemessen aus einer Dribbble-Vorlage): Grund `#111111`, Fläche
 
 ## Vergleichsfassungen
 
-Zum Vergleichen gibt es zwei weitere Fassungen derselben Seite, beide aus `index.html` erzeugt und für Google gesperrt:
+Zum Vergleichen gibt es drei weitere Fassungen derselben Seite, beide aus `index.html` erzeugt und für Google gesperrt:
 
 - `dezent.html`: dezentere Farben (Akzent #e5c65f, Text #e0dfde, Grund #121212, gemessen aus Sinans Dribbble-Überblick, Autoseite „Luxury Cars“)
 - `gemischt.html`: Kopf dunkel, der Rechner darunter hell (nach Sinans Vorlage „AutoPlanet“: dunkler Kopf, helle Abschnitte, eine Akzentfarbe, Rot nur als Signal). Helle Töne aus der vorhandenen Palette gemischt, Gelb auf Hell nur als Knopf
+- `blau.html`: Aufbau wie gemischt, Akzent Blau wie in der AutoPlanet-Vorlage (#1f5ae0, nach Augenmaß angesetzt, nicht gemessen; auf Dunkel aufgehellt #5783e8, Schrift auf Blau weiß)
 
 Nach jeder Änderung an `index.html` neu erzeugen:
 
