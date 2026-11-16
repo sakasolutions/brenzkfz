@@ -6,7 +6,8 @@ Beide Fassungen (Sinan, 16.11.2026): Aufbau gemischt (Kopf dunkel, Rechner hell,
 Überschriften in Saira Condensed, Logo: Emblem nach Sinans Vorlage in der Farbe der Fassung (img/logo-*.svg).
   blau.html        Akzent #1f5ae0 (nach Augenmaß aus dem AutoPlanet-Screenshot, nicht gemessen), Schrift auf Blau weiß,
                    auf Dunkel aufgehellt
-  champagner.html  Akzent #e5c65f, Text #e0dfde, Grund #121212 (gemessen aus Sinans Dribbble-Überblick, Luxury Cars);
+  champagner.html  Text #e0dfde, Grund #121212 (gemessen aus Sinans Dribbble-Überblick, Luxury Cars); Akzent: das dort
+                   gemessene Gold #e5c65f, auf Sinans Wunsch etwas sanfter (zu 75 % mit dem Text #e0dfde gemischt: #e4cc7f);
                    Gold auf Hell nur als Knopf, Kurve und Mehrleistung dort dunkel
 Die hellen Töne des Rechners sind aus der Palette gemischt (Weiß, #8b8b8b, #111111). Beide Seiten sind für Google gesperrt.
 """
@@ -50,6 +51,7 @@ DUNKEL_AUF_HELL = """
 """
 
 BLAU = "#1f5ae0"
+GOLD_GEMESSEN = "#e5c65f"
 
 
 def mischen(a, b, anteil_a):
@@ -68,6 +70,8 @@ BLAU_AUF_DUNKEL = """
 .r-buehne .dia .k-stage{filter:drop-shadow(0 0 5px color-mix(in srgb,var(--akzent-hell) 50%,transparent))}
 """
 
+CHAMPAGNER = mischen(GOLD_GEMESSEN, "#e0dfde", 0.75)   # etwas sanfter als gemessen (Sinan, 16.11.2026)
+
 FASSUNGEN = {
     "blau.html": ("Blau", [
         ("--akzent:#fdf325;", "--akzent:" + BLAU + ";"),
@@ -76,7 +80,7 @@ FASSUNGEN = {
     "champagner.html": ("Champagner", [
         ("--grund:#111111;", "--grund:#121212;"),
         ("--text:#ffffff;", "--text:#e0dfde;"),
-        ("--akzent:#fdf325;", "--akzent:#e5c65f;"),
+        ("--akzent:#fdf325;", "--akzent:" + CHAMPAGNER + ";"),
         ('<meta name="theme-color" content="#111111">', '<meta name="theme-color" content="#121212">'),
     ], HELL + DUNKEL_AUF_HELL + SAIRA),
 }

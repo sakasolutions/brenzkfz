@@ -17,7 +17,7 @@ Farben (Schema A, gemessen aus einer Dribbble-Vorlage): Grund `#111111`, Fläche
 
 - beide: Kopf dunkel, Rechner hell (nach der Vorlage „AutoPlanet“), Überschriften in Saira Condensed, rundes Emblem einfarbig
 - Blau: Akzent #1f5ae0 (nach Augenmaß, nicht gemessen), Schrift auf Blau weiß, auf Dunkel aufgehellt
-- Champagner: Akzent #e5c65f, Text #e0dfde, Grund #121212 (gemessen aus Sinans Dribbble-Überblick, Autoseite „Luxury Cars“)
+- Champagner: Akzent #e4cc7f, Text #e0dfde, Grund #121212 (Text und Grund gemessen aus Sinans Dribbble-Überblick, Autoseite „Luxury Cars“; Akzent ist das dort gemessene Gold #e5c65f, etwas sanfter gemischt)
 - Rechner-Abschnitt mit Motorbild als Hintergrund unter einer hellen Fläche (`img/motor-hintergrund.webp`, schwarz-weiß, Typenschild unscharf). Herkunft des Fotos offen, nur für den Entwurf
 
 Nach jeder Änderung an `index.html` neu erzeugen:
