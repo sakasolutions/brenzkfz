@@ -11,12 +11,17 @@ Website von Brenz KFZ: Kfz-Service, Softwareoptimierung, Fahrzeugaufbereitung. G
 
 Farben (Schema A, gemessen aus einer Dribbble-Vorlage): Grund `#111111`, Fläche `#181818`, Linie `#303030`, Text `#ffffff`, Text leise `#8b8b8b`, Akzent `#fdf325`, Schrift auf Akzent `#111111`. Logo und Regeln stehen im Plan-Repo unter `konzepte/brenz-kfz/marke/MARKE.md`.
 
-## Dezente Fassung zum Vergleichen
+## Vergleichsfassungen
 
-`dezent.html` ist dieselbe Seite mit dezenteren Farben (Akzent #e5c65f, Text #e0dfde, Grund #121212, gemessen aus Sinans Dribbble-Überblick, Autoseite „Luxury Cars“). Sie wird aus `index.html` erzeugt und ist für Google gesperrt. Nach jeder Änderung an `index.html` neu erzeugen:
+Zum Vergleichen gibt es zwei weitere Fassungen derselben Seite, beide aus `index.html` erzeugt und für Google gesperrt:
+
+- `dezent.html`: dezentere Farben (Akzent #e5c65f, Text #e0dfde, Grund #121212, gemessen aus Sinans Dribbble-Überblick, Autoseite „Luxury Cars“)
+- `gemischt.html`: Kopf dunkel, der Rechner darunter hell (nach Sinans Vorlage „AutoPlanet“: dunkler Kopf, helle Abschnitte, eine Akzentfarbe, Rot nur als Signal). Helle Töne aus der vorhandenen Palette gemischt, Gelb auf Hell nur als Knopf
+
+Nach jeder Änderung an `index.html` neu erzeugen:
 
 ```bash
-python3 werkzeuge/dezent.py
+python3 werkzeuge/varianten.py
 ```
 
 ## Lokal ansehen
