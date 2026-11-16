@@ -244,15 +244,18 @@ a{color:inherit;text-decoration:none}
 .berechnen{background:var(--akzent);color:var(--auf-akzent);border:0}
 .berechnen:hover{background:color-mix(in srgb,var(--akzent) 86%,var(--text))}
 .fehlt{margin:-6px 0 0;font-size:.88rem;color:var(--leise)}
-.ergebnis{display:grid;gap:8px;padding:16px;background:var(--grund);border:1px solid var(--linie);border-radius:4px}
+.ergebnis{display:flex;flex-direction:column;gap:6px}
+.ergebnis .erg-kopf{order:0}.ergebnis .zahlen{order:1}.ergebnis .diagramm{order:2}.ergebnis .schaetzung{order:3}
+#erg-balken{display:none!important}
 .erg-kopf{font:600 .74rem/1.2 var(--f-text);letter-spacing:.12em;text-transform:uppercase;color:var(--leise)}
-.ergebnis .zahlen{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
-.ergebnis .serie{color:var(--leise)}
-.ergebnis .plus{font:italic 800 clamp(1.9rem,7vw,2.4rem)/1 var(--f-titel);color:var(--akzent)}
-.ergebnis .gesamt{font-weight:600}
+.ergebnis .zahlen{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.ergebnis .gesamt{order:-1;flex-basis:100%;font:italic 800 clamp(2.6rem,10vw,3.4rem)/1 var(--f-titel);letter-spacing:.005em}
+.ergebnis .serie{order:1;color:var(--leise)}
+.ergebnis .gesamt:only-child{font:600 1.125rem/1.35 var(--f-text)}
+.ergebnis .plus{font-weight:600;color:var(--akzent)}
 .ergebnis .schaetzung,.rechner .hinweis{margin:0;font-size:.85rem;color:var(--leise)}
-.diagramm{margin:4px 0 2px}
-.diagramm svg{width:100%;height:auto}
+.diagramm{margin:14px 0 4px}
+.diagramm svg{width:100%;max-width:440px;height:auto}
 .dia .gitter{stroke:var(--linie);stroke-width:1}
 .dia .achse{fill:var(--leise);font:600 11px var(--f-text)}
 .dia .achse.mitte{text-anchor:middle}.dia .achse.rechts{text-anchor:end}
@@ -320,8 +323,8 @@ a{color:inherit;text-decoration:none}
       <a href="#aufbereitung">Aufbereitung</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
-    <!-- WhatsApp-Nummer fehlt noch: dann href="https://wa.me/49…" -->
-    <a class="wa" href="#kontakt">WhatsApp</a>
+    <!-- WhatsApp an Mert (+49 176 62794745) mit vorausgefüllter Vorlage -->
+    <a class="wa" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener">WhatsApp</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="handymenue" aria-label="Menü öffnen"><span></span></button>
   </div>
 </header>
@@ -334,7 +337,7 @@ a{color:inherit;text-decoration:none}
       <a href="#aufbereitung">Aufbereitung<svg aria-hidden="true"><use href="#pfeil"/></svg></a>
       <a href="#kontakt">Kontakt<svg aria-hidden="true"><use href="#pfeil"/></svg></a>
     </nav>
-    <a class="knopf voll" href="#kontakt">Anfrage per WhatsApp</a>
+    <a class="knopf voll" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener">Anfrage per WhatsApp</a>
   </div>
 </div>
 
@@ -352,7 +355,7 @@ a{color:inherit;text-decoration:none}
       </div>
       <div class="knoepfe">
         <a class="knopf voll" href="#rechner">Leistung berechnen<svg aria-hidden="true"><use href="#pfeil"/></svg></a>
-        <a class="knopf leer" href="#kontakt">Anfrage per WhatsApp</a>
+        <a class="knopf leer" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener">Anfrage per WhatsApp</a>
       </div>
     </div>
     <nav class="innen schnell" aria-label="Leistungen">
@@ -416,21 +419,19 @@ a{color:inherit;text-decoration:none}
               <div class="zeile s"><span>Serie</span><span class="spur"><span class="fuell" id="b-serie"></span></span><span class="wert" id="b-serie-w"></span></div>
               <div class="zeile t"><span>Stage 1</span><span class="spur"><span class="rest" id="b-rest"></span><span class="fuell" id="b-tuning"></span></span><span class="wert" id="b-tuning-w"></span></div>
             </div>
-            <p class="schaetzung">Grobe Schätzung auf Basis typischer Erfahrungswerte für diesen Motortyp, keine Zusage. Die tatsächliche Leistung hängt unter anderem von Zustand, Laufleistung und vorhandener Software ab und wird erst nach dem Auslesen des Fahrzeugs festgelegt.</p>
+            <p class="schaetzung">Grobe Schätzung für diesen Motortyp, keine Zusage. Die genaue Leistung hängt vom Zustand Ihres Fahrzeugs ab und steht erst nach dem Auslesen fest.</p>
           </div>
           <p class="keine-schaetzung" id="keine-schaetzung" hidden>Für dieses Fahrzeug können wir hier keine Schätzung zeigen. Fragen Sie die Werte einfach per WhatsApp an.</p>
           <div class="anfrage" id="anfrage" hidden>
             <div>
-              <span class="r-feldtitel" id="wunsch-titel">Was möchten Sie?</span>
+              <span class="r-feldtitel" id="wunsch-titel">Was möchten Sie anfragen?</span>
               <div class="stufen" role="radiogroup" aria-labelledby="wunsch-titel">
                 <label><input type="radio" name="wunsch" value="Stage 1" checked><span>Stage 1</span></label>
-                <label><input type="radio" name="wunsch" value="Stage 2"><span>Stage 2</span></label>
-                <label><input type="radio" name="wunsch" value="Getriebe"><span>Getriebe</span></label>
-                <label><input type="radio" name="wunsch" value="Beratung"><span>Erst mal Beratung</span></label>
+                <label><input type="radio" name="wunsch" value="Stage 2"><span>Stage 2 auf Anfrage</span></label>
+                <label><input type="radio" name="wunsch" value="Beratung"><span>Beratung</span></label>
               </div>
             </div>
-            <!-- WhatsApp-Nummer fehlt noch: NUMMER im Skript unten -->
-            <a class="r-senden" id="senden" href="#" target="_blank" rel="noopener" aria-disabled="true">Anfrage per WhatsApp</a>
+                <a class="r-senden" id="senden" href="#" target="_blank" rel="noopener" aria-disabled="true">Anfrage per WhatsApp</a>
             <p class="fehlt" id="fehlt">Bitte Marke, Modell und Baujahr wählen.</p>
             <details class="vorschau-auf"><summary>Nachricht ansehen</summary><div class="vorschau" id="vorschau" aria-live="polite"><b>Ihre Nachricht</b><span id="text"></span></div></details>
             <p class="hinweis">Vor jeder Optimierung wird das Fahrzeug ausgelesen und geprüft. Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
@@ -479,6 +480,8 @@ function film() {
   const aus = document.querySelector(breit.matches ? ".film .hoch" : ".film .quer");
   aus.pause();
   if (ruhig.matches) { an.pause(); return; }
+  // Safari auf dem iPhone lädt bei preload="none" nichts, wenn nur play() aufgerufen wird: erst laden, dann abspielen
+  if (an.preload === "none") { an.preload = "auto"; an.load(); }
   an.play().catch(() => {});
 }
 film();
@@ -489,8 +492,8 @@ ruhig.addEventListener("change", film);
 // Leistungsrechner: unverändert aus dem Plan-Repo (konzepte/brenz-kfz/anfrage.html, Logik in RECHNER.md)
 (function(){
   "use strict";
-  // WhatsApp-Nummer von Mert, international ohne + und ohne Leerzeichen (Platzhalter)
-  var NUMMER = "49XXXXXXXXXXX";
+  // WhatsApp-Nummer von Mert (+49 176 62794745), international ohne + und ohne Leerzeichen
+  var NUMMER = "4917662794745";
   // Gängige Fahrzeuge in Deutschland, Verbrenner und Hybride. Reine Elektroautos fehlen bewusst: dort gibt es kein Softwaretuning im üblichen Sinn
   var FAHRZEUGE = {
     "Abarth": ["500 / 595 / 695", "124 Spider"],
@@ -904,12 +907,12 @@ ruhig.addEventListener("change", film);
     function el(c,t){var e=document.createElement("span");e.className=c;e.textContent=t;ergZahlen.appendChild(e)}
     if(typ==="hybrid"||!ps){ergKopf.textContent="Hybrid / Elektro";el("gesamt","Möglichkeiten auf Anfrage");diagramm.hidden=true;balken.hidden=true;berechnen.hidden=true;aktuell=null;return}
     var f=FAKTOREN[typ];
-    ergKopf.textContent="Geschätzt, Stage 1 · "+f.name;
+    ergKopf.textContent="Stage 1, geschätzt";
     var hoch=rund5(ps*f.ps), tief=rund5(ps*f.ps*0.75);
     if(hoch<5){el("gesamt","Möglichkeiten auf Anfrage");diagramm.hidden=true;balken.hidden=true;berechnen.hidden=true;aktuell=null;return}
     el("serie","Serie "+ps+" PS");
-    el("plus",tief<hoch&&tief>0?"ca. +"+tief+" bis +"+hoch+" PS":"ca. +"+hoch+" PS");
-    el("gesamt",tief<hoch&&tief>0?"also ca. "+(ps+tief)+" bis "+(ps+hoch)+" PS":"also ca. "+(ps+hoch)+" PS");
+    el("plus",tief<hoch&&tief>0?"+"+tief+" bis +"+hoch+" PS":"+"+hoch+" PS");
+    el("gesamt",tief<hoch&&tief>0?"ca. "+(ps+tief)+"–"+(ps+hoch)+" PS":"ca. "+(ps+hoch)+" PS");
     var schluessel=marke.value+"|"+modell.value+"|"+v.br+"|"+v.mo;
     diagramm.hidden=false;balken.hidden=false;
     aktuell={ps:ps,tief:tief>0?tief:hoch,hoch:hoch,typ:typ,schluessel:schluessel,titel:[marke.value,v.mod,v.mo.replace(/ \d+ PS$/,"")].join(" ")};
