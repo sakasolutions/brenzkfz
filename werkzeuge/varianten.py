@@ -3,7 +3,7 @@
     python3 werkzeuge/varianten.py
 
 Beide Fassungen (Sinan, 16.11.2026): Aufbau gemischt (Kopf dunkel, Rechner hell, nach der Vorlage „AutoPlanet“),
-Überschriften in Saira Condensed, Logo rundes Emblem einfarbig.
+Überschriften in Saira Condensed, Logo: Emblem nach Sinans Vorlage in der Farbe der Fassung (img/logo-*.svg).
   blau.html        Akzent #1f5ae0 (nach Augenmaß aus dem AutoPlanet-Screenshot, nicht gemessen), Schrift auf Blau weiß,
                    auf Dunkel aufgehellt
   champagner.html  Akzent #e5c65f, Text #e0dfde, Grund #121212 (gemessen aus Sinans Dribbble-Überblick, Luxury Cars);
@@ -77,7 +77,6 @@ FASSUNGEN = {
         ("--grund:#111111;", "--grund:#121212;"),
         ("--text:#ffffff;", "--text:#e0dfde;"),
         ("--akzent:#fdf325;", "--akzent:#e5c65f;"),
-        ('fill="#ffffff"', 'fill="#e0dfde"'),                       # Logo im Menü
         ('<meta name="theme-color" content="#111111">', '<meta name="theme-color" content="#121212">'),
     ], HELL + DUNKEL_AUF_HELL + SAIRA),
 }
@@ -88,8 +87,25 @@ GEMEINSAM = [
 ]
 
 
+LOGO = {"blau.html": "logo-blau.svg", "champagner.html": "logo-champagner.svg"}   # Emblem nach Sinans Vorlage, quelle/emblem_saira.py im Plan-Repo
+
+
+def logo_einsetzen(html, ziel):
+    """Ersetzt das Emblem im Menü durch das Logo der Fassung (inline, damit keine zusätzliche Anfrage nötig ist)."""
+    import re
+    svg = open(os.path.join(WURZEL, "img", LOGO[ziel]), encoding="utf-8").read()
+    svg = re.sub(r"<title>.*?</title>", "", svg).replace(' xmlns="http://www.w3.org/2000/svg"', "").strip()
+    svg = svg.replace("<svg ", '<svg aria-hidden="true" ', 1)
+    neu, n = re.subn(r'(<a class="marke"[^>]*>)<svg viewBox="-100 -100 200 200".*?</svg>(</a>)',
+                     lambda m: m.group(1) + svg + m.group(2), html, count=1, flags=re.S)
+    if n != 1:
+        raise SystemExit(ziel + ": Logo im Menü nicht gefunden")
+    return neu
+
+
 def bauen(ziel, name, ersetzen, css):
     html = open(QUELLE, encoding="utf-8").read()
+    html = logo_einsetzen(html, ziel)
     for alt, neu in ersetzen + GEMEINSAM + [("</style>", css + "</style>"), ("<title>", "<title>(" + name + ") ")]:
         if alt not in html:
             raise SystemExit(ziel + ": nicht gefunden, Skript anpassen: " + alt[:60])
