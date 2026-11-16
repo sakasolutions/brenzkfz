@@ -46,9 +46,11 @@ Steht vorerst direkt unter dem Startbereich (`#rechner`), damit Mert ihn sehen k
 
 ## Offen
 
-- Abschnitte Service, Softwareoptimierung, Aufbereitung, Leistungsrechner und Kontakt (die Links im Menü zeigen schon auf `#service`, `#software`, `#aufbereitung`, `#rechner`, `#kontakt`)
+- Abschnitte Service, Softwareoptimierung und Kontakt (die Links im Menü zeigen schon auf `#service`, `#software`, `#kontakt`); Leistungsrechner (`#rechner`) und Fahrzeugaufbereitung (`#aufbereitung`) stehen
 - Impressum und Datenschutz vor dem Livegang
 - Videos sind Platzhalter von Pexels (Nr. 8987289 und 4488712), später eigene Aufnahmen aus der Werkstatt
 - Motorbild im Rechner: Herkunft und Rechte offen (zeigt einen Motor des Tuners Litchfield), vor dem Livegang ersetzen
+- Bild Fahrzeugaufbereitung (`img/aufbereitung.webp`): Herkunft und Rechte offen, vor dem Livegang ersetzen
+- Leistungen der Fahrzeugaufbereitung konkret von Mert (bisher bewusst allgemein formuliert)
 - Kursivschnitt von Barlow Condensed als Datei ergänzen, bis dahin erzeugt der Browser die Schräglage
 - Lizenztexte der Schriften (alle SIL Open Font License 1.1) in `fonts/` legen
