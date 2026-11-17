@@ -107,6 +107,11 @@ Mehrere Seiten (17.11.2026):
   - Ablauf in vier Schritten, Fragen, Verweis auf die anderen Leistungen, Kontakt mit „Chiptuning“ vorgewählt
   - strukturierte Daten als `Service` und `BreadcrumbList`
   - `?marke=` aus dem Einstieg der Startseite wählt die Marke vor und springt zum Rechner
+- **Kfz-Service-Seite** `kfz-service.html` aus `werkzeuge/kfz-service-vorlage.html` (Gerüst, noindex bis Merts Leistungsliste steht):
+  - Kopfbereich mit Werkstattbild, „Kfz-Service im Raum Heidenheim. Wartung und Reparatur.“
+  - Leistungen als vorläufige Auswahl in drei Gruppen (Wartung, Diagnose und Reparatur, Reifen), deutlich als Lücke markiert
+  - Terminanfrage als dunkle Konsole (`werkzeuge/teile/termin.html` und `termin.js`): Anliegen wählen (Reifenwechsel, Ölwechsel, Inspektion, Etwas anderes), dann nur die passenden Felder, Wunschtag (nächste 14 Tage) und Tageszeit, Vorschau, „Per WhatsApp senden“. Fehlt etwas, sagt der Knopf was und springt zum Feld. Felder sind ein Vorschlag, Mert bestätigt.
+  - Ablauf in drei Schritten, Fragen (zwei Antworten zum Bestätigen, zwei Lücken), Kontakt mit „Kfz-Service“ vorgewählt
 - **Links:** Solange die neue Startseite ein Entwurf ist, zeigen Emblem und Brotkrumen auf `entwurf-3.html` (`START_ENTWURF`).
 
 Knöpfe (Sinan, 17.11.2026: „Pillen moderner, weiße Pille mit Kapsel, aber originale WhatsApp-Kapsel“):
