@@ -112,6 +112,11 @@ Mehrere Seiten (17.11.2026):
   - Leistungen als vorläufige Auswahl in drei Gruppen (Wartung, Diagnose und Reparatur, Reifen), deutlich als Lücke markiert
   - Terminanfrage als dunkle Konsole (`werkzeuge/teile/termin.html` und `termin.js`): Anliegen wählen (Reifenwechsel, Ölwechsel, Inspektion, Etwas anderes), dann nur die passenden Felder, Wunschtag (nächste 14 Tage) und Tageszeit, Vorschau, „Per WhatsApp senden“. Fehlt etwas, sagt der Knopf was und springt zum Feld. Felder sind ein Vorschlag, Mert bestätigt.
   - Ablauf in drei Schritten, Fragen (zwei Antworten zum Bestätigen, zwei Lücken), Kontakt mit „Kfz-Service“ vorgewählt
+- **Aufbereitungs-Seite** `fahrzeugaufbereitung.html` aus `werkzeuge/aufbereitung-vorlage.html` (Gerüst, noindex):
+  - Kopfbereich mit Felgenfoto, „Fahrzeugaufbereitung im Raum Heidenheim. Autoaufbereitung und Detailing.“
+  - Leistungen mit dem freigegebenen Satz, daneben ein Vorher-Nachher-Regler (Platzhalter: zweimal dasselbe Foto, „Vorher“ per Filter abgedunkelt), darunter drei Gruppen (Innenraum, Außen, Lack) als vorläufige Auswahl
+  - Anfrage als dunkle Konsole (`werkzeuge/teile/anfrage-aufbereitung.html` und `.js`): mehrfach wählen, was gemacht werden soll, oder erst beraten lassen, Fahrzeug, Größe (Kleinwagen bis Transporter), Wunschtag, Vorschau
+  - Ablauf in drei Schritten, Fragen (eine Antwort zum Bestätigen, zwei Lücken), Kontakt mit „Aufbereitung“ vorgewählt
 - **Links:** Solange die neue Startseite ein Entwurf ist, zeigen Emblem und Brotkrumen auf `entwurf-3.html` (`START_ENTWURF`).
 
 Knöpfe (Sinan, 17.11.2026: „Pillen moderner, weiße Pille mit Kapsel, aber originale WhatsApp-Kapsel“):
