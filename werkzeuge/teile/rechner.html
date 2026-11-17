@@ -1,0 +1,58 @@
+      <form class="konsole" id="form" novalidate>
+        <ol class="fortschritt" aria-label="Fortschritt">
+          <li aria-current="step">Fahrzeug</li>
+          <li>Motor</li>
+          <li>Ergebnis</li>
+        </ol>
+
+        <div class="schritt" id="schritt-1" role="group" aria-labelledby="frage-1">
+          <h3 class="schritt-frage" id="frage-1" tabindex="-1">Welches Fahrzeug fahren Sie?</h3>
+          <label class="feld-r" for="marke"><span>Marke</span><select id="marke" required><option value="">Bitte wählen</option></select></label>
+          <label class="feld-r" for="modell"><span>Modell</span><select id="modell" required disabled><option value="">Erst Marke wählen</option></select></label>
+          <label class="feld-r" for="modell-frei" id="modell-frei-feld" hidden><span>Modell eintragen</span><input type="text" id="modell-frei" maxlength="40" placeholder="z. B. Insignia Sports Tourer"></label>
+          <label class="feld-r" for="baureihe" id="baureihe-feld" hidden><span>Baureihe</span><select id="baureihe"></select></label>
+          <div class="schritt-knoepfe"><button type="button" class="weiter" id="weiter-1" disabled>Weiter</button></div>
+        </div>
+
+        <div class="schritt" id="schritt-2" role="group" aria-labelledby="frage-2" hidden>
+          <p class="auswahl" id="auswahl" hidden></p>
+          <h3 class="schritt-frage" id="frage-2" tabindex="-1">Welcher Motor?</h3>
+          <label class="feld-r" for="motor-liste" id="motor-liste-feld" hidden><span>Motor</span><select id="motor-liste"></select></label>
+          <label class="feld-r" for="motor" id="motor-frei-feld" hidden><span>Motor und Leistung</span><input type="text" id="motor" maxlength="50" placeholder="z. B. 2.0 TDI 190 PS (steht im Fahrzeugschein)"></label>
+          <label class="feld-r" for="kraftstoff" id="kraftstoff-feld" hidden><span>Kraftstoff</span><select id="kraftstoff"><option value="">Bitte wählen</option><option>Diesel</option><option>Benzin</option><option>Hybrid</option></select></label>
+          <label class="feld-r" for="baujahr"><span>Baujahr</span><select id="baujahr" required><option value="">Bitte wählen</option></select></label>
+          <p class="hinweis" id="motor-hinweis" hidden>Motoren und Serienleistung sind eine Auswahlhilfe. Bitte mit dem Fahrzeugschein abgleichen.</p>
+          <div class="schritt-knoepfe"><button type="button" class="zurueck" data-zurueck>Zurück</button><button type="button" class="weiter" id="weiter-2" disabled>Ergebnis zeigen</button></div>
+        </div>
+
+        <div class="schritt" id="schritt-3" role="group" aria-labelledby="frage-3" hidden>
+          <h3 class="sr" id="frage-3" tabindex="-1">Ihr Ergebnis</h3>
+          <div class="fahrzeug-zeile"><p id="fahrzeug-text"></p><button type="button" class="aendern" id="aendern">Ändern</button></div>
+
+          <div class="erg" id="ergebnis" hidden>
+            <p class="erg-kopf">Stage 1, geschätzt</p>
+            <p class="erg-gesamt" id="erg-gesamt"><span class="ca" id="erg-ca">ca.</span> <span class="wert" id="erg-wert"></span></p>
+            <p class="erg-plus" id="erg-plus"></p>
+            <p class="sr" id="erg-status" aria-live="polite"></p>
+            <div class="diagramm" aria-hidden="true"><svg viewBox="0 0 320 214" class="dia" id="dia-svg"></svg></div>
+            <!-- (bestätigen) Preis von Mert, Endpreis inkl. MwSt.? -->
+            <p class="erg-preis"><span>Preis Stage 1</span><strong>ab 350&nbsp;€</strong></p>
+            <p class="erg-hinweis">Grobe Schätzung für diesen Motortyp, keine Zusage. Die genauen Werte stehen nach der Diagnose vor Ort fest.</p>
+          </div>
+          <p class="keine-schaetzung" id="keine-schaetzung" hidden>Für dieses Fahrzeug zeigen wir hier keine Schätzung. Fragen Sie die Werte einfach per WhatsApp an.</p>
+
+          <div class="anfrage-neu">
+            <h4 class="anfrage-titel" id="wunsch-titel">Was möchten Sie anfragen?</h4>
+            <div class="wahl" role="radiogroup" aria-labelledby="wunsch-titel">
+              <label class="wahl-karte"><input type="radio" name="wunsch" value="Stage 1" checked><span class="wahl-titel">Stage 1</span><span class="wahl-zeile" id="wahl-stage1">ab 350 €</span></label>
+              <label class="wahl-karte"><input type="radio" name="wunsch" value="Stage 2"><span class="wahl-titel">Stage 2</span><span class="wahl-zeile">Preis und Werte nach Diagnose vor Ort</span></label>
+              <label class="wahl-karte"><input type="radio" name="wunsch" value="Beratung"><span class="wahl-titel">Erst beraten lassen</span><span class="wahl-zeile">Was ist bei meinem Fahrzeug sinnvoll?</span></label>
+            </div>
+            <label class="feld-r" for="anmerkung"><span>Anmerkung (optional)</span><textarea id="anmerkung" rows="2" placeholder="z. B. Kilometerstand, bisherige Umbauten"></textarea></label>
+            <div class="blase-wrap"><span>So kommt Ihre Nachricht bei uns an</span><p class="blase" id="text"></p></div>
+            <a class="knopf wa" id="senden" href="#" target="_blank" rel="noopener"><span>Per WhatsApp senden</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
+            <p class="klein">Gesendet wird erst, wenn Sie die Nachricht in WhatsApp abschicken.</p>
+            <p class="hinweis">Vor jeder Optimierung wird das Fahrzeug ausgelesen und geprüft. Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
+          </div>
+        </div>
+      </form>

@@ -66,7 +66,7 @@ def weichen(html):
 
 
 def marken(quelle):
-    """Marken aus den Rechnerdaten (FAHRZEUGE in index.html) als Auswahl, wie im Rechner sortiert, dazu „Andere Marke“."""
+    """Marken aus den Rechnerdaten (FAHRZEUGE in werkzeuge/teile/rechner.js) als Auswahl, wie im Rechner sortiert, dazu „Andere Marke“."""
     i = quelle.index("var FAHRZEUGE")
     namen = re.findall(r'^\s*"([^"]+)"\s*:\s*\[', quelle[i:quelle.index("};", i)], re.M)
     if not namen:
@@ -130,7 +130,7 @@ def bauen(vorlage, ziel, schreiben=True):
     html = teile_einsetzen(html, ziel)
     html = weichen(html)
     ersetzen = {"<!--LOGO-->": svg, "<!--RECHNER-FORM-->": "      " + rechner.rstrip() + "\n",
-                "<!--RECHNER-SKRIPTE-->": skripte.rstrip(), "<!--MARKEN-->": marken(quelle)}
+                "<!--RECHNER-SKRIPTE-->": skripte.rstrip(), "<!--MARKEN-->": marken(open(os.path.join(TEILE, "rechner.js"), encoding="utf-8").read())}
     for platz in ("<!--RECHNER-FORM-->", "<!--RECHNER-SKRIPTE-->", "<!--MARKEN-->"):   # je nach Weiche nicht in jeder Seite
         if platz not in html:
             del ersetzen[platz]

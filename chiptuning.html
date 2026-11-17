@@ -438,16 +438,59 @@ button{font:inherit}
 .stufen-karte .link svg{color:var(--text)}
 @media (min-width:768px){.stufen-karten{grid-template-columns:1fr 1fr;gap:24px}}
 
-/* Rechner als dunkle Konsole */
+/* Rechner (Chiptuning-Seite): dunkle Konsole, ein Schritt nach dem anderen, Ergebnis und Anfrage klar getrennt */
 .rechner-dunkel{padding-block:clamp(88px,11vw,160px)}
-.rechner-dunkel .zettel{padding:clamp(24px,3vw,40px);gap:24px}
-.rechner-dunkel .fortschritt li[aria-current]{border-top-color:var(--akzent)}
-.rechner-dunkel .schritt-frage{font-size:clamp(1.5rem,1.1rem + 1.2vw,2rem)}
-.rechner-dunkel .zettel select,.rechner-dunkel .zettel input[type="text"]{height:56px}
-.rechner-dunkel .ergebnis .gesamt{color:var(--akzent)}
-.rechner-dunkel .ergebnis .gesamt:only-child{color:var(--text)}
-.rechner-dunkel .dia .band{opacity:.16}
-.rechner-dunkel .hinweis,.rechner-dunkel .ergebnis .schaetzung{margin:0;font-size:.875rem;color:var(--leise)}
+@media (min-width:1000px){.rechner-dunkel .rechner-text{position:sticky;top:calc(var(--kopf-h) + 40px);align-self:start}}
+.konsole{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;padding:clamp(22px,3vw,40px);background:var(--flaeche);border:1px solid var(--haar);border-radius:20px}
+.konsole .fortschritt li{border-top-width:3px;padding-top:12px}
+.konsole .fortschritt li.fertig{border-top-color:color-mix(in srgb,var(--akzent) 45%,transparent)}
+.konsole .fortschritt li[aria-current]{border-top-color:var(--akzent);color:var(--text)}
+.konsole .schritt{display:grid;gap:20px}
+.konsole .schritt-frage{margin:0;font:500 clamp(1.5rem,1.1rem + 1.2vw,2rem)/1.15 var(--f);letter-spacing:-.02em;outline:none}
+.konsole .auswahl{margin:0 0 -8px;font-size:.9375rem;color:var(--leise)}
+.feld-r{display:grid;gap:8px;min-width:0}
+.feld-r>span{font:500 .875rem/1.2 var(--f);color:var(--fliess)}
+.feld-r select,.feld-r input,.feld-r textarea{width:100%;min-width:0;height:56px;padding:0 14px;font:400 1rem/1.4 var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:12px}
+.feld-r textarea{height:auto;min-height:84px;padding-block:14px;resize:vertical}
+.feld-r input::placeholder,.feld-r textarea::placeholder{color:var(--leise)}
+.feld-r select:disabled{opacity:.5}
+.feld-r select:focus-visible,.feld-r input:focus-visible,.feld-r textarea:focus-visible{outline:2px solid var(--akzent);outline-offset:1px}
+.konsole .schritt-knoepfe{display:flex;align-items:center;gap:12px;margin-top:4px}
+.konsole .hinweis{margin:0;font-size:.875rem;color:var(--leise)}
+/* Ergebnis */
+.fahrzeug-zeile{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--haar)}
+.fahrzeug-zeile p{margin:0;min-width:0;font-size:.9375rem;color:var(--fliess)}
+.aendern{flex:none;min-height:44px;padding:0;border:0;background:none;color:var(--akzent);font:500 .9375rem var(--f);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.erg{display:grid;gap:4px}
+.erg-kopf{margin:0;font-size:.875rem;font-weight:500;color:var(--leise)}
+.erg-gesamt{margin:0;font-size:clamp(2.25rem,1.5rem + 3.6vw,4rem);font-weight:500;line-height:1.05;letter-spacing:-.04em;color:var(--akzent)}
+.erg-gesamt .ca{font-size:.42em;letter-spacing:0;vertical-align:.12em}
+.erg-gesamt .wert{white-space:nowrap;font-variant-numeric:tabular-nums}
+.erg-plus{margin:4px 0 0;color:var(--fliess)}
+.konsole .diagramm{margin:16px 0 4px}
+.konsole .diagramm svg{width:100%;height:auto}
+.konsole .dia .band{opacity:.16}
+.erg-preis{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:12px 0 0;padding-block:14px;border-block:1px solid var(--haar)}
+.erg-preis span{font-size:.9375rem;color:var(--leise)}
+.erg-preis strong{font-size:1.5rem;font-weight:500;letter-spacing:-.02em}
+.erg-hinweis{margin:10px 0 0;font-size:.875rem;color:var(--leise)}
+/* Anfrage */
+.anfrage-neu{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding-top:24px;border-top:1px solid var(--haar)}
+.anfrage-titel{margin:0;font-size:1.25rem;font-weight:500;letter-spacing:-.015em}
+.wahl{display:grid;gap:10px}
+.wahl-karte{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:2px 14px;padding:14px 16px;border:1px solid var(--linie);border-radius:14px;cursor:pointer;transition:border-color .2s,background-color .2s}
+.wahl-karte:hover{border-color:var(--leise)}
+.wahl-karte input{grid-row:1/span 2;appearance:none;-webkit-appearance:none;display:grid;place-items:center;width:22px;height:22px;margin:0;border:1.5px solid var(--leise);border-radius:50%;cursor:pointer}
+.wahl-karte input::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--akzent);transform:scale(0);transition:transform .15s}
+.wahl-karte input:checked{border-color:var(--akzent)}
+.wahl-karte input:checked::after{transform:scale(1)}
+.wahl-karte input:focus-visible{outline:2px solid var(--akzent);outline-offset:3px}
+.wahl-karte:has(input:checked){border-color:var(--akzent);background:color-mix(in srgb,var(--akzent) 8%,transparent)}
+.wahl-titel{font-weight:500}
+.wahl-zeile{grid-column:2;font-size:.9375rem;color:var(--leise)}
+.konsole .knopf.wa{width:100%}
+.konsole .knopf.wa>span:first-child{min-width:0;white-space:normal;line-height:1.2}
+.konsole .klein{margin:-8px 0 0}
 
 /* Ablauf mit vier Schritten, ohne Kontakt direkt darunter */
 .ablauf.allein{padding-bottom:clamp(88px,11vw,160px)}
@@ -573,80 +616,66 @@ button{font:inherit}
         <p class="kennzeile">Chiptuning-Rechner</p>
         <h2 id="rechner-titel">Was geht bei Ihrem Motor?</h2>
         <p class="rechner-unter">Marke, Modell und Motor wählen und sehen, was Stage 1 bei Ihrem Motor ungefähr bringt. Das ist eine grobe Schätzung, keine Zusage. Die genauen Werte ermitteln wir mit einer Diagnose vor Ort.</p>
-        <p class="preis"><span>Stage 1</span><strong>ab 350&nbsp;€</strong></p>
       </div>
-      <form class="zettel" id="form" novalidate>
+      <form class="konsole" id="form" novalidate>
         <ol class="fortschritt" aria-label="Fortschritt">
           <li aria-current="step">Fahrzeug</li>
-          <li>Motor und Baujahr</li>
-          <li>Leistung</li>
+          <li>Motor</li>
+          <li>Ergebnis</li>
         </ol>
-        <p class="auswahl" id="auswahl" hidden></p>
 
         <div class="schritt" id="schritt-1" role="group" aria-labelledby="frage-1">
           <h3 class="schritt-frage" id="frage-1" tabindex="-1">Welches Fahrzeug fahren Sie?</h3>
-          <label for="marke"><span>Marke</span><select id="marke" required><option value="">Bitte wählen</option></select></label>
-          <label for="modell"><span>Modell</span><select id="modell" required disabled><option value="">Erst Marke wählen</option></select></label>
-          <label for="modell-frei" id="modell-frei-feld" hidden><span>Modell eintragen</span><input type="text" id="modell-frei" maxlength="40" placeholder="z. B. Insignia Sports Tourer"></label>
+          <label class="feld-r" for="marke"><span>Marke</span><select id="marke" required><option value="">Bitte wählen</option></select></label>
+          <label class="feld-r" for="modell"><span>Modell</span><select id="modell" required disabled><option value="">Erst Marke wählen</option></select></label>
+          <label class="feld-r" for="modell-frei" id="modell-frei-feld" hidden><span>Modell eintragen</span><input type="text" id="modell-frei" maxlength="40" placeholder="z. B. Insignia Sports Tourer"></label>
+          <label class="feld-r" for="baureihe" id="baureihe-feld" hidden><span>Baureihe</span><select id="baureihe"></select></label>
           <div class="schritt-knoepfe"><button type="button" class="weiter" id="weiter-1" disabled>Weiter</button></div>
         </div>
 
         <div class="schritt" id="schritt-2" role="group" aria-labelledby="frage-2" hidden>
-          <h3 class="schritt-frage" id="frage-2" tabindex="-1">Motor und Baujahr</h3>
-          <div class="reihe" id="motor-wahl" hidden>
-            <label for="baureihe"><span>Baureihe</span><select id="baureihe"></select></label>
-            <label for="motor-liste"><span>Motor</span><select id="motor-liste"></select></label>
-          </div>
-          <label for="motor" id="motor-frei-feld"><span>Motor und Leistung</span><input type="text" id="motor" maxlength="50" placeholder="z. B. 2.0 TDI 190 PS (steht im Fahrzeugschein)"></label>
+          <p class="auswahl" id="auswahl" hidden></p>
+          <h3 class="schritt-frage" id="frage-2" tabindex="-1">Welcher Motor?</h3>
+          <label class="feld-r" for="motor-liste" id="motor-liste-feld" hidden><span>Motor</span><select id="motor-liste"></select></label>
+          <label class="feld-r" for="motor" id="motor-frei-feld" hidden><span>Motor und Leistung</span><input type="text" id="motor" maxlength="50" placeholder="z. B. 2.0 TDI 190 PS (steht im Fahrzeugschein)"></label>
+          <label class="feld-r" for="kraftstoff" id="kraftstoff-feld" hidden><span>Kraftstoff</span><select id="kraftstoff"><option value="">Bitte wählen</option><option>Diesel</option><option>Benzin</option><option>Hybrid</option></select></label>
+          <label class="feld-r" for="baujahr"><span>Baujahr</span><select id="baujahr" required><option value="">Bitte wählen</option></select></label>
           <p class="hinweis" id="motor-hinweis" hidden>Motoren und Serienleistung sind eine Auswahlhilfe. Bitte mit dem Fahrzeugschein abgleichen.</p>
-          <div class="reihe">
-            <label for="baujahr"><span>Baujahr</span><select id="baujahr" required><option value="">Bitte wählen</option></select></label>
-            <label for="kraftstoff"><span>Kraftstoff</span><select id="kraftstoff"><option>Diesel</option><option>Benzin</option><option>Hybrid</option></select></label>
-          </div>
-          <div class="schritt-knoepfe"><button type="button" class="zurueck" data-zurueck>Zurück</button><button type="button" class="weiter" id="weiter-2" disabled>Weiter</button></div>
+          <div class="schritt-knoepfe"><button type="button" class="zurueck" data-zurueck>Zurück</button><button type="button" class="weiter" id="weiter-2" disabled>Ergebnis zeigen</button></div>
         </div>
 
         <div class="schritt" id="schritt-3" role="group" aria-labelledby="frage-3" hidden>
-          <h3 class="schritt-frage" id="frage-3" tabindex="-1">Ihre geschätzte Leistung</h3>
-          <button type="button" class="berechnen" id="berechnen" hidden>Leistung berechnen</button>
-          <div class="ergebnis" id="ergebnis" hidden aria-live="polite">
-            <span class="erg-kopf" id="erg-kopf">Geschätzt, Stage 1</span>
-            <div class="diagramm" id="diagramm" hidden aria-hidden="true"><svg viewBox="0 0 320 214" class="dia" id="dia-svg"></svg></div>
-            <div class="zahlen" id="erg-zahlen"></div>
-            <div class="balken" id="erg-balken" hidden>
-              <div class="zeile s"><span>Serie</span><span class="spur"><span class="fuell" id="b-serie"></span></span><span class="wert" id="b-serie-w"></span></div>
-              <div class="zeile t"><span>Stage 1</span><span class="spur"><span class="rest" id="b-rest"></span><span class="fuell" id="b-tuning"></span></span><span class="wert" id="b-tuning-w"></span></div>
-            </div>
-            <p class="schaetzung">Grobe Schätzung für diesen Motortyp, keine Zusage. Die genaue Leistung hängt vom Zustand Ihres Fahrzeugs ab und steht erst nach dem Auslesen fest.</p>
+          <h3 class="sr" id="frage-3" tabindex="-1">Ihr Ergebnis</h3>
+          <div class="fahrzeug-zeile"><p id="fahrzeug-text"></p><button type="button" class="aendern" id="aendern">Ändern</button></div>
+
+          <div class="erg" id="ergebnis" hidden>
+            <p class="erg-kopf">Stage 1, geschätzt</p>
+            <p class="erg-gesamt" id="erg-gesamt"><span class="ca" id="erg-ca">ca.</span> <span class="wert" id="erg-wert"></span></p>
+            <p class="erg-plus" id="erg-plus"></p>
+            <p class="sr" id="erg-status" aria-live="polite"></p>
+            <div class="diagramm" aria-hidden="true"><svg viewBox="0 0 320 214" class="dia" id="dia-svg"></svg></div>
+            <!-- (bestätigen) Preis von Mert, Endpreis inkl. MwSt.? -->
+            <p class="erg-preis"><span>Preis Stage 1</span><strong>ab 350&nbsp;€</strong></p>
+            <p class="erg-hinweis">Grobe Schätzung für diesen Motortyp, keine Zusage. Die genauen Werte stehen nach der Diagnose vor Ort fest.</p>
           </div>
-          <p class="keine-schaetzung" id="keine-schaetzung" hidden>Für dieses Fahrzeug können wir hier keine Schätzung zeigen. Fragen Sie die Werte einfach per WhatsApp an.</p>
-          <div class="anfrage" id="anfrage" hidden>
-            <div>
-              <span class="r-feldtitel" id="wunsch-titel">Was möchten Sie anfragen?</span>
-              <div class="stufen" role="radiogroup" aria-labelledby="wunsch-titel">
-                <label><input type="radio" name="wunsch" value="Stage 1" checked><span>Stage 1</span></label>
-                <label><input type="radio" name="wunsch" value="Stage 2"><span>Stage 2 auf Anfrage</span></label>
-                <label><input type="radio" name="wunsch" value="Beratung"><span>Beratung</span></label>
-              </div>
+          <p class="keine-schaetzung" id="keine-schaetzung" hidden>Für dieses Fahrzeug zeigen wir hier keine Schätzung. Fragen Sie die Werte einfach per WhatsApp an.</p>
+
+          <div class="anfrage-neu">
+            <h4 class="anfrage-titel" id="wunsch-titel">Was möchten Sie anfragen?</h4>
+            <div class="wahl" role="radiogroup" aria-labelledby="wunsch-titel">
+              <label class="wahl-karte"><input type="radio" name="wunsch" value="Stage 1" checked><span class="wahl-titel">Stage 1</span><span class="wahl-zeile" id="wahl-stage1">ab 350 €</span></label>
+              <label class="wahl-karte"><input type="radio" name="wunsch" value="Stage 2"><span class="wahl-titel">Stage 2</span><span class="wahl-zeile">Preis und Werte nach Diagnose vor Ort</span></label>
+              <label class="wahl-karte"><input type="radio" name="wunsch" value="Beratung"><span class="wahl-titel">Erst beraten lassen</span><span class="wahl-zeile">Was ist bei meinem Fahrzeug sinnvoll?</span></label>
             </div>
-                <a class="r-senden" id="senden" href="#" target="_blank" rel="noopener" aria-disabled="true">Anfrage per WhatsApp</a>
-            <p class="fehlt" id="fehlt">Bitte Marke, Modell und Baujahr wählen.</p>
-            <details class="vorschau-auf"><summary>Nachricht ansehen</summary><div class="vorschau" id="vorschau" aria-live="polite"><b>Ihre Nachricht</b><span id="text"></span></div></details>
+            <label class="feld-r" for="anmerkung"><span>Anmerkung (optional)</span><textarea id="anmerkung" rows="2" placeholder="z. B. Kilometerstand, bisherige Umbauten"></textarea></label>
+            <div class="blase-wrap"><span>So kommt Ihre Nachricht bei uns an</span><p class="blase" id="text"></p></div>
+            <a class="knopf wa" id="senden" href="#" target="_blank" rel="noopener"><span>Per WhatsApp senden</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
+            <p class="klein">Gesendet wird erst, wenn Sie die Nachricht in WhatsApp abschicken.</p>
             <p class="hinweis">Vor jeder Optimierung wird das Fahrzeug ausgelesen und geprüft. Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
           </div>
-          <div class="schritt-knoepfe"><button type="button" class="zurueck" data-zurueck>Zurück</button></div>
         </div>
       </form>
     </div>
-
-    <div class="r-buehne" id="buehne" hidden role="dialog" aria-modal="true" aria-label="Leistung wird berechnet">
-      <div class="fahrzeug" id="b-fahrzeug"></div>
-      <svg viewBox="0 0 320 214" class="dia" id="buehne-svg" aria-hidden="true"></svg>
-      <div class="wert" id="b-wert"></div>
-      <div class="schritt" id="b-schritt" aria-live="polite"></div>
-      <div class="tippen">Tippen zum Überspringen</div>
-    </div>
-
   </section>
 
   <section class="ablauf allein" id="ablauf" aria-labelledby="ablauf-titel">
@@ -823,7 +852,10 @@ document.documentElement.classList.add("js");
 })();
 </script>
 <script>
-// Leistungsrechner: unverändert aus dem Plan-Repo (konzepte/brenz-kfz/anfrage.html, Logik in RECHNER.md)
+// Chiptuning-Rechner der neuen Seite (Sinan, 17.11.2026: klarer und verständlicher).
+// Daten, Motortyp, Faktoren und Kurven unverändert aus dem bisherigen Rechner (index.html, Plan-Repo RECHNER.md).
+// Neu: Baureihe im ersten Schritt, Kraftstoff nur bei eingetragenem Motor, Ergebnis ohne Extra-Klick mit Animation in der Karte,
+// Preis im Ergebnis, Anfrage über Auswahlkarten mit offener Nachrichtenvorschau.
 (function(){
   "use strict";
   // WhatsApp-Nummer von Mert (+49 176 62794745), international ohne + und ohne Leerzeichen
@@ -1079,71 +1111,8 @@ document.documentElement.classList.add("js");
   }
   function rund5(x){return Math.round(x/5)*5}
 
-  var $ = function(id){return document.getElementById(id)};
-  var marke=$("marke"), modell=$("modell"), frei=$("modell-frei"), freiFeld=$("modell-frei-feld"),
-      baujahr=$("baujahr"), kraftstoff=$("kraftstoff"), motor=$("motor"), text=$("text"), senden=$("senden"), fehlt=$("fehlt"),
-      motorWahl=$("motor-wahl"), baureihe=$("baureihe"), motorListe=$("motor-liste"), motorFreiFeld=$("motor-frei-feld"), motorHinweis=$("motor-hinweis");
-  var NICHT_DABEI="__frei";
-  function motorenFuellen(){
-    var daten=MOTOREN[marke.value+"|"+modell.value];
-    baureihe.textContent="";motorListe.textContent="";
-    if(!daten){motorWahl.hidden=true;motorHinweis.hidden=true;motorFreiFeld.hidden=false;return}
-    motorWahl.hidden=false;motorHinweis.hidden=false;
-    baureihe.appendChild(new Option("Bitte wählen",""));
-    daten.forEach(function(b,i){baureihe.appendChild(new Option(b[0]+" ("+b[1]+")",String(i)))});
-    baureihe.appendChild(new Option("Weiß ich nicht",NICHT_DABEI));
-    motorListeFuellen();
-  }
-  function motorListeFuellen(){
-    var daten=MOTOREN[marke.value+"|"+modell.value];motorListe.textContent="";
-    if(!daten)return;
-    var b=daten[Number(baureihe.value)];
-    if(baureihe.value===""||!b){motorListe.disabled=true;motorListe.appendChild(new Option(baureihe.value===NICHT_DABEI?"Bitte unten eintragen":"Erst Baureihe wählen",""));motorFreiFeld.hidden=baureihe.value!==NICHT_DABEI;return}
-    motorListe.disabled=false;
-    motorListe.appendChild(new Option("Bitte wählen",""));
-    b[2].forEach(function(m){motorListe.appendChild(new Option(m,m))});
-    motorListe.appendChild(new Option("Mein Motor ist nicht dabei",NICHT_DABEI));
-    motorFreiFeld.hidden=motorListe.value!==NICHT_DABEI;
-  }
-
-  Object.keys(FAHRZEUGE).sort(function(a,b){return a.localeCompare(b,"de")}).forEach(function(m){
-    var o=document.createElement("option");o.value=m;o.textContent=m;marke.appendChild(o);
-  });
-  var andere=document.createElement("option");andere.value="__andere";andere.textContent="Andere Marke";marke.appendChild(andere);
-  var jahr=new Date().getFullYear();
-  for(var j=jahr;j>=2000;j--){var o=document.createElement("option");o.value=String(j);o.textContent=String(j);baujahr.appendChild(o)}
-  var alt=document.createElement("option");alt.value="vor 2000";alt.textContent="vor 2000";baujahr.appendChild(alt);
-
-  function modelleFuellen(){
-    modell.textContent="";
-    var m=marke.value;
-    if(!m){modell.disabled=true;modell.appendChild(new Option("Erst Marke wählen",""));freiFeld.hidden=true;return}
-    if(m==="__andere"){modell.disabled=true;modell.appendChild(new Option("Bitte unten eintragen",""));freiFeld.hidden=false;return}
-    modell.disabled=false;
-    modell.appendChild(new Option("Bitte wählen",""));
-    FAHRZEUGE[m].forEach(function(x){modell.appendChild(new Option(x,x))});
-    modell.appendChild(new Option("Anderes Modell","__andere"));
-    freiFeld.hidden=true;
-  }
-  function wert(){
-    var m=marke.value==="__andere"?"":marke.value;
-    var mod=(marke.value==="__andere"||modell.value==="__andere")?frei.value.trim():modell.value;
-    var wunsch=(document.querySelector('input[name="wunsch"]:checked')||{}).value||"";
-    var daten=MOTOREN[marke.value+"|"+modell.value], br="", mo=motor.value.trim();
-    if(daten&&!motorWahl.hidden){
-      var b=daten[Number(baureihe.value)];
-      if(baureihe.value!==""&&baureihe.value!==NICHT_DABEI&&b)br=b[0];
-      if(motorListe.value&&motorListe.value!==NICHT_DABEI)mo=motorListe.value;
-      else if(motorFreiFeld.hidden)mo="";
-    }
-    if(br)mod+=" ("+br+")";
-    return {m:m,mod:mod,j:baujahr.value,k:kraftstoff.value,mo:mo,w:wunsch,br:br,gewaehlt:!!(daten&&!motorWahl.hidden&&motorListe.value&&motorListe.value!==NICHT_DABEI)};
-  }
-  var ergebnis=$("ergebnis"), ergZahlen=$("erg-zahlen"), ergKopf=$("erg-kopf"), diagramm=$("diagramm"), svg=$("dia-svg"), balken=$("erg-balken");
-  var NS="http://www.w3.org/2000/svg", lauf=0;
-  var ruhig=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var berechnen=$("berechnen"), buehne=$("buehne"), bSvg=$("buehne-svg"), bSchritt=$("b-schritt"), bFahrzeug=$("b-fahrzeug"), bWert=$("b-wert");
-  var gezeigt="", aktuell=null;
+  var NS = "http://www.w3.org/2000/svg";
+  var ruhig = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   /* Schematische Kurven: typische Drehmomentform je Motortyp (Drehzahl, Anteil vom Maximum), Leistung = Drehmoment x Drehzahl,
      danach auf Serien-PS und geschätzte Stage-1-PS skaliert. Keine Messwerte. */
   var PROFIL={
@@ -1199,131 +1168,164 @@ document.documentElement.classList.add("js");
     };
     return d;
   }
-  function balkenSetzen(e,max){
-    $("b-serie").style.width=(100*e.ps/max)+"%";$("b-tuning").style.width=(100*(e.ps+e.tief)/max)+"%";$("b-rest").style.width=(100*(e.ps+e.hoch)/max)+"%";
-    $("b-serie-w").textContent=e.ps+" PS";$("b-tuning-w").textContent=e.tief<e.hoch?(e.ps+e.tief)+"–"+(e.ps+e.hoch)+" PS":(e.ps+e.hoch)+" PS";
+
+  var $ = function(id){ return document.getElementById(id); };
+  var form = $("form"); if (!form) return;
+  var marke=$("marke"), modell=$("modell"), frei=$("modell-frei"), freiFeld=$("modell-frei-feld"),
+      baureihe=$("baureihe"), baureiheFeld=$("baureihe-feld"), motorListe=$("motor-liste"), motorListeFeld=$("motor-liste-feld"),
+      motor=$("motor"), motorFreiFeld=$("motor-frei-feld"), kraftstoff=$("kraftstoff"), kraftstoffFeld=$("kraftstoff-feld"),
+      baujahr=$("baujahr"), motorHinweis=$("motor-hinweis"), anmerkung=$("anmerkung"), text=$("text"), senden=$("senden");
+  var schritte=[$("schritt-1"),$("schritt-2"),$("schritt-3")], punkte=[].slice.call(form.querySelectorAll(".fortschritt li"));
+  var NICHT_DABEI="__frei", aktiv=0, aktuell=null, gezeigt="", lauf=0;
+  var PREIS_STAGE1="ab 350 €";   // (bestätigen) von Mert
+
+  function daten(){ return MOTOREN[marke.value+"|"+modell.value]; }
+
+  Object.keys(FAHRZEUGE).sort(function(a,b){return a.localeCompare(b,"de")}).forEach(function(m){ marke.appendChild(new Option(m,m)); });
+  marke.appendChild(new Option("Andere Marke","__andere"));
+  for (var jahr=new Date().getFullYear(); jahr>=2000; jahr--) baujahr.appendChild(new Option(String(jahr),String(jahr)));
+  baujahr.appendChild(new Option("vor 2000","vor 2000"));
+
+  function modelleFuellen(){
+    modell.textContent="";
+    var m=marke.value;
+    if(!m){ modell.disabled=true; modell.appendChild(new Option("Erst Marke wählen","")); freiFeld.hidden=true; return; }
+    if(m==="__andere"){ modell.disabled=true; modell.appendChild(new Option("Bitte unten eintragen","")); freiFeld.hidden=false; return; }
+    modell.disabled=false;
+    modell.appendChild(new Option("Bitte wählen",""));
+    FAHRZEUGE[m].forEach(function(x){ modell.appendChild(new Option(x,x)); });
+    modell.appendChild(new Option("Anderes Modell","__andere"));
+    freiFeld.hidden=true;
   }
-  function ergebnisFreigeben(){
-    var e=aktuell;if(!e)return;
-    diagrammBauen(svg,e,"i").ende();balkenSetzen(e,yMax(e.ps+e.hoch));
-    ergebnis.hidden=false;berechnen.hidden=true;gezeigt=e.schluessel;
+  function baureihenFuellen(){
+    var d=daten(); baureihe.textContent="";
+    baureiheFeld.hidden=!d;
+    if(!d) return;
+    baureihe.appendChild(new Option("Bitte wählen",""));
+    d.forEach(function(b,i){ baureihe.appendChild(new Option(b[0]+" ("+b[1]+")",String(i))); });
+    baureihe.appendChild(new Option("Weiß ich nicht",NICHT_DABEI));
   }
-  function show(){
-    var e=aktuell;if(!e)return;
-    if(ruhig){ergebnisFreigeben();return}
-    var d=diagrammBauen(bSvg,e,"b"), id=++lauf;
-    function wert(v){bWert.innerHTML="";bWert.appendChild(document.createTextNode(String(Math.round(v))));var sm=document.createElement("small");sm.textContent="PS";bWert.appendChild(sm)}
-    bFahrzeug.textContent=e.titel;bSchritt.textContent="Serie";wert(0);
-    buehne.hidden=false;requestAnimationFrame(function(){buehne.classList.add("an")});
-    var fertig=false;
-    function schliessen(){if(fertig)return;fertig=true;lauf++;buehne.classList.remove("an");setTimeout(function(){buehne.hidden=true},300);ergebnisFreigeben();ergebnis.scrollIntoView({block:"nearest",behavior:"smooth"})}
-    buehne.onclick=schliessen;
-    function weich(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
-    var A=1250, P=250, C=1350, H=900, start=null;
+  function motorenFuellen(){
+    var d=daten(), b=d&&d[Number(baureihe.value)];
+    var liste=!!(d&&baureihe.value!==""&&baureihe.value!==NICHT_DABEI&&b);
+    motorListe.textContent="";
+    motorListeFeld.hidden=!liste; motorHinweis.hidden=!liste;
+    if(liste){
+      motorListe.appendChild(new Option("Bitte wählen",""));
+      b[2].forEach(function(m){ motorListe.appendChild(new Option(m,m)); });
+      motorListe.appendChild(new Option("Mein Motor ist nicht dabei",NICHT_DABEI));
+    }
+    motorFrei();
+  }
+  // Kraftstoff nur fragen, wenn der Motor von Hand eingetragen wird; sonst aus dem Motor ableiten
+  function motorFrei(){
+    var vonHand = motorListeFeld.hidden || motorListe.value===NICHT_DABEI;
+    motorFreiFeld.hidden=!vonHand; kraftstoffFeld.hidden=!vonHand;
+    if(!vonHand && motorListe.value){ var n=motorListe.value.replace(/ \d+ PS$/,""); kraftstoff.value=HYBRID.test(n)?"Hybrid":DIESEL.test(n)?"Diesel":"Benzin"; }
+  }
+  function wert(){
+    var m=marke.value==="__andere"?"":marke.value;
+    var mod=(marke.value==="__andere"||modell.value==="__andere")?frei.value.trim():modell.value;
+    var d=daten(), br="", mo=motor.value.trim(), gewaehlt=false;
+    if(d){ var b=d[Number(baureihe.value)]; if(baureihe.value!==""&&baureihe.value!==NICHT_DABEI&&b) br=b[0]; }
+    if(!motorListeFeld.hidden && motorListe.value && motorListe.value!==NICHT_DABEI){ mo=motorListe.value; gewaehlt=true; }
+    else if(motorFreiFeld.hidden) mo="";
+    var w=(form.querySelector('input[name="wunsch"]:checked')||{}).value||"Stage 1";
+    return {m:m, mod:mod+(br?" ("+br+")":""), br:br, mo:mo, j:baujahr.value, k:kraftstoff.value, w:w, gewaehlt:gewaehlt};
+  }
+  function schaetzen(v){
+    if(!v.gewaehlt) return null;
+    var ps=Number((v.mo.match(/(\d+) PS/)||[])[1]), typ=motortyp(marke.value,v.br,v.mo);
+    if(typ==="hybrid"||!ps) return null;
+    var f=FAKTOREN[typ], hoch=rund5(ps*f.ps), tief=rund5(ps*f.ps*0.75);
+    if(hoch<5) return null;
+    if(tief<=0) tief=hoch;
+    return {ps:ps, tief:tief, hoch:hoch, typ:typ, schluessel:[marke.value,modell.value,v.br,v.mo].join("|")};
+  }
+  function bereich(e){ return e.tief<e.hoch ? "ca. "+(e.ps+e.tief)+"–"+(e.ps+e.hoch)+" PS" : "ca. "+(e.ps+e.hoch)+" PS"; }
+  function spanne(e){ return (e.tief<e.hoch ? (e.ps+e.tief)+"–"+(e.ps+e.hoch) : String(e.ps+e.hoch))+"\u00a0PS"; }
+  function plus(e){ return (e.tief<e.hoch ? "+"+e.tief+" bis +"+e.hoch+"\u00a0PS" : "+"+e.hoch+"\u00a0PS")+" gegenüber Serie ("+e.ps+"\u00a0PS)"; }
+
+  function nachricht(){
+    var v=wert(), e=aktuell, anm=anmerkung.value.trim();
+    var fz=[v.m,v.mod].filter(Boolean).join(" ")||"…";
+    var z=["Hallo Brenz KFZ, "+(v.w==="Beratung"?"ich hätte gern eine Beratung, was bei meinem Fahrzeug möglich ist.":"ich interessiere mich für "+v.w+".")];
+    z.push("Fahrzeug: "+fz+(v.j?", Baujahr "+v.j:"")+(v.k?", "+v.k:"")+(v.mo?", "+v.mo:""));
+    if(e && v.w!=="Stage 2") z.push("Schätzung im Rechner (Stage 1): "+bereich(e));
+    if(anm) z.push("Anmerkung: "+anm);
+    var t=z.join("\n");
+    text.textContent=t;
+    var ok=!!(v.mod&&v.j);
+    senden.setAttribute("aria-disabled",ok?"false":"true");
+    senden.href=ok?"https://wa.me/"+NUMMER+"?text="+encodeURIComponent(t):"#";
+  }
+
+  function ergebnisZeigen(animieren){
+    var v=wert(), e=schaetzen(v);
+    aktuell=e;
+    $("fahrzeug-text").textContent=[[v.m,v.mod].filter(Boolean).join(" "), v.mo, v.j].filter(Boolean).join(" · ");
+    $("ergebnis").hidden=!e; $("keine-schaetzung").hidden=!!e;
+    var w1=$("wahl-stage1"); w1.textContent = e ? PREIS_STAGE1+" · geschätzt ca. " : PREIS_STAGE1;
+    if(e){ var sp=document.createElement("span"); sp.style.whiteSpace="nowrap"; sp.textContent=spanne(e); w1.appendChild(sp); }
+    nachricht();
+    if(!e) return;
+    var gesamt=$("erg-wert"), ca=$("erg-ca"), plusZeile=$("erg-plus"), status=$("erg-status");
+    var d=diagrammBauen($("dia-svg"),e,"i"), id=++lauf;
+    var erledigt=false;
+    function fertig(){ if(erledigt) return; erledigt=true; d.ende(); ca.style.visibility=""; gesamt.textContent=spanne(e); plusZeile.textContent=plus(e); status.textContent="Geschätzt nach Stage 1: "+bereich(e); gezeigt=e.schluessel; }
+    if(!animieren || ruhig || e.schluessel===gezeigt){ fertig(); return; }
+    plusZeile.textContent="\u00a0"; ca.style.visibility="hidden";
+    setTimeout(function(){ if(id===lauf) fertig(); }, 3200);   // falls der Browser keine Bilder zeichnet (Tab im Hintergrund)
+    function weich(x){ return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2; }
+    var A=1100, P=250, C=1200, start=null;
     function bild(ts){
-      if(id!==lauf)return;if(start===null)start=ts;var z=ts-start;
-      if(z<A){wert(d.serie(weich(z/A)))}
-      else if(z<A+P){wert(d.serie(1))}
-      else if(z<A+P+C){bSchritt.textContent="Stage 1, geschätzt";wert(d.stage(weich((z-A-P)/C)))}
-      else if(z<A+P+C+H){d.ende();bWert.textContent=e.tief<e.hoch?(e.ps+e.tief)+"–"+(e.ps+e.hoch):String(e.ps+e.hoch);var sm=document.createElement("small");sm.textContent="PS";bWert.appendChild(sm);bSchritt.textContent="ca. +"+(e.tief<e.hoch?e.tief+" bis +":"")+e.hoch+" PS"}
-      else{schliessen();return}
+      if(id!==lauf || erledigt) return;
+      if(start===null) start=ts;
+      var z=ts-start;
+      if(z<A) gesamt.textContent=Math.round(d.serie(weich(z/A)))+"\u00a0PS";
+      else if(z<A+P) gesamt.textContent=e.ps+"\u00a0PS";
+      else if(z<A+P+C) gesamt.textContent=Math.round(d.stage(weich((z-A-P)/C)))+"\u00a0PS";
+      else { fertig(); return; }
       requestAnimationFrame(bild);
     }
     requestAnimationFrame(bild);
   }
-  berechnen.addEventListener("click",show);
-  function ergebnisZeigen(v){
-    ergZahlen.textContent="";
-    if(!v.gewaehlt){ergebnis.hidden=true;berechnen.hidden=true;aktuell=null;gezeigt="";return}
-    var ps=Number((v.mo.match(/(\d+) PS/)||[])[1]);
-    var typ=motortyp(marke.value,v.br,v.mo);
-    ergebnis.hidden=false;
-    function el(c,t){var e=document.createElement("span");e.className=c;e.textContent=t;ergZahlen.appendChild(e)}
-    if(typ==="hybrid"||!ps){ergKopf.textContent="Hybrid / Elektro";el("gesamt","Möglichkeiten auf Anfrage");diagramm.hidden=true;balken.hidden=true;berechnen.hidden=true;aktuell=null;return}
-    var f=FAKTOREN[typ];
-    ergKopf.textContent="Stage 1, geschätzt";
-    var hoch=rund5(ps*f.ps), tief=rund5(ps*f.ps*0.75);
-    if(hoch<5){el("gesamt","Möglichkeiten auf Anfrage");diagramm.hidden=true;balken.hidden=true;berechnen.hidden=true;aktuell=null;return}
-    el("serie","Serie "+ps+" PS");
-    el("plus",tief<hoch&&tief>0?"+"+tief+" bis +"+hoch+" PS":"+"+hoch+" PS");
-    el("gesamt",tief<hoch&&tief>0?"ca. "+(ps+tief)+"–"+(ps+hoch)+" PS":"ca. "+(ps+hoch)+" PS");
-    var schluessel=marke.value+"|"+modell.value+"|"+v.br+"|"+v.mo;
-    diagramm.hidden=false;balken.hidden=false;
-    aktuell={ps:ps,tief:tief>0?tief:hoch,hoch:hoch,typ:typ,schluessel:schluessel,titel:[marke.value,v.mod,v.mo.replace(/ \d+ PS$/,"")].join(" ")};
-    if(schluessel===gezeigt){ergebnisFreigeben()}else{ergebnis.hidden=true;berechnen.hidden=false}
-  }
-  function aktualisieren(){
-    freiFeld.hidden=!(marke.value==="__andere"||modell.value==="__andere");
-    var v=wert();
-    ergebnisZeigen(v);
-    var fahrzeug=[v.m,v.mod].filter(Boolean).join(" ")||"…";
-    var zeilen=["Hallo, ich habe einen "+fahrzeug+(v.j?", Baujahr "+v.j:"")+", "+v.k+(v.mo?", "+v.mo:"")+"."];
-    zeilen.push(v.w==="Beratung"?"Ich hätte gern eine Beratung, was bei meinem Auto möglich ist.":"Ich interessiere mich für "+v.w+". Was ist bei meinem Auto möglich?");
-    var nachricht=zeilen.join("\n");
-    text.textContent=nachricht;
-    var ok=!!(v.mod&&v.j);
-    senden.setAttribute("aria-disabled",ok?"false":"true");
-    fehlt.hidden=ok;
-    senden.href=ok?"https://wa.me/"+NUMMER+"?text="+encodeURIComponent(nachricht):"#";
-  }
-  marke.addEventListener("change",function(){modelleFuellen();motorenFuellen();aktualisieren()});
-  modell.addEventListener("change",function(){motorenFuellen();aktualisieren()});
-  baureihe.addEventListener("change",function(){motorListeFuellen();aktualisieren()});
-  motorListe.addEventListener("change",function(){
-    motorFreiFeld.hidden=motorListe.value!==NICHT_DABEI;
-    if(motorListe.value&&motorListe.value!==NICHT_DABEI){var n=motorListe.value.replace(/ \d+ PS$/,"");kraftstoff.value=HYBRID.test(n)?"Hybrid":DIESEL.test(n)?"Diesel":"Benzin"}
-    aktualisieren();
-  });
-  [baujahr,kraftstoff].forEach(function(e){e.addEventListener("change",aktualisieren)});
-  [frei,motor].forEach(function(e){e.addEventListener("input",aktualisieren)});
-  document.querySelectorAll('input[name="wunsch"]').forEach(function(e){e.addEventListener("change",aktualisieren)});
-  $("form").addEventListener("submit",function(e){e.preventDefault()});
 
-  aktualisieren();
-})();
-</script>
-<script>
-// Rechner Schritt für Schritt: 1 Fahrzeug, 2 Motor und Baujahr, 3 Leistung. Rechnen und Daten bleiben im Skript oben.
-(function(){
-  "use strict";
-  var $=function(id){return document.getElementById(id)};
-  var form=$("form"), schritte=[$("schritt-1"),$("schritt-2"),$("schritt-3")];
-  var punkte=[].slice.call(form.querySelectorAll(".fortschritt li"));
-  var ruhig=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches, aktiv=0;
-  function text(sel){var o=sel.options[sel.selectedIndex];return o&&sel.value&&sel.value.indexOf("__")!==0?o.textContent:""}
   function pruefen(){
-    var marke=$("marke").value, modell=$("modell").value, frei=$("modell-frei").value.trim();
-    var ok1=!!marke&&((marke!=="__andere"&&modell&&modell!=="__andere")||!!frei);
+    var ok1=!!marke.value && ((marke.value!=="__andere" && modell.value && modell.value!=="__andere") || !!frei.value.trim()) && (baureiheFeld.hidden || baureihe.value!=="");
     $("weiter-1").disabled=!ok1;
-    $("weiter-2").disabled=!$("baujahr").value;
-    // Auswahlzeile ab Schritt 2
-    var teile=[text($("marke")),text($("modell"))||frei];
-    if(aktiv>=2){var mo=text($("motor-liste"))||$("motor").value.trim();teile.push(mo,$("baujahr").value)}
-    $("auswahl").textContent=teile.filter(Boolean).join(" · ");
-    $("auswahl").hidden=aktiv===0||!ok1;
-    // Anfrage erst, wenn nichts mehr zu berechnen ist
-    var b=$("berechnen").hidden;
-    $("anfrage").hidden=!b;
-    $("keine-schaetzung").hidden=!(b&&$("ergebnis").hidden);
+    $("weiter-2").disabled=!baujahr.value;
+    var v=wert(), auswahl=$("auswahl");
+    auswahl.textContent=[v.m,v.mod].filter(Boolean).join(" ");
+    auswahl.hidden=aktiv!==1;
   }
   function zeige(i,fokus){
     aktiv=i;
-    schritte.forEach(function(s,j){s.hidden=j!==i});
-    punkte.forEach(function(p,j){p.classList.toggle("fertig",j<i);if(j===i)p.setAttribute("aria-current","step");else p.removeAttribute("aria-current")});
+    schritte.forEach(function(s,j){ s.hidden=j!==i; });
+    punkte.forEach(function(p,j){ p.classList.toggle("fertig",j<i); if(j===i) p.setAttribute("aria-current","step"); else p.removeAttribute("aria-current"); });
     pruefen();
+    if(i===2) ergebnisZeigen(true);
     if(fokus){
-      $("frage-"+(i+1)).focus({preventScroll:true});
+      var f=$("frage-"+(i+1)); if(f) f.focus({preventScroll:true});
       var oben=form.getBoundingClientRect().top;
-      if(oben<0||oben>innerHeight*.4)form.scrollIntoView({block:"start",behavior:ruhig?"auto":"smooth"});
+      if(oben<0||oben>innerHeight*.4) form.scrollIntoView({block:"start",behavior:ruhig?"auto":"smooth"});
     }
   }
-  form.addEventListener("change",pruefen);
-  form.addEventListener("input",pruefen);
-  ["berechnen","ergebnis"].forEach(function(id){new MutationObserver(pruefen).observe($(id),{attributes:true,attributeFilter:["hidden"]})});
-  $("weiter-1").addEventListener("click",function(){zeige(1,true)});
-  $("weiter-2").addEventListener("click",function(){zeige(2,true)});
-  [].forEach.call(form.querySelectorAll("[data-zurueck]"),function(b){b.addEventListener("click",function(){zeige(aktiv-1,true)})});
-  zeige(0,false);
+
+  marke.addEventListener("change",function(){ modelleFuellen(); baureihenFuellen(); motorenFuellen(); pruefen(); });
+  modell.addEventListener("change",function(){ freiFeld.hidden=!(marke.value==="__andere"||modell.value==="__andere"); baureihenFuellen(); motorenFuellen(); pruefen(); });
+  baureihe.addEventListener("change",function(){ motorenFuellen(); pruefen(); });
+  motorListe.addEventListener("change",function(){ motorFrei(); pruefen(); });
+  [frei,motor].forEach(function(e){ e.addEventListener("input",pruefen); });
+  [baujahr,kraftstoff].forEach(function(e){ e.addEventListener("change",pruefen); });
+  [].forEach.call(form.querySelectorAll('input[name="wunsch"]'),function(r){ r.addEventListener("change",nachricht); });
+  anmerkung.addEventListener("input",nachricht);
+  $("weiter-1").addEventListener("click",function(){ zeige(1,true); });
+  $("weiter-2").addEventListener("click",function(){ zeige(2,true); });
+  $("aendern").addEventListener("click",function(){ zeige(0,true); });
+  [].forEach.call(form.querySelectorAll("[data-zurueck]"),function(b){ b.addEventListener("click",function(){ zeige(aktiv-1,true); }); });
+  form.addEventListener("submit",function(e){ e.preventDefault(); });
+  modelleFuellen(); baureihenFuellen(); motorenFuellen(); zeige(0,false);
 })();
 </script>
 <script>

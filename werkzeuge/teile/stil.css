@@ -393,16 +393,59 @@ button{font:inherit}
 .stufen-karte .link svg{color:var(--text)}
 @media (min-width:768px){.stufen-karten{grid-template-columns:1fr 1fr;gap:24px}}
 
-/* Rechner als dunkle Konsole */
+/* Rechner (Chiptuning-Seite): dunkle Konsole, ein Schritt nach dem anderen, Ergebnis und Anfrage klar getrennt */
 .rechner-dunkel{padding-block:clamp(88px,11vw,160px)}
-.rechner-dunkel .zettel{padding:clamp(24px,3vw,40px);gap:24px}
-.rechner-dunkel .fortschritt li[aria-current]{border-top-color:var(--akzent)}
-.rechner-dunkel .schritt-frage{font-size:clamp(1.5rem,1.1rem + 1.2vw,2rem)}
-.rechner-dunkel .zettel select,.rechner-dunkel .zettel input[type="text"]{height:56px}
-.rechner-dunkel .ergebnis .gesamt{color:var(--akzent)}
-.rechner-dunkel .ergebnis .gesamt:only-child{color:var(--text)}
-.rechner-dunkel .dia .band{opacity:.16}
-.rechner-dunkel .hinweis,.rechner-dunkel .ergebnis .schaetzung{margin:0;font-size:.875rem;color:var(--leise)}
+@media (min-width:1000px){.rechner-dunkel .rechner-text{position:sticky;top:calc(var(--kopf-h) + 40px);align-self:start}}
+.konsole{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;padding:clamp(22px,3vw,40px);background:var(--flaeche);border:1px solid var(--haar);border-radius:20px}
+.konsole .fortschritt li{border-top-width:3px;padding-top:12px}
+.konsole .fortschritt li.fertig{border-top-color:color-mix(in srgb,var(--akzent) 45%,transparent)}
+.konsole .fortschritt li[aria-current]{border-top-color:var(--akzent);color:var(--text)}
+.konsole .schritt{display:grid;gap:20px}
+.konsole .schritt-frage{margin:0;font:500 clamp(1.5rem,1.1rem + 1.2vw,2rem)/1.15 var(--f);letter-spacing:-.02em;outline:none}
+.konsole .auswahl{margin:0 0 -8px;font-size:.9375rem;color:var(--leise)}
+.feld-r{display:grid;gap:8px;min-width:0}
+.feld-r>span{font:500 .875rem/1.2 var(--f);color:var(--fliess)}
+.feld-r select,.feld-r input,.feld-r textarea{width:100%;min-width:0;height:56px;padding:0 14px;font:400 1rem/1.4 var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:12px}
+.feld-r textarea{height:auto;min-height:84px;padding-block:14px;resize:vertical}
+.feld-r input::placeholder,.feld-r textarea::placeholder{color:var(--leise)}
+.feld-r select:disabled{opacity:.5}
+.feld-r select:focus-visible,.feld-r input:focus-visible,.feld-r textarea:focus-visible{outline:2px solid var(--akzent);outline-offset:1px}
+.konsole .schritt-knoepfe{display:flex;align-items:center;gap:12px;margin-top:4px}
+.konsole .hinweis{margin:0;font-size:.875rem;color:var(--leise)}
+/* Ergebnis */
+.fahrzeug-zeile{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:16px;border-bottom:1px solid var(--haar)}
+.fahrzeug-zeile p{margin:0;min-width:0;font-size:.9375rem;color:var(--fliess)}
+.aendern{flex:none;min-height:44px;padding:0;border:0;background:none;color:var(--akzent);font:500 .9375rem var(--f);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.erg{display:grid;gap:4px}
+.erg-kopf{margin:0;font-size:.875rem;font-weight:500;color:var(--leise)}
+.erg-gesamt{margin:0;font-size:clamp(2.25rem,1.5rem + 3.6vw,4rem);font-weight:500;line-height:1.05;letter-spacing:-.04em;color:var(--akzent)}
+.erg-gesamt .ca{font-size:.42em;letter-spacing:0;vertical-align:.12em}
+.erg-gesamt .wert{white-space:nowrap;font-variant-numeric:tabular-nums}
+.erg-plus{margin:4px 0 0;color:var(--fliess)}
+.konsole .diagramm{margin:16px 0 4px}
+.konsole .diagramm svg{width:100%;height:auto}
+.konsole .dia .band{opacity:.16}
+.erg-preis{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:12px 0 0;padding-block:14px;border-block:1px solid var(--haar)}
+.erg-preis span{font-size:.9375rem;color:var(--leise)}
+.erg-preis strong{font-size:1.5rem;font-weight:500;letter-spacing:-.02em}
+.erg-hinweis{margin:10px 0 0;font-size:.875rem;color:var(--leise)}
+/* Anfrage */
+.anfrage-neu{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding-top:24px;border-top:1px solid var(--haar)}
+.anfrage-titel{margin:0;font-size:1.25rem;font-weight:500;letter-spacing:-.015em}
+.wahl{display:grid;gap:10px}
+.wahl-karte{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:2px 14px;padding:14px 16px;border:1px solid var(--linie);border-radius:14px;cursor:pointer;transition:border-color .2s,background-color .2s}
+.wahl-karte:hover{border-color:var(--leise)}
+.wahl-karte input{grid-row:1/span 2;appearance:none;-webkit-appearance:none;display:grid;place-items:center;width:22px;height:22px;margin:0;border:1.5px solid var(--leise);border-radius:50%;cursor:pointer}
+.wahl-karte input::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--akzent);transform:scale(0);transition:transform .15s}
+.wahl-karte input:checked{border-color:var(--akzent)}
+.wahl-karte input:checked::after{transform:scale(1)}
+.wahl-karte input:focus-visible{outline:2px solid var(--akzent);outline-offset:3px}
+.wahl-karte:has(input:checked){border-color:var(--akzent);background:color-mix(in srgb,var(--akzent) 8%,transparent)}
+.wahl-titel{font-weight:500}
+.wahl-zeile{grid-column:2;font-size:.9375rem;color:var(--leise)}
+.konsole .knopf.wa{width:100%}
+.konsole .knopf.wa>span:first-child{min-width:0;white-space:normal;line-height:1.2}
+.konsole .klein{margin:-8px 0 0}
 
 /* Ablauf mit vier Schritten, ohne Kontakt direkt darunter */
 .ablauf.allein{padding-bottom:clamp(88px,11vw,160px)}
