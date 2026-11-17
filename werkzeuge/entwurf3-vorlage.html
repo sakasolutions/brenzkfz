@@ -115,8 +115,8 @@ button{font:inherit}
 .u-gebiet{grid-column:1;font-size:.9375rem;color:var(--leise)}
 .uebersicht svg{grid-column:2;grid-row:1/span 2;width:18px;height:18px;color:var(--akzent);transition:transform .25s}
 .uebersicht a:hover svg{transform:translateX(4px)}
-@media (min-width:600px) and (max-width:899px){.uebersicht ul{grid-template-columns:1fr 1fr;column-gap:32px}}
-@media (min-width:900px){
+@media (min-width:600px) and (max-width:1199px){.uebersicht ul{grid-template-columns:1fr 1fr;column-gap:32px}}
+@media (min-width:1200px){
   .uebersicht ul{grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px;border-top:0}
   .uebersicht li{border-bottom:0;border-top:1px solid var(--haar)}
   .uebersicht li::before{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--akzent);transition:width .45s cubic-bezier(.2,.65,.2,1)}
@@ -132,7 +132,7 @@ button{font:inherit}
 .leistungen .innen{display:grid;gap:16px}
 .kapitel{position:relative;isolation:isolate;clip-path:inset(0 round 8px);display:flex;flex-direction:column;justify-content:flex-end;min-width:0;
   aspect-ratio:3/4;border-radius:8px;background:#090807;color:#f2f1ef}
-.kapitel-bild{position:absolute;inset:0;z-index:-3;margin:0}
+.kapitel-bild{position:absolute;inset:0;z-index:-3;margin:0;overflow:hidden}
 .kapitel-bild img{width:100%;height:100%;object-fit:cover;filter:var(--ton)}
 .kapitel::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
   background:linear-gradient(to top,rgb(9 8 7 / .94),rgb(9 8 7 / .86) 35%,rgb(9 8 7 / .66) 60%,rgb(9 8 7 / .32) 80%,rgb(9 8 7 / 0) 96%)}
