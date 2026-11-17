@@ -88,6 +88,13 @@ Was alle gemeinsam haben: eine Schriftfamilie für alles, nie fette schmale Schr
 
 Aufgeräumt nach Audit (17.11.2026): Unter dem Film eine Übersicht der vier Bereiche statt eines Einleitungssatzes (wie die Modellreihe bei Porsche), der Film läuft ohne Kante in die Seite, die Überschrift bricht sauber in zwei Teile, der Fuß hat Emblem, Menü und Kontakt. Schärfere Standbilder für den Film (`img/film-*.webp`, Bild 1 der Videos, passend zur Breite vorgeladen). Barrierefreiheit: Menü sperrt den Rest der Seite, Vorschau wird nicht bei jedem Tastendruck vorgelesen, Tippflächen mindestens 40 px, weniger Bewegung wird respektiert. Geprüft auf 390 px: kein seitliches Scrollen, Kontraste mindestens 4,5:1.
 
+Kopf nach Seitenplan (17.11.2026, Plan in `plan-brenz-kfz/konzepte/brenz-kfz/website/SEITENPLAN.md`):
+- **Desktop:** Menü Kfz-Service, Chiptuning, Aufbereitung, Kontakt, beim Überfahren und für die aktuelle Seite eine Champagner-Linie (`aria-current="page"`), rechts ein kleiner Knopf „Anfrage“.
+- **Handy:** WhatsApp-Symbol und „Menü“, Vollbildmenü mit Untertiteln (Gebiet).
+- **Film:** im Film neben dem Knopf der Textlink „Leistung berechnen“.
+- **Links:** Sie zeigen auf `kfz-service`, `chiptuning`, `fahrzeugaufbereitung`, `chiptuning#rechner`. Solange eine Seite fehlt, stellt `werkzeuge/neu.py` den Link auf den passenden Abschnitt der Startseite um (`UNTERSEITEN`).
+- **Geprüft:** in sieben Breiten von 600 bis 1920 px ohne Überlauf, live auf 390 px Tippflächen 44 px, Menü sperrt die Seite, Sprung zum Abschnitt landet unter dem Kopf.
+
 Grautöne leicht warm (Sinan, 17.11.2026): Film und Fotos haben nach dem Bildton `--ton` in den Mitteltönen einen warmen Farbton (oklch um 90°), die dunklen Töne sind fast neutral. Deshalb wird der Grund nur ein Hauch wärmer (`#12110f` statt `#121212`), Linien und graue Schrift bekommen den Filmton voll. Text und Champagner bleiben wie gemessen.
 
 Leistungen als Bildtafeln (Sinan, 17.11.2026: „Bilder nur reingeklatscht“, Überlauf bei „Softwareoptimierung“ auf dem Desktop): Text steht im Bild unten links wie beim Film, gleicher Bildton und gleiches Korn, die ganze Tafel ist klickbar. Desktop: Service hochkant neben Software breit, Aufbereitung über die volle Breite; darunter untereinander. Standbilder für Service immer aus dem Film, der oben gerade nicht läuft (Querfilm ist eine einzige Einstellung). Weiche Trennungen in langen Wörtern, Übersicht erst ab 1200 px vierspaltig. Geprüft in acht Breiten von 600 bis 1920 px (kein Überlauf, alle Titel einzeilig) und live auf 390, 1000 und 1440 px.
