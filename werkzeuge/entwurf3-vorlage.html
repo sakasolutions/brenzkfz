@@ -201,7 +201,7 @@ button{font:inherit}
 #erg-balken{display:none!important}
 .erg-kopf{font:500 .875rem/1.2 var(--f);color:var(--leise)}
 .ergebnis .zahlen{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
-.ergebnis .gesamt{order:-1;flex-basis:100%;font:500 clamp(2.75rem,10vw,3.5rem)/1 var(--f);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.ergebnis .gesamt{order:-1;flex-basis:100%;font:500 clamp(2.75rem,10vw,3.5rem)/1 var(--f);letter-spacing:-.04em}
 .ergebnis .serie{order:1;color:var(--leise)}
 .ergebnis .gesamt:only-child{font:500 1.125rem/1.35 var(--f);letter-spacing:0}
 .ergebnis .plus{font-weight:500;color:var(--text)}
@@ -209,7 +209,7 @@ button{font:inherit}
 .diagramm{margin:14px 0 4px}
 .diagramm svg{width:100%;max-width:440px;height:auto}
 .dia .gitter{stroke:var(--linie);stroke-width:1}
-.dia .achse{fill:var(--leise);font:500 11px var(--f);font-variant-numeric:tabular-nums}
+.dia .achse{fill:var(--leise);font:500 11px var(--f)}
 .dia .achse.mitte{text-anchor:middle}.dia .achse.rechts{text-anchor:end}
 .dia .k-serie{fill:none;stroke:var(--leise);stroke-width:2;stroke-linejoin:round}
 .dia .k-stage{fill:none;stroke:var(--akzent);stroke-width:2.5;stroke-linejoin:round}
@@ -235,6 +235,7 @@ button{font:inherit}
 .r-buehne .tippen{font-size:.75rem;color:var(--leise)}
 @media (max-width:480px){.zettel .reihe{grid-template-columns:1fr}.zettel{padding:24px 18px}}
 
+/* Gleich breite Ziffern nur bei reinen Zahlen: Schibsted setzt damit auch Punkt und Komma breit */
 /* Kontakt: Nachricht vorbereiten, Vorschau sehen, in WhatsApp öffnen */
 .kontakt{padding-block:clamp(88px,11vw,160px)}
 .kontakt-raster{display:grid;gap:48px}
