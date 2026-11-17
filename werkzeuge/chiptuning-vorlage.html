@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="de">
+<head>
+<!-- Vorlage für chiptuning.html. Nicht direkt öffnen: python3 werkzeuge/neu.py setzt Teile, Logo, Rechner und WhatsApp-Links ein. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>(Entwurf 3) Chiptuning im Raum Heidenheim, Aalen, Ulm · Brenz KFZ</title>
+<meta name="description" content="Chiptuning und Softwareoptimierung für Fahrzeuge aus der ganzen Region. Stage 1 ab 350 €, Mehrleistung für Ihren Motor grob berechnen, Stage 2 nach Diagnose vor Ort.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#12110f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/SchibstedGrotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/kapitel-software.webp" as="image" media="(max-width: 899px)">
+<link rel="preload" href="img/motor-hintergrund.webp" as="image" media="(min-width: 900px)">
+<!-- Für die echte Domain. Preis erst als Angebot auszeichnen, wenn Mert ihn bestätigt hat. Orte Aalen und Ulm noch abstimmen. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Chiptuning und Softwareoptimierung",
+      "serviceType": "Chiptuning",
+      "url": "https://brenzkfz.de/chiptuning",
+      "provider": { "@type": "AutoRepair", "name": "Brenz KFZ", "url": "https://brenzkfz.de/" },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Landkreis Heidenheim" },
+        { "@type": "City", "name": "Aalen" },
+        { "@type": "AdministrativeArea", "name": "Ostalbkreis" },
+        { "@type": "City", "name": "Ulm" },
+        { "@type": "AdministrativeArea", "name": "Alb-Donau-Kreis" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://brenzkfz.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Chiptuning", "item": "https://brenzkfz.de/chiptuning" }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+<!--TEIL stil.css--></style>
+</head>
+<body>
+
+<!--TEIL sprite.html--><!--TEIL kopf.html--><main>
+  <section class="held unter" id="start" aria-labelledby="held-titel">
+    <figure class="held-bild" aria-hidden="true">
+      <!-- Motorfoto: Herkunft offen, nur für den Entwurf; später eigene Aufnahme (Laptop am Fahrzeug) -->
+      <picture>
+        <source media="(min-width: 900px)" srcset="img/motor-hintergrund.webp" width="1920" height="1280">
+        <img src="img/kapitel-software.webp" width="800" height="1000" alt="" fetchpriority="high">
+      </picture>
+    </figure>
+    <div class="innen held-inhalt">
+      <nav class="brotkrumen" aria-label="Brotkrumen"><a href="{{START}}">Start</a><span aria-hidden="true">/</span><span aria-current="page">Chiptuning</span></nav>
+      <h1 id="held-titel">Chiptuning und Software&shy;optimierung. <span class="grau">Für Fahrzeuge aus der ganzen Region.</span></h1>
+      <div class="held-aktionen">
+        <a class="knopf" href="#rechner"><span>Mehrleistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        <a class="link" href="{{WA_CHIPTUNING}}" target="_blank" rel="noopener"><span>Per WhatsApp anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="hell stufenwahl" id="stufen" aria-labelledby="stufen-titel">
+    <div class="innen">
+      <div class="stufenwahl-kopf">
+        <h2 id="stufen-titel">Chiptuning in zwei Stufen</h2>
+        <!-- Orte Aalen und Ulm: Sinans Vorschlag vom 16.11., noch abstimmen -->
+        <p>Online bekommen Sie eine Schätzung für Stage 1. Alles Weitere klären wir mit einer Diagnose vor Ort. Für Fahrzeuge aus Heidenheim, Aalen, Ulm und der ganzen Region.</p>
+      </div>
+      <div class="stufen-karten">
+        <article class="stufen-karte">
+          <h3>Stage 1</h3>
+          <!-- (bestätigen) Preis von Mert, Endpreis inkl. MwSt.? -->
+          <p class="betrag">ab 350&nbsp;€</p>
+          <p>Angepasste Motorsoftware für mehr Leistung. Was bei Ihrem Motor ungefähr drin ist, zeigt der Rechner.</p>
+          <p class="notiz">Vor der Optimierung lesen wir Ihr Fahrzeug aus und prüfen es.</p>
+          <a class="link" href="#rechner"><span>Mehrleistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        </article>
+        <article class="stufen-karte">
+          <h3>Stage 2</h3>
+          <p class="betrag">auf Anfrage</p>
+          <p>Was über Stage 1 hinaus möglich ist, klären wir nach einer Diagnose vor Ort.</p>
+          <p class="notiz">Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
+          <a class="link" href="#kontakt" data-thema="software"><span>Stage 2 anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="rechner-dunkel" id="rechner" aria-labelledby="rechner-titel">
+    <div class="innen rechner-raster">
+      <div class="rechner-text">
+        <p class="kennzeile">Chiptuning-Rechner</p>
+        <h2 id="rechner-titel">Was geht bei Ihrem Motor?</h2>
+        <p class="rechner-unter">Marke, Modell und Motor wählen und sehen, was Stage 1 bei Ihrem Motor ungefähr bringt. Das ist eine grobe Schätzung, keine Zusage. Die genauen Werte ermitteln wir mit einer Diagnose vor Ort.</p>
+        <p class="preis"><span>Stage 1</span><strong>ab 350&nbsp;€</strong></p>
+      </div>
+<!--RECHNER-FORM-->
+  </section>
+
+  <section class="ablauf allein" id="ablauf" aria-labelledby="ablauf-titel">
+    <div class="innen">
+      <h2 id="ablauf-titel">So läuft es ab</h2>
+      <!-- (bestätigen) Schritte 2 bis 4, KLAERUNG-MERT.md -->
+      <ol class="schritte vier">
+        <li><h3>Schätzung ansehen</h3><p>Im Rechner sehen Sie, was Stage 1 bei Ihrem Motor ungefähr bringt.</p></li>
+        <li><h3>Anfrage schicken</h3><p>Per WhatsApp, mit Fahrzeug und Wunsch. Die Nachricht stellt der Rechner für Sie zusammen.</p></li>
+        <li><h3>Diagnose vor Ort</h3><p>Wir lesen Ihr Fahrzeug aus und prüfen es. Danach stehen die genauen Werte fest.</p></li>
+        <li><h3>Optimierung</h3><p>Die Software wird angepasst, danach holen Sie Ihr Fahrzeug ab.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="faq" id="fragen" aria-labelledby="fragen-titel">
+    <div class="innen faq-raster">
+      <div class="faq-kopf">
+        <h2 id="fragen-titel">Häufige Fragen</h2>
+      </div>
+      <div class="fragen-spalte">
+        <!-- Nur belegte Antworten. Eintragung, Garantie und Versicherung erst nach rechtlicher Prüfung (KLAERUNG-MERT.md, Abschnitt 4). -->
+        <div class="fragen">
+          <details><summary>Was kostet Chiptuning?</summary><p>Stage 1 gibt es ab 350&nbsp;€. Den Preis für Ihr Fahrzeug nennen wir Ihnen nach Ihrer Anfrage.</p></details>
+          <details><summary>Wie genau ist der Rechner?</summary><p>Er zeigt eine grobe Schätzung für Ihren Motortyp, keine Zusage. Die genaue Leistung hängt vom Zustand Ihres Fahrzeugs ab und steht erst nach dem Auslesen fest.</p></details>
+          <details><summary>Muss ich das eintragen lassen?</summary><p>Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein. <span class="luecke">[Genaue Antwort nach rechtlicher Prüfung]</span></p></details>
+        </div>
+        <nav class="weitere" aria-labelledby="weitere-titel">
+          <h2 id="weitere-titel">Auch bei uns</h2>
+          <ul>
+            <li><a href="kfz-service"><span class="w-titel">Kfz-Service</span><span class="w-zeile">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+            <li><a href="fahrzeugaufbereitung"><span class="w-titel">Fahrzeugaufbereitung</span><span class="w-zeile">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+<!--TEIL kontakt.html--></main>
+
+<!--TEIL fuss.html-->
+<script>
+<!--TEIL skript.js--></script>
+<!--RECHNER-SKRIPTE-->
+<script>
+// Marke aus dem Einstieg der Startseite übernehmen (chiptuning?marke=…) und zum Rechner springen
+(function(){
+  var m = new URLSearchParams(location.search).get("marke"), s = document.getElementById("marke");
+  if (!m || !s || ![].some.call(s.options, function(o){ return o.value === m; })) return;
+  s.value = m;
+  s.dispatchEvent(new Event("change", { bubbles: true }));
+  document.getElementById("rechner").scrollIntoView();
+})();
+</script>
+</body>
+</html>

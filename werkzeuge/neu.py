@@ -1,6 +1,7 @@
 """Baut die Entwürfe aus ihren Vorlagen in werkzeuge/:
   neu-vorlage.html       -> champagner-neu.html  (Sinan 16.11.2026)
   entwurf3-vorlage.html  -> entwurf-3.html       (Sinan 17.11.2026, nach Tier-1-Analyse, Grautöne leicht warm)
+  chiptuning-vorlage.html -> chiptuning.html   (erste Unterseite, Rechner als dunkle Konsole, Sinan 17.11.2026)
   entwurf4-vorlage.html  -> entwurf-4.html       (Sinan 17.11.2026: Film filmisch, darunter hell und dunkel im Wechsel,
                          Akzent zum Umschalten: Champagner, Monochrom, Eisblau)
 Aus entwurf-3.html abgeleitet (Sinan 17.11.2026, zum Abgleich, Farben außer Rot frei):
@@ -27,6 +28,8 @@ VORLAGEN = {
     "{{WA_ALLGEMEIN}}": "Hallo Brenz KFZ, ich habe eine Anfrage.\nFahrzeug (Marke, Modell, Baujahr): \n"
                         "Worum geht es (Service, Chiptuning, Aufbereitung): ",
     "{{WA_SERVICE}}": "Hallo Brenz KFZ, ich möchte einen Termin anfragen.\nFahrzeug (Marke, Modell, Baujahr): \nWas steht an: ",
+    "{{WA_CHIPTUNING}}": "Hallo Brenz KFZ, ich interessiere mich für Chiptuning.\nFahrzeug (Marke, Modell, Baujahr): \n"
+                         "Wunsch (zum Beispiel Stage 1 oder Stage 2): ",
     "{{WA_AUFBEREITUNG}}": "Hallo Brenz KFZ, ich interessiere mich für eine Fahrzeugaufbereitung.\n"
                            "Fahrzeug (Marke, Modell, Baujahr): \nWas soll gemacht werden: ",
 }
@@ -108,7 +111,8 @@ def teile_einsetzen(html, ziel):
     return html
 
 
-ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html", "entwurf4-vorlage.html": "entwurf-4.html"}
+ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html", "entwurf4-vorlage.html": "entwurf-4.html",
+         "chiptuning-vorlage.html": "chiptuning.html"}
 
 
 def bauen(vorlage, ziel, schreiben=True):

@@ -35,9 +35,11 @@ document.documentElement.classList.add("js");
     knopf.setAttribute("aria-label", angehalten ? "Film abspielen" : "Film anhalten");
     knopf.firstElementChild.firstElementChild.setAttribute("href", angehalten ? "#i-play" : "#i-pause");
   }
-  knopf.addEventListener("click", function(){ angehalten = !angehalten; anzeigen(); });
-  breit.addEventListener("change", anzeigen);
-  new IntersectionObserver(function(e){ sichtbar = e[0].isIntersecting; anzeigen(); }).observe(held);
+  if (knopf) {   // nur auf Seiten mit Film (Unterseiten haben ein Standbild)
+    knopf.addEventListener("click", function(){ angehalten = !angehalten; anzeigen(); });
+    breit.addEventListener("change", anzeigen);
+    new IntersectionObserver(function(e){ sichtbar = e[0].isIntersecting; anzeigen(); }).observe(held);
+  }
 
   // Kapitel ziehen beim Hineinscrollen langsam auf
   var io = new IntersectionObserver(function(e){

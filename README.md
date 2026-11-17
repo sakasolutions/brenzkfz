@@ -95,6 +95,17 @@ Kopf nach Seitenplan (17.11.2026, Plan in `plan-brenz-kfz/konzepte/brenz-kfz/web
 - **Links:** Sie zeigen auf `kfz-service`, `chiptuning`, `fahrzeugaufbereitung`, `chiptuning#rechner`. Solange eine Seite fehlt, stellt `werkzeuge/neu.py` den Link auf den passenden Abschnitt der Startseite um (`UNTERSEITEN`).
 - **Geprüft:** in sieben Breiten von 600 bis 1920 px ohne Überlauf, live auf 390 px Tippflächen 44 px, Menü sperrt die Seite, Sprung zum Abschnitt landet unter dem Kopf.
 
+Mehrere Seiten (17.11.2026):
+- **Gemeinsame Teile:** Stil, Sprite, Kopf, Kontakt, Fuß und Skript liegen in `werkzeuge/teile/` und werden per `<!--TEIL name-->` in jede Seite eingesetzt. Seitenabhängig: `{{START}}` (Ziel von Emblem und Brotkrumen), `{{AN_thema}}` (vorgewähltes Thema im Kontakt), aktiver Menüpunkt (`SEITEN` in `neu.py`).
+- **Chiptuning-Seite** `chiptuning.html` aus `werkzeuge/chiptuning-vorlage.html`:
+  - Kopfbereich mit Standbild und langsamem Zoom, Brotkrumen, „Chiptuning und Softwareoptimierung.“
+  - zwei Stufen (Stage 1 ab 350 €, Stage 2 nach Diagnose vor Ort)
+  - der Rechner als dunkle Konsole (Kurve und Ergebnis in Champagner)
+  - Ablauf in vier Schritten, Fragen, Verweis auf die anderen Leistungen, Kontakt mit „Chiptuning“ vorgewählt
+  - strukturierte Daten als `Service` und `BreadcrumbList`
+  - `?marke=` aus dem Einstieg der Startseite wählt die Marke vor und springt zum Rechner
+- **Links:** Solange die neue Startseite ein Entwurf ist, zeigen Emblem und Brotkrumen auf `entwurf-3.html` (`START_ENTWURF`).
+
 Knöpfe (Sinan, 17.11.2026: „Pillen moderner, weiße Pille mit Kapsel, aber originale WhatsApp-Kapsel“):
 - **Form:** Alle Knöpfe und Auswahlfelder sind Pillen.
 - **Farben:** Auf Dunkel weiß (`--knopf`), im hellen Rechner dunkel, „Leistung berechnen“ als einziger Knopf in Champagner.

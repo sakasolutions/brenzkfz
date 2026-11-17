@@ -166,13 +166,13 @@ button{font:inherit}
 
 /* Rechner: hell, ruhig */
 /* Helle Abschnitte (Rechner, Ablauf, Kontakt): Töne aus der Palette gemischt, Knöpfe dunkel, Fokus in Tinte statt Champagner */
-.rechner,.ablauf,.kontakt{color-scheme:light;
+.rechner,.ablauf,.kontakt,.hell{color-scheme:light;
   --grund:color-mix(in srgb,#ffffff 93%,#8a8780); --flaeche:#ffffff; --linie:color-mix(in srgb,#ffffff 78%,#8a8780);
   --text:#11100f; --leise:color-mix(in srgb,#11100f 45%,#8a8780); --fliess:color-mix(in srgb,#11100f 80%,#8a8780);
   --haar:color-mix(in srgb,#11100f 12%,transparent);
   --knopf:#11100f; --auf-knopf:#ffffff; --knopf-hover:#34332f;
   background:var(--grund);color:var(--text)}
-.rechner :focus-visible,.ablauf :focus-visible,.kontakt :focus-visible,.kontakt .themen input:focus-visible+span{outline-color:var(--text)}
+.rechner :focus-visible,.ablauf :focus-visible,.kontakt :focus-visible,.hell :focus-visible,.kontakt .themen input:focus-visible+span{outline-color:var(--text)}
 .rechner{padding-block:clamp(80px,10vw,144px)}
 .rechner-raster{display:grid;gap:40px}
 .rechner-text{display:grid;gap:20px;align-content:start}
@@ -208,7 +208,7 @@ button{font:inherit}
 .zettel .reihe{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
 .zettel label{display:grid;gap:6px;min-width:0}
 .zettel label>span,.r-feldtitel{display:block;font:500 .875rem/1.2 var(--f);color:var(--fliess)}
-.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:400 1rem var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:12px}
+.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:400 1rem var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:12px}
 .zettel select:disabled{opacity:.55}
 .zettel select:focus-visible,.zettel input:focus-visible{outline:2px solid var(--text);outline-offset:1px}
 .einstieg{align-self:start;align-content:start}
@@ -216,7 +216,7 @@ button{font:inherit}
 .zettel .stufen{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .zettel .stufen input{position:absolute;opacity:0;pointer-events:none}
 .zettel .stufen label{display:block}
-.zettel .stufen label span{display:flex;align-items:center;min-height:44px;padding:0 16px;font:500 .9375rem/1 var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:999px;cursor:pointer}
+.zettel .stufen label span{display:flex;align-items:center;min-height:44px;padding:0 16px;font:500 .9375rem/1 var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:999px;cursor:pointer}
 .zettel .stufen input:checked+span{background:var(--text);color:var(--flaeche);border-color:var(--text)}
 .zettel .stufen input:focus-visible+span{outline:2px solid var(--text);outline-offset:2px}
 .vorschau{padding:12px 14px;font-size:.9375rem;white-space:pre-wrap;background:var(--grund);border-left:2px solid var(--linie);border-radius:0 4px 4px 0}
@@ -261,9 +261,9 @@ button{font:inherit}
 .dia .p-serie{fill:var(--leise)}.dia .p-stage{fill:var(--akzent)}
 .dia .leg-serie{stroke:var(--leise);stroke-width:3}.dia .leg-stage{stroke:var(--akzent);stroke-width:3}
 /* Auf Hell ist Champagner als Linie zu schwach: Stage-Kurve dunkel */
-.zettel .dia .k-stage,.zettel .dia .leg-stage{stroke:var(--text)}
-.zettel .dia .p-stage{fill:var(--text)}
-.zettel .dia .band{fill:var(--text);opacity:.08}
+.rechner .zettel .dia .k-stage,.rechner .zettel .dia .leg-stage{stroke:var(--text)}
+.rechner .zettel .dia .p-stage{fill:var(--text)}
+.rechner .zettel .dia .band{fill:var(--text);opacity:.08}
 .balken{display:grid;gap:8px}
 /* Vollbild beim Berechnen, dunkel */
 .r-buehne{position:fixed;inset:0;z-index:50;display:grid;place-items:center;align-content:center;gap:12px;cursor:pointer;opacity:0;
@@ -365,3 +365,72 @@ button{font:inherit}
   .fuss-raster{grid-template-columns:repeat(12,minmax(0,1fr));gap:32px}
   .fuss-wappen{grid-column:1/span 4}.fuss-nav{grid-column:7/span 3}.fuss-kontakt{grid-column:10/span 3}
 }
+
+/* ===== Unterseiten (Chiptuning, später Kfz-Service und Aufbereitung) ===== */
+/* Kopfbereich: Standbild mit langsamem Zoom statt Film, etwas niedriger, damit der nächste Abschnitt anschaut */
+.held.unter{min-height:80vh;min-height:80svh}
+/* Der Text reicht auf Unterseiten höher ins Bild (Brotkrumen, längere Überschrift): Verlauf kräftiger und höher */
+.held.unter::before{background:linear-gradient(to top,var(--grund),rgb(18 17 15 / .86) 25%,rgb(18 17 15 / .58) 55%,rgb(18 17 15 / .18) 82%),linear-gradient(to bottom,rgb(0 0 0 / .5),rgb(0 0 0 / 0) 160px)}
+.held-bild{position:absolute;inset:0;z-index:-2;margin:0;overflow:hidden}
+.held-bild img{width:100%;height:100%;object-fit:cover;filter:var(--ton)}
+@media (prefers-reduced-motion:no-preference){.held-bild img{animation:langsam-zoom 26s cubic-bezier(.2,.65,.2,1) both}}
+@keyframes langsam-zoom{from{transform:scale(1.14)}to{transform:scale(1.02)}}
+.brotkrumen{display:flex;flex-wrap:wrap;align-items:center;gap:0 10px;margin-bottom:-12px;font-size:.9375rem;color:rgb(242 241 239 / .82)}
+.brotkrumen a{display:inline-flex;align-items:center;min-height:44px;color:#f2f1ef;text-decoration:underline;text-decoration-color:rgb(242 241 239 / .4);text-underline-offset:4px}
+.held .knopf svg{width:18px;height:18px}
+
+/* Zwei Stufen (hell) */
+.stufenwahl{padding-block:clamp(88px,11vw,160px)}
+.stufenwahl-kopf{display:grid;gap:16px;max-width:40em;margin-bottom:clamp(32px,4vw,56px)}
+.stufenwahl h2,.rechner-dunkel h2,.faq h2{margin:0;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.stufenwahl-kopf p{margin:0;color:var(--fliess)}
+.stufen-karten{display:grid;gap:16px}
+.stufen-karte{display:grid;gap:12px;align-content:start;justify-items:start;padding:clamp(24px,3vw,36px);background:var(--flaeche);border:1px solid var(--haar);border-radius:16px}
+.stufen-karte h3{margin:0;font-size:1.25rem;font-weight:500;letter-spacing:-.015em}
+.stufen-karte .betrag{margin:0;font-size:clamp(2.25rem,1.6rem + 2vw,3rem);font-weight:500;line-height:1;letter-spacing:-.03em}
+.stufen-karte p{margin:0;color:var(--fliess)}
+.stufen-karte .notiz{font-size:.9375rem;color:var(--leise)}
+.stufen-karte .link svg{color:var(--text)}
+@media (min-width:768px){.stufen-karten{grid-template-columns:1fr 1fr;gap:24px}}
+
+/* Rechner als dunkle Konsole */
+.rechner-dunkel{padding-block:clamp(88px,11vw,160px)}
+.rechner-dunkel .zettel{padding:clamp(24px,3vw,40px);gap:24px}
+.rechner-dunkel .fortschritt li[aria-current]{border-top-color:var(--akzent)}
+.rechner-dunkel .schritt-frage{font-size:clamp(1.5rem,1.1rem + 1.2vw,2rem)}
+.rechner-dunkel .zettel select,.rechner-dunkel .zettel input[type="text"]{height:56px}
+.rechner-dunkel .ergebnis .gesamt{color:var(--akzent)}
+.rechner-dunkel .ergebnis .gesamt:only-child{color:var(--text)}
+.rechner-dunkel .dia .band{opacity:.16}
+
+/* Ablauf mit vier Schritten, ohne Kontakt direkt darunter */
+.ablauf.allein{padding-bottom:clamp(88px,11vw,160px)}
+@media (min-width:900px){.schritte.vier{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px}}
+@media (min-width:1200px){.schritte.vier{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* Häufige Fragen (dunkel) und Verweis auf die anderen Leistungen */
+.faq{padding-block:clamp(88px,11vw,160px)}
+.faq-raster{display:grid;gap:32px}
+.fragen{border-top:1px solid var(--haar)}
+.fragen details{border-bottom:1px solid var(--haar)}
+.fragen summary{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:64px;padding-block:16px;font-size:1.125rem;font-weight:500;line-height:1.3;cursor:pointer;list-style:none}
+.fragen summary::-webkit-details-marker{display:none}
+.fragen summary::after{content:"";flex:none;width:9px;height:9px;border-right:1.5px solid var(--akzent);border-bottom:1.5px solid var(--akzent);transform:translateY(-3px) rotate(45deg);transition:transform .25s}
+.fragen details[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.fragen details p{margin:0 0 22px;max-width:40em;color:var(--fliess)}
+.weitere{margin-top:clamp(56px,7vw,96px)}
+.weitere h2{margin:0 0 12px;font-size:.9375rem;font-weight:500;letter-spacing:0;color:var(--leise)}
+.weitere ul{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--haar)}
+.weitere li{border-bottom:1px solid var(--haar)}
+.weitere a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;padding-block:20px}
+.w-titel{font-size:1.25rem;font-weight:500;letter-spacing:-.015em}
+.w-zeile{grid-column:1;font-size:.9375rem;color:var(--leise)}
+.weitere svg{grid-column:2;grid-row:1/span 2;width:18px;height:18px;color:var(--akzent);transition:transform .25s}
+.weitere a:hover svg{transform:translateX(4px)}
+@media (min-width:900px){
+  .faq-raster{grid-template-columns:repeat(12,minmax(0,1fr));gap:0 32px}
+  .faq-kopf{grid-column:1/span 4}
+  .fragen-spalte{grid-column:6/span 7}
+  .weitere ul{grid-template-columns:1fr 1fr;column-gap:32px}
+}
+.faq + .kontakt{padding-top:clamp(88px,11vw,160px)}
