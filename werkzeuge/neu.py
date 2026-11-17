@@ -50,6 +50,23 @@ UNTERSEITEN = [("chiptuning#rechner", "chiptuning", "#rechner"), ("kfz-service",
                ("chiptuning", "chiptuning", "#software"), ("fahrzeugaufbereitung", "fahrzeugaufbereitung", "#aufbereitung")]
 
 
+def weichen(html):
+    """<!--WENN seite-->A<!--SONST-->B<!--ENDE-->: A, wenn seite.html schon gebaut ist, sonst B."""
+    def wahl(m):
+        return m.group(2) if os.path.exists(os.path.join(WURZEL, m.group(1) + ".html")) else m.group(3)
+    return re.sub(r"<!--WENN ([a-z-]+)-->(.*?)<!--SONST-->(.*?)<!--ENDE-->", wahl, html, flags=re.S)
+
+
+def marken(quelle):
+    """Marken aus den Rechnerdaten (FAHRZEUGE in index.html) als Auswahl, wie im Rechner sortiert, dazu „Andere Marke“."""
+    i = quelle.index("var FAHRZEUGE")
+    namen = re.findall(r'^\s*"([^"]+)"\s*:\s*\[', quelle[i:quelle.index("};", i)], re.M)
+    if not namen:
+        raise SystemExit("index.html: Marken im Rechner nicht gefunden")
+    zeilen = ['<option value="%s">%s</option>' % (n, n) for n in sorted(namen, key=lambda s: s.casefold())]
+    return "".join(zeilen) + '<option value="__andere">Andere Marke</option>'
+
+
 def unterseiten_verlinken(html):
     for href, datei, anker in UNTERSEITEN:
         if not os.path.exists(os.path.join(WURZEL, datei + ".html")):
@@ -72,8 +89,12 @@ def bauen(vorlage, ziel, schreiben=True):
     rechner = ausschnitt(quelle, '<form class="zettel" id="form"', "</section>", "Rechner-Formular")
     skripte = ausschnitt(quelle, "<script>\n// Leistungsrechner", "</body>", "Rechner-Skripte")
 
+    html = weichen(html)
     ersetzen = {"<!--LOGO-->": svg, "<!--RECHNER-FORM-->": "      " + rechner.rstrip() + "\n",
-                "<!--RECHNER-SKRIPTE-->": skripte.rstrip()}
+                "<!--RECHNER-SKRIPTE-->": skripte.rstrip(), "<!--MARKEN-->": marken(quelle)}
+    for platz in ("<!--RECHNER-FORM-->", "<!--RECHNER-SKRIPTE-->", "<!--MARKEN-->"):   # je nach Weiche nicht in jeder Seite
+        if platz not in html:
+            del ersetzen[platz]
     for platz, text in VORLAGEN.items():
         if platz in html:   # nicht jede Vorlage nutzt jede WhatsApp-Vorlage
             ersetzen[platz] = "https://wa.me/" + NUMMER + "?text=" + quote(text, safe="")

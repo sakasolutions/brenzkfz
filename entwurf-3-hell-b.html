@@ -120,26 +120,7 @@ button{font:inherit}
   .pause{bottom:68px}
 }
 
-/* Unter dem Film: die vier Bereiche als Übersicht, wie die Modellreihe bei Porsche. Schließt den Film ruhig ab. */
-.uebersicht{padding-block:clamp(24px,3vw,40px) clamp(56px,7vw,96px)}
-.uebersicht ul{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--haar)}
-.uebersicht li{position:relative;border-bottom:1px solid var(--haar)}
-.uebersicht a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;padding-block:20px}
-.u-titel{font-size:1.25rem;font-weight:500;letter-spacing:-.015em;line-height:1.2}
-.u-gebiet{grid-column:1;font-size:.9375rem;color:var(--leise)}
-.uebersicht svg{grid-column:2;grid-row:1/span 2;width:18px;height:18px;color:var(--akzent);transition:transform .25s}
-.uebersicht a:hover svg{transform:translateX(4px)}
-@media (min-width:600px) and (max-width:1199px){.uebersicht ul{grid-template-columns:1fr 1fr;column-gap:32px}}
-@media (min-width:1200px){
-  .uebersicht ul{grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px;border-top:0}
-  .uebersicht li{border-bottom:0;border-top:1px solid var(--haar)}
-  .uebersicht li::before{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--akzent);transition:width .45s cubic-bezier(.2,.65,.2,1)}
-  .uebersicht li:hover::before,.uebersicht li:focus-within::before{width:100%}
-  .uebersicht a{align-items:start;padding-block:24px 4px}
-}
-
-/* Leistungen als Kapitel: Standbild und Text im Wechsel */
-.leistungen{padding-bottom:clamp(96px,12vw,168px)}
+.leistungen{padding-block:clamp(24px,3vw,40px) clamp(96px,12vw,168px)}
 /* Leistungen als Bildtafeln: Text im Bild unten links wie beim Film, derselbe Bildton und dasselbe Korn, die ganze Tafel ist klickbar.
    Handy und Tablet untereinander, Desktop: Service hochkant neben Software breit, Aufbereitung über die volle Breite.
    Abgerundet über clip-path statt overflow, damit eine Tafel mitwächst, wenn der Text länger ist als das Bild hoch. */
@@ -226,6 +207,8 @@ button{font:inherit}
 .zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:400 1rem var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px}
 .zettel select:disabled{opacity:.55}
 .zettel select:focus-visible,.zettel input:focus-visible{outline:2px solid var(--text);outline-offset:1px}
+.einstieg{align-self:start;align-content:start}
+.einstieg .berechnen svg{width:18px;height:18px}
 .zettel .stufen{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .zettel .stufen input{position:absolute;opacity:0;pointer-events:none}
 .zettel .stufen label{display:block}
@@ -332,6 +315,10 @@ button{font:inherit}
 .fuss-raster a{transition:color .2s}
 .fuss-raster a:hover{color:var(--akzent)}
 .fuss-kontakt p{margin:0 0 6px}
+.fuss address{font-style:normal}
+.fuss-recht{display:flex;gap:20px}
+.fuss-recht a{display:inline-flex;align-items:center;min-height:40px;transition:color .2s}
+.fuss-recht a:hover{color:var(--akzent)}
 .fuss-unten{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:clamp(48px,6vw,80px);padding-top:20px;border-top:1px solid var(--haar);font-size:.875rem;color:var(--leise)}
 @media (min-width:900px){
   .fuss-raster{grid-template-columns:repeat(12,minmax(0,1fr));gap:32px}
@@ -410,17 +397,6 @@ button{font:inherit}
     <button class="pause" id="film-pause" type="button" aria-label="Film anhalten" hidden><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
   </section>
 
-  <nav class="uebersicht" aria-label="Leistungen im Überblick">
-    <div class="innen">
-      <ul>
-        <li><a href="#service"><span class="u-titel">Kfz-Service</span><span class="u-gebiet">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
-        <li><a href="#software"><span class="u-titel">Software&shy;optimierung</span><span class="u-gebiet">Für die ganze Region</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
-        <li><a href="#aufbereitung"><span class="u-titel">Fahrzeug&shy;aufbereitung</span><span class="u-gebiet">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
-        <li><a href="#rechner"><span class="u-titel">Chiptuning-Rechner</span><span class="u-gebiet">Stage 1 grob berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
-      </ul>
-    </div>
-  </nav>
-
   <section class="leistungen" id="leistungen" aria-labelledby="leistungen-titel">
     <div class="innen">
       <h2 class="sr" id="leistungen-titel">Leistungen</h2>
@@ -488,6 +464,7 @@ button{font:inherit}
           <div><dt>Genaue Werte</dt><dd>nach dem Auslesen Ihres Fahrzeugs</dd></div>
         </dl>
       </div>
+
       <form class="zettel" id="form" novalidate>
         <ol class="fortschritt" aria-label="Fortschritt">
           <li aria-current="step">Fahrzeug</li>
@@ -560,6 +537,7 @@ button{font:inherit}
       <div class="tippen">Tippen zum Überspringen</div>
     </div>
 
+
   </section>
 
   <section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
@@ -597,11 +575,12 @@ button{font:inherit}
         <ul><li><a href="#service">Kfz-Service</a></li><li><a href="#software">Chiptuning</a></li><li><a href="#aufbereitung">Fahrzeugaufbereitung</a></li><li><a href="#rechner">Leistung berechnen</a></li></ul>
       </nav>
       <div class="fuss-kontakt"><h2>Kontakt</h2>
-        <p><a href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener">WhatsApp 0176 62794745</a></p>
+        <!-- Adresse und Öffnungszeiten hier ergänzen, sobald Mert sie nennt, genau wie im Google-Profil -->
+        <address><p>Brenz KFZ</p><p><a href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener">WhatsApp 0176 62794745</a></p></address>
         <p class="grau">Tagsüber am besten per WhatsApp, wir melden uns zurück.</p>
       </div>
     </div>
-    <div class="fuss-unten"><span>© 2026 Brenz KFZ</span><span>Kfz-Werkstatt im Raum Heidenheim</span></div>
+    <div class="fuss-unten"><span>© 2026 Brenz KFZ · Kfz-Werkstatt im Raum Heidenheim</span></div>
   </div>
 </footer>
 

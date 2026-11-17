@@ -95,6 +95,13 @@ Kopf nach Seitenplan (17.11.2026, Plan in `plan-brenz-kfz/konzepte/brenz-kfz/web
 - **Links:** Sie zeigen auf `kfz-service`, `chiptuning`, `fahrzeugaufbereitung`, `chiptuning#rechner`. Solange eine Seite fehlt, stellt `werkzeuge/neu.py` den Link auf den passenden Abschnitt der Startseite um (`UNTERSEITEN`).
 - **Geprüft:** in sieben Breiten von 600 bis 1920 px ohne Überlauf, live auf 390 px Tippflächen 44 px, Menü sperrt die Seite, Sprung zum Abschnitt landet unter dem Kopf.
 
+Startseite nach Seitenplan (17.11.2026):
+- **Ablauf:** Film, die drei Bildtafeln (verlinken auf die Unterseiten: „Mehr zum Kfz-Service“ usw.), Rechner-Einstieg (hell), Kontakt, Fuß. Die Übersicht unter dem Film ist raus, die Tafeln übernehmen ihre Aufgabe.
+- **Rechner-Einstieg:** Marke wählen, dann weiter zum Rechner auf `chiptuning?marke=…`. Ein normales Formular, funktioniert ohne Skript. Die Marken erzeugt `neu.py` aus `FAHRZEUGE` im Rechner.
+- **Weichen in `neu.py`:** `<!--WENN seite-->…<!--SONST-->…<!--ENDE-->`. Solange `chiptuning.html` fehlt, steht der ganze Rechner auf der Startseite, und die Tafeln behalten ihre bisherigen Links. Impressum und Datenschutz erscheinen im Fuß, sobald die Seiten existieren.
+- **Fuß:** Name im Adressblock, Platz für Adresse und Öffnungszeiten (kommen von Mert, genau wie im Google-Profil).
+- **Geprüft:** beide Zustände (heute und mit allen Unterseiten) in vier Breiten ohne Überlauf.
+
 Grautöne leicht warm (Sinan, 17.11.2026): Film und Fotos haben nach dem Bildton `--ton` in den Mitteltönen einen warmen Farbton (oklch um 90°), die dunklen Töne sind fast neutral. Deshalb wird der Grund nur ein Hauch wärmer (`#12110f` statt `#121212`), Linien und graue Schrift bekommen den Filmton voll. Text und Champagner bleiben wie gemessen.
 
 Leistungen als Bildtafeln (Sinan, 17.11.2026: „Bilder nur reingeklatscht“, Überlauf bei „Softwareoptimierung“ auf dem Desktop): Text steht im Bild unten links wie beim Film, gleicher Bildton und gleiches Korn, die ganze Tafel ist klickbar. Desktop: Service hochkant neben Software breit, Aufbereitung über die volle Breite; darunter untereinander. Standbilder für Service immer aus dem Film, der oben gerade nicht läuft (Querfilm ist eine einzige Einstellung). Weiche Trennungen in langen Wörtern, Übersicht erst ab 1200 px vierspaltig. Geprüft in acht Breiten von 600 bis 1920 px (kein Überlauf, alle Titel einzeilig) und live auf 390, 1000 und 1440 px.
