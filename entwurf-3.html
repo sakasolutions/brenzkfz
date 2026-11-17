@@ -190,6 +190,7 @@ button{font:inherit}
 .rechner-text{display:grid;gap:20px;align-content:start}
 .rechner h2{margin:0;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
 .rechner-unter{margin:0;max-width:34em;color:var(--fliess)}
+.kennzeile{margin:0 0 -8px;font-size:.9375rem;font-weight:500;color:var(--leise)}
 .daten{margin:12px 0 0;border-top:1px solid var(--haar)}
 .daten div{display:grid;grid-template-columns:8em 1fr;gap:12px;padding-block:13px;border-bottom:1px solid var(--haar);font-size:.9375rem}
 .daten dt{color:var(--leise)}
@@ -371,7 +372,7 @@ button{font:inherit}
   <nav aria-label="Hauptmenü">
     <a href="#service"><span>Kfz-Service</span><small>Heidenheim und Umgebung</small></a>
     <a href="#software"><span>Chiptuning</span><small>Für die ganze Region</small></a>
-    <a href="#aufbereitung"><span>Aufbereitung</span><small>Sauber bis ins Detail</small></a>
+    <a href="#aufbereitung"><span>Aufbereitung</span><small>Nach Absprache</small></a>
     <a href="#rechner"><span>Mehrleistung berechnen</span><small>Stage 1, grobe Schätzung</small></a>
     <a href="#kontakt"><span>Kontakt</span><small>Per WhatsApp</small></a>
   </nav>
@@ -445,7 +446,7 @@ button{font:inherit}
         <div class="kapitel-text">
           <h3 id="k3">Fahrzeug&shy;aufbereitung</h3>
           <p class="gebiet">Heidenheim und Umgebung</p>
-          <p class="text">Sauber bis ins Detail. Was gemacht wird, besprechen wir vorher mit Ihnen, so gibt es am Ende keine Überraschung.</p>
+          <p class="text">Was gemacht wird, besprechen wir vorher mit Ihnen, dann wissen Sie genau, was Sie bekommen.</p>
           <a class="link" href="#kontakt" data-thema="aufbereitung"><span>Aufbereitung anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
         </div>
       </article>
@@ -455,12 +456,13 @@ button{font:inherit}
   <section class="rechner" id="rechner" aria-labelledby="rechner-titel">
     <div class="innen rechner-raster">
       <div class="rechner-text">
+        <p class="kennzeile">Chiptuning-Rechner</p>
         <h2 id="rechner-titel">Was geht bei Ihrem Motor?</h2>
-        <p class="rechner-unter">In drei Schritten zur geschätzten Mehrleistung. Die genauen Werte für Ihr Fahrzeug bekommen Sie per WhatsApp.</p>
+        <p class="rechner-unter">Marke, Modell und Motor wählen, die geschätzte Leistung nach Stage 1 sehen.</p>
         <dl class="daten">
-          <div><dt>Schätzung</dt><dd>Stage 1, je Motortyp</dd></div>
-          <div><dt>Stage 2</dt><dd>auf Anfrage</dd></div>
-          <div><dt>Genaue Werte</dt><dd>nach dem Auslesen Ihres Fahrzeugs</dd></div>
+          <div><dt>Sofort</dt><dd>eine grobe Schätzung für Ihren Motortyp, keine Zusage</dd></div>
+          <div><dt>Auf Anfrage</dt><dd>Stage 2</dd></div>
+          <div><dt>Genau</dt><dd>nach dem Auslesen des Steuergeräts</dd></div>
         </dl>
       </div>
 
