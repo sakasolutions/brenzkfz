@@ -87,3 +87,13 @@ Was alle gemeinsam haben: eine Schriftfamilie für alles, nie fette schmale Schr
 - Erzeugt mit `python3 werkzeuge/neu.py` aus `werkzeuge/entwurf3-vorlage.html` (baut auch champagner-neu.html).
 
 Aufgeräumt nach Audit (17.11.2026): Unter dem Film eine Übersicht der vier Bereiche statt eines Einleitungssatzes (wie die Modellreihe bei Porsche), der Film läuft ohne Kante in die Seite, die Überschrift bricht sauber in zwei Teile, der Fuß hat Emblem, Menü und Kontakt. Schärfere Standbilder für den Film (`img/film-*.webp`, Bild 1 der Videos, passend zur Breite vorgeladen). Barrierefreiheit: Menü sperrt den Rest der Seite, Vorschau wird nicht bei jedem Tastendruck vorgelesen, Tippflächen mindestens 40 px, weniger Bewegung wird respektiert. Geprüft auf 390 px: kein seitliches Scrollen, Kontraste mindestens 4,5:1.
+
+Grautöne leicht warm (Sinan, 17.11.2026): Film und Fotos haben nach dem Bildton `--ton` in den Mitteltönen einen warmen Farbton (oklch um 90°), die dunklen Töne sind fast neutral. Deshalb wird der Grund nur ein Hauch wärmer (`#12110f` statt `#121212`), Linien und graue Schrift bekommen den Filmton voll. Text und Champagner bleiben wie gemessen.
+
+Zum Abgleich (Sinan, 17.11.2026, Farben außer Rot frei), alle aus derselben Vorlage mit `werkzeuge/neu.py`:
+
+| Seite | Idee |
+|---|---|
+| `entwurf-3-hell-a.html` | hell, warmes Papier im Farbton des Films, Knöpfe in Tinte, Akzent Messing (Champagner abgedunkelt). Film und Fuß bleiben dunkel. |
+| `entwurf-3-hell-b.html` | hell, kühles Weiß, Akzent Petrol, Emblem in Petrol. Bewusst das Gegenteil zum warmen Film. |
+| `entwurf-3-mix.html` | Sinans Idee für die Unterseiten: Kfz-Service hell, Softwareoptimierung mit Rechner und Aufbereitung dunkel. Hier als heller Abschnitt auf der Startseite gezeigt. |
