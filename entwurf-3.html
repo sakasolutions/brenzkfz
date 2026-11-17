@@ -191,6 +191,10 @@ button{font:inherit}
 .rechner h2{margin:0;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
 .rechner-unter{margin:0;max-width:34em;color:var(--fliess)}
 .kennzeile{margin:0 0 -8px;font-size:.9375rem;font-weight:500;color:var(--leise)}
+/* Preis sichtbar: Transparenz bringt Anfragen (Sinan) */
+.preis{display:grid;gap:2px;margin:8px 0 0;padding-top:20px;border-top:1px solid var(--haar)}
+.preis span{font-size:.9375rem;color:var(--leise)}
+.preis strong{font-size:clamp(2.25rem,1.6rem + 2vw,3rem);font-weight:500;line-height:1;letter-spacing:-.03em}
 .daten{margin:12px 0 0;border-top:1px solid var(--haar)}
 .daten div{display:grid;grid-template-columns:8em 1fr;gap:12px;padding-block:13px;border-bottom:1px solid var(--haar);font-size:.9375rem}
 .daten dt{color:var(--leise)}
@@ -430,7 +434,7 @@ button{font:inherit}
           <h3 id="k2">Chiptuning</h3>
           <p class="gebiet">Für Fahrzeuge aus der ganzen Region</p>
           <!-- Partner vorerst nicht nennen (Mert, 17.11.2026) -->
-          <p class="text">Mehr Leistung durch Softwareoptimierung. Was bei Ihrem Motor ungefähr drin ist, zeigt der Rechner sofort, die genauen Werte kommen nach dem Auslesen.</p>
+          <p class="text">Mehr Leistung durch Softwareoptimierung, Stage 1 ab 350&nbsp;€. Was bei Ihrem Motor ungefähr drin ist, zeigt der Rechner sofort.</p>
           <a class="link" href="#rechner"><span>Mehrleistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
         </div>
       </article>
@@ -458,12 +462,9 @@ button{font:inherit}
       <div class="rechner-text">
         <p class="kennzeile">Chiptuning-Rechner</p>
         <h2 id="rechner-titel">Was geht bei Ihrem Motor?</h2>
-        <p class="rechner-unter">Marke, Modell und Motor wählen, die geschätzte Leistung nach Stage 1 sehen.</p>
-        <dl class="daten">
-          <div><dt>Sofort</dt><dd>eine grobe Schätzung für Ihren Motortyp, keine Zusage</dd></div>
-          <div><dt>Auf Anfrage</dt><dd>Stage 2</dd></div>
-          <div><dt>Genau</dt><dd>nach dem Auslesen des Steuergeräts</dd></div>
-        </dl>
+        <p class="rechner-unter">Marke, Modell und Motor wählen und sehen, was Stage 1 bei Ihrem Motor ungefähr bringt. Das ist eine grobe Schätzung, keine Zusage. Stage 2 und die genauen Werte ermitteln wir mit einer Diagnose vor Ort.</p>
+        <!-- (bestätigen) Preis von Mert („350 € aufwärts“, laut Sinan 17.11.). Für Privatkunden vermutlich als Endpreis inkl. MwSt. angeben: prüfen -->
+        <p class="preis"><span>Stage 1</span><strong>ab 350&nbsp;€</strong></p>
       </div>
 
       <form class="zettel" id="form" novalidate>
