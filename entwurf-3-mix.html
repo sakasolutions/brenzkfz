@@ -181,14 +181,14 @@ button{font:inherit}
 }
 
 /* Rechner: hell, ruhig */
-/* Helle Abschnitte (Rechner, Kontakt): Töne aus der Palette gemischt, Knöpfe dunkel, Fokus in Tinte statt Champagner */
-.rechner,.kontakt{color-scheme:light;
+/* Helle Abschnitte (Rechner, Ablauf, Kontakt): Töne aus der Palette gemischt, Knöpfe dunkel, Fokus in Tinte statt Champagner */
+.rechner,.ablauf,.kontakt{color-scheme:light;
   --grund:color-mix(in srgb,#ffffff 93%,#8a8780); --flaeche:#ffffff; --linie:color-mix(in srgb,#ffffff 78%,#8a8780);
   --text:#11100f; --leise:color-mix(in srgb,#11100f 45%,#8a8780); --fliess:color-mix(in srgb,#11100f 80%,#8a8780);
   --haar:color-mix(in srgb,#11100f 12%,transparent);
   --knopf:#11100f; --auf-knopf:#ffffff; --knopf-hover:#34332f;
   background:var(--grund);color:var(--text)}
-.rechner :focus-visible,.kontakt :focus-visible,.kontakt .themen input:focus-visible+span{outline-color:var(--text)}
+.rechner :focus-visible,.ablauf :focus-visible,.kontakt :focus-visible,.kontakt .themen input:focus-visible+span{outline-color:var(--text)}
 .rechner{padding-block:clamp(80px,10vw,144px)}
 .rechner-raster{display:grid;gap:40px}
 .rechner-text{display:grid;gap:20px;align-content:start}
@@ -296,7 +296,20 @@ button{font:inherit}
 
 /* Gleich breite Ziffern nur bei reinen Zahlen: Schibsted setzt damit auch Punkt und Komma breit */
 /* Kontakt: Nachricht vorbereiten, Vorschau sehen, in WhatsApp öffnen */
-.kontakt{padding-block:clamp(88px,11vw,160px)}
+.kontakt{padding-block:clamp(56px,7vw,96px) clamp(88px,11vw,160px)}
+/* Ablauf: drei Schritte auf derselben hellen Fläche direkt über dem Kontakt */
+.ablauf{padding-top:clamp(88px,11vw,160px)}
+.ablauf h2{margin:0 0 clamp(28px,4vw,48px);font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em}
+.schritte{list-style:none;margin:0;padding:0;display:grid;counter-reset:schritt}
+.schritte li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 20px;padding-block:20px;border-top:1px solid var(--haar)}
+.schritte li::before{counter-increment:schritt;content:counter(schritt,decimal-leading-zero);grid-row:1/span 2;font:500 .9375rem/1.75 var(--f);color:var(--leise);font-variant-numeric:tabular-nums}
+.schritte h3{margin:0;font-size:1.25rem;font-weight:500;letter-spacing:-.015em}
+.schritte p{margin:0;color:var(--fliess)}
+@media (min-width:900px){
+  .schritte{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px}
+  .schritte li{grid-template-columns:minmax(0,1fr);gap:10px;padding-block:24px 0}
+  .schritte li::before{grid-row:auto}
+}
 /* Über uns: dunkel, Foto der beiden (folgt) und ein paar Sätze. Lücken in Champagner, damit klar ist, was noch fehlt. */
 .ueber{padding-block:clamp(88px,11vw,160px)}
 .ueber-raster{display:grid;gap:40px;align-items:center}
@@ -541,18 +554,31 @@ button{font:inherit}
     </div>
   </section>
 
+  <section class="ablauf" id="ablauf" aria-labelledby="ablauf-titel">
+    <div class="innen">
+      <h2 id="ablauf-titel">So läuft es ab</h2>
+      <!-- (bestätigen) alle drei Schritte, KLAERUNG-MERT.md Abschnitt 7 -->
+      <ol class="schritte">
+        <li><h3>Nachricht schicken</h3><p>Fahrzeug und Anliegen reichen. Ein Foto vom Fahrzeugschein hilft.</p></li>
+        <li><h3>Rückmeldung</h3><p>Sie bekommen eine Einschätzung und einen Terminvorschlag.</p></li>
+        <li><h3>Termin</h3><p>Sie bringen das Fahrzeug, wir sagen Bescheid, sobald es fertig ist.</p></li>
+      </ol>
+    </div>
+  </section>
+
   <section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
     <div class="innen kontakt-raster">
       <div class="kontakt-text">
-        <h2 id="kontakt-titel">Am schnellsten per WhatsApp</h2>
-        <p>Schreiben Sie uns Fahrzeug und Anliegen. Tagsüber erreichen Sie uns am besten per WhatsApp, wir melden uns zurück.</p>
+        <h2 id="kontakt-titel">Schreiben Sie uns</h2>
+        <!-- (bestätigen) Mert ist tagsüber nicht erreichbar (TEXTE.md) -->
+        <p>Tagsüber kommen wir nicht immer ans Telefon, deshalb läuft alles per WhatsApp. Die Antwort haben Sie dann schriftlich.</p>
         <p class="nummer"><span>WhatsApp</span><strong>0176 62794745</strong></p>
       </div>
       <form class="schreiben" id="schreiben" novalidate>
         <fieldset class="themen">
           <legend>Worum geht es?</legend>
           <label><input type="radio" name="thema" value="service" checked><span>Kfz-Service</span></label>
-          <label><input type="radio" name="thema" value="software"><span>Softwareoptimierung</span></label>
+          <label><input type="radio" name="thema" value="software"><span>Chiptuning</span></label>
           <label><input type="radio" name="thema" value="aufbereitung"><span>Aufbereitung</span></label>
         </fieldset>
         <label class="feld"><span>Fahrzeug</span><input id="s-fahrzeug" type="text" autocomplete="off" placeholder="z. B. VW Golf 7, 2016"></label>
@@ -637,7 +663,7 @@ document.documentElement.classList.add("js");
   var NUMMER = "4917662794745";
   var THEMEN = {
     service: { satz: "ich möchte einen Termin anfragen.", frage: "Was steht an" },
-    software: { satz: "ich interessiere mich für eine Softwareoptimierung.", frage: "Wunsch (zum Beispiel Stage 1 oder Stage 2)" },
+    software: { satz: "ich interessiere mich für Chiptuning.", frage: "Wunsch (zum Beispiel Stage 1 oder Stage 2)" },
     aufbereitung: { satz: "ich interessiere mich für eine Fahrzeugaufbereitung.", frage: "Was soll gemacht werden" }
   };
   var form = document.getElementById("schreiben"), fz = document.getElementById("s-fahrzeug"), an = document.getElementById("s-anliegen");
