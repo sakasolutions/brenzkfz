@@ -106,7 +106,7 @@ Abschnitt 1 nach Textentwurf (17.11.2026): h1 „Ihre Kfz-Werkstatt im Raum Heid
 Startseite nach Seitenplan (17.11.2026):
 - **Ablauf:** Film, die drei Bildtafeln (verlinken auf die Unterseiten: „Mehr zum Kfz-Service“ usw.), Rechner-Einstieg (hell), Kontakt, Fuß. Die Übersicht unter dem Film ist raus, die Tafeln übernehmen ihre Aufgabe.
 - **Rechner-Einstieg:** Marke wählen, dann weiter zum Rechner auf `chiptuning?marke=…`. Ein normales Formular, funktioniert ohne Skript. Die Marken erzeugt `neu.py` aus `FAHRZEUGE` im Rechner.
-- **Weichen in `neu.py`:** `<!--WENN seite-->…<!--SONST-->…<!--ENDE-->`. Solange `chiptuning.html` fehlt, steht der ganze Rechner auf der Startseite, und die Tafeln behalten ihre bisherigen Links. Impressum und Datenschutz erscheinen im Fuß, sobald die Seiten existieren.
+- **Weichen in `neu.py`:** `<!--WENN seite-->…<!--SONST-->…<!--ENDE-->`. Solange eine Unterseite fehlt, behalten die Tafeln ihre bisherigen Links. Der Rechner steht seit 17.11. gar nicht mehr auf der Startseite, nur der Einstieg (Sinan); er wird auf der Chiptuning-Seite neu gestaltet. Impressum und Datenschutz erscheinen im Fuß, sobald die Seiten existieren.
 - **Fuß:** Name im Adressblock, Platz für Adresse und Öffnungszeiten (kommen von Mert, genau wie im Google-Profil).
 - **Geprüft:** beide Zustände (heute und mit allen Unterseiten) in vier Breiten ohne Überlauf.
 

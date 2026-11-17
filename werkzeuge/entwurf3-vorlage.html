@@ -490,8 +490,7 @@ button{font:inherit}
         <!-- (bestätigen) Preis von Mert („350 € aufwärts“, laut Sinan 17.11.). Für Privatkunden vermutlich als Endpreis inkl. MwSt. angeben: prüfen -->
         <p class="preis"><span>Stage 1</span><strong>ab 350&nbsp;€</strong></p>
       </div>
-<!--WENN chiptuning-->
-      <!-- Einstieg: Marke wählen, weiter zum Rechner auf der Chiptuning-Seite (funktioniert auch ohne Skript) -->
+      <!-- Einstieg: Marke wählen, weiter zum Rechner auf der Chiptuning-Seite (funktioniert ohne Skript). Der Rechner selbst steht nicht mehr auf der Startseite (Sinan, 17.11.). -->
       <form class="zettel einstieg" action="chiptuning" method="get">
         <p class="schritt-frage">Welches Fahrzeug fahren Sie?</p>
         <label for="e-marke"><span>Marke</span><select id="e-marke" name="marke" required><option value="">Bitte wählen</option><!--MARKEN--></select></label>
@@ -499,9 +498,6 @@ button{font:inherit}
         <p class="hinweis">Modell, Motor und Baujahr wählen Sie im nächsten Schritt.</p>
       </form>
     </div>
-<!--SONST-->
-<!--RECHNER-FORM-->
-<!--ENDE-->
   </section>
 
   <!-- Über uns: Satzbau steht, Fakten kommen von Mert (KLAERUNG-MERT.md, Abschnitt 6). Ohne seine Angaben fällt der Abschnitt weg. -->
@@ -649,6 +645,6 @@ document.documentElement.classList.add("js");
   aktualisieren();
 })();
 </script>
-<!--WENN chiptuning--><!--SONST--><!--RECHNER-SKRIPTE--><!--ENDE-->
+
 </body>
 </html>
