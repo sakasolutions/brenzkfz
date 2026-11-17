@@ -100,7 +100,10 @@ Mehrere Seiten (17.11.2026):
 - **Chiptuning-Seite** `chiptuning.html` aus `werkzeuge/chiptuning-vorlage.html`:
   - Kopfbereich mit Standbild und langsamem Zoom, Brotkrumen, „Chiptuning und Softwareoptimierung.“
   - zwei Stufen (Stage 1 ab 350 €, Stage 2 nach Diagnose vor Ort)
-  - der Rechner als dunkle Konsole (Kurve und Ergebnis in Champagner)
+  - der Rechner als dunkle Konsole (`werkzeuge/teile/rechner.html` und `rechner.js`, Daten und Kurve aus dem alten Rechner übernommen):
+    - Schritt 1 Fahrzeug (Marke, Modell, Baureihe), Schritt 2 Motor und Baujahr, Schritt 3 Ergebnis. Kraftstoff nur bei frei eingetragenem Motor, sonst aus dem Motor abgeleitet.
+    - Ergebnis: Stage 1 als Spanne groß in Champagner, Plus gegenüber Serie, Kurve, Preis ab 350 €, Hinweis „grobe Schätzung“. „Ändern“ führt zurück zu Schritt 1.
+    - Anfrage darunter: Auswahlkarten Stage 1, Stage 2 oder Beratung, Anmerkung optional, Vorschau der WhatsApp-Nachricht, dann „Per WhatsApp senden“.
   - Ablauf in vier Schritten, Fragen, Verweis auf die anderen Leistungen, Kontakt mit „Chiptuning“ vorgewählt
   - strukturierte Daten als `Service` und `BreadcrumbList`
   - `?marke=` aus dem Einstieg der Startseite wählt die Marke vor und springt zum Rechner
@@ -108,8 +111,8 @@ Mehrere Seiten (17.11.2026):
 
 Knöpfe (Sinan, 17.11.2026: „Pillen moderner, weiße Pille mit Kapsel, aber originale WhatsApp-Kapsel“):
 - **Form:** Alle Knöpfe und Auswahlfelder sind Pillen.
-- **Farben:** Auf Dunkel weiß (`--knopf`), im hellen Rechner dunkel, „Leistung berechnen“ als einziger Knopf in Champagner.
-- **WhatsApp:** Jeder WhatsApp-Knopf hat rechts die grüne WhatsApp-Kapsel (`.knopf.wa` mit `.wa-kapsel`, im Rechner per `::after`), im Handy-Kopf das grüne Symbol. Das Zeichen ist eine Marke von WhatsApp/Meta, unverändert verwenden. Vektor übernommen von saka-it.de.
+- **Farben:** Auf Dunkel weiß (`--knopf`), in hellen Abschnitten dunkel.
+- **WhatsApp:** Jeder WhatsApp-Knopf hat rechts die grüne WhatsApp-Kapsel (`.knopf.wa` mit `.wa-kapsel`), im Handy-Kopf das grüne Symbol. Das Zeichen ist eine Marke von WhatsApp/Meta, unverändert verwenden. Vektor übernommen von saka-it.de.
 - **Radien:** Felder 12 px, Karten und Bildtafeln 16 px.
 
 Abschnitt 1 nach Textentwurf (17.11.2026): h1 „Ihre Kfz-Werkstatt im Raum Heidenheim.“, darunter grau „Service, Chiptuning und Aufbereitung.“. „Kfz-Werkstatt“ bricht nie um, „im Raum“ ist mit festem Leerzeichen verbunden. Knopf „Per WhatsApp anfragen“, Textlink „Mehrleistung berechnen“. Geprüft live auf 360 und 390 px.

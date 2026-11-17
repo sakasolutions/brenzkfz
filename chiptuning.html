@@ -1272,9 +1272,9 @@ document.documentElement.classList.add("js");
     var gesamt=$("erg-wert"), ca=$("erg-ca"), plusZeile=$("erg-plus"), status=$("erg-status");
     var d=diagrammBauen($("dia-svg"),e,"i"), id=++lauf;
     var erledigt=false;
-    function fertig(){ if(erledigt) return; erledigt=true; d.ende(); ca.style.visibility=""; gesamt.textContent=spanne(e); plusZeile.textContent=plus(e); status.textContent="Geschätzt nach Stage 1: "+bereich(e); gezeigt=e.schluessel; }
+    function fertig(){ if(erledigt) return; erledigt=true; d.ende(); ca.hidden=false; gesamt.textContent=spanne(e); plusZeile.textContent=plus(e); status.textContent="Geschätzt nach Stage 1: "+bereich(e); gezeigt=e.schluessel; }
     if(!animieren || ruhig || e.schluessel===gezeigt){ fertig(); return; }
-    plusZeile.textContent="\u00a0"; ca.style.visibility="hidden";
+    plusZeile.textContent="\u00a0"; ca.hidden=true;
     setTimeout(function(){ if(id===lauf) fertig(); }, 3200);   // falls der Browser keine Bilder zeichnet (Tab im Hintergrund)
     function weich(x){ return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2; }
     var A=1100, P=250, C=1200, start=null;
