@@ -4,8 +4,8 @@
 <!-- Vorlage für entwurf-3.html. Nicht direkt öffnen: python3 werkzeuge/neu.py setzt Logo, Rechner und WhatsApp-Links ein. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>(Entwurf 3) Kfz-Service und Chiptuning im Raum Heidenheim · Brenz KFZ</title>
-<meta name="description" content="Brenz KFZ: Kfz-Service und Fahrzeugaufbereitung für Heidenheim und Umgebung, Softwareoptimierung (Chiptuning) für die ganze Region. Leistung berechnen oder per WhatsApp anfragen.">
+<title>(Entwurf 3) Kfz-Werkstatt im Raum Heidenheim · Brenz KFZ</title>
+<meta name="description" content="Brenz KFZ, Ihre Kfz-Werkstatt im Raum Heidenheim: Kfz-Service, Chiptuning als Partner von Tuningfiles Germany und Fahrzeugaufbereitung. Mehrleistung grob berechnen oder per WhatsApp anfragen.">
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#12110f">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -106,7 +106,9 @@ button{font:inherit}
 .held::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
   background-image:var(--korn)}
 .held-inhalt{display:grid;justify-items:start;gap:28px;padding-top:calc(var(--kopf-h) + 80px);padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
-.held h1{margin:0;max-width:12.5em;font-size:clamp(2.25rem,1rem + 4.8vw,4.75rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;color:#f2f1ef;text-wrap:pretty}
+.held h1{margin:0;max-width:12.5em;font-size:clamp(2rem,1rem + 4.6vw,4.75rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;color:#f2f1ef;text-wrap:balance}
+/* Nie in „Kfz-Werkstatt“ umbrechen, „im“ bleibt bei „Raum“ (festes Leerzeichen im Markup) */
+.held h1 .zus{white-space:nowrap}
 .held h1 .grau{display:block;color:color-mix(in srgb,#f2f1ef 58%,transparent)}
 .held-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
 .held .link{color:#f2f1ef}
@@ -357,11 +359,11 @@ button{font:inherit}
   <nav aria-label="Hauptmenü">
     <a href="kfz-service"><span>Kfz-Service</span><small>Heidenheim und Umgebung</small></a>
     <a href="chiptuning"><span>Chiptuning</span><small>Für die ganze Region</small></a>
-    <a href="fahrzeugaufbereitung"><span>Aufbereitung</span><small>Heidenheim und Umgebung</small></a>
-    <a href="chiptuning#rechner"><span>Leistung berechnen</span><small>Stage 1 grob berechnen</small></a>
-    <a href="#kontakt"><span>Kontakt</span><small>Am schnellsten per WhatsApp</small></a>
+    <a href="fahrzeugaufbereitung"><span>Aufbereitung</span><small>Sauber bis ins Detail</small></a>
+    <a href="chiptuning#rechner"><span>Mehrleistung berechnen</span><small>Stage 1, grobe Schätzung</small></a>
+    <a href="#kontakt"><span>Kontakt</span><small>Per WhatsApp</small></a>
   </nav>
-  <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+  <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Per WhatsApp anfragen</a>
 </div>
 
 <main>
@@ -372,10 +374,10 @@ button{font:inherit}
       <video class="quer" muted loop playsinline preload="none" disablepictureinpicture poster="img/film-quer.webp"><source src="img/werkstatt-quer.mp4" type="video/mp4"></video>
     </div>
     <div class="innen held-inhalt">
-      <h1 id="held-titel">Kfz-Service, Chiptuning und Aufbereitung. <span class="grau">Im Raum Heidenheim.</span></h1>
+      <h1 id="held-titel">Ihre <span class="zus">Kfz-Werkstatt</span> <span class="ort">im&nbsp;Raum Heidenheim.</span> <span class="grau">Service, Chiptuning und Aufbereitung.</span></h1>
       <div class="held-aktionen">
-        <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
-        <a class="link" href="chiptuning#rechner"><span>Leistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Per WhatsApp anfragen</a>
+        <a class="link" href="chiptuning#rechner"><span>Mehrleistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
       </div>
     </div>
     <button class="pause" id="film-pause" type="button" aria-label="Film anhalten" hidden><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
@@ -494,7 +496,7 @@ button{font:inherit}
     <div class="fuss-raster">
       <div class="fuss-wappen"><!--LOGO--></div>
       <nav class="fuss-nav" aria-labelledby="fuss-leistungen"><h2 id="fuss-leistungen">Leistungen</h2>
-        <ul><li><a href="kfz-service">Kfz-Service</a></li><li><a href="chiptuning">Chiptuning</a></li><li><a href="fahrzeugaufbereitung">Fahrzeugaufbereitung</a></li><li><a href="chiptuning#rechner">Leistung berechnen</a></li></ul>
+        <ul><li><a href="kfz-service">Kfz-Service</a></li><li><a href="chiptuning">Chiptuning</a></li><li><a href="fahrzeugaufbereitung">Fahrzeugaufbereitung</a></li><li><a href="chiptuning#rechner">Mehrleistung berechnen</a></li></ul>
       </nav>
       <div class="fuss-kontakt"><h2>Kontakt</h2>
         <!-- Adresse und Öffnungszeiten hier ergänzen, sobald Mert sie nennt, genau wie im Google-Profil -->
