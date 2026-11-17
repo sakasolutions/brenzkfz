@@ -7,25 +7,25 @@
 <title>(Entwurf 4, hell) Kfz-Service und Chiptuning im Raum Heidenheim · Brenz KFZ</title>
 <meta name="description" content="Brenz KFZ: Kfz-Service und Fahrzeugaufbereitung für Heidenheim und Umgebung, Softwareoptimierung (Chiptuning) für die ganze Region. Leistung berechnen oder per WhatsApp anfragen.">
 <meta name="robots" content="noindex,follow">
-<meta name="theme-color" content="#f7f6f1">
+<meta name="theme-color" content="{{PAPIER}}">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/SchibstedGrotesk-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="img/film-hoch.webp" as="image" media="(max-width: 899px)">
 <link rel="preload" href="img/film-quer.webp" as="image" media="(min-width: 900px)">
 <style>
-/* Entwurf 4, hell (Sinan, 17.11.2026: „ein Konzept in hell, Farben wählst du, harmonisch“). Aufbau und Schrift wie Entwurf 3
-   (Schibsted Grotesk, Stärke 400 bis 500, ein Gedanke pro Abschnitt), aber hell gedacht: Überschrift auf Papier, der Film im Rahmen
-   darunter, Leistungen als Bildkarten mit Etikett aus Papier.
-   Farben (oklch, von mir gewählt): Papier (.972 .007 90) im warmen Farbton der Bilder, Stein (.945 .010 90) für abgesetzte Flächen,
-   Tinte (.235 .022 160) fast schwarz mit einem Hauch Grün, Tannengrün (.43 .068 158) als Akzent für Knöpfe und Pfeile,
-   Messing (.58 .09 85, das Champagner abgedunkelt) nur für Emblem und Linien, Wald (.265 .034 160) für den Fuß,
-   dort das Emblem in seinem Champagner #e4cc7f. Grün, Gold und Creme: ruhig, handwerklich, kein Rot. */
+/* Entwurf 4, hell (Sinan, 17.11.2026: „ein Konzept in hell“). Aufbau und Schrift wie Entwurf 3 (Schibsted Grotesk, Stärke 400 bis 500,
+   ein Gedanke pro Abschnitt), aber hell gedacht: Überschrift auf Papier, der Film im Rahmen darunter, Leistungen als Bildkarten mit Etikett.
+   Farben: drei Paletten zur Auswahl, eingesetzt von werkzeuge/neu.py zwischen den Markierungen PALETTE (nicht hier von Hand ändern).
+   Rollen: papier, stein (abgesetzte Flächen), flaeche (Karten), linie, text, leise; akzent (Knopffläche), akzent-tief (Überfahren),
+   auf-akzent (Schrift auf dem Knopf), zeichen (Pfeile, Fokus, Kurve, mindestens 4,5:1), detail (Emblem im Kopf), bild (Bildgrund),
+   fuss-grund, fuss-text, fuss-leise, fuss-zeichen, emblem (Emblem im Fuß), blase und blase-leer (WhatsApp-Vorschau), band (Deckkraft Kurvenband). */
 @font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 900;font-display:swap;src:url("fonts/SchibstedGrotesk-var.woff2") format("woff2")}
 
 :root{
-  --grund:#f7f6f1; --flaeche:#fefdfa; --linie:#d7d6ce; --text:#15211a; --leise:#5e6860; --stein:#efede5;
-  --akzent:#2c5b41; --akzent-tief:#214933; --auf-akzent:#f7f6f1; --messing:#937636;
+  /* PALETTE */
+  /* /PALETTE */
+  --grund:var(--papier);
   --fliess:color-mix(in srgb,var(--text) 78%,var(--grund));
   --haar:color-mix(in srgb,var(--text) 12%,transparent);
   --f:"Schibsted Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
@@ -47,7 +47,7 @@ img,svg,video{display:block;max-width:100%}
 img{height:auto}
 a{color:inherit;text-decoration:none}
 button{font:inherit}
-:focus-visible{outline:2px solid var(--akzent);outline-offset:3px}
+:focus-visible{outline:2px solid var(--zeichen);outline-offset:3px}
 [hidden]{display:none!important}
 .innen{width:100%;max-width:1280px;margin-inline:auto;padding-left:var(--rand-l);padding-right:var(--rand-r)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
@@ -61,7 +61,7 @@ button{font:inherit}
 .knopf svg{width:18px;height:18px;flex:none}
 .link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:500;color:var(--text)}
 .link span{background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;padding-bottom:2px}
-.link svg{width:16px;height:16px;flex:none;color:var(--akzent);transition:transform .25s}
+.link svg{width:16px;height:16px;flex:none;color:var(--zeichen);transition:transform .25s}
 .link:hover svg{transform:translateX(4px)}
 
 /* Kopf: immer auf Papier, Emblem in Tinte und Messing, beim Scrollen mit Haarlinie */
@@ -71,7 +71,7 @@ button{font:inherit}
 .marke{display:block;flex:none}
 .marke svg{width:48px;height:48px}
 .marke svg path:first-of-type{fill:var(--text)}
-.marke svg path:last-of-type{fill:var(--messing)}
+.marke svg path:last-of-type{fill:var(--detail)}
 .nav{display:none;align-items:center;gap:28px}
 .nav a{font-size:.9375rem;font-weight:500;color:color-mix(in srgb,var(--text) 82%,transparent);transition:color .2s}
 .nav a:hover{color:var(--text)}
@@ -97,7 +97,7 @@ button{font:inherit}
 .held h1 .grau{display:block}
 .held-seite{display:grid;justify-items:start;gap:20px;max-width:28em}
 .held-seite p{margin:0;color:var(--fliess)}
-.film-rahmen{position:relative;isolation:isolate;overflow:hidden;margin-top:12px;aspect-ratio:4/5;border-radius:10px;background:#1b211d}
+.film-rahmen{position:relative;isolation:isolate;overflow:hidden;margin-top:12px;aspect-ratio:4/5;border-radius:10px;background:var(--bild)}
 .film{position:absolute;inset:0;z-index:-2}
 .film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:var(--ton)}
 .film .quer{display:none}
@@ -124,13 +124,13 @@ button{font:inherit}
 .uebersicht a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;padding-block:20px}
 .u-titel{font-size:1.25rem;font-weight:500;letter-spacing:-.015em;line-height:1.2}
 .u-gebiet{grid-column:1;font-size:.9375rem;color:var(--leise)}
-.uebersicht svg{grid-column:2;grid-row:1/span 2;width:18px;height:18px;color:var(--akzent);transition:transform .25s}
+.uebersicht svg{grid-column:2;grid-row:1/span 2;width:18px;height:18px;color:var(--zeichen);transition:transform .25s}
 .uebersicht a:hover svg{transform:translateX(4px)}
 @media (min-width:600px) and (max-width:1199px){.uebersicht ul{grid-template-columns:1fr 1fr;column-gap:32px}}
 @media (min-width:1200px){
   .uebersicht ul{grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px;border-top:0}
   .uebersicht li{border-bottom:0;border-top:1px solid var(--haar)}
-  .uebersicht li::before{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--akzent);transition:width .45s cubic-bezier(.2,.65,.2,1)}
+  .uebersicht li::before{content:"";position:absolute;left:0;top:-1px;width:0;height:2px;background:var(--akzent);transition:width .45s cubic-bezier(.2,.65,.2,1)}
   .uebersicht li:hover::before,.uebersicht li:focus-within::before{width:100%}
   .uebersicht a{align-items:start;padding-block:24px 4px}
 }
@@ -142,17 +142,17 @@ button{font:inherit}
    Desktop: Service neben Software, Aufbereitung über die volle Breite. */
 .leistungen .innen{display:grid;gap:48px}
 .kapitel{position:relative;display:flex;flex-direction:column;min-width:0}
-.kapitel-bild{position:relative;isolation:isolate;margin:0;overflow:hidden;aspect-ratio:1/1;border-radius:10px;background:#1b211d}
+.kapitel-bild{position:relative;isolation:isolate;margin:0;overflow:hidden;aspect-ratio:1/1;border-radius:10px;background:var(--bild)}
 .kapitel-bild img{width:100%;height:100%;object-fit:cover;filter:var(--ton)}
 .kapitel-bild::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;background-image:var(--korn)}
 .kapitel-text{z-index:1;display:grid;justify-items:start;gap:10px;min-width:0;margin:-48px 12px 0;padding:22px 22px 16px;background:var(--flaeche);border-radius:8px;
-  box-shadow:0 1px 2px rgb(21 33 26 / .06),0 12px 32px rgb(21 33 26 / .1)}
+  box-shadow:0 1px 2px color-mix(in srgb,var(--text) 6%,transparent),0 12px 32px color-mix(in srgb,var(--text) 10%,transparent)}
 .kapitel h3{margin:0;font-size:clamp(1.625rem,1rem + 1.4vw,2.25rem);font-weight:500;line-height:1.05;letter-spacing:-.03em;text-wrap:balance}
 .gebiet{margin:0;font-size:.9375rem;color:var(--leise)}
 .kapitel-text p.text{margin:0 0 2px;color:var(--fliess)}
 .kapitel .link::after{content:"";position:absolute;inset:0}
 .kapitel .link:focus-visible{outline:none}
-.kapitel:has(.link:focus-visible) .kapitel-bild{outline:2px solid var(--akzent);outline-offset:3px}
+.kapitel:has(.link:focus-visible) .kapitel-bild{outline:2px solid var(--zeichen);outline-offset:3px}
 #aufbereitung .kapitel-bild img{object-position:50% 55%}
 @media (min-width:600px){
   .leistungen .innen{gap:24px}
@@ -184,9 +184,8 @@ button{font:inherit}
 
 /* Rechner: auf Stein, Karte weiß */
 .rechner{color-scheme:light;
-  --grund:var(--stein); --flaeche:#fefdfa; --linie:#d7d6ce;
-  --text:#15211a; --leise:#5e6860; --fliess:color-mix(in srgb,#15211a 78%,#efede5);
-  --haar:color-mix(in srgb,#15211a 12%,transparent);
+  --grund:var(--stein); --fliess:color-mix(in srgb,var(--text) 78%,var(--grund));
+  --haar:color-mix(in srgb,var(--text) 12%,transparent);
   background:var(--grund);color:var(--text);padding-block:clamp(80px,10vw,144px)}
 .rechner-raster{display:grid;gap:40px}
 .rechner-text{display:grid;gap:20px;align-content:start}
@@ -238,11 +237,11 @@ button{font:inherit}
 .r-senden{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--linie)}
 .r-senden:hover{box-shadow:inset 0 0 0 1px var(--text)}
 #berechnen[hidden]~.anfrage .r-senden{background:var(--akzent);color:var(--auf-akzent);box-shadow:none}
-#berechnen[hidden]~.anfrage .r-senden:hover{background:color-mix(in srgb,var(--akzent) 88%,#000000)}
+#berechnen[hidden]~.anfrage .r-senden:hover{background:var(--akzent-tief)}
 #erg-balken[hidden]~.schaetzung{display:none}
 .r-senden[aria-disabled="true"]{opacity:.45;pointer-events:none}
 .berechnen{background:var(--akzent);color:var(--auf-akzent);border:0}
-.berechnen:hover{background:color-mix(in srgb,var(--akzent) 88%,#000000)}
+.berechnen:hover{background:var(--akzent-tief)}
 .fehlt{margin:-6px 0 0;font-size:.875rem;color:var(--leise)}
 .ergebnis{display:flex;flex-direction:column;gap:6px}
 .ergebnis .erg-kopf{order:0}.ergebnis .zahlen{order:1}.ergebnis .diagramm{order:2}.ergebnis .schaetzung{order:3}
@@ -260,26 +259,26 @@ button{font:inherit}
 .dia .achse{fill:var(--leise);font:500 11px var(--f)}
 .dia .achse.mitte{text-anchor:middle}.dia .achse.rechts{text-anchor:end}
 .dia .k-serie{fill:none;stroke:var(--leise);stroke-width:2;stroke-linejoin:round}
-.dia .k-stage{fill:none;stroke:var(--akzent);stroke-width:2.5;stroke-linejoin:round}
-.dia .band{fill:var(--akzent);opacity:.2}
+.dia .k-stage{fill:none;stroke:var(--zeichen);stroke-width:2.5;stroke-linejoin:round}
+.dia .band{fill:var(--zeichen);opacity:.2}
 .dia .zeiger{stroke:var(--text);stroke-width:1;stroke-opacity:.45}
-.dia .p-serie{fill:var(--leise)}.dia .p-stage{fill:var(--akzent)}
-.dia .leg-serie{stroke:var(--leise);stroke-width:3}.dia .leg-stage{stroke:var(--akzent);stroke-width:3}
+.dia .p-serie{fill:var(--leise)}.dia .p-stage{fill:var(--zeichen)}
+.dia .leg-serie{stroke:var(--leise);stroke-width:3}.dia .leg-stage{stroke:var(--zeichen);stroke-width:3}
 /* Stage-Kurve in Tannengrün */
-.zettel .dia .k-stage,.zettel .dia .leg-stage{stroke:var(--akzent)}
-.zettel .dia .p-stage{fill:var(--akzent)}
-.zettel .dia .band{fill:var(--akzent);opacity:.12}
+.zettel .dia .k-stage,.zettel .dia .leg-stage{stroke:var(--zeichen)}
+.zettel .dia .p-stage{fill:var(--zeichen)}
+.zettel .dia .band{fill:var(--akzent);opacity:var(--band,.16)}
 .balken{display:grid;gap:8px}
 /* Vollbild beim Berechnen, hell wie die Seite */
 .r-buehne{position:fixed;inset:0;z-index:50;display:grid;place-items:center;align-content:center;gap:12px;cursor:pointer;opacity:0;
-  color-scheme:light;--grund:#f7f6f1;--flaeche:#fefdfa;--linie:#d7d6ce;--text:#15211a;--leise:#5e6860;background:var(--grund);color:var(--text);
+  color-scheme:light;--grund:var(--papier);--fliess:color-mix(in srgb,var(--text) 78%,var(--grund));background:var(--grund);color:var(--text);
   padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .r-buehne.an{opacity:1}
 .r-buehne svg{width:min(92vw,560px);height:auto}
 .r-buehne .fahrzeug{font:500 clamp(1.5rem,6vw,2.25rem)/1.05 var(--f);letter-spacing:-.03em;text-align:center}
 .r-buehne .wert{font:500 clamp(3rem,12vw,4rem)/1 var(--f);letter-spacing:-.04em;font-variant-numeric:tabular-nums;text-align:center}
 .r-buehne .wert small{margin-left:6px;font:500 .9rem var(--f);letter-spacing:0;color:var(--leise)}
-.r-buehne .schritt{min-height:1.2em;font:500 .875rem/1.2 var(--f);text-align:center;color:var(--akzent)}
+.r-buehne .schritt{min-height:1.2em;font:500 .875rem/1.2 var(--f);text-align:center;color:var(--zeichen)}
 .r-buehne .tippen{font-size:.75rem;color:var(--leise)}
 @media (max-width:480px){.zettel .reihe{grid-template-columns:1fr}.zettel{padding:24px 18px}}
 
@@ -301,23 +300,24 @@ button{font:inherit}
 .themen span{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--linie);border-radius:4px;font-size:.9375rem;font-weight:500;line-height:1;cursor:pointer;transition:border-color .2s}
 .themen span:hover{border-color:var(--leise)}
 .themen input:checked+span{background:var(--text);border-color:var(--text);color:var(--grund)}
-.themen input:focus-visible+span{outline:2px solid var(--akzent);outline-offset:2px}
+.themen input:focus-visible+span{outline:2px solid var(--zeichen);outline-offset:2px}
 .feld{display:grid;gap:6px;min-width:0}
 .feld span{font-size:.875rem;font-weight:500;color:var(--fliess)}
 .feld input,.feld textarea{width:100%;min-width:0;padding:0 14px;height:50px;font:400 1rem/1.4 var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:4px}
 .feld textarea{height:auto;min-height:84px;padding-block:12px;resize:vertical}
 .feld input::placeholder,.feld textarea::placeholder{color:var(--leise)}
-.feld input:focus-visible,.feld textarea:focus-visible{outline:2px solid var(--akzent);outline-offset:1px}
-.blase-wrap{display:grid;gap:8px;justify-items:end;padding:20px 16px;background:var(--grund);border-radius:4px}
+.feld input:focus-visible,.feld textarea:focus-visible{outline:2px solid var(--zeichen);outline-offset:1px}
+.blase-wrap{display:grid;gap:8px;justify-items:end;padding:20px 16px;background:var(--stein);border-radius:4px}
 .blase-wrap>span{justify-self:start;font-size:.8125rem;color:var(--leise)}
-.blase{max-width:min(100%,24em);margin:0;padding:12px 14px;background:#dbf0de;border-radius:12px 12px 4px 12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.9375rem;line-height:1.45;color:var(--text)}
-.blase .leer{color:#535e55}
+.blase{max-width:min(100%,24em);margin:0;padding:12px 14px;background:var(--blase);border-radius:12px 12px 4px 12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.9375rem;line-height:1.45;color:var(--text)}
+.blase .leer{color:var(--blase-leer)}
 .schreiben .knopf{justify-content:center}
 .klein{margin:-8px 0 0;font-size:.8125rem;color:var(--leise)}
 @media (min-width:1000px){.kontakt-raster{grid-template-columns:5fr 6fr;gap:80px}.schreiben{padding:32px}.kontakt-text .nummer{margin-top:auto;padding-bottom:4px}}
 
-/* Fuß: Wald, darauf das Emblem in seinem Champagner, Menü, Kontakt */
-.fuss{color-scheme:dark;--grund:#162a1f;--text:#ecebe6;--leise:#a4aea2;--akzent:#e4cc7f;
+/* Fuß: dunkel, darauf das Emblem, Menü, Kontakt */
+.fuss-wappen svg path:last-of-type{fill:var(--emblem)}
+.fuss{color-scheme:dark;--grund:var(--fuss-grund);--text:var(--fuss-text);--leise:var(--fuss-leise);--zeichen:var(--fuss-zeichen);
   --fliess:color-mix(in srgb,var(--text) 80%,var(--grund));--haar:color-mix(in srgb,var(--text) 14%,transparent);
   background:var(--grund);color:var(--text);padding-block:clamp(56px,7vw,96px) calc(28px + env(safe-area-inset-bottom,0px))}
 .fuss-raster{display:grid;gap:40px}
@@ -326,7 +326,7 @@ button{font:inherit}
 .fuss ul{list-style:none;margin:0;padding:0;display:grid}
 .fuss-raster a{display:inline-flex;align-items:center;min-height:40px}
 .fuss-raster a{transition:color .2s}
-.fuss-raster a:hover{color:var(--akzent)}
+.fuss-raster a:hover{color:var(--zeichen)}
 .fuss-kontakt p{margin:0 0 6px}
 .fuss-unten{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:clamp(48px,6vw,80px);padding-top:20px;border-top:1px solid var(--haar);font-size:.875rem;color:var(--leise)}
 @media (min-width:900px){
