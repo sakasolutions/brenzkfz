@@ -99,3 +99,15 @@ Zum Abgleich (Sinan, 17.11.2026, Farben außer Rot frei), alle aus derselben Vor
 | `entwurf-3-hell-a.html` | hell, warmes Papier im Farbton des Films, Knöpfe in Tinte, Akzent Messing (Champagner abgedunkelt). Film und Fuß bleiben dunkel. |
 | `entwurf-3-hell-b.html` | hell, kühles Weiß, Akzent Petrol, Emblem in Petrol. Bewusst das Gegenteil zum warmen Film. |
 | `entwurf-3-mix.html` | Sinans Idee für die Unterseiten: Kfz-Service hell, Softwareoptimierung mit Rechner und Aufbereitung dunkel. Auf der Startseite als helle Karte (Bild oben, Text auf Papier) neben den dunklen Bildtafeln. |
+
+## Entwurf 4, hell: entwurf-4.html
+
+Sinan, 17.11.2026: „ein Konzept in hell, Farben wählst du, harmonisch“. Eigene Vorlage `werkzeuge/entwurf4-vorlage.html`, gebaut mit `werkzeuge/neu.py`. Schrift, Texte, Rechner und WhatsApp-Vorschau wie Entwurf 3, aber hell gedacht:
+
+- **Start:** Überschrift auf Papier, rechts daneben die Unterzeile aus `TEXTE.md` und der Knopf, darunter der Film in einem gerahmten Feld, das über den unteren Rand hinausläuft. Im Kopf ein kleiner Knopf „Anfrage“.
+- **Leistungen:** Bildkarten mit einem Etikett aus Papier (Titel, Gebiet, Text, Link). Auf dem Handy unter dem Bild, ab Tablet unten links im Bild. Ganze Karte klickbar.
+- **Farben (oklch, gewählt, nicht gemessen):** Papier (.972 .007 90) `#f7f6f1` im warmen Farbton der Bilder, Stein (.945 .010 90) `#efede5` für den Rechner, Tinte (.235 .022 160) `#15211a`, Tannengrün (.43 .068 158) `#2c5b41` für Knöpfe, Pfeile und die Stage-Kurve, Messing (.58 .09 85) `#937636` nur für Emblem und Linien (unter 4,5:1, deshalb nie als Text), Wald (.265 .034 160) `#162a1f` für den Fuß mit dem Emblem in Champagner. Vorschau der WhatsApp-Nachricht in hellem Grün `#dbf0de`.
+- Geprüft in neun Breiten von 600 bis 1920 px (kein Überlauf, alle Titel einzeilig) und live auf 390 px.
+
+Nebenbei behoben (Entwurf 3 und 4): Die Telefonnummer im Kontakt stand auf dem Desktop nicht unten, weil `.kontakt-text p` den Abstand überschrieb.
+

@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="de">
+<head>
+<!-- Automatisch erzeugt aus werkzeuge/entwurf4-vorlage.html mit werkzeuge/neu.py. Nicht von Hand bearbeiten. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>(Entwurf 4, hell) Kfz-Service und Chiptuning im Raum Heidenheim · Brenz KFZ</title>
+<meta name="description" content="Brenz KFZ: Kfz-Service und Fahrzeugaufbereitung für Heidenheim und Umgebung, Softwareoptimierung (Chiptuning) für die ganze Region. Leistung berechnen oder per WhatsApp anfragen.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#f7f6f1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/SchibstedGrotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/film-hoch.webp" as="image" media="(max-width: 899px)">
+<link rel="preload" href="img/film-quer.webp" as="image" media="(min-width: 900px)">
+<style>
+/* Entwurf 4, hell (Sinan, 17.11.2026: „ein Konzept in hell, Farben wählst du, harmonisch“). Aufbau und Schrift wie Entwurf 3
+   (Schibsted Grotesk, Stärke 400 bis 500, ein Gedanke pro Abschnitt), aber hell gedacht: Überschrift auf Papier, der Film im Rahmen
+   darunter, Leistungen als Bildkarten mit Etikett aus Papier.
+   Farben (oklch, von mir gewählt): Papier (.972 .007 90) im warmen Farbton der Bilder, Stein (.945 .010 90) für abgesetzte Flächen,
+   Tinte (.235 .022 160) fast schwarz mit einem Hauch Grün, Tannengrün (.43 .068 158) als Akzent für Knöpfe und Pfeile,
+   Messing (.58 .09 85, das Champagner abgedunkelt) nur für Emblem und Linien, Wald (.265 .034 160) für den Fuß,
+   dort das Emblem in seinem Champagner #e4cc7f. Grün, Gold und Creme: ruhig, handwerklich, kein Rot. */
+@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 900;font-display:swap;src:url("fonts/SchibstedGrotesk-var.woff2") format("woff2")}
+
+:root{
+  --grund:#f7f6f1; --flaeche:#fefdfa; --linie:#d7d6ce; --text:#15211a; --leise:#5e6860; --stein:#efede5;
+  --akzent:#2c5b41; --akzent-tief:#214933; --auf-akzent:#f7f6f1; --messing:#937636;
+  --fliess:color-mix(in srgb,var(--text) 78%,var(--grund));
+  --haar:color-mix(in srgb,var(--text) 12%,transparent);
+  --f:"Schibsted Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
+  /* Ein Farbton für Film und Fotos: fast schwarz-weiß, leicht warm, auf Hell etwas heller als in Entwurf 3 */
+  --ton:saturate(.2) sepia(.18) contrast(1.04) brightness(.9);
+  /* Filmkorn, still: im Film und auf den Bildtafeln */
+  --korn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E");
+  --kopf-h:72px;
+  --rand-l:max(20px,env(safe-area-inset-left,0px));
+  --rand-r:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--kopf-h) + env(safe-area-inset-top,0px))}
+html.gesperrt{overflow:hidden}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--grund);color:var(--text);font:400 17px/1.55 var(--f);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg,video{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--akzent);outline-offset:3px}
+[hidden]{display:none!important}
+.innen{width:100%;max-width:1280px;margin-inline:auto;padding-left:var(--rand-l);padding-right:var(--rand-r)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.grau{color:var(--leise)}
+@media (min-width:900px){:root{--kopf-h:84px;--rand-l:max(40px,env(safe-area-inset-left,0px));--rand-r:max(40px,env(safe-area-inset-right,0px))}}
+
+/* Knopf (einer pro Bereich) und Textlink mit Pfeil */
+.knopf{display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 22px;border-radius:4px;background:var(--akzent);color:var(--auf-akzent);
+  font:500 1rem/1 var(--f);white-space:nowrap;transition:background-color .2s}
+.knopf:hover{background:var(--akzent-tief)}
+.knopf svg{width:18px;height:18px;flex:none}
+.link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:500;color:var(--text)}
+.link span{background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;padding-bottom:2px}
+.link svg{width:16px;height:16px;flex:none;color:var(--akzent);transition:transform .25s}
+.link:hover svg{transform:translateX(4px)}
+
+/* Kopf: immer auf Papier, Emblem in Tinte und Messing, beim Scrollen mit Haarlinie */
+.kopf{position:fixed;inset:0 0 auto;z-index:20;padding-top:env(safe-area-inset-top,0px);background:var(--grund);transition:box-shadow .3s}
+.kopf.fest,.kopf.offen{box-shadow:0 1px 0 var(--haar)}
+.kopf-zeile{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--kopf-h)}
+.marke{display:block;flex:none}
+.marke svg{width:48px;height:48px}
+.marke svg path:first-of-type{fill:var(--text)}
+.marke svg path:last-of-type{fill:var(--messing)}
+.nav{display:none;align-items:center;gap:28px}
+.nav a{font-size:.9375rem;font-weight:500;color:color-mix(in srgb,var(--text) 82%,transparent);transition:color .2s}
+.nav a:hover{color:var(--text)}
+.nav .knopf{height:40px;padding:0 16px;gap:8px;font-size:.9375rem;color:var(--auf-akzent)}
+.nav .knopf:hover{color:var(--auf-akzent)}
+.nav .knopf svg{width:16px;height:16px}
+.menue-knopf{display:inline-flex;align-items:center;gap:12px;height:44px;padding:0;background:none;border:0;color:var(--text);font-weight:500;cursor:pointer}
+.menue-knopf i{position:relative;width:18px;height:8px;border-block:1.5px solid currentColor;transition:transform .2s}
+.kopf.offen .menue-knopf i{height:0;border-bottom:0;transform:rotate(45deg)}
+.kopf.offen .menue-knopf i::after{content:"";position:absolute;left:0;right:0;top:-1.5px;border-top:1.5px solid currentColor;transform:rotate(-90deg)}
+.handymenue{position:fixed;inset:0;z-index:19;display:flex;flex-direction:column;overflow-y:auto;background:var(--grund);
+  padding:calc(var(--kopf-h) + env(safe-area-inset-top,0px) + 24px) var(--rand-r) calc(28px + env(safe-area-inset-bottom,0px)) var(--rand-l)}
+.handymenue nav{display:grid}
+.handymenue nav a{padding-block:14px;border-bottom:1px solid var(--haar);font-size:2rem;font-weight:500;letter-spacing:-.03em;line-height:1.1}
+.handymenue .knopf{margin-top:auto;justify-content:center}
+@media (min-width:900px){.marke svg{width:56px;height:56px}.nav{display:flex}.menue-knopf,.handymenue{display:none!important}}
+@media (min-width:1100px){.nav{gap:36px}}
+
+/* Start: Überschrift auf Papier, der Film im Rahmen darunter. Er beginnt im ersten Bild und läuft über den unteren Rand hinaus. */
+.held{padding-top:calc(var(--kopf-h) + env(safe-area-inset-top,0px) + clamp(28px,5vw,72px))}
+.held-raster{display:grid;gap:24px}
+.held h1{margin:0;max-width:12.5em;font-size:clamp(2.25rem,1rem + 4.8vw,4.75rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:pretty}
+.held h1 .grau{display:block}
+.held-seite{display:grid;justify-items:start;gap:20px;max-width:28em}
+.held-seite p{margin:0;color:var(--fliess)}
+.film-rahmen{position:relative;isolation:isolate;overflow:hidden;margin-top:12px;aspect-ratio:4/5;border-radius:10px;background:#1b211d}
+.film{position:absolute;inset:0;z-index:-2}
+.film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:var(--ton)}
+.film .quer{display:none}
+/* Filmkorn, still */
+.film-rahmen::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;background-image:var(--korn)}
+.pause{position:absolute;right:16px;bottom:16px;display:grid;place-items:center;width:44px;height:44px;padding:0;
+  border:1px solid rgb(255 255 255 / .4);border-radius:50%;background:rgb(0 0 0 / .3);color:#f2f1ef;cursor:pointer;transition:border-color .2s}
+.pause:hover{border-color:rgb(255 255 255 / .8)}
+.pause svg{width:14px;height:14px}
+@media (min-width:600px){.film-rahmen{aspect-ratio:1/1}}
+@media (min-width:900px){
+  .held-raster{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:0;align-items:end}
+  .held h1{grid-column:1/span 8;max-width:none;font-size:clamp(3rem,6vw,5rem)}
+  .held-seite{grid-column:9/span 4;padding-bottom:8px}
+  .film-rahmen{grid-column:1/-1;margin-top:clamp(40px,4.5vw,64px);aspect-ratio:auto;height:clamp(440px,50vw,700px)}
+  .film .hoch{display:none}.film .quer{display:block}
+  .pause{right:24px;bottom:24px}
+}
+
+/* Unter dem Film: die vier Bereiche als Übersicht, wie die Modellreihe bei Porsche. Schließt den Film ruhig ab. */
+.uebersicht{padding-block:clamp(24px,3vw,40px) clamp(56px,7vw,96px)}
+.uebersicht ul{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--haar)}
+.uebersicht li{position:relative;border-bottom:1px solid var(--haar)}
+.uebersicht a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;padding-block:20px}
+.u-titel{font-size:1.25rem;font-weight:500;letter-spacing:-.015em;line-height:1.2}
+.u-gebiet{grid-column:1;font-size:.9375rem;color:var(--leise)}
+.uebersicht svg{grid-column:2;grid-row:1/span 2;width:18px;height:18px;color:var(--akzent);transition:transform .25s}
+.uebersicht a:hover svg{transform:translateX(4px)}
+@media (min-width:600px) and (max-width:1199px){.uebersicht ul{grid-template-columns:1fr 1fr;column-gap:32px}}
+@media (min-width:1200px){
+  .uebersicht ul{grid-template-columns:repeat(4,minmax(0,1fr));gap:0 32px;border-top:0}
+  .uebersicht li{border-bottom:0;border-top:1px solid var(--haar)}
+  .uebersicht li::before{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--akzent);transition:width .45s cubic-bezier(.2,.65,.2,1)}
+  .uebersicht li:hover::before,.uebersicht li:focus-within::before{width:100%}
+  .uebersicht a{align-items:start;padding-block:24px 4px}
+}
+
+/* Leistungen als Kapitel: Standbild und Text im Wechsel */
+.leistungen{padding-bottom:clamp(96px,12vw,168px)}
+/* Leistungen als Bildkarten: Foto im Rahmen, darauf ein Etikett aus Papier mit Titel, Gebiet, Text und Link. Die ganze Karte ist klickbar.
+   Handy: Etikett unter dem Bild, etwas hineingeschoben. Ab Tablet: Etikett unten links im Bild.
+   Desktop: Service neben Software, Aufbereitung über die volle Breite. */
+.leistungen .innen{display:grid;gap:48px}
+.kapitel{position:relative;display:flex;flex-direction:column;min-width:0}
+.kapitel-bild{position:relative;isolation:isolate;margin:0;overflow:hidden;aspect-ratio:1/1;border-radius:10px;background:#1b211d}
+.kapitel-bild img{width:100%;height:100%;object-fit:cover;filter:var(--ton)}
+.kapitel-bild::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.14;mix-blend-mode:overlay;background-image:var(--korn)}
+.kapitel-text{z-index:1;display:grid;justify-items:start;gap:10px;min-width:0;margin:-48px 12px 0;padding:22px 22px 16px;background:var(--flaeche);border-radius:8px;
+  box-shadow:0 1px 2px rgb(21 33 26 / .06),0 12px 32px rgb(21 33 26 / .1)}
+.kapitel h3{margin:0;font-size:clamp(1.625rem,1rem + 1.4vw,2.25rem);font-weight:500;line-height:1.05;letter-spacing:-.03em;text-wrap:balance}
+.gebiet{margin:0;font-size:.9375rem;color:var(--leise)}
+.kapitel-text p.text{margin:0 0 2px;color:var(--fliess)}
+.kapitel .link::after{content:"";position:absolute;inset:0}
+.kapitel .link:focus-visible{outline:none}
+.kapitel:has(.link:focus-visible) .kapitel-bild{outline:2px solid var(--akzent);outline-offset:3px}
+#aufbereitung .kapitel-bild img{object-position:50% 55%}
+@media (min-width:600px){
+  .leistungen .innen{gap:24px}
+  .kapitel{display:grid}
+  .kapitel>*{grid-area:1/1}
+  .kapitel-bild{aspect-ratio:16/10}
+  .kapitel-text{align-self:end;justify-self:start;max-width:min(26rem,calc(100% - 48px));margin:24px}
+}
+@media (min-width:900px){
+  .leistungen .innen{grid-template-columns:repeat(12,minmax(0,1fr))}
+  #service{grid-column:1/span 6}
+  #software{grid-column:7/span 6}
+  #service .kapitel-bild,#software .kapitel-bild{aspect-ratio:auto;height:clamp(480px,44vw,640px)}
+  #aufbereitung{grid-column:1/-1}
+  #aufbereitung .kapitel-bild{aspect-ratio:auto;height:clamp(420px,38vw,560px)}
+  .kapitel-text{padding:28px 28px 20px;gap:12px;max-width:min(28rem,calc(100% - 48px))}
+}
+@media (min-width:1100px){#service{grid-column:1/span 5}#software{grid-column:6/span 7}}
+
+/* Langsames Aufziehen beim Hineinscrollen (nur mit Skript und ohne Wunsch nach weniger Bewegung) */
+@media (prefers-reduced-motion:no-preference){
+  .kapitel-bild img{transition:transform 1.6s cubic-bezier(.2,.65,.2,1)}
+  .js .kapitel-bild img{transform:scale(1.08)}
+  .js .kapitel.da .kapitel-bild img{transform:none}
+  .kapitel:hover .kapitel-bild img,.js .kapitel.da:hover .kapitel-bild img{transform:scale(1.03)}
+  .js .kapitel-text{opacity:0;transform:translateY(16px);transition:opacity .8s .15s,transform .8s .15s cubic-bezier(.2,.65,.2,1)}
+  .js .kapitel.da .kapitel-text{opacity:1;transform:none}
+}
+
+/* Rechner: auf Stein, Karte weiß */
+.rechner{color-scheme:light;
+  --grund:var(--stein); --flaeche:#fefdfa; --linie:#d7d6ce;
+  --text:#15211a; --leise:#5e6860; --fliess:color-mix(in srgb,#15211a 78%,#efede5);
+  --haar:color-mix(in srgb,#15211a 12%,transparent);
+  background:var(--grund);color:var(--text);padding-block:clamp(80px,10vw,144px)}
+.rechner-raster{display:grid;gap:40px}
+.rechner-text{display:grid;gap:20px;align-content:start}
+.rechner h2{margin:0;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.rechner-unter{margin:0;max-width:34em;color:var(--fliess)}
+.daten{margin:12px 0 0;border-top:1px solid var(--haar)}
+.daten div{display:grid;grid-template-columns:8em 1fr;gap:12px;padding-block:13px;border-bottom:1px solid var(--haar);font-size:.9375rem}
+.daten dt{color:var(--leise)}
+.daten dd{margin:0}
+@media (min-width:1000px){.rechner-raster{grid-template-columns:5fr 6fr;gap:80px}}
+.zettel{min-width:0;display:grid;gap:22px;padding:28px 22px;background:var(--flaeche);border:1px solid var(--haar);border-radius:8px}
+.fortschritt{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;counter-reset:fs}
+.fortschritt li{counter-increment:fs;padding-top:10px;border-top:2px solid var(--linie);font:500 .8125rem/1.3 var(--f);color:var(--leise)}
+.fortschritt li::before{content:counter(fs) ". "}
+.fortschritt li.fertig{border-top-color:color-mix(in srgb,var(--text) 40%,transparent);color:var(--fliess)}
+.fortschritt li[aria-current]{border-top-color:var(--text);color:var(--text)}
+.auswahl{margin:-4px 0 0;font-size:.9375rem;color:var(--leise)}
+.schritt{display:grid;gap:18px}
+.schritt-frage{margin:4px 0 0;font:500 1.5rem/1.2 var(--f);letter-spacing:-.02em;outline:none}
+.schritt-knoepfe{display:flex;align-items:center;gap:12px;margin-top:4px}
+.weiter{flex:1;display:flex;align-items:center;justify-content:center;height:52px;border:0;border-radius:4px;background:var(--text);color:var(--flaeche);font:500 1rem/1 var(--f);cursor:pointer}
+.weiter:hover{background:color-mix(in srgb,var(--text) 82%,#ffffff)}
+.weiter:disabled{background:var(--linie);color:var(--leise);cursor:not-allowed}
+.zurueck{height:52px;padding:0 6px;border:0;background:transparent;color:var(--leise);font:500 1rem/1 var(--f);cursor:pointer}
+.zurueck:hover{color:var(--text)}
+.anfrage{display:grid;gap:18px}
+.keine-schaetzung{margin:0;padding:14px 16px;background:var(--grund);border:1px solid var(--haar);border-radius:4px;font-size:.9375rem}
+.zettel .reihe{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
+.zettel label{display:grid;gap:6px;min-width:0}
+.zettel label>span,.r-feldtitel{display:block;font:500 .875rem/1.2 var(--f);color:var(--fliess)}
+.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:400 1rem var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px}
+.zettel select:disabled{opacity:.55}
+.zettel select:focus-visible,.zettel input:focus-visible{outline:2px solid var(--text);outline-offset:1px}
+.zettel .stufen{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.zettel .stufen input{position:absolute;opacity:0;pointer-events:none}
+.zettel .stufen label{display:block}
+.zettel .stufen label span{display:flex;align-items:center;min-height:44px;padding:0 16px;font:500 .9375rem/1 var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px;cursor:pointer}
+.zettel .stufen input:checked+span{background:var(--text);color:var(--flaeche);border-color:var(--text)}
+.zettel .stufen input:focus-visible+span{outline:2px solid var(--text);outline-offset:2px}
+.vorschau{padding:12px 14px;font-size:.9375rem;white-space:pre-wrap;background:var(--grund);border-left:2px solid var(--linie);border-radius:0 4px 4px 0}
+.vorschau-auf summary{display:inline-flex;align-items:center;gap:10px;cursor:pointer;list-style:none;font:500 .9rem/1.2 var(--f);color:var(--leise)}
+.vorschau-auf summary::-webkit-details-marker{display:none}
+.vorschau-auf summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.vorschau-auf[open] summary::after{transform:translateY(1px) rotate(-135deg)}
+.vorschau-auf summary:hover{color:var(--text)}
+.vorschau-auf .vorschau{margin-top:12px}
+.vorschau b{display:block;margin-bottom:4px;font:500 .8125rem/1.2 var(--f);color:var(--leise)}
+.r-senden,.berechnen{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;border-radius:4px;font:500 1rem/1 var(--f);cursor:pointer}
+.r-senden{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--linie)}
+.r-senden:hover{box-shadow:inset 0 0 0 1px var(--text)}
+#berechnen[hidden]~.anfrage .r-senden{background:var(--akzent);color:var(--auf-akzent);box-shadow:none}
+#berechnen[hidden]~.anfrage .r-senden:hover{background:color-mix(in srgb,var(--akzent) 88%,#000000)}
+#erg-balken[hidden]~.schaetzung{display:none}
+.r-senden[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.berechnen{background:var(--akzent);color:var(--auf-akzent);border:0}
+.berechnen:hover{background:color-mix(in srgb,var(--akzent) 88%,#000000)}
+.fehlt{margin:-6px 0 0;font-size:.875rem;color:var(--leise)}
+.ergebnis{display:flex;flex-direction:column;gap:6px}
+.ergebnis .erg-kopf{order:0}.ergebnis .zahlen{order:1}.ergebnis .diagramm{order:2}.ergebnis .schaetzung{order:3}
+#erg-balken{display:none!important}
+.erg-kopf{font:500 .875rem/1.2 var(--f);color:var(--leise)}
+.ergebnis .zahlen{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.ergebnis .gesamt{order:-1;flex-basis:100%;font:500 clamp(2.75rem,10vw,3.5rem)/1 var(--f);letter-spacing:-.04em}
+.ergebnis .serie{order:1;color:var(--leise)}
+.ergebnis .gesamt:only-child{font:500 1.125rem/1.35 var(--f);letter-spacing:0}
+.ergebnis .plus{font-weight:500;color:var(--text)}
+.ergebnis .schaetzung,.rechner .hinweis{margin:0;font-size:.875rem;color:var(--leise)}
+.diagramm{margin:14px 0 4px}
+.diagramm svg{width:100%;max-width:440px;height:auto}
+.dia .gitter{stroke:var(--linie);stroke-width:1}
+.dia .achse{fill:var(--leise);font:500 11px var(--f)}
+.dia .achse.mitte{text-anchor:middle}.dia .achse.rechts{text-anchor:end}
+.dia .k-serie{fill:none;stroke:var(--leise);stroke-width:2;stroke-linejoin:round}
+.dia .k-stage{fill:none;stroke:var(--akzent);stroke-width:2.5;stroke-linejoin:round}
+.dia .band{fill:var(--akzent);opacity:.2}
+.dia .zeiger{stroke:var(--text);stroke-width:1;stroke-opacity:.45}
+.dia .p-serie{fill:var(--leise)}.dia .p-stage{fill:var(--akzent)}
+.dia .leg-serie{stroke:var(--leise);stroke-width:3}.dia .leg-stage{stroke:var(--akzent);stroke-width:3}
+/* Stage-Kurve in Tannengrün */
+.zettel .dia .k-stage,.zettel .dia .leg-stage{stroke:var(--akzent)}
+.zettel .dia .p-stage{fill:var(--akzent)}
+.zettel .dia .band{fill:var(--akzent);opacity:.12}
+.balken{display:grid;gap:8px}
+/* Vollbild beim Berechnen, hell wie die Seite */
+.r-buehne{position:fixed;inset:0;z-index:50;display:grid;place-items:center;align-content:center;gap:12px;cursor:pointer;opacity:0;
+  color-scheme:light;--grund:#f7f6f1;--flaeche:#fefdfa;--linie:#d7d6ce;--text:#15211a;--leise:#5e6860;background:var(--grund);color:var(--text);
+  padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.r-buehne.an{opacity:1}
+.r-buehne svg{width:min(92vw,560px);height:auto}
+.r-buehne .fahrzeug{font:500 clamp(1.5rem,6vw,2.25rem)/1.05 var(--f);letter-spacing:-.03em;text-align:center}
+.r-buehne .wert{font:500 clamp(3rem,12vw,4rem)/1 var(--f);letter-spacing:-.04em;font-variant-numeric:tabular-nums;text-align:center}
+.r-buehne .wert small{margin-left:6px;font:500 .9rem var(--f);letter-spacing:0;color:var(--leise)}
+.r-buehne .schritt{min-height:1.2em;font:500 .875rem/1.2 var(--f);text-align:center;color:var(--akzent)}
+.r-buehne .tippen{font-size:.75rem;color:var(--leise)}
+@media (max-width:480px){.zettel .reihe{grid-template-columns:1fr}.zettel{padding:24px 18px}}
+
+/* Gleich breite Ziffern nur bei reinen Zahlen: Schibsted setzt damit auch Punkt und Komma breit */
+/* Kontakt: Nachricht vorbereiten, Vorschau sehen, in WhatsApp öffnen */
+.kontakt{padding-block:clamp(88px,11vw,160px)}
+.kontakt-raster{display:grid;gap:48px}
+.kontakt-text{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.kontakt h2{margin:0;max-width:10em;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.kontakt-text p{margin:0;max-width:30em;color:var(--fliess)}
+.kontakt-text .nummer{display:grid;gap:4px;margin-top:12px}
+.nummer span{font-size:.875rem;color:var(--leise)}
+.nummer strong{color:var(--text);font-size:clamp(1.75rem,1.2rem + 1.6vw,2.5rem);font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.schreiben{min-width:0;display:grid;gap:22px;padding:28px 22px;background:var(--flaeche);border:1px solid var(--haar);border-radius:8px}
+.themen{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;border:0;min-width:0}
+.themen legend{float:left;width:100%;margin-bottom:10px;padding:0;font-size:.875rem;font-weight:500;color:var(--fliess)}
+.themen label{position:relative}
+.themen input{position:absolute;opacity:0;pointer-events:none}
+.themen span{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--linie);border-radius:4px;font-size:.9375rem;font-weight:500;line-height:1;cursor:pointer;transition:border-color .2s}
+.themen span:hover{border-color:var(--leise)}
+.themen input:checked+span{background:var(--text);border-color:var(--text);color:var(--grund)}
+.themen input:focus-visible+span{outline:2px solid var(--akzent);outline-offset:2px}
+.feld{display:grid;gap:6px;min-width:0}
+.feld span{font-size:.875rem;font-weight:500;color:var(--fliess)}
+.feld input,.feld textarea{width:100%;min-width:0;padding:0 14px;height:50px;font:400 1rem/1.4 var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:4px}
+.feld textarea{height:auto;min-height:84px;padding-block:12px;resize:vertical}
+.feld input::placeholder,.feld textarea::placeholder{color:var(--leise)}
+.feld input:focus-visible,.feld textarea:focus-visible{outline:2px solid var(--akzent);outline-offset:1px}
+.blase-wrap{display:grid;gap:8px;justify-items:end;padding:20px 16px;background:var(--grund);border-radius:4px}
+.blase-wrap>span{justify-self:start;font-size:.8125rem;color:var(--leise)}
+.blase{max-width:min(100%,24em);margin:0;padding:12px 14px;background:#dbf0de;border-radius:12px 12px 4px 12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.9375rem;line-height:1.45;color:var(--text)}
+.blase .leer{color:#535e55}
+.schreiben .knopf{justify-content:center}
+.klein{margin:-8px 0 0;font-size:.8125rem;color:var(--leise)}
+@media (min-width:1000px){.kontakt-raster{grid-template-columns:5fr 6fr;gap:80px}.schreiben{padding:32px}.kontakt-text .nummer{margin-top:auto;padding-bottom:4px}}
+
+/* Fuß: Wald, darauf das Emblem in seinem Champagner, Menü, Kontakt */
+.fuss{color-scheme:dark;--grund:#162a1f;--text:#ecebe6;--leise:#a4aea2;--akzent:#e4cc7f;
+  --fliess:color-mix(in srgb,var(--text) 80%,var(--grund));--haar:color-mix(in srgb,var(--text) 14%,transparent);
+  background:var(--grund);color:var(--text);padding-block:clamp(56px,7vw,96px) calc(28px + env(safe-area-inset-bottom,0px))}
+.fuss-raster{display:grid;gap:40px}
+.fuss-wappen svg{width:120px;height:120px}
+.fuss h2{margin:0 0 14px;font-size:.875rem;font-weight:500;color:var(--leise)}
+.fuss ul{list-style:none;margin:0;padding:0;display:grid}
+.fuss-raster a{display:inline-flex;align-items:center;min-height:40px}
+.fuss-raster a{transition:color .2s}
+.fuss-raster a:hover{color:var(--akzent)}
+.fuss-kontakt p{margin:0 0 6px}
+.fuss-unten{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:clamp(48px,6vw,80px);padding-top:20px;border-top:1px solid var(--haar);font-size:.875rem;color:var(--leise)}
+@media (min-width:900px){
+  .fuss-raster{grid-template-columns:repeat(12,minmax(0,1fr));gap:32px}
+  .fuss-wappen{grid-column:1/span 4}.fuss-nav{grid-column:7/span 3}.fuss-kontakt{grid-column:10/span 3}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Icons: Lucide (ISC-Lizenz) -->
+  <symbol id="nachricht" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
+  <symbol id="pfeil" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 4h3v16H7zM14 4h3v16h-3z" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></symbol>
+</svg>
+
+<header class="kopf" id="kopf">
+  <div class="innen kopf-zeile">
+    <a class="marke" href="#start" aria-label="Brenz KFZ, zum Anfang"><svg aria-hidden="true" viewBox="-100 -100 200 200"><path fill="#ffffff" d="M-64.89 -42.15Q-65.26 -41.58 -65.72 -40.91Q-66.19 -40.25 -66.65 -39.62Q-67.12 -39 -67.52 -38.51L-68.93 -39.42Q-68.53 -39.94 -68.1 -40.51Q-67.68 -41.08 -67.31 -41.62Q-66.94 -42.15 -66.69 -42.54Q-66.21 -43.29 -65.97 -43.75Q-65.73 -44.2 -65.71 -44.52Q-65.68 -44.75 -65.78 -44.92Q-65.88 -45.08 -66.06 -45.21Q-66.24 -45.35 -66.46 -45.49Q-66.76 -45.68 -66.96 -45.77Q-67.16 -45.87 -67.33 -45.85Q-67.5 -45.83 -67.67 -45.67Q-67.85 -45.51 -68.08 -45.21L-69.88 -42.95Q-70.42 -42.27 -70.88 -41.9Q-71.33 -41.53 -71.79 -41.47Q-72.25 -41.41 -72.77 -41.6Q-73.3 -41.8 -73.97 -42.23Q-74.87 -42.8 -75.21 -43.42Q-75.54 -44.04 -75.47 -44.71Q-75.39 -45.37 -75.03 -46.1Q-74.66 -46.82 -74.15 -47.62Q-73.77 -48.21 -73.34 -48.81Q-72.91 -49.4 -72.49 -49.93Q-72.07 -50.46 -71.74 -50.79L-70.37 -49.91Q-70.69 -49.55 -71.07 -49.05Q-71.44 -48.55 -71.82 -48Q-72.2 -47.46 -72.52 -46.97Q-72.95 -46.29 -73.19 -45.83Q-73.43 -45.38 -73.46 -45.07Q-73.53 -44.72 -73.34 -44.53Q-73.16 -44.33 -72.84 -44.13Q-72.46 -43.89 -72.23 -43.81Q-72 -43.74 -71.77 -43.9Q-71.53 -44.07 -71.14 -44.56L-69.31 -46.87Q-69 -47.27 -68.68 -47.58Q-68.35 -47.88 -67.99 -48.05Q-67.64 -48.21 -67.18 -48.15Q-66.92 -48.13 -66.64 -48.04Q-66.35 -47.96 -66.02 -47.79Q-65.7 -47.63 -65.33 -47.39Q-64.55 -46.89 -64.16 -46.38Q-63.76 -45.88 -63.69 -45.36Q-63.61 -44.85 -63.76 -44.33Q-63.91 -43.81 -64.22 -43.27Q-64.52 -42.72 -64.89 -42.15Z M-61.15 -47.77 -69.09 -54.64 -63.64 -60.94 -62.33 -59.82 -66.35 -55.18 -64.36 -53.46 -60.93 -57.43 -59.63 -56.31 -63.07 -52.34 -61.01 -50.56 -57 -55.2 -55.7 -54.07Z M-53.89 -55.87 -60.74 -63.83 -56.41 -67.55Q-55.55 -68.29 -54.87 -68.58Q-54.18 -68.87 -53.62 -68.79Q-53.06 -68.71 -52.55 -68.35Q-52.05 -67.98 -51.56 -67.42Q-51.11 -66.9 -50.82 -66.35Q-50.52 -65.81 -50.5 -65.23Q-50.48 -64.64 -50.84 -63.97L-46.71 -62.05L-48.44 -60.56L-52.84 -62.67L-51.88 -63.04Q-51.93 -62.71 -52.09 -62.53Q-52.26 -62.35 -52.43 -62.2L-54.73 -60.22L-52.22 -57.3ZM-55.84 -61.5 -53.86 -63.21Q-53.23 -63.74 -52.93 -64.1Q-52.63 -64.47 -52.58 -64.76Q-52.54 -65.04 -52.71 -65.33Q-52.88 -65.62 -53.19 -65.99Q-53.5 -66.35 -53.74 -66.54Q-53.97 -66.73 -54.27 -66.72Q-54.56 -66.71 -54.94 -66.47Q-55.33 -66.23 -55.93 -65.71L-57.96 -63.97Z M-42.14 -65.06 -51.22 -71.78 -49.25 -73 -42.13 -67.63 -42.07 -67.67 -43.75 -76.42 -41.82 -77.62 -39.77 -66.53Z M-34.45 -69.43 -38.99 -78.9 -37.02 -79.84 -32.48 -70.37Z M-25.27 -73.14Q-26.51 -72.69 -27.41 -72.52Q-28.31 -72.36 -28.96 -72.5Q-29.61 -72.65 -30.1 -73.12Q-30.59 -73.59 -31 -74.42Q-31.42 -75.26 -31.86 -76.48Q-32.3 -77.7 -32.51 -78.61Q-32.73 -79.52 -32.65 -80.2Q-32.58 -80.87 -32.18 -81.39Q-31.77 -81.91 -30.97 -82.36Q-30.16 -82.8 -28.91 -83.25Q-28.43 -83.43 -27.89 -83.59Q-27.36 -83.75 -26.85 -83.87Q-26.34 -83.99 -25.94 -84.05L-25.39 -82.51Q-25.87 -82.4 -26.31 -82.27Q-26.76 -82.14 -27.14 -82.03Q-27.51 -81.92 -27.78 -81.83Q-28.69 -81.5 -29.26 -81.23Q-29.84 -80.95 -30.12 -80.65Q-30.41 -80.34 -30.45 -79.91Q-30.49 -79.47 -30.31 -78.83Q-30.14 -78.19 -29.79 -77.22Q-29.44 -76.26 -29.17 -75.66Q-28.89 -75.05 -28.58 -74.74Q-28.28 -74.43 -27.86 -74.37Q-27.44 -74.32 -26.83 -74.48Q-26.21 -74.64 -25.31 -74.96Q-24.72 -75.18 -24.07 -75.46Q-23.43 -75.74 -22.95 -75.99L-22.38 -74.41Q-22.75 -74.22 -23.24 -73.99Q-23.74 -73.76 -24.26 -73.54Q-24.79 -73.32 -25.27 -73.14Z M-19.94 -74.99 -22.13 -85.26 -13.98 -87 -13.62 -85.31 -19.62 -84.03 -19.07 -81.46 -13.94 -82.56 -13.58 -80.89 -18.72 -79.79 -18.15 -77.14 -12.15 -78.41 -11.79 -76.73Z M14.85 -76.07 16.64 -84.6 13.04 -85.36 13.41 -87.1 22.73 -85.15 22.36 -83.4 18.76 -84.16 16.97 -75.63Z M26.83 -72.58Q25.64 -73.02 24.88 -73.44Q24.11 -73.86 23.73 -74.33Q23.34 -74.81 23.27 -75.43Q23.2 -76.05 23.4 -76.87Q23.61 -77.69 24.02 -78.81L26.02 -84.2L28.08 -83.44L25.92 -77.6Q25.62 -76.8 25.5 -76.29Q25.38 -75.78 25.5 -75.44Q25.63 -75.1 26.1 -74.83Q26.56 -74.55 27.44 -74.22Q28.32 -73.9 28.85 -73.81Q29.37 -73.72 29.68 -73.9Q30 -74.07 30.24 -74.54Q30.48 -75.01 30.77 -75.81L32.93 -81.65L34.98 -80.89L32.98 -75.49Q32.57 -74.38 32.19 -73.62Q31.82 -72.87 31.37 -72.44Q30.93 -72.01 30.33 -71.9Q29.72 -71.78 28.88 -71.96Q28.03 -72.13 26.83 -72.58Z M34.06 -69.79 39.25 -78.92 41.24 -77.78 42.42 -69.07 42.49 -69.03 45.95 -75.11 47.75 -74.08 42.56 -64.95 40.76 -65.98 39.54 -75.08 39.47 -75.12 35.86 -68.76Z M45.02 -63.09 51.23 -71.56 52.99 -70.26 46.78 -61.8Z M49.27 -60.02 56.43 -67.7 58.11 -66.14 57.25 -57.38 57.3 -57.33 62.07 -62.45 63.59 -61.03 56.43 -53.35 54.91 -54.77 55.83 -63.9 55.77 -63.95 50.79 -58.61Z M61.43 -47.06Q60.62 -48.09 60.17 -48.92Q59.72 -49.75 59.63 -50.45Q59.54 -51.16 59.82 -51.8Q60.1 -52.44 60.75 -53.11Q61.39 -53.77 62.4 -54.56Q63.43 -55.35 64.23 -55.81Q65.04 -56.26 65.73 -56.37Q66.42 -56.48 67.08 -56.23Q67.73 -55.98 68.41 -55.35Q69.08 -54.72 69.88 -53.68Q70.24 -53.23 70.64 -52.63Q71.05 -52.04 71.43 -51.42Q71.81 -50.81 72.09 -50.28L70.81 -49.28Q70.49 -49.82 70.16 -50.33Q69.84 -50.83 69.57 -51.23Q69.3 -51.63 69.1 -51.88Q68.47 -52.7 67.99 -53.25Q67.52 -53.8 67.11 -54.05Q66.7 -54.3 66.25 -54.25Q65.79 -54.2 65.19 -53.85Q64.6 -53.5 63.74 -52.84Q62.98 -52.25 62.5 -51.79Q62.02 -51.34 61.81 -50.94Q61.6 -50.54 61.65 -50.12Q61.71 -49.71 61.99 -49.2Q62.28 -48.69 62.81 -48.01Q63.01 -47.76 63.24 -47.48Q63.48 -47.2 63.69 -46.95Q63.91 -46.7 64.03 -46.55L66.11 -48.17L64.7 -49.99L65.99 -50.99L68.66 -47.55L64.17 -44.07Q63.71 -44.52 63.2 -45.04Q62.7 -45.57 62.23 -46.1Q61.76 -46.62 61.43 -47.06Z M-69.29 54.55 -58.55 50.79 -56.69 52.87 -61.58 63.13 -63.13 61.41 -62 59.06 -65.35 55.32 -67.82 56.19ZM-63.63 54.68 -61.18 57.42 -58.97 53.09 -59.08 52.97Z M-54.82 69Q-55.81 68.21 -56.4 67.57Q-57 66.93 -57.22 66.36Q-57.43 65.79 -57.31 65.18Q-57.18 64.56 -56.73 63.85Q-56.28 63.14 -55.54 62.2L-51.96 57.7L-50.24 59.07L-54.11 63.94Q-54.65 64.61 -54.92 65.05Q-55.2 65.5 -55.18 65.86Q-55.17 66.22 -54.81 66.63Q-54.45 67.04 -53.73 67.62Q-52.98 68.21 -52.52 68.46Q-52.05 68.7 -51.69 68.63Q-51.34 68.57 -50.97 68.2Q-50.6 67.83 -50.06 67.16L-46.19 62.29L-44.48 63.64L-48.06 68.15Q-48.8 69.08 -49.4 69.68Q-49.99 70.28 -50.54 70.55Q-51.1 70.82 -51.71 70.74Q-52.31 70.65 -53.06 70.22Q-53.81 69.79 -54.82 69Z M-46.5 74.8 -41.32 65.66 -34.38 69.6 -35.23 71.1 -40.26 68.25 -41.7 70.78 -37.26 73.3 -38.11 74.8 -42.55 72.28 -44.59 75.88Z M-35.36 80.71 -31.64 70.89 -26 73.02Q-24.92 73.43 -24.37 73.97Q-23.82 74.5 -23.73 75.18Q-23.63 75.85 -23.93 76.63Q-24.18 77.29 -24.55 77.69Q-24.92 78.09 -25.44 78.22Q-25.97 78.36 -26.67 78.24L-26.69 78.29Q-26.01 78.72 -25.69 79.19Q-25.37 79.66 -25.37 80.21Q-25.37 80.75 -25.63 81.42Q-25.84 82 -26.17 82.41Q-26.5 82.82 -26.98 83.04Q-27.45 83.26 -28.14 83.22Q-28.82 83.18 -29.74 82.84ZM-32.72 79.9 -29.81 81Q-29.12 81.26 -28.69 81.28Q-28.26 81.31 -28 81.08Q-27.73 80.86 -27.54 80.36Q-27.36 79.87 -27.41 79.52Q-27.47 79.18 -27.81 78.91Q-28.15 78.64 -28.82 78.39L-31.73 77.28ZM-31.15 75.76 -28.28 76.84Q-27.66 77.08 -27.24 77.09Q-26.82 77.11 -26.54 76.9Q-26.27 76.69 -26.1 76.25Q-25.92 75.77 -25.96 75.44Q-26 75.12 -26.32 74.86Q-26.65 74.61 -27.34 74.35L-30.21 73.26Z M-21.71 85.37 -19.58 75.09 -11.42 76.78 -11.77 78.47 -17.78 77.22 -18.31 79.79 -13.17 80.86 -13.52 82.53 -18.66 81.47 -19.21 84.13 -13.21 85.37 -13.56 87.06Z M-8.65 87.69 -8.15 77.2 -2.45 77.47Q-1.32 77.53 -0.63 77.79Q0.07 78.05 0.43 78.49Q0.78 78.94 0.89 79.55Q1.01 80.16 0.97 80.9Q0.94 81.59 0.78 82.19Q0.63 82.78 0.24 83.22Q-0.15 83.66 -0.86 83.9L0.81 88.14L-1.47 88.03L-3.21 83.47L-2.27 83.87Q-2.52 84.07 -2.77 84.09Q-3.01 84.11 -3.24 84.1L-6.28 83.95L-6.46 87.79ZM-6.19 82.26 -3.59 82.38Q-2.76 82.42 -2.3 82.37Q-1.83 82.31 -1.6 82.13Q-1.37 81.95 -1.29 81.63Q-1.21 81.3 -1.19 80.82Q-1.17 80.34 -1.21 80.04Q-1.25 79.74 -1.47 79.55Q-1.69 79.36 -2.13 79.27Q-2.58 79.18 -3.37 79.14L-6.04 79.01Z M5.75 87.9 4.6 77.46 12.88 76.55 13.07 78.26 6.97 78.94 7.26 81.54 12.48 80.97 12.67 82.67 7.45 83.24 7.75 85.94 13.84 85.27 14.03 86.99Z M18.85 85.97 16.47 75.74 18.6 75.24 20.97 85.47Z M28.67 83.21 25.73 75 22.27 76.24 21.66 74.56 30.63 71.35 31.23 73.03 27.77 74.27 30.71 82.47Z M42.33 77.29Q41.22 77.9 40.4 78.2Q39.58 78.5 38.97 78.48Q38.36 78.45 37.84 78.1Q37.33 77.75 36.85 77.06Q36.36 76.36 35.79 75.32L33.03 70.27L34.95 69.22L37.94 74.68Q38.36 75.43 38.66 75.86Q38.96 76.28 39.3 76.41Q39.64 76.54 40.16 76.37Q40.67 76.2 41.49 75.75Q42.32 75.29 42.73 74.96Q43.13 74.62 43.21 74.27Q43.28 73.91 43.09 73.43Q42.89 72.94 42.48 72.19L39.49 66.73L41.41 65.69L44.17 70.73Q44.74 71.78 45.06 72.56Q45.39 73.34 45.42 73.95Q45.45 74.57 45.14 75.1Q44.83 75.62 44.14 76.15Q43.46 76.67 42.33 77.29Z M50.94 71.92 44.41 63.7 46.2 62.28 54.73 64.42 54.79 64.38 50.44 58.91 52.06 57.61 58.6 65.83 56.98 67.12 48.08 64.86 48.02 64.91 52.57 70.63Z M65.96 58.44Q65.09 59.41 64.35 60Q63.62 60.6 62.94 60.81Q62.27 61.03 61.58 60.86Q60.9 60.7 60.13 60.19Q59.36 59.67 58.41 58.82Q57.44 57.95 56.85 57.24Q56.26 56.52 56.03 55.86Q55.8 55.21 55.93 54.51Q56.06 53.82 56.56 53.05Q57.06 52.27 57.93 51.3Q58.32 50.87 58.83 50.36Q59.35 49.86 59.88 49.38Q60.42 48.89 60.89 48.52L62.1 49.6Q61.62 50.02 61.19 50.42Q60.75 50.83 60.41 51.17Q60.06 51.51 59.85 51.74Q59.15 52.52 58.7 53.08Q58.24 53.65 58.07 54.09Q57.89 54.54 58.02 54.98Q58.16 55.41 58.61 55.94Q59.06 56.47 59.86 57.19Q60.58 57.83 61.11 58.23Q61.64 58.62 62.07 58.75Q62.51 58.88 62.9 58.76Q63.3 58.64 63.75 58.26Q64.2 57.88 64.77 57.25Q64.99 57.01 65.22 56.73Q65.45 56.44 65.66 56.19Q65.87 55.93 66 55.79L64.04 54.02L62.5 55.74L61.28 54.65L64.18 51.41L68.41 55.2Q68.05 55.74 67.63 56.33Q67.2 56.92 66.76 57.47Q66.33 58.03 65.96 58.44Z M-83.17 6.25 -76.69 -24.25H-57.72Q-54.97 -24.25 -53 -23.54Q-51.03 -22.83 -49.98 -21.48Q-48.94 -20.13 -48.94 -18.22Q-48.94 -17.29 -49.12 -16.43Q-49.3 -15.56 -49.61 -14.81Q-50.45 -12.64 -52.38 -11.24Q-54.31 -9.84 -57.01 -9.4V-9.22Q-55.5 -8.82 -54.42 -8.25Q-53.33 -7.67 -52.71 -6.67Q-52.09 -5.68 -52.09 -3.95Q-52.09 -3.02 -52.22 -2.13Q-52.36 -1.24 -52.6 -0.42Q-52.84 0.4 -53.2 1.15Q-53.73 2.3 -54.57 3.26Q-55.41 4.21 -56.74 4.88Q-58.07 5.54 -59.91 5.9Q-61.75 6.25 -64.28 6.25ZM-69.95 -1.29H-67.3Q-65.92 -1.29 -65.26 -1.42Q-64.59 -1.55 -64.28 -2.04Q-63.97 -2.53 -63.75 -3.55Q-63.66 -3.9 -63.62 -4.26Q-63.57 -4.61 -63.57 -4.83Q-63.57 -5.59 -64.15 -5.83Q-64.72 -6.07 -66.32 -6.07H-68.94ZM-67.65 -12.24H-65.03Q-63.53 -12.24 -62.86 -12.39Q-62.2 -12.55 -61.95 -13.03Q-61.71 -13.52 -61.49 -14.45Q-61.4 -14.81 -61.35 -15.07Q-61.31 -15.34 -61.31 -15.56Q-61.31 -16.31 -61.91 -16.51Q-62.51 -16.71 -64.06 -16.71H-66.67ZM-49.92 6.25 -43.44 -24.25H-25.58Q-21.81 -24.25 -19.71 -23.56Q-17.6 -22.88 -16.74 -21.52Q-15.87 -20.17 -15.87 -18.13Q-15.87 -17.47 -15.94 -16.67Q-16 -15.87 -16.16 -15.01Q-16.31 -14.14 -16.58 -13.17Q-16.93 -11.66 -17.31 -10.42Q-17.69 -9.18 -18.24 -8.18Q-18.8 -7.18 -19.77 -6.41Q-20.75 -5.63 -22.3 -5.05L-20.08 6.25H-31.96L-33.2 -3.95Q-33.43 -3.95 -33.69 -3.95Q-33.96 -3.95 -34.18 -3.95H-35.95L-38.17 6.25ZM-34.45 -11.17H-32.18Q-31.08 -11.17 -30.39 -11.24Q-29.7 -11.31 -29.3 -11.57Q-28.9 -11.84 -28.66 -12.37Q-28.42 -12.9 -28.24 -13.83Q-28.15 -14.28 -28.06 -14.67Q-27.97 -15.07 -27.97 -15.34Q-27.97 -15.87 -28.24 -16.12Q-28.51 -16.36 -29.17 -16.45Q-29.84 -16.54 -31.08 -16.54H-33.29ZM-16.31 6.25 -9.84 -24.25H16.49L14.81 -16.36H0.22L-0.49 -12.99H11.48L9.84 -5.32H-2.13L-2.93 -1.64H11.7L9.97 6.25ZM14.94 6.25 21.41 -24.25H34L38.48 -12.46H38.79L41.32 -24.25H52.31L45.79 6.25H34.49L29.3 -8.29H28.99L25.89 6.25ZM50.27 6.25 51.96 -1.46 67.83 -16.36H55.64L57.36 -24.25H84.85L83.25 -16.85L67.07 -1.64H80.02L78.29 6.25Z M-63.48 -36.65 A73.3 73.3 0 0 1 63.48 -36.65 L62.09 -35.85 A71.7 71.7 0 0 0 -62.09 -35.85 Z M60.76 41 A73.3 73.3 0 0 1 -60.76 41 L-59.44 40.1 A71.7 71.7 0 0 0 59.44 40.1 Z"/><path fill="#e4cc7f" d="M100 0 A100 100 0 1 1 -100 0 A100 100 0 1 1 100 0 Z M93 0 A93 93 0 1 0 -93 0 A93 93 0 1 0 93 0 Z M2.4 -82.75 A2.4 2.4 0 1 1 -2.4 -82.75 A2.4 2.4 0 1 1 2.4 -82.75 Z M-30.51 34.55 -26.63 16.25H-19.55L-20.99 22.98H-20.77L-14.55 16.25H-6.73L-15.37 25.21L-10.56 34.55H-18.17L-21.73 27.5H-21.97L-23.46 34.55ZM-7.53 34.55 -3.64 16.25H11.57L10.53 20.98H2.39L1.73 23.94H8.67L7.69 28.7H0.77L-0.51 34.55ZM10.77 34.55 11.78 29.92 21.31 20.98H13.99L15.03 16.25H31.52L30.56 20.69L20.85 29.82H28.62L27.58 34.55Z M36.48 23.8 L76 23.8 L76 27 L36.48 27 Z M-36.48 23.8 L-76 23.8 L-76 27 L-36.48 27 Z"/></svg></a>
+    <nav class="nav" aria-label="Hauptmenü">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#rechner">Chiptuning-Rechner</a>
+      <a href="#aufbereitung">Aufbereitung</a>
+      <a href="#kontakt">Kontakt</a>
+      <a class="knopf" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage</a>
+    </nav>
+    <button class="menue-knopf" id="burger" type="button" aria-expanded="false" aria-controls="handymenue" aria-label="Menü öffnen">Menü<i aria-hidden="true"></i></button>
+  </div>
+</header>
+<div class="handymenue" id="handymenue" hidden>
+  <nav aria-label="Hauptmenü">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#rechner">Chiptuning-Rechner</a>
+    <a href="#aufbereitung">Aufbereitung</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <a class="knopf" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+</div>
+
+<main>
+  <section class="held" id="start" aria-labelledby="held-titel">
+    <div class="innen held-raster">
+      <h1 id="held-titel">Kfz-Service, Chiptuning und Aufbereitung. <span class="grau">Im Raum Heidenheim.</span></h1>
+      <div class="held-seite">
+        <p>Kfz-Service und Fahrzeugaufbereitung für Heidenheim und Umgebung. Softwareoptimierung auch für Fahrzeuge aus der ganzen Region.</p>
+        <a class="knopf" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+      </div>
+      <div class="film-rahmen">
+        <div class="film" aria-hidden="true">
+          <!-- Platzhalter von Pexels (Nr. 8987289 und 4488712), bis es eigene Aufnahmen aus der Werkstatt gibt -->
+          <video class="hoch" muted loop playsinline preload="none" disablepictureinpicture poster="img/film-hoch.webp"><source src="img/werkstatt-hoch.mp4" type="video/mp4"></video>
+          <video class="quer" muted loop playsinline preload="none" disablepictureinpicture poster="img/film-quer.webp"><source src="img/werkstatt-quer.mp4" type="video/mp4"></video>
+        </div>
+        <button class="pause" id="film-pause" type="button" aria-label="Film anhalten" hidden><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <nav class="uebersicht" aria-label="Leistungen im Überblick">
+    <div class="innen">
+      <ul>
+        <li><a href="#service"><span class="u-titel">Kfz-Service</span><span class="u-gebiet">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+        <li><a href="#software"><span class="u-titel">Software&shy;optimierung</span><span class="u-gebiet">Für die ganze Region</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+        <li><a href="#aufbereitung"><span class="u-titel">Fahrzeug&shy;aufbereitung</span><span class="u-gebiet">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+        <li><a href="#rechner"><span class="u-titel">Chiptuning-Rechner</span><span class="u-gebiet">Stage 1 grob berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="leistungen" id="leistungen" aria-labelledby="leistungen-titel">
+    <div class="innen">
+      <h2 class="sr" id="leistungen-titel">Leistungen</h2>
+
+      <article class="kapitel" id="service" aria-labelledby="k1">
+        <figure class="kapitel-bild">
+          <!-- Standbilder aus den Platzhalter-Filmen, immer aus dem Film, der oben gerade nicht läuft: Desktop aus dem Hochkant-Film, darunter aus dem Querformat -->
+          <picture>
+            <source media="(min-width: 900px)" srcset="img/kapitel-service-hoch.webp" width="720" height="900">
+            <source media="(min-width: 600px)" srcset="img/kapitel-service-breit.webp" width="1200" height="750">
+            <img src="img/kapitel-service-quer.webp" width="674" height="844" alt="Mechaniker bei der Arbeit an einem Motor" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="kapitel-text">
+          <h3 id="k1">Kfz-Service</h3>
+          <p class="gebiet">Heidenheim und Umgebung</p>
+          <p class="text">Schreiben Sie uns per WhatsApp, was an Ihrem Fahrzeug ansteht. Wir melden uns zurück.</p>
+          <a class="link" href="#kontakt" data-thema="service"><span>Termin anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        </div>
+      </article>
+
+      <article class="kapitel" id="software" aria-labelledby="k2">
+        <figure class="kapitel-bild">
+          <!-- Herkunft des Motorfotos offen, nur für den Entwurf -->
+          <picture>
+            <source media="(min-width: 600px)" srcset="img/kapitel-software-breit.webp" width="1400" height="1202">
+            <img src="img/kapitel-software.webp" width="800" height="1000" alt="Motorraum mit Ansaugtrakt" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="kapitel-text">
+          <h3 id="k2">Software&shy;optimierung</h3>
+          <p class="gebiet">Für Fahrzeuge aus der ganzen Region</p>
+          <p class="text">Mehr Leistung durch angepasste Motorsoftware, als Partner von Tuningfiles Germany. Stage 1 können Sie unten grob berechnen, Stage 2 gibt es auf Anfrage.</p>
+          <a class="link" href="#rechner"><span>Leistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        </div>
+      </article>
+
+      <article class="kapitel" id="aufbereitung" aria-labelledby="k3">
+        <figure class="kapitel-bild">
+          <!-- Herkunft des Fotos offen, nur für den Entwurf -->
+          <picture>
+            <source media="(min-width: 600px)" srcset="img/aufbereitung.webp" width="1600" height="1067">
+            <img src="img/kapitel-aufbereitung.webp" width="800" height="1000" alt="Felge wird mit einem Pinsel gereinigt" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="kapitel-text">
+          <h3 id="k3">Fahrzeug&shy;aufbereitung</h3>
+          <p class="gebiet">Heidenheim und Umgebung</p>
+          <p class="text">Ihr Fahrzeug wird bei uns gründlich aufbereitet. Was gemacht werden soll, besprechen wir vorher mit Ihnen, dann wissen Sie genau, was Sie bekommen.</p>
+          <a class="link" href="#kontakt" data-thema="aufbereitung"><span>Aufbereitung anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="rechner" id="rechner" aria-labelledby="rechner-titel">
+    <div class="innen rechner-raster">
+      <div class="rechner-text">
+        <h2 id="rechner-titel">Was geht bei Ihrem Motor?</h2>
+        <p class="rechner-unter">In drei Schritten zur geschätzten Mehrleistung. Die genauen Werte für Ihr Fahrzeug bekommen Sie per WhatsApp.</p>
+        <dl class="daten">
+          <div><dt>Schätzung</dt><dd>Stage 1, je Motortyp</dd></div>
+          <div><dt>Stage 2</dt><dd>auf Anfrage</dd></div>
+          <div><dt>Partner</dt><dd>Tuningfiles Germany</dd></div>
+          <div><dt>Genaue Werte</dt><dd>nach dem Auslesen Ihres Fahrzeugs</dd></div>
+        </dl>
+      </div>
+      <form class="zettel" id="form" novalidate>
+        <ol class="fortschritt" aria-label="Fortschritt">
+          <li aria-current="step">Fahrzeug</li>
+          <li>Motor und Baujahr</li>
+          <li>Leistung</li>
+        </ol>
+        <p class="auswahl" id="auswahl" hidden></p>
+
+        <div class="schritt" id="schritt-1" role="group" aria-labelledby="frage-1">
+          <h3 class="schritt-frage" id="frage-1" tabindex="-1">Welches Fahrzeug fahren Sie?</h3>
+          <label for="marke"><span>Marke</span><select id="marke" required><option value="">Bitte wählen</option></select></label>
+          <label for="modell"><span>Modell</span><select id="modell" required disabled><option value="">Erst Marke wählen</option></select></label>
+          <label for="modell-frei" id="modell-frei-feld" hidden><span>Modell eintragen</span><input type="text" id="modell-frei" maxlength="40" placeholder="z. B. Insignia Sports Tourer"></label>
+          <div class="schritt-knoepfe"><button type="button" class="weiter" id="weiter-1" disabled>Weiter</button></div>
+        </div>
+
+        <div class="schritt" id="schritt-2" role="group" aria-labelledby="frage-2" hidden>
+          <h3 class="schritt-frage" id="frage-2" tabindex="-1">Motor und Baujahr</h3>
+          <div class="reihe" id="motor-wahl" hidden>
+            <label for="baureihe"><span>Baureihe</span><select id="baureihe"></select></label>
+            <label for="motor-liste"><span>Motor</span><select id="motor-liste"></select></label>
+          </div>
+          <label for="motor" id="motor-frei-feld"><span>Motor und Leistung</span><input type="text" id="motor" maxlength="50" placeholder="z. B. 2.0 TDI 190 PS (steht im Fahrzeugschein)"></label>
+          <p class="hinweis" id="motor-hinweis" hidden>Motoren und Serienleistung sind eine Auswahlhilfe. Bitte mit dem Fahrzeugschein abgleichen.</p>
+          <div class="reihe">
+            <label for="baujahr"><span>Baujahr</span><select id="baujahr" required><option value="">Bitte wählen</option></select></label>
+            <label for="kraftstoff"><span>Kraftstoff</span><select id="kraftstoff"><option>Diesel</option><option>Benzin</option><option>Hybrid</option></select></label>
+          </div>
+          <div class="schritt-knoepfe"><button type="button" class="zurueck" data-zurueck>Zurück</button><button type="button" class="weiter" id="weiter-2" disabled>Weiter</button></div>
+        </div>
+
+        <div class="schritt" id="schritt-3" role="group" aria-labelledby="frage-3" hidden>
+          <h3 class="schritt-frage" id="frage-3" tabindex="-1">Ihre geschätzte Leistung</h3>
+          <button type="button" class="berechnen" id="berechnen" hidden>Leistung berechnen</button>
+          <div class="ergebnis" id="ergebnis" hidden aria-live="polite">
+            <span class="erg-kopf" id="erg-kopf">Geschätzt, Stage 1</span>
+            <div class="diagramm" id="diagramm" hidden aria-hidden="true"><svg viewBox="0 0 320 214" class="dia" id="dia-svg"></svg></div>
+            <div class="zahlen" id="erg-zahlen"></div>
+            <div class="balken" id="erg-balken" hidden>
+              <div class="zeile s"><span>Serie</span><span class="spur"><span class="fuell" id="b-serie"></span></span><span class="wert" id="b-serie-w"></span></div>
+              <div class="zeile t"><span>Stage 1</span><span class="spur"><span class="rest" id="b-rest"></span><span class="fuell" id="b-tuning"></span></span><span class="wert" id="b-tuning-w"></span></div>
+            </div>
+            <p class="schaetzung">Grobe Schätzung für diesen Motortyp, keine Zusage. Die genaue Leistung hängt vom Zustand Ihres Fahrzeugs ab und steht erst nach dem Auslesen fest.</p>
+          </div>
+          <p class="keine-schaetzung" id="keine-schaetzung" hidden>Für dieses Fahrzeug können wir hier keine Schätzung zeigen. Fragen Sie die Werte einfach per WhatsApp an.</p>
+          <div class="anfrage" id="anfrage" hidden>
+            <div>
+              <span class="r-feldtitel" id="wunsch-titel">Was möchten Sie anfragen?</span>
+              <div class="stufen" role="radiogroup" aria-labelledby="wunsch-titel">
+                <label><input type="radio" name="wunsch" value="Stage 1" checked><span>Stage 1</span></label>
+                <label><input type="radio" name="wunsch" value="Stage 2"><span>Stage 2 auf Anfrage</span></label>
+                <label><input type="radio" name="wunsch" value="Beratung"><span>Beratung</span></label>
+              </div>
+            </div>
+                <a class="r-senden" id="senden" href="#" target="_blank" rel="noopener" aria-disabled="true">Anfrage per WhatsApp</a>
+            <p class="fehlt" id="fehlt">Bitte Marke, Modell und Baujahr wählen.</p>
+            <details class="vorschau-auf"><summary>Nachricht ansehen</summary><div class="vorschau" id="vorschau" aria-live="polite"><b>Ihre Nachricht</b><span id="text"></span></div></details>
+            <p class="hinweis">Vor jeder Optimierung wird das Fahrzeug ausgelesen und geprüft. Je nach Stufe kann eine Eintragung durch eine Prüforganisation erforderlich sein.</p>
+          </div>
+          <div class="schritt-knoepfe"><button type="button" class="zurueck" data-zurueck>Zurück</button></div>
+        </div>
+      </form>
+    </div>
+
+    <div class="r-buehne" id="buehne" hidden role="dialog" aria-modal="true" aria-label="Leistung wird berechnet">
+      <div class="fahrzeug" id="b-fahrzeug"></div>
+      <svg viewBox="0 0 320 214" class="dia" id="buehne-svg" aria-hidden="true"></svg>
+      <div class="wert" id="b-wert"></div>
+      <div class="schritt" id="b-schritt" aria-live="polite"></div>
+      <div class="tippen">Tippen zum Überspringen</div>
+    </div>
+
+  </section>
+
+  <section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
+    <div class="innen kontakt-raster">
+      <div class="kontakt-text">
+        <h2 id="kontakt-titel">Am schnellsten per WhatsApp</h2>
+        <p>Schreiben Sie uns Fahrzeug und Anliegen. Tagsüber erreichen Sie uns am besten per WhatsApp, wir melden uns zurück.</p>
+        <p class="nummer"><span>WhatsApp</span><strong>0176 62794745</strong></p>
+      </div>
+      <form class="schreiben" id="schreiben" novalidate>
+        <fieldset class="themen">
+          <legend>Worum geht es?</legend>
+          <label><input type="radio" name="thema" value="service" checked><span>Kfz-Service</span></label>
+          <label><input type="radio" name="thema" value="software"><span>Softwareoptimierung</span></label>
+          <label><input type="radio" name="thema" value="aufbereitung"><span>Aufbereitung</span></label>
+        </fieldset>
+        <label class="feld"><span>Fahrzeug</span><input id="s-fahrzeug" type="text" autocomplete="off" placeholder="z. B. VW Golf 7, 2016"></label>
+        <label class="feld"><span id="s-frage">Was steht an?</span><textarea id="s-anliegen" rows="2" placeholder="Optional"></textarea></label>
+        <div class="blase-wrap">
+          <span>So kommt Ihre Nachricht bei uns an</span>
+          <p class="blase" id="s-blase"></p>
+        </div>
+        <a class="knopf" id="s-senden" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>In WhatsApp öffnen</a>
+        <p class="klein">Gesendet wird erst, wenn Sie die Nachricht in WhatsApp abschicken.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="fuss">
+  <div class="innen">
+    <div class="fuss-raster">
+      <div class="fuss-wappen"><svg aria-hidden="true" viewBox="-100 -100 200 200"><path fill="#ffffff" d="M-64.89 -42.15Q-65.26 -41.58 -65.72 -40.91Q-66.19 -40.25 -66.65 -39.62Q-67.12 -39 -67.52 -38.51L-68.93 -39.42Q-68.53 -39.94 -68.1 -40.51Q-67.68 -41.08 -67.31 -41.62Q-66.94 -42.15 -66.69 -42.54Q-66.21 -43.29 -65.97 -43.75Q-65.73 -44.2 -65.71 -44.52Q-65.68 -44.75 -65.78 -44.92Q-65.88 -45.08 -66.06 -45.21Q-66.24 -45.35 -66.46 -45.49Q-66.76 -45.68 -66.96 -45.77Q-67.16 -45.87 -67.33 -45.85Q-67.5 -45.83 -67.67 -45.67Q-67.85 -45.51 -68.08 -45.21L-69.88 -42.95Q-70.42 -42.27 -70.88 -41.9Q-71.33 -41.53 -71.79 -41.47Q-72.25 -41.41 -72.77 -41.6Q-73.3 -41.8 -73.97 -42.23Q-74.87 -42.8 -75.21 -43.42Q-75.54 -44.04 -75.47 -44.71Q-75.39 -45.37 -75.03 -46.1Q-74.66 -46.82 -74.15 -47.62Q-73.77 -48.21 -73.34 -48.81Q-72.91 -49.4 -72.49 -49.93Q-72.07 -50.46 -71.74 -50.79L-70.37 -49.91Q-70.69 -49.55 -71.07 -49.05Q-71.44 -48.55 -71.82 -48Q-72.2 -47.46 -72.52 -46.97Q-72.95 -46.29 -73.19 -45.83Q-73.43 -45.38 -73.46 -45.07Q-73.53 -44.72 -73.34 -44.53Q-73.16 -44.33 -72.84 -44.13Q-72.46 -43.89 -72.23 -43.81Q-72 -43.74 -71.77 -43.9Q-71.53 -44.07 -71.14 -44.56L-69.31 -46.87Q-69 -47.27 -68.68 -47.58Q-68.35 -47.88 -67.99 -48.05Q-67.64 -48.21 -67.18 -48.15Q-66.92 -48.13 -66.64 -48.04Q-66.35 -47.96 -66.02 -47.79Q-65.7 -47.63 -65.33 -47.39Q-64.55 -46.89 -64.16 -46.38Q-63.76 -45.88 -63.69 -45.36Q-63.61 -44.85 -63.76 -44.33Q-63.91 -43.81 -64.22 -43.27Q-64.52 -42.72 -64.89 -42.15Z M-61.15 -47.77 -69.09 -54.64 -63.64 -60.94 -62.33 -59.82 -66.35 -55.18 -64.36 -53.46 -60.93 -57.43 -59.63 -56.31 -63.07 -52.34 -61.01 -50.56 -57 -55.2 -55.7 -54.07Z M-53.89 -55.87 -60.74 -63.83 -56.41 -67.55Q-55.55 -68.29 -54.87 -68.58Q-54.18 -68.87 -53.62 -68.79Q-53.06 -68.71 -52.55 -68.35Q-52.05 -67.98 -51.56 -67.42Q-51.11 -66.9 -50.82 -66.35Q-50.52 -65.81 -50.5 -65.23Q-50.48 -64.64 -50.84 -63.97L-46.71 -62.05L-48.44 -60.56L-52.84 -62.67L-51.88 -63.04Q-51.93 -62.71 -52.09 -62.53Q-52.26 -62.35 -52.43 -62.2L-54.73 -60.22L-52.22 -57.3ZM-55.84 -61.5 -53.86 -63.21Q-53.23 -63.74 -52.93 -64.1Q-52.63 -64.47 -52.58 -64.76Q-52.54 -65.04 -52.71 -65.33Q-52.88 -65.62 -53.19 -65.99Q-53.5 -66.35 -53.74 -66.54Q-53.97 -66.73 -54.27 -66.72Q-54.56 -66.71 -54.94 -66.47Q-55.33 -66.23 -55.93 -65.71L-57.96 -63.97Z M-42.14 -65.06 -51.22 -71.78 -49.25 -73 -42.13 -67.63 -42.07 -67.67 -43.75 -76.42 -41.82 -77.62 -39.77 -66.53Z M-34.45 -69.43 -38.99 -78.9 -37.02 -79.84 -32.48 -70.37Z M-25.27 -73.14Q-26.51 -72.69 -27.41 -72.52Q-28.31 -72.36 -28.96 -72.5Q-29.61 -72.65 -30.1 -73.12Q-30.59 -73.59 -31 -74.42Q-31.42 -75.26 -31.86 -76.48Q-32.3 -77.7 -32.51 -78.61Q-32.73 -79.52 -32.65 -80.2Q-32.58 -80.87 -32.18 -81.39Q-31.77 -81.91 -30.97 -82.36Q-30.16 -82.8 -28.91 -83.25Q-28.43 -83.43 -27.89 -83.59Q-27.36 -83.75 -26.85 -83.87Q-26.34 -83.99 -25.94 -84.05L-25.39 -82.51Q-25.87 -82.4 -26.31 -82.27Q-26.76 -82.14 -27.14 -82.03Q-27.51 -81.92 -27.78 -81.83Q-28.69 -81.5 -29.26 -81.23Q-29.84 -80.95 -30.12 -80.65Q-30.41 -80.34 -30.45 -79.91Q-30.49 -79.47 -30.31 -78.83Q-30.14 -78.19 -29.79 -77.22Q-29.44 -76.26 -29.17 -75.66Q-28.89 -75.05 -28.58 -74.74Q-28.28 -74.43 -27.86 -74.37Q-27.44 -74.32 -26.83 -74.48Q-26.21 -74.64 -25.31 -74.96Q-24.72 -75.18 -24.07 -75.46Q-23.43 -75.74 -22.95 -75.99L-22.38 -74.41Q-22.75 -74.22 -23.24 -73.99Q-23.74 -73.76 -24.26 -73.54Q-24.79 -73.32 -25.27 -73.14Z M-19.94 -74.99 -22.13 -85.26 -13.98 -87 -13.62 -85.31 -19.62 -84.03 -19.07 -81.46 -13.94 -82.56 -13.58 -80.89 -18.72 -79.79 -18.15 -77.14 -12.15 -78.41 -11.79 -76.73Z M14.85 -76.07 16.64 -84.6 13.04 -85.36 13.41 -87.1 22.73 -85.15 22.36 -83.4 18.76 -84.16 16.97 -75.63Z M26.83 -72.58Q25.64 -73.02 24.88 -73.44Q24.11 -73.86 23.73 -74.33Q23.34 -74.81 23.27 -75.43Q23.2 -76.05 23.4 -76.87Q23.61 -77.69 24.02 -78.81L26.02 -84.2L28.08 -83.44L25.92 -77.6Q25.62 -76.8 25.5 -76.29Q25.38 -75.78 25.5 -75.44Q25.63 -75.1 26.1 -74.83Q26.56 -74.55 27.44 -74.22Q28.32 -73.9 28.85 -73.81Q29.37 -73.72 29.68 -73.9Q30 -74.07 30.24 -74.54Q30.48 -75.01 30.77 -75.81L32.93 -81.65L34.98 -80.89L32.98 -75.49Q32.57 -74.38 32.19 -73.62Q31.82 -72.87 31.37 -72.44Q30.93 -72.01 30.33 -71.9Q29.72 -71.78 28.88 -71.96Q28.03 -72.13 26.83 -72.58Z M34.06 -69.79 39.25 -78.92 41.24 -77.78 42.42 -69.07 42.49 -69.03 45.95 -75.11 47.75 -74.08 42.56 -64.95 40.76 -65.98 39.54 -75.08 39.47 -75.12 35.86 -68.76Z M45.02 -63.09 51.23 -71.56 52.99 -70.26 46.78 -61.8Z M49.27 -60.02 56.43 -67.7 58.11 -66.14 57.25 -57.38 57.3 -57.33 62.07 -62.45 63.59 -61.03 56.43 -53.35 54.91 -54.77 55.83 -63.9 55.77 -63.95 50.79 -58.61Z M61.43 -47.06Q60.62 -48.09 60.17 -48.92Q59.72 -49.75 59.63 -50.45Q59.54 -51.16 59.82 -51.8Q60.1 -52.44 60.75 -53.11Q61.39 -53.77 62.4 -54.56Q63.43 -55.35 64.23 -55.81Q65.04 -56.26 65.73 -56.37Q66.42 -56.48 67.08 -56.23Q67.73 -55.98 68.41 -55.35Q69.08 -54.72 69.88 -53.68Q70.24 -53.23 70.64 -52.63Q71.05 -52.04 71.43 -51.42Q71.81 -50.81 72.09 -50.28L70.81 -49.28Q70.49 -49.82 70.16 -50.33Q69.84 -50.83 69.57 -51.23Q69.3 -51.63 69.1 -51.88Q68.47 -52.7 67.99 -53.25Q67.52 -53.8 67.11 -54.05Q66.7 -54.3 66.25 -54.25Q65.79 -54.2 65.19 -53.85Q64.6 -53.5 63.74 -52.84Q62.98 -52.25 62.5 -51.79Q62.02 -51.34 61.81 -50.94Q61.6 -50.54 61.65 -50.12Q61.71 -49.71 61.99 -49.2Q62.28 -48.69 62.81 -48.01Q63.01 -47.76 63.24 -47.48Q63.48 -47.2 63.69 -46.95Q63.91 -46.7 64.03 -46.55L66.11 -48.17L64.7 -49.99L65.99 -50.99L68.66 -47.55L64.17 -44.07Q63.71 -44.52 63.2 -45.04Q62.7 -45.57 62.23 -46.1Q61.76 -46.62 61.43 -47.06Z M-69.29 54.55 -58.55 50.79 -56.69 52.87 -61.58 63.13 -63.13 61.41 -62 59.06 -65.35 55.32 -67.82 56.19ZM-63.63 54.68 -61.18 57.42 -58.97 53.09 -59.08 52.97Z M-54.82 69Q-55.81 68.21 -56.4 67.57Q-57 66.93 -57.22 66.36Q-57.43 65.79 -57.31 65.18Q-57.18 64.56 -56.73 63.85Q-56.28 63.14 -55.54 62.2L-51.96 57.7L-50.24 59.07L-54.11 63.94Q-54.65 64.61 -54.92 65.05Q-55.2 65.5 -55.18 65.86Q-55.17 66.22 -54.81 66.63Q-54.45 67.04 -53.73 67.62Q-52.98 68.21 -52.52 68.46Q-52.05 68.7 -51.69 68.63Q-51.34 68.57 -50.97 68.2Q-50.6 67.83 -50.06 67.16L-46.19 62.29L-44.48 63.64L-48.06 68.15Q-48.8 69.08 -49.4 69.68Q-49.99 70.28 -50.54 70.55Q-51.1 70.82 -51.71 70.74Q-52.31 70.65 -53.06 70.22Q-53.81 69.79 -54.82 69Z M-46.5 74.8 -41.32 65.66 -34.38 69.6 -35.23 71.1 -40.26 68.25 -41.7 70.78 -37.26 73.3 -38.11 74.8 -42.55 72.28 -44.59 75.88Z M-35.36 80.71 -31.64 70.89 -26 73.02Q-24.92 73.43 -24.37 73.97Q-23.82 74.5 -23.73 75.18Q-23.63 75.85 -23.93 76.63Q-24.18 77.29 -24.55 77.69Q-24.92 78.09 -25.44 78.22Q-25.97 78.36 -26.67 78.24L-26.69 78.29Q-26.01 78.72 -25.69 79.19Q-25.37 79.66 -25.37 80.21Q-25.37 80.75 -25.63 81.42Q-25.84 82 -26.17 82.41Q-26.5 82.82 -26.98 83.04Q-27.45 83.26 -28.14 83.22Q-28.82 83.18 -29.74 82.84ZM-32.72 79.9 -29.81 81Q-29.12 81.26 -28.69 81.28Q-28.26 81.31 -28 81.08Q-27.73 80.86 -27.54 80.36Q-27.36 79.87 -27.41 79.52Q-27.47 79.18 -27.81 78.91Q-28.15 78.64 -28.82 78.39L-31.73 77.28ZM-31.15 75.76 -28.28 76.84Q-27.66 77.08 -27.24 77.09Q-26.82 77.11 -26.54 76.9Q-26.27 76.69 -26.1 76.25Q-25.92 75.77 -25.96 75.44Q-26 75.12 -26.32 74.86Q-26.65 74.61 -27.34 74.35L-30.21 73.26Z M-21.71 85.37 -19.58 75.09 -11.42 76.78 -11.77 78.47 -17.78 77.22 -18.31 79.79 -13.17 80.86 -13.52 82.53 -18.66 81.47 -19.21 84.13 -13.21 85.37 -13.56 87.06Z M-8.65 87.69 -8.15 77.2 -2.45 77.47Q-1.32 77.53 -0.63 77.79Q0.07 78.05 0.43 78.49Q0.78 78.94 0.89 79.55Q1.01 80.16 0.97 80.9Q0.94 81.59 0.78 82.19Q0.63 82.78 0.24 83.22Q-0.15 83.66 -0.86 83.9L0.81 88.14L-1.47 88.03L-3.21 83.47L-2.27 83.87Q-2.52 84.07 -2.77 84.09Q-3.01 84.11 -3.24 84.1L-6.28 83.95L-6.46 87.79ZM-6.19 82.26 -3.59 82.38Q-2.76 82.42 -2.3 82.37Q-1.83 82.31 -1.6 82.13Q-1.37 81.95 -1.29 81.63Q-1.21 81.3 -1.19 80.82Q-1.17 80.34 -1.21 80.04Q-1.25 79.74 -1.47 79.55Q-1.69 79.36 -2.13 79.27Q-2.58 79.18 -3.37 79.14L-6.04 79.01Z M5.75 87.9 4.6 77.46 12.88 76.55 13.07 78.26 6.97 78.94 7.26 81.54 12.48 80.97 12.67 82.67 7.45 83.24 7.75 85.94 13.84 85.27 14.03 86.99Z M18.85 85.97 16.47 75.74 18.6 75.24 20.97 85.47Z M28.67 83.21 25.73 75 22.27 76.24 21.66 74.56 30.63 71.35 31.23 73.03 27.77 74.27 30.71 82.47Z M42.33 77.29Q41.22 77.9 40.4 78.2Q39.58 78.5 38.97 78.48Q38.36 78.45 37.84 78.1Q37.33 77.75 36.85 77.06Q36.36 76.36 35.79 75.32L33.03 70.27L34.95 69.22L37.94 74.68Q38.36 75.43 38.66 75.86Q38.96 76.28 39.3 76.41Q39.64 76.54 40.16 76.37Q40.67 76.2 41.49 75.75Q42.32 75.29 42.73 74.96Q43.13 74.62 43.21 74.27Q43.28 73.91 43.09 73.43Q42.89 72.94 42.48 72.19L39.49 66.73L41.41 65.69L44.17 70.73Q44.74 71.78 45.06 72.56Q45.39 73.34 45.42 73.95Q45.45 74.57 45.14 75.1Q44.83 75.62 44.14 76.15Q43.46 76.67 42.33 77.29Z M50.94 71.92 44.41 63.7 46.2 62.28 54.73 64.42 54.79 64.38 50.44 58.91 52.06 57.61 58.6 65.83 56.98 67.12 48.08 64.86 48.02 64.91 52.57 70.63Z M65.96 58.44Q65.09 59.41 64.35 60Q63.62 60.6 62.94 60.81Q62.27 61.03 61.58 60.86Q60.9 60.7 60.13 60.19Q59.36 59.67 58.41 58.82Q57.44 57.95 56.85 57.24Q56.26 56.52 56.03 55.86Q55.8 55.21 55.93 54.51Q56.06 53.82 56.56 53.05Q57.06 52.27 57.93 51.3Q58.32 50.87 58.83 50.36Q59.35 49.86 59.88 49.38Q60.42 48.89 60.89 48.52L62.1 49.6Q61.62 50.02 61.19 50.42Q60.75 50.83 60.41 51.17Q60.06 51.51 59.85 51.74Q59.15 52.52 58.7 53.08Q58.24 53.65 58.07 54.09Q57.89 54.54 58.02 54.98Q58.16 55.41 58.61 55.94Q59.06 56.47 59.86 57.19Q60.58 57.83 61.11 58.23Q61.64 58.62 62.07 58.75Q62.51 58.88 62.9 58.76Q63.3 58.64 63.75 58.26Q64.2 57.88 64.77 57.25Q64.99 57.01 65.22 56.73Q65.45 56.44 65.66 56.19Q65.87 55.93 66 55.79L64.04 54.02L62.5 55.74L61.28 54.65L64.18 51.41L68.41 55.2Q68.05 55.74 67.63 56.33Q67.2 56.92 66.76 57.47Q66.33 58.03 65.96 58.44Z M-83.17 6.25 -76.69 -24.25H-57.72Q-54.97 -24.25 -53 -23.54Q-51.03 -22.83 -49.98 -21.48Q-48.94 -20.13 -48.94 -18.22Q-48.94 -17.29 -49.12 -16.43Q-49.3 -15.56 -49.61 -14.81Q-50.45 -12.64 -52.38 -11.24Q-54.31 -9.84 -57.01 -9.4V-9.22Q-55.5 -8.82 -54.42 -8.25Q-53.33 -7.67 -52.71 -6.67Q-52.09 -5.68 -52.09 -3.95Q-52.09 -3.02 -52.22 -2.13Q-52.36 -1.24 -52.6 -0.42Q-52.84 0.4 -53.2 1.15Q-53.73 2.3 -54.57 3.26Q-55.41 4.21 -56.74 4.88Q-58.07 5.54 -59.91 5.9Q-61.75 6.25 -64.28 6.25ZM-69.95 -1.29H-67.3Q-65.92 -1.29 -65.26 -1.42Q-64.59 -1.55 -64.28 -2.04Q-63.97 -2.53 -63.75 -3.55Q-63.66 -3.9 -63.62 -4.26Q-63.57 -4.61 -63.57 -4.83Q-63.57 -5.59 -64.15 -5.83Q-64.72 -6.07 -66.32 -6.07H-68.94ZM-67.65 -12.24H-65.03Q-63.53 -12.24 -62.86 -12.39Q-62.2 -12.55 -61.95 -13.03Q-61.71 -13.52 -61.49 -14.45Q-61.4 -14.81 -61.35 -15.07Q-61.31 -15.34 -61.31 -15.56Q-61.31 -16.31 -61.91 -16.51Q-62.51 -16.71 -64.06 -16.71H-66.67ZM-49.92 6.25 -43.44 -24.25H-25.58Q-21.81 -24.25 -19.71 -23.56Q-17.6 -22.88 -16.74 -21.52Q-15.87 -20.17 -15.87 -18.13Q-15.87 -17.47 -15.94 -16.67Q-16 -15.87 -16.16 -15.01Q-16.31 -14.14 -16.58 -13.17Q-16.93 -11.66 -17.31 -10.42Q-17.69 -9.18 -18.24 -8.18Q-18.8 -7.18 -19.77 -6.41Q-20.75 -5.63 -22.3 -5.05L-20.08 6.25H-31.96L-33.2 -3.95Q-33.43 -3.95 -33.69 -3.95Q-33.96 -3.95 -34.18 -3.95H-35.95L-38.17 6.25ZM-34.45 -11.17H-32.18Q-31.08 -11.17 -30.39 -11.24Q-29.7 -11.31 -29.3 -11.57Q-28.9 -11.84 -28.66 -12.37Q-28.42 -12.9 -28.24 -13.83Q-28.15 -14.28 -28.06 -14.67Q-27.97 -15.07 -27.97 -15.34Q-27.97 -15.87 -28.24 -16.12Q-28.51 -16.36 -29.17 -16.45Q-29.84 -16.54 -31.08 -16.54H-33.29ZM-16.31 6.25 -9.84 -24.25H16.49L14.81 -16.36H0.22L-0.49 -12.99H11.48L9.84 -5.32H-2.13L-2.93 -1.64H11.7L9.97 6.25ZM14.94 6.25 21.41 -24.25H34L38.48 -12.46H38.79L41.32 -24.25H52.31L45.79 6.25H34.49L29.3 -8.29H28.99L25.89 6.25ZM50.27 6.25 51.96 -1.46 67.83 -16.36H55.64L57.36 -24.25H84.85L83.25 -16.85L67.07 -1.64H80.02L78.29 6.25Z M-63.48 -36.65 A73.3 73.3 0 0 1 63.48 -36.65 L62.09 -35.85 A71.7 71.7 0 0 0 -62.09 -35.85 Z M60.76 41 A73.3 73.3 0 0 1 -60.76 41 L-59.44 40.1 A71.7 71.7 0 0 0 59.44 40.1 Z"/><path fill="#e4cc7f" d="M100 0 A100 100 0 1 1 -100 0 A100 100 0 1 1 100 0 Z M93 0 A93 93 0 1 0 -93 0 A93 93 0 1 0 93 0 Z M2.4 -82.75 A2.4 2.4 0 1 1 -2.4 -82.75 A2.4 2.4 0 1 1 2.4 -82.75 Z M-30.51 34.55 -26.63 16.25H-19.55L-20.99 22.98H-20.77L-14.55 16.25H-6.73L-15.37 25.21L-10.56 34.55H-18.17L-21.73 27.5H-21.97L-23.46 34.55ZM-7.53 34.55 -3.64 16.25H11.57L10.53 20.98H2.39L1.73 23.94H8.67L7.69 28.7H0.77L-0.51 34.55ZM10.77 34.55 11.78 29.92 21.31 20.98H13.99L15.03 16.25H31.52L30.56 20.69L20.85 29.82H28.62L27.58 34.55Z M36.48 23.8 L76 23.8 L76 27 L36.48 27 Z M-36.48 23.8 L-76 23.8 L-76 27 L-36.48 27 Z"/></svg></div>
+      <nav class="fuss-nav" aria-labelledby="fuss-leistungen"><h2 id="fuss-leistungen">Leistungen</h2>
+        <ul><li><a href="#service">Kfz-Service</a></li><li><a href="#software">Softwareoptimierung</a></li><li><a href="#aufbereitung">Fahrzeugaufbereitung</a></li><li><a href="#rechner">Chiptuning-Rechner</a></li></ul>
+      </nav>
+      <div class="fuss-kontakt"><h2>Kontakt</h2>
+        <p><a href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener">WhatsApp 0176 62794745</a></p>
+        <p class="grau">Tagsüber am besten per WhatsApp, wir melden uns zurück.</p>
+      </div>
+    </div>
+    <div class="fuss-unten"><span>© 2026 Brenz KFZ</span><span>Kfz-Werkstatt im Raum Heidenheim</span></div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add("js");
+(function(){
+  "use strict";
+  var kopf = document.getElementById("kopf"), burger = document.getElementById("burger"), handymenue = document.getElementById("handymenue");
+  var held = document.getElementById("start");
+  var ruhig = matchMedia("(prefers-reduced-motion: reduce)");
+
+  // Handy-Menü
+  function menue(auf) {
+    burger.setAttribute("aria-expanded", String(auf));
+    burger.setAttribute("aria-label", auf ? "Menü schließen" : "Menü öffnen");
+    handymenue.hidden = !auf;
+    kopf.classList.toggle("offen", auf);
+    document.documentElement.classList.toggle("gesperrt", auf);
+    document.querySelectorAll("main,.fuss").forEach(function(x){ x.inert = auf; });
+  }
+  burger.addEventListener("click", function(){ menue(burger.getAttribute("aria-expanded") !== "true"); });
+  handymenue.addEventListener("click", function(e){ if (e.target.closest("a")) menue(false); });
+  addEventListener("keydown", function(e){ if (e.key === "Escape" && !handymenue.hidden) { menue(false); burger.focus(); } });
+  matchMedia("(min-width: 900px)").addEventListener("change", function(e){ if (e.matches) menue(false); });
+
+  // Kopf fest, sobald der Film vorbei ist
+  new IntersectionObserver(function(e){ kopf.classList.toggle("fest", !e[0].isIntersecting); },
+    { rootMargin: "-90px 0px 0px 0px" }).observe(held);
+
+  // Film: nur das passende Video laden, bei weniger Bewegung nicht automatisch starten, Pause-Knopf wie bei Porsche
+  var breit = matchMedia("(min-width: 900px)"), knopf = document.getElementById("film-pause"), angehalten = ruhig.matches, sichtbar = true;
+  function video(){ return held.querySelector(breit.matches ? "video.quer" : "video.hoch"); }
+  function anzeigen(){
+    var v = video(), laeuft = !angehalten && sichtbar;
+    held.querySelectorAll("video").forEach(function(x){ if (x !== v) x.pause(); });
+    if (laeuft) { if (v.preload !== "auto") { v.preload = "auto"; v.load(); } var p = v.play(); if (p) p.catch(function(){}); }
+    else v.pause();
+    knopf.hidden = false;
+    knopf.setAttribute("aria-label", angehalten ? "Film abspielen" : "Film anhalten");
+    knopf.firstElementChild.firstElementChild.setAttribute("href", angehalten ? "#i-play" : "#i-pause");
+  }
+  knopf.addEventListener("click", function(){ angehalten = !angehalten; anzeigen(); });
+  breit.addEventListener("change", anzeigen);
+  new IntersectionObserver(function(e){ sichtbar = e[0].isIntersecting; anzeigen(); }).observe(held);
+
+  // Kapitel ziehen beim Hineinscrollen langsam auf
+  var io = new IntersectionObserver(function(e){
+    e.forEach(function(x){ if (x.isIntersecting) { x.target.classList.add("da"); io.unobserve(x.target); } });
+  }, { rootMargin: "0px 0px -15% 0px" });
+  document.querySelectorAll(".kapitel").forEach(function(k){ io.observe(k); });
+
+  // Nachricht vorbereiten: Vorschau wie sie ankommt, Link nach WhatsApp
+  var NUMMER = "4917662794745";
+  var THEMEN = {
+    service: { satz: "ich möchte einen Termin anfragen.", frage: "Was steht an" },
+    software: { satz: "ich interessiere mich für eine Softwareoptimierung.", frage: "Wunsch (zum Beispiel Stage 1 oder Stage 2)" },
+    aufbereitung: { satz: "ich interessiere mich für eine Fahrzeugaufbereitung.", frage: "Was soll gemacht werden" }
+  };
+  var form = document.getElementById("schreiben"), fz = document.getElementById("s-fahrzeug"), an = document.getElementById("s-anliegen");
+  var blase = document.getElementById("s-blase"), senden = document.getElementById("s-senden"), frage = document.getElementById("s-frage");
+  function thema(){ return form.querySelector("input[name=thema]:checked").value; }
+  function zeile(beschriftung, wert){
+    var z = document.createDocumentFragment();
+    z.appendChild(document.createTextNode("\n" + beschriftung + ": "));
+    if (wert) z.appendChild(document.createTextNode(wert));
+    else { var s = document.createElement("span"); s.className = "leer"; s.textContent = "…"; z.appendChild(s); }
+    return z;
+  }
+  function aktualisieren(){
+    var t = THEMEN[thema()], f = fz.value.trim(), a = an.value.trim();
+    frage.textContent = t.frage + "?";
+    blase.textContent = "Hallo Brenz KFZ, " + t.satz;
+    blase.appendChild(zeile("Fahrzeug (Marke, Modell, Baujahr)", f));
+    blase.appendChild(zeile(t.frage, a));
+    var text = "Hallo Brenz KFZ, " + t.satz + "\nFahrzeug (Marke, Modell, Baujahr): " + f + "\n" + t.frage + ": " + a;
+    senden.href = "https://wa.me/" + NUMMER + "?text=" + encodeURIComponent(text);
+  }
+  form.addEventListener("input", aktualisieren);
+  form.addEventListener("change", aktualisieren);
+  form.addEventListener("submit", function(e){ e.preventDefault(); });
+  document.querySelectorAll("[data-thema]").forEach(function(l){
+    l.addEventListener("click", function(){
+      var r = form.querySelector("input[value=" + l.dataset.thema + "]");
+      if (r) { r.checked = true; aktualisieren(); }
+    });
+  });
+  aktualisieren();
+})();
+</script>
+<script>
+// Leistungsrechner: unverändert aus dem Plan-Repo (konzepte/brenz-kfz/anfrage.html, Logik in RECHNER.md)
+(function(){
+  "use strict";
+  // WhatsApp-Nummer von Mert (+49 176 62794745), international ohne + und ohne Leerzeichen
+  var NUMMER = "4917662794745";
+  // Gängige Fahrzeuge in Deutschland, Verbrenner und Hybride. Reine Elektroautos fehlen bewusst: dort gibt es kein Softwaretuning im üblichen Sinn
+  var FAHRZEUGE = {
+    "Abarth": ["500 / 595 / 695", "124 Spider"],
+    "Alfa Romeo": ["Giulietta", "Giulia", "Stelvio", "MiTo", "Tonale", "159"],
+    "Audi": ["A1", "A3", "A4", "A5", "A6", "A7", "A8", "Q2", "Q3", "Q5", "Q7", "Q8", "TT"],
+    "BMW": ["1er", "2er", "3er", "4er", "5er", "6er", "7er", "8er", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "Z4", "M2", "M3", "M4", "M5"],
+    "Citroën": ["C1", "C3", "C3 Aircross", "C4", "C5 Aircross", "C5", "Berlingo", "Jumpy", "Jumper", "SpaceTourer"],
+    "Cupra": ["Formentor", "Leon", "Ateca"],
+    "Dacia": ["Sandero", "Logan", "Duster", "Jogger", "Lodgy", "Dokker"],
+    "Fiat": ["500", "500X", "Panda", "Punto", "Tipo", "Bravo", "Doblò", "Fiorino", "Ducato", "Talento"],
+    "Ford": ["Fiesta", "Focus", "Mondeo", "Puma", "Kuga", "EcoSport", "C-Max", "S-Max", "Galaxy", "Tourneo Connect", "Transit Connect", "Transit Custom", "Transit", "Ranger", "Mustang"],
+    "Honda": ["Jazz", "Civic", "HR-V", "CR-V"],
+    "Hyundai": ["i10", "i20", "i30", "ix35", "Tucson", "Kona", "Santa Fe"],
+    "Iveco": ["Daily"],
+    "Jaguar": ["XE", "XF", "E-Pace", "F-Pace", "F-Type"],
+    "Jeep": ["Renegade", "Compass", "Cherokee", "Grand Cherokee", "Wrangler"],
+    "Kia": ["Picanto", "Rio", "Ceed", "ProCeed", "XCeed", "Stonic", "Sportage", "Sorento", "Niro"],
+    "Land Rover": ["Defender", "Discovery", "Discovery Sport", "Range Rover", "Range Rover Sport", "Range Rover Velar", "Range Rover Evoque"],
+    "MAN": ["TGE"],
+    "Mazda": ["Mazda2", "Mazda3", "Mazda6", "CX-3", "CX-30", "CX-5", "CX-60", "MX-5"],
+    "Mercedes-Benz": ["A-Klasse", "B-Klasse", "C-Klasse", "CLA", "CLS", "E-Klasse", "S-Klasse", "GLA", "GLB", "GLC", "GLE / M-Klasse", "GLS", "G-Klasse", "V-Klasse", "Vito", "Viano", "Sprinter", "Citan", "AMG GT"],
+    "Mini": ["Mini 3-Türer / 5-Türer", "Cabrio", "Clubman", "Countryman", "Paceman"],
+    "Mitsubishi": ["Space Star", "ASX", "Eclipse Cross", "Outlander", "L200"],
+    "Nissan": ["Micra", "Note", "Juke", "Qashqai", "X-Trail", "Navara"],
+    "Opel": ["Adam", "Corsa", "Astra", "Insignia", "Meriva", "Zafira", "Mokka", "Crossland", "Grandland", "Combo", "Vivaro", "Movano"],
+    "Peugeot": ["108", "208", "2008", "308", "3008", "508", "5008", "Partner", "Rifter", "Expert", "Boxer"],
+    "Porsche": ["911", "Boxster", "Cayman", "Macan", "Cayenne", "Panamera"],
+    "Renault": ["Twingo", "Clio", "Captur", "Megane", "Scenic", "Kadjar", "Arkana", "Austral", "Talisman", "Kangoo", "Trafic", "Master"],
+    "Seat": ["Ibiza", "Leon", "Arona", "Ateca", "Tarraco", "Alhambra"],
+    "Skoda": ["Citigo", "Fabia", "Scala", "Rapid", "Octavia", "Superb", "Kamiq", "Karoq", "Kodiaq", "Yeti"],
+    "Smart": ["fortwo", "forfour"],
+    "Subaru": ["Impreza", "XV", "Forester", "Outback", "BRZ"],
+    "Suzuki": ["Ignis", "Swift", "Vitara", "S-Cross", "Jimny"],
+    "Toyota": ["Aygo", "Yaris", "Corolla", "Auris", "C-HR", "RAV4", "Supra", "GR86", "Hilux", "Land Cruiser", "Proace"],
+    "Volkswagen": ["up!", "Polo", "Golf", "Scirocco", "Jetta", "T-Cross", "Taigo", "T-Roc", "Tiguan", "Touran", "Sharan", "Passat", "Arteon", "Touareg", "Caddy", "Transporter / Multivan", "Crafter", "Amarok"],
+    "Volvo": ["V40", "V60", "V90", "S60", "S90", "XC40", "XC60", "XC90"]
+  };
+
+  // Auswahlhilfe für die häufigsten Modelle: Baureihe, Zeitraum, Motoren mit Serienleistung. Ohne Gewähr, Mert prüft vor jedem Angebot
+  var MOTOREN = {
+    "Audi|A1": [["8X", "2010–2018", ["1.0 TFSI 95 PS", "1.2 TFSI 86 PS", "1.4 TFSI 122 PS", "1.4 TFSI 150 PS", "1.4 TFSI 185 PS", "1.8 TFSI 192 PS", "S1 2.0 TFSI 231 PS", "1.4 TDI 90 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS", "1.6 TDI 116 PS", "2.0 TDI 143 PS"]], ["GB", "ab 2018", ["25 TFSI 95 PS", "30 TFSI 110 PS", "30 TFSI 116 PS", "35 TFSI 150 PS", "40 TFSI 200 PS", "40 TFSI 207 PS"]]],
+    "Audi|A3": [["8P", "2003–2013", ["1.2 TFSI 105 PS", "1.4 TFSI 125 PS", "1.8 TFSI 160 PS", "2.0 TFSI 200 PS", "S3 2.0 TFSI 265 PS", "RS3 2.5 TFSI 340 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS", "1.9 TDI 105 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS"]], ["8V", "2012–2020", ["1.0 TFSI 115 PS", "1.2 TFSI 110 PS", "1.4 TFSI 122 PS", "1.4 TFSI 125 PS", "1.4 TFSI 150 PS", "1.5 TFSI 150 PS", "1.8 TFSI 180 PS", "2.0 TFSI 190 PS", "S3 2.0 TFSI 300 PS", "S3 2.0 TFSI 310 PS", "RS3 2.5 TFSI 367 PS", "RS3 2.5 TFSI 400 PS", "1.6 TDI 110 PS", "1.6 TDI 116 PS", "2.0 TDI 150 PS", "2.0 TDI 184 PS"]], ["8Y", "ab 2020", ["30 TFSI 110 PS", "35 TFSI 150 PS", "40 TFSI 190 PS", "S3 2.0 TFSI 310 PS", "S3 2.0 TFSI 333 PS", "RS3 2.5 TFSI 400 PS", "30 TDI 116 PS", "35 TDI 150 PS"]]],
+    "Audi|A4": [["B7", "2004–2008", ["1.8 T 163 PS", "2.0 TFSI 200 PS", "2.0 TFSI 220 PS", "3.2 FSI 255 PS", "1.9 TDI 115 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS", "2.5 TDI 163 PS", "2.7 TDI 180 PS", "3.0 TDI 204 PS", "3.0 TDI 233 PS", "S4 4.2 V8 344 PS", "RS4 4.2 V8 420 PS"]], ["B8 (8K)", "2007–2015", ["1.8 TFSI 120 PS", "1.8 TFSI 170 PS", "2.0 TFSI 211 PS", "2.0 TFSI 225 PS", "3.2 FSI 265 PS", "S4 3.0 TFSI 333 PS", "RS4 4.2 FSI 450 PS", "2.0 TDI 136 PS", "2.0 TDI 143 PS", "2.0 TDI 150 PS", "2.0 TDI 163 PS", "2.0 TDI 177 PS", "2.7 TDI 190 PS", "3.0 TDI 240 PS", "3.0 TDI 245 PS"]], ["B9 (8W)", "ab 2015", ["1.4 TFSI 150 PS", "2.0 TFSI 190 PS", "2.0 TFSI 204 PS", "2.0 TFSI 252 PS", "2.0 TFSI 265 PS", "S4 3.0 TFSI 354 PS", "RS4 2.9 TFSI 450 PS", "2.0 TDI 122 PS", "2.0 TDI 150 PS", "2.0 TDI 163 PS", "2.0 TDI 190 PS", "2.0 TDI 204 PS", "3.0 TDI 218 PS", "3.0 TDI 272 PS", "3.0 TDI 286 PS", "S4 TDI 347 PS", "S4 TDI 341 PS"]]],
+    "Audi|A5": [["8T", "2007–2016", ["1.8 TFSI 170 PS", "1.8 TFSI 177 PS", "2.0 TFSI 211 PS", "2.0 TFSI 225 PS", "2.0 TFSI 230 PS", "3.2 FSI 265 PS", "S5 4.2 V8 354 PS", "S5 3.0 TFSI 333 PS", "RS5 4.2 FSI 450 PS", "2.0 TDI 143 PS", "2.0 TDI 150 PS", "2.0 TDI 177 PS", "2.0 TDI 190 PS", "2.7 TDI 190 PS", "3.0 TDI 240 PS", "3.0 TDI 245 PS"]], ["F5", "ab 2016", ["2.0 TFSI 190 PS", "2.0 TFSI 204 PS", "2.0 TFSI 252 PS", "2.0 TFSI 265 PS", "S5 3.0 TFSI 354 PS", "S5 TDI 347 PS", "S5 TDI 341 PS", "RS5 2.9 TFSI 450 PS", "2.0 TDI 150 PS", "2.0 TDI 163 PS", "2.0 TDI 190 PS", "2.0 TDI 204 PS", "3.0 TDI 218 PS", "3.0 TDI 286 PS"]]],
+    "Audi|A6": [["C6 (4F)", "2004–2011", ["2.0 TFSI 170 PS", "2.8 FSI 220 PS", "3.0 TFSI 290 PS", "3.0 TFSI 300 PS", "S6 5.2 V10 435 PS", "RS6 5.0 V10 580 PS", "2.0 TDI 136 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS", "2.7 TDI 180 PS", "2.7 TDI 190 PS", "3.0 TDI 225 PS", "3.0 TDI 233 PS", "3.0 TDI 240 PS"]], ["C7 (4G)", "2011–2018", ["2.0 TFSI 180 PS", "2.0 TFSI 252 PS", "3.0 TFSI 300 PS", "3.0 TFSI 310 PS", "3.0 TFSI 333 PS", "S6 4.0 TFSI 420 PS", "S6 4.0 TFSI 450 PS", "RS6 4.0 TFSI 560 PS", "RS6 4.0 TFSI 605 PS", "2.0 TDI 150 PS", "2.0 TDI 177 PS", "2.0 TDI 190 PS", "3.0 TDI 204 PS", "3.0 TDI 218 PS", "3.0 TDI 245 PS", "3.0 TDI 272 PS", "3.0 BiTDI 313 PS", "3.0 BiTDI 320 PS", "3.0 BiTDI 326 PS"]], ["C8 (4A)", "ab 2018", ["40 TFSI 204 PS", "45 TFSI 245 PS", "45 TFSI 265 PS", "55 TFSI 340 PS", "S6 TDI 349 PS", "S6 TDI 344 PS", "RS6 4.0 TFSI 600 PS", "RS6 4.0 TFSI 630 PS", "35 TDI 163 PS", "40 TDI 204 PS", "45 TDI 231 PS", "50 TDI 286 PS"]]],
+    "Audi|A7": [["4G", "2010–2018", ["3.0 TFSI 300 PS", "3.0 TFSI 310 PS", "3.0 TFSI 333 PS", "S7 4.0 TFSI 420 PS", "S7 4.0 TFSI 450 PS", "RS7 4.0 TFSI 560 PS", "RS7 4.0 TFSI 605 PS", "3.0 TDI 204 PS", "3.0 TDI 218 PS", "3.0 TDI 245 PS", "3.0 TDI 272 PS", "3.0 BiTDI 313 PS", "3.0 BiTDI 320 PS", "3.0 BiTDI 326 PS"]], ["4K", "ab 2018", ["45 TFSI 245 PS", "45 TFSI 265 PS", "55 TFSI 340 PS", "S7 TDI 349 PS", "S7 TDI 344 PS", "RS7 4.0 TFSI 600 PS", "RS7 4.0 TFSI 630 PS", "40 TDI 204 PS", "45 TDI 231 PS", "50 TDI 286 PS"]]],
+    "Audi|A8": [["D4", "2010–2017", ["3.0 TFSI 290 PS", "3.0 TFSI 310 PS", "4.0 TFSI 435 PS", "S8 4.0 TFSI 520 PS", "S8 4.0 TFSI 605 PS", "3.0 TDI 250 PS", "3.0 TDI 258 PS", "3.0 TDI 262 PS", "4.2 TDI 350 PS", "4.2 TDI 385 PS"]], ["D5", "ab 2017", ["55 TFSI 340 PS", "60 TFSI 460 PS", "S8 4.0 TFSI 571 PS", "50 TDI 286 PS"]]],
+    "Audi|Q2": [["GA", "ab 2016", ["1.0 TFSI 116 PS", "1.4 TFSI 150 PS", "1.5 TFSI 150 PS", "2.0 TFSI 190 PS", "SQ2 2.0 TFSI 300 PS", "1.6 TDI 116 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS"]]],
+    "Audi|Q3": [["8U", "2011–2018", ["1.4 TFSI 125 PS", "1.4 TFSI 150 PS", "2.0 TFSI 170 PS", "2.0 TFSI 180 PS", "2.0 TFSI 211 PS", "2.0 TFSI 220 PS", "RS Q3 2.5 TFSI 310 PS", "RS Q3 2.5 TFSI 340 PS", "RS Q3 2.5 TFSI 367 PS", "2.0 TDI 120 PS", "2.0 TDI 140 PS", "2.0 TDI 150 PS", "2.0 TDI 177 PS", "2.0 TDI 184 PS"]], ["F3", "ab 2018", ["35 TFSI 150 PS", "40 TFSI 190 PS", "45 TFSI 230 PS", "45 TFSI 245 PS", "RS Q3 2.5 TFSI 400 PS", "35 TDI 150 PS", "40 TDI 190 PS"]]],
+    "Audi|Q5": [["8R", "2008–2017", ["2.0 TFSI 180 PS", "2.0 TFSI 211 PS", "2.0 TFSI 225 PS", "2.0 TFSI 230 PS", "3.2 FSI 270 PS", "3.0 TFSI 272 PS", "SQ5 3.0 TFSI 354 PS", "2.0 TDI 143 PS", "2.0 TDI 150 PS", "2.0 TDI 170 PS", "2.0 TDI 177 PS", "2.0 TDI 190 PS", "3.0 TDI 240 PS", "3.0 TDI 245 PS", "3.0 TDI 258 PS", "SQ5 3.0 TDI 313 PS", "SQ5 3.0 TDI 326 PS", "SQ5 3.0 TDI 340 PS"]], ["FY", "ab 2017", ["40 TFSI 204 PS", "45 TFSI 249 PS", "45 TFSI 265 PS", "SQ5 3.0 TFSI 354 PS", "35 TDI 163 PS", "40 TDI 190 PS", "40 TDI 204 PS", "50 TDI 286 PS", "SQ5 TDI 347 PS", "SQ5 TDI 341 PS"]]],
+    "Audi|Q7": [["4L", "2006–2015", ["3.6 FSI 280 PS", "4.2 FSI 350 PS", "3.0 TDI 233 PS", "3.0 TDI 240 PS", "3.0 TDI 245 PS", "4.2 TDI 326 PS", "4.2 TDI 340 PS", "6.0 V12 TDI 500 PS"]], ["4M", "ab 2015", ["45 TFSI 252 PS", "55 TFSI 340 PS", "SQ7 4.0 TFSI 507 PS", "3.0 TDI 218 PS", "3.0 TDI 272 PS", "45 TDI 231 PS", "50 TDI 286 PS", "SQ7 4.0 TDI 435 PS"]]],
+    "Audi|Q8": [["4M", "ab 2018", ["55 TFSI 340 PS", "SQ8 4.0 TFSI 507 PS", "RS Q8 4.0 TFSI 600 PS", "50 TDI 286 PS", "SQ8 4.0 TDI 435 PS"]]],
+    "Audi|TT": [["8J", "2006–2014", ["1.8 TFSI 160 PS", "2.0 TFSI 200 PS", "2.0 TFSI 211 PS", "TTS 2.0 TFSI 272 PS", "TT RS 2.5 TFSI 340 PS", "TT RS 2.5 TFSI 360 PS", "2.0 TDI 170 PS"]], ["8S", "2014–2023", ["1.8 TFSI 180 PS", "2.0 TFSI 197 PS", "2.0 TFSI 230 PS", "2.0 TFSI 245 PS", "TTS 2.0 TFSI 310 PS", "TTS 2.0 TFSI 320 PS", "TT RS 2.5 TFSI 400 PS", "2.0 TDI 184 PS"]]],
+    "BMW|1er": [["E81 / E82 / E87 / E88", "2004–2013", ["116i 115 PS", "116i 122 PS", "118i 136 PS", "118i 143 PS", "120i 156 PS", "120i 170 PS", "125i 218 PS", "130i 265 PS", "135i 306 PS", "1M 340 PS", "116d 116 PS", "118d 122 PS", "118d 143 PS", "120d 163 PS", "120d 177 PS", "123d 204 PS"]], ["F20 / F21", "2011–2019", ["114i 102 PS", "116i 109 PS", "116i 136 PS", "118i 136 PS", "118i 170 PS", "120i 177 PS", "120i 184 PS", "125i 218 PS", "125i 224 PS", "M135i 320 PS", "M135i 326 PS", "M140i 340 PS", "114d 95 PS", "116d 116 PS", "118d 143 PS", "118d 150 PS", "120d 184 PS", "120d 190 PS", "125d 218 PS", "125d 224 PS"]], ["F40", "ab 2019", ["116i 109 PS", "118i 136 PS", "118i 140 PS", "120i 178 PS", "128ti 265 PS", "M135i 306 PS", "116d 116 PS", "118d 150 PS", "120d 190 PS"]]],
+    "BMW|2er": [["F22 / F23 Coupé und Cabrio", "2014–2021", ["218i 136 PS", "220i 184 PS", "228i 245 PS", "230i 252 PS", "M235i 326 PS", "M240i 340 PS", "218d 143 PS", "218d 150 PS", "220d 184 PS", "220d 190 PS", "225d 218 PS", "225d 224 PS"]], ["F45 / F46 Active / Gran Tourer", "2014–2022", ["216i 109 PS", "218i 136 PS", "218i 140 PS", "220i 192 PS", "225i 231 PS", "216d 116 PS", "218d 150 PS", "220d 190 PS"]], ["F44 Gran Coupé", "ab 2019", ["218i 136 PS", "218i 140 PS", "220i 178 PS", "M235i 306 PS", "218d 150 PS", "220d 190 PS"]], ["G42 Coupé", "ab 2021", ["220i 184 PS", "230i 245 PS", "M240i 374 PS", "220d 190 PS"]]],
+    "BMW|3er": [["E46", "1998–2006", ["316i 105 PS", "316i 115 PS", "318i 118 PS", "318i 143 PS", "320i 150 PS", "320i 170 PS", "325i 192 PS", "330i 231 PS", "318d 115 PS", "318d 116 PS", "320d 136 PS", "320d 150 PS", "330d 184 PS", "330d 204 PS"]], ["E90 / E91 / E92 / E93", "2005–2013", ["318i 143 PS", "320i 170 PS", "325i 218 PS", "330i 272 PS", "335i 306 PS", "316d 116 PS", "318d 143 PS", "320d 163 PS", "320d 177 PS", "320d 184 PS", "325d 204 PS", "330d 231 PS", "330d 245 PS", "335d 286 PS"]], ["F30 / F31 / F34", "2012–2019", ["316i 136 PS", "318i 136 PS", "320i 184 PS", "328i 245 PS", "330i 252 PS", "335i 306 PS", "340i 326 PS", "330e 252 PS", "316d 116 PS", "318d 143 PS", "318d 150 PS", "320d 184 PS", "320d 190 PS", "325d 218 PS", "325d 224 PS", "330d 258 PS", "335d 313 PS"]], ["G20 / G21", "ab 2019", ["318i 156 PS", "320i 184 PS", "330i 245 PS", "330i 258 PS", "M340i 374 PS", "320e 204 PS", "330e 292 PS", "318d 150 PS", "320d 190 PS", "330d 265 PS", "330d 286 PS", "M340d 340 PS"]]],
+    "BMW|4er": [["F32 / F33 / F36", "2013–2020", ["418i 136 PS", "420i 184 PS", "428i 245 PS", "430i 252 PS", "435i 306 PS", "440i 326 PS", "418d 143 PS", "418d 150 PS", "420d 184 PS", "420d 190 PS", "425d 218 PS", "425d 224 PS", "430d 258 PS", "435d 313 PS"]], ["G22 / G23 / G26", "ab 2020", ["420i 184 PS", "430i 245 PS", "430i 258 PS", "M440i 374 PS", "420d 190 PS", "430d 286 PS", "M440d 340 PS"]]],
+    "BMW|5er": [["E60 / E61", "2003–2010", ["520i 170 PS", "523i 190 PS", "523i 204 PS", "525i 218 PS", "530i 258 PS", "530i 272 PS", "540i 306 PS", "550i 367 PS", "520d 163 PS", "520d 177 PS", "525d 177 PS", "525d 197 PS", "530d 218 PS", "530d 231 PS", "530d 235 PS", "535d 272 PS", "535d 286 PS"]], ["F10 / F11", "2010–2017", ["520i 184 PS", "528i 245 PS", "535i 306 PS", "550i 407 PS", "550i 449 PS", "518d 143 PS", "518d 150 PS", "520d 184 PS", "520d 190 PS", "525d 218 PS", "530d 245 PS", "530d 258 PS", "535d 299 PS", "535d 313 PS", "M550d 381 PS"]], ["G30 / G31", "2017–2023", ["520i 184 PS", "530i 252 PS", "540i 340 PS", "M550i 462 PS", "M550i 530 PS", "530e 252 PS", "530e 292 PS", "520d 190 PS", "525d 231 PS", "530d 265 PS", "530d 286 PS", "540d 320 PS", "540d 340 PS", "M550d 400 PS"]]],
+    "BMW|6er": [["F06 / F12 / F13", "2011–2018", ["640i 320 PS", "650i 407 PS", "650i 450 PS", "640d 313 PS"]], ["G32 Gran Turismo", "2017–2023", ["630i 258 PS", "640i 340 PS", "620d 190 PS", "630d 265 PS", "630d 286 PS", "640d 320 PS", "640d 340 PS"]]],
+    "BMW|7er": [["F01 / F02", "2008–2015", ["730i 258 PS", "740i 320 PS", "740i 326 PS", "750i 407 PS", "750i 450 PS", "730d 245 PS", "730d 258 PS", "740d 306 PS", "740d 313 PS", "750d 381 PS"]], ["G11 / G12", "2015–2022", ["730i 258 PS", "740i 326 PS", "740i 333 PS", "750i 450 PS", "750i 530 PS", "740e 326 PS", "740e 394 PS", "730d 265 PS", "730d 286 PS", "740d 320 PS", "740d 340 PS", "750d 400 PS"]]],
+    "BMW|X1": [["E84", "2009–2015", ["18i 150 PS", "20i 184 PS", "25i 218 PS", "28i 245 PS", "16d 116 PS", "18d 143 PS", "20d 177 PS", "20d 184 PS", "23d 204 PS", "25d 218 PS"]], ["F48", "2015–2022", ["18i 136 PS", "18i 140 PS", "20i 192 PS", "20i 178 PS", "25i 231 PS", "25e 220 PS", "16d 116 PS", "18d 150 PS", "20d 190 PS", "25d 231 PS"]], ["U11", "ab 2022", ["18i 136 PS", "20i 204 PS", "18d 150 PS", "20d 163 PS", "23d 211 PS"]]],
+    "BMW|X2": [["F39", "2018–2023", ["18i 136 PS", "18i 140 PS", "20i 192 PS", "20i 178 PS", "M35i 306 PS", "16d 116 PS", "18d 150 PS", "20d 190 PS", "25d 231 PS"]]],
+    "BMW|X3": [["E83", "2004–2010", ["2.0i 150 PS", "2.5si 218 PS", "3.0si 272 PS", "2.0d 150 PS", "2.0d 177 PS", "3.0d 218 PS", "3.0sd 286 PS"]], ["F25", "2010–2017", ["20i 184 PS", "28i 245 PS", "35i 306 PS", "18d 143 PS", "18d 150 PS", "20d 184 PS", "20d 190 PS", "30d 258 PS", "35d 313 PS"]], ["G01", "2017–2024", ["20i 184 PS", "30i 252 PS", "M40i 360 PS", "30e 292 PS", "18d 150 PS", "20d 190 PS", "30d 265 PS", "30d 286 PS", "M40d 326 PS", "M40d 340 PS"]]],
+    "BMW|X4": [["F26", "2014–2018", ["20i 184 PS", "28i 245 PS", "35i 306 PS", "20d 190 PS", "30d 258 PS", "35d 313 PS"]], ["G02", "2018–2025", ["20i 184 PS", "30i 252 PS", "M40i 360 PS", "20d 190 PS", "30d 265 PS", "30d 286 PS", "M40d 326 PS", "M40d 340 PS"]]],
+    "BMW|X5": [["E70", "2007–2013", ["3.0si 272 PS", "35i 306 PS", "4.8i 355 PS", "50i 407 PS", "3.0d 235 PS", "30d 245 PS", "35d 286 PS", "40d 306 PS", "M50d 381 PS"]], ["F15", "2013–2018", ["35i 306 PS", "50i 450 PS", "40e 313 PS", "25d 218 PS", "25d 231 PS", "30d 258 PS", "40d 313 PS", "M50d 381 PS"]], ["G05", "ab 2018", ["40i 340 PS", "40i 381 PS", "M50i 530 PS", "45e 394 PS", "50e 489 PS", "25d 231 PS", "30d 265 PS", "30d 286 PS", "30d 298 PS", "40d 340 PS", "40d 352 PS", "M50d 400 PS"]]],
+    "BMW|X6": [["E71", "2008–2014", ["35i 306 PS", "50i 407 PS", "30d 235 PS", "30d 245 PS", "35d 286 PS", "40d 306 PS", "M50d 381 PS"]], ["F16", "2014–2019", ["35i 306 PS", "50i 450 PS", "30d 258 PS", "40d 313 PS", "M50d 381 PS"]], ["G06", "ab 2019", ["40i 340 PS", "40i 381 PS", "M50i 530 PS", "30d 265 PS", "30d 286 PS", "30d 298 PS", "40d 340 PS", "40d 352 PS", "M50d 400 PS"]]],
+    "BMW|X7": [["G07", "ab 2019", ["40i 340 PS", "40i 381 PS", "M50i 530 PS", "30d 265 PS", "30d 298 PS", "40d 340 PS", "40d 352 PS", "M50d 400 PS"]]],
+    "BMW|Z4": [["E89", "2009–2016", ["18i 156 PS", "20i 184 PS", "23i 204 PS", "28i 245 PS", "30i 258 PS", "35i 306 PS", "35is 340 PS"]], ["G29", "ab 2018", ["20i 197 PS", "30i 258 PS", "M40i 340 PS"]]],
+    "BMW|M2": [["F87", "2016–2021", ["M2 370 PS", "M2 Competition 410 PS", "M2 CS 450 PS"]], ["G87", "ab 2023", ["M2 460 PS", "M2 480 PS"]]],
+    "BMW|M3": [["E46", "2000–2006", ["M3 343 PS"]], ["E90 / E92 / E93", "2007–2013", ["M3 4.0 V8 420 PS"]], ["F80", "2014–2018", ["M3 431 PS", "M3 Competition 450 PS", "M3 CS 460 PS"]], ["G80 / G81", "ab 2021", ["M3 480 PS", "M3 Competition 510 PS"]]],
+    "BMW|M4": [["F82 / F83", "2014–2020", ["M4 431 PS", "M4 Competition 450 PS", "M4 CS 460 PS"]], ["G82 / G83", "ab 2021", ["M4 480 PS", "M4 Competition 510 PS", "M4 Competition 530 PS"]]],
+    "BMW|M5": [["E60 / E61", "2005–2010", ["M5 5.0 V10 507 PS"]], ["F10", "2011–2016", ["M5 560 PS", "M5 Competition 575 PS", "M5 Competition 600 PS"]], ["F90", "2017–2023", ["M5 600 PS", "M5 Competition 625 PS", "M5 CS 635 PS"]]],
+    "Mercedes-Benz|A-Klasse": [["W176", "2012–2018", ["A 160 102 PS", "A 180 122 PS", "A 200 156 PS", "A 220 184 PS", "A 250 211 PS", "A 250 218 PS", "A 45 AMG 360 PS", "A 45 AMG 381 PS", "A 160 d 90 PS", "A 180 d 109 PS", "A 200 d 136 PS", "A 220 d 177 PS"]], ["W177", "ab 2018", ["A 180 136 PS", "A 200 163 PS", "A 220 190 PS", "A 250 224 PS", "A 250 e 218 PS", "A 35 AMG 306 PS", "A 45 S AMG 421 PS", "A 180 d 116 PS", "A 200 d 150 PS", "A 220 d 190 PS"]]],
+    "Mercedes-Benz|B-Klasse": [["W246", "2011–2018", ["B 180 122 PS", "B 200 156 PS", "B 220 184 PS", "B 250 211 PS", "B 180 d 109 PS", "B 200 d 136 PS", "B 220 d 177 PS"]], ["W247", "ab 2018", ["B 180 136 PS", "B 200 163 PS", "B 250 224 PS", "B 180 d 116 PS", "B 200 d 150 PS", "B 220 d 190 PS"]]],
+    "Mercedes-Benz|CLA": [["C117 / X117", "2013–2019", ["CLA 180 122 PS", "CLA 200 156 PS", "CLA 220 184 PS", "CLA 250 211 PS", "CLA 250 218 PS", "CLA 45 AMG 360 PS", "CLA 45 AMG 381 PS", "CLA 180 d 109 PS", "CLA 200 d 136 PS", "CLA 220 d 177 PS"]], ["C118 / X118", "ab 2019", ["CLA 180 136 PS", "CLA 200 163 PS", "CLA 220 190 PS", "CLA 250 224 PS", "CLA 35 AMG 306 PS", "CLA 45 S AMG 421 PS", "CLA 180 d 116 PS", "CLA 200 d 150 PS", "CLA 220 d 190 PS"]]],
+    "Mercedes-Benz|C-Klasse": [["W203 / S203", "2000–2007", ["C 180 Kompressor 143 PS", "C 200 Kompressor 163 PS", "C 230 204 PS", "C 280 231 PS", "C 350 272 PS", "C 200 CDI 122 PS", "C 220 CDI 150 PS", "C 320 CDI 224 PS"]], ["W204 / S204", "2007–2014", ["C 180 156 PS", "C 200 184 PS", "C 250 204 PS", "C 350 306 PS", "C 63 AMG 457 PS", "C 63 AMG 487 PS", "C 200 CDI 136 PS", "C 220 CDI 170 PS", "C 250 CDI 204 PS", "C 350 CDI 265 PS"]], ["W205 / S205", "2014–2021", ["C 180 156 PS", "C 200 184 PS", "C 300 245 PS", "C 300 258 PS", "C 43 AMG 367 PS", "C 43 AMG 390 PS", "C 63 AMG 476 PS", "C 63 AMG 510 PS", "C 200 d 160 PS", "C 220 d 170 PS", "C 220 d 194 PS", "C 250 d 204 PS", "C 300 d 245 PS"]], ["W206 / S206", "ab 2021", ["C 200 204 PS", "C 300 258 PS", "C 43 AMG 408 PS", "C 220 d 200 PS", "C 300 d 265 PS"]]],
+    "Mercedes-Benz|CLS": [["C218 / X218", "2011–2018", ["CLS 350 306 PS", "CLS 400 333 PS", "CLS 500 408 PS", "CLS 63 AMG 525 PS", "CLS 63 AMG 557 PS", "CLS 250 d 204 PS", "CLS 350 d 258 PS"]], ["C257", "ab 2018", ["CLS 300 258 PS", "CLS 350 299 PS", "CLS 450 367 PS", "CLS 53 AMG 435 PS", "CLS 220 d 194 PS", "CLS 300 d 265 PS", "CLS 400 d 340 PS"]]],
+    "Mercedes-Benz|E-Klasse": [["W211 / S211", "2002–2009", ["E 200 Kompressor 163 PS", "E 200 Kompressor 184 PS", "E 280 231 PS", "E 350 272 PS", "E 500 306 PS", "E 500 388 PS", "E 200 CDI 122 PS", "E 200 CDI 136 PS", "E 220 CDI 150 PS", "E 220 CDI 170 PS", "E 270 CDI 177 PS", "E 280 CDI 190 PS", "E 320 CDI 204 PS", "E 320 CDI 224 PS"]], ["W212 / S212", "2009–2016", ["E 200 184 PS", "E 250 204 PS", "E 250 211 PS", "E 350 306 PS", "E 63 AMG 525 PS", "E 63 AMG 557 PS", "E 63 AMG 585 PS", "E 200 CDI 136 PS", "E 220 CDI 170 PS", "E 250 CDI 204 PS", "E 350 CDI 231 PS", "E 350 CDI 252 PS", "E 350 CDI 265 PS"]], ["W213 / S213", "2016–2023", ["E 200 184 PS", "E 200 197 PS", "E 300 245 PS", "E 300 258 PS", "E 53 AMG 435 PS", "E 63 S AMG 612 PS", "E 220 d 194 PS", "E 300 d 245 PS", "E 300 d 265 PS", "E 350 d 258 PS", "E 350 d 286 PS", "E 400 d 340 PS", "E 400 d 330 PS"]], ["W214", "ab 2023", ["E 200 204 PS", "E 300 e 313 PS", "E 220 d 197 PS"]]],
+    "Mercedes-Benz|S-Klasse": [["W221", "2005–2013", ["S 350 272 PS", "S 350 306 PS", "S 500 388 PS", "S 500 435 PS", "S 320 CDI 235 PS", "S 350 CDI 235 PS", "S 350 CDI 258 PS"]], ["W222", "2013–2020", ["S 400 333 PS", "S 500 455 PS", "S 560 469 PS", "S 350 d 258 PS", "S 350 d 286 PS", "S 400 d 340 PS"]], ["W223", "ab 2020", ["S 450 367 PS", "S 500 435 PS", "S 350 d 286 PS", "S 400 d 330 PS"]]],
+    "Mercedes-Benz|GLA": [["X156", "2014–2019", ["GLA 180 122 PS", "GLA 200 156 PS", "GLA 220 184 PS", "GLA 250 211 PS", "GLA 45 AMG 360 PS", "GLA 45 AMG 381 PS", "GLA 180 d 109 PS", "GLA 200 d 136 PS", "GLA 220 d 170 PS", "GLA 220 d 177 PS"]], ["H247", "ab 2020", ["GLA 200 163 PS", "GLA 250 224 PS", "GLA 35 AMG 306 PS", "GLA 45 S AMG 421 PS", "GLA 180 d 116 PS", "GLA 200 d 150 PS", "GLA 220 d 190 PS"]]],
+    "Mercedes-Benz|GLB": [["X247", "ab 2019", ["GLB 200 163 PS", "GLB 250 224 PS", "GLB 35 AMG 306 PS", "GLB 180 d 116 PS", "GLB 200 d 150 PS", "GLB 220 d 190 PS"]]],
+    "Mercedes-Benz|GLC": [["X253 / C253", "2015–2022", ["GLC 200 184 PS", "GLC 200 197 PS", "GLC 250 211 PS", "GLC 300 245 PS", "GLC 300 258 PS", "GLC 43 AMG 367 PS", "GLC 43 AMG 390 PS", "GLC 63 AMG 476 PS", "GLC 63 AMG 510 PS", "GLC 200 d 163 PS", "GLC 220 d 170 PS", "GLC 220 d 194 PS", "GLC 250 d 204 PS", "GLC 300 d 245 PS", "GLC 350 d 258 PS"]], ["X254", "ab 2022", ["GLC 200 204 PS", "GLC 300 258 PS", "GLC 220 d 197 PS", "GLC 300 d 269 PS"]]],
+    "Mercedes-Benz|GLE / M-Klasse": [["W166 (ML / GLE)", "2011–2019", ["ML 250 BlueTEC 204 PS", "ML 350 BlueTEC 258 PS", "GLE 350 d 258 PS", "ML 350 306 PS", "GLE 400 333 PS", "GLE 43 AMG 367 PS", "GLE 43 AMG 390 PS", "GLE 63 AMG 525 PS", "GLE 63 AMG 557 PS"]], ["V167", "ab 2019", ["GLE 450 367 PS", "GLE 450 381 PS", "GLE 53 AMG 435 PS", "GLE 300 d 245 PS", "GLE 300 d 269 PS", "GLE 350 d 272 PS", "GLE 400 d 330 PS"]]],
+    "Mercedes-Benz|GLS": [["X166", "2015–2019", ["GLS 350 d 258 PS", "GLS 400 333 PS", "GLS 500 455 PS", "GLS 63 AMG 585 PS"]], ["X167", "ab 2019", ["GLS 450 367 PS", "GLS 450 381 PS", "GLS 580 489 PS", "GLS 350 d 286 PS", "GLS 400 d 330 PS"]]],
+    "Mercedes-Benz|G-Klasse": [["W463", "2012–2018", ["G 350 d 245 PS", "G 500 421 PS", "G 63 AMG 544 PS", "G 63 AMG 571 PS"]], ["W463A", "ab 2018", ["G 350 d 286 PS", "G 400 d 330 PS", "G 500 422 PS", "G 63 AMG 585 PS"]]],
+    "Mercedes-Benz|Viano": [["W639", "2003–2014", ["2.0 CDI 109 PS", "2.0 CDI 136 PS", "2.2 CDI 150 PS", "2.2 CDI 163 PS", "3.0 CDI 204 PS", "3.0 CDI 224 PS", "3.5 258 PS"]]],
+    "Mercedes-Benz|V-Klasse": [["W447", "ab 2014", ["V 200 d 136 PS", "V 220 d 163 PS", "V 250 d 190 PS", "V 300 d 239 PS"]]],
+    "Mercedes-Benz|Vito": [["W639", "2003–2014", ["109 CDI 88 PS", "109 CDI 95 PS", "111 CDI 109 PS", "111 CDI 116 PS", "113 CDI 136 PS", "115 CDI 150 PS", "116 CDI 163 PS", "120 CDI 204 PS", "122 CDI 224 PS"]], ["W447", "ab 2014", ["109 CDI 88 PS", "111 CDI 114 PS", "114 CDI 136 PS", "116 CDI 163 PS", "119 CDI 190 PS", "124 CDI 237 PS"]]],
+    "Mercedes-Benz|Sprinter": [["906 (NCV3)", "2006–2018", ["210 / 310 / 510 CDI 95 PS", "213 / 313 / 513 CDI 129 PS", "216 / 316 / 516 CDI 163 PS", "219 / 319 / 519 CDI 190 PS"]], ["907 / 910", "ab 2018", ["211 / 311 CDI 114 PS", "214 / 314 CDI 143 PS", "216 / 316 CDI 163 PS", "219 / 319 CDI 190 PS"]]],
+    "Volkswagen|up!": [["AA", "2011–2023", ["1.0 60 PS", "1.0 65 PS", "1.0 75 PS", "1.0 TSI 90 PS", "GTI 1.0 TSI 115 PS"]]],
+    "Volkswagen|Polo": [["6R / 6C", "2009–2017", ["1.2 TSI 90 PS", "1.2 TSI 105 PS", "1.0 TSI 95 PS", "1.0 TSI 110 PS", "GTI 1.4 TSI 180 PS", "GTI 1.8 TSI 192 PS", "1.2 TDI 75 PS", "1.4 TDI 75 PS", "1.4 TDI 90 PS", "1.4 TDI 105 PS", "1.6 TDI 75 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS"]], ["AW", "ab 2017", ["1.0 TSI 95 PS", "1.0 TSI 110 PS", "1.0 TSI 115 PS", "1.5 TSI 150 PS", "GTI 2.0 TSI 200 PS", "GTI 2.0 TSI 207 PS", "1.6 TDI 80 PS", "1.6 TDI 95 PS"]]],
+    "Volkswagen|Golf": [["Golf 5", "2003–2008", ["1.4 TSI 122 PS", "1.4 TSI 140 PS", "1.4 TSI 170 PS", "1.6 FSI 115 PS", "2.0 FSI 150 PS", "GTI 2.0 TFSI 200 PS", "GTI 2.0 TFSI 230 PS", "R32 3.2 V6 250 PS", "1.9 TDI 90 PS", "1.9 TDI 105 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS"]], ["Golf 6", "2008–2012", ["1.2 TSI 105 PS", "1.4 TSI 122 PS", "1.4 TSI 160 PS", "GTI 2.0 TSI 210 PS", "GTI 2.0 TSI 235 PS", "R 2.0 TSI 270 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS", "2.0 TDI 110 PS", "2.0 TDI 140 PS", "GTD 2.0 TDI 170 PS"]], ["Golf 7", "2012–2019", ["1.0 TSI 110 PS", "1.2 TSI 85 PS", "1.2 TSI 105 PS", "1.2 TSI 110 PS", "1.4 TSI 122 PS", "1.4 TSI 125 PS", "1.4 TSI 140 PS", "1.4 TSI 150 PS", "1.5 TSI 130 PS", "1.5 TSI 150 PS", "GTE 204 PS", "GTI 2.0 TSI 220 PS", "GTI 2.0 TSI 230 PS", "GTI 2.0 TSI 245 PS", "GTI TCR 290 PS", "R 2.0 TSI 300 PS", "R 2.0 TSI 310 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS", "1.6 TDI 110 PS", "1.6 TDI 115 PS", "2.0 TDI 150 PS", "GTD 2.0 TDI 184 PS"]], ["Golf 8", "ab 2020", ["1.0 TSI 110 PS", "1.5 TSI 130 PS", "1.5 TSI 150 PS", "1.5 eTSI 130 PS", "1.5 eTSI 150 PS", "eHybrid 204 PS", "GTE 245 PS", "GTI 2.0 TSI 245 PS", "GTI 2.0 TSI 265 PS", "GTI Clubsport 300 PS", "R 2.0 TSI 320 PS", "R 2.0 TSI 333 PS", "2.0 TDI 115 PS", "2.0 TDI 150 PS", "GTD 2.0 TDI 200 PS"]]],
+    "Volkswagen|Scirocco": [["13", "2008–2017", ["1.4 TSI 122 PS", "1.4 TSI 125 PS", "1.4 TSI 160 PS", "2.0 TSI 200 PS", "2.0 TSI 211 PS", "2.0 TSI 220 PS", "R 2.0 TSI 265 PS", "R 2.0 TSI 280 PS", "2.0 TDI 140 PS", "2.0 TDI 150 PS", "2.0 TDI 170 PS", "2.0 TDI 184 PS"]]],
+    "Volkswagen|T-Cross": [["C1", "ab 2019", ["1.0 TSI 95 PS", "1.0 TSI 110 PS", "1.0 TSI 115 PS", "1.5 TSI 150 PS", "1.6 TDI 95 PS"]]],
+    "Volkswagen|T-Roc": [["A1", "ab 2017", ["1.0 TSI 110 PS", "1.0 TSI 115 PS", "1.5 TSI 150 PS", "2.0 TSI 190 PS", "R 2.0 TSI 300 PS", "1.6 TDI 115 PS", "2.0 TDI 115 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS"]]],
+    "Volkswagen|Tiguan": [["5N", "2007–2016", ["1.4 TSI 122 PS", "1.4 TSI 150 PS", "1.4 TSI 160 PS", "2.0 TSI 170 PS", "2.0 TSI 180 PS", "2.0 TSI 200 PS", "2.0 TSI 210 PS", "2.0 TDI 110 PS", "2.0 TDI 140 PS", "2.0 TDI 150 PS", "2.0 TDI 170 PS", "2.0 TDI 177 PS", "2.0 TDI 184 PS"]], ["AD1", "2016–2024", ["1.4 TSI 125 PS", "1.4 TSI 150 PS", "1.5 TSI 130 PS", "1.5 TSI 150 PS", "2.0 TSI 180 PS", "2.0 TSI 190 PS", "2.0 TSI 220 PS", "2.0 TSI 230 PS", "R 2.0 TSI 320 PS", "eHybrid 245 PS", "2.0 TDI 115 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS", "2.0 TDI 200 PS", "2.0 TDI 240 PS"]], ["CT1", "ab 2024", ["1.5 eTSI 130 PS", "1.5 eTSI 150 PS", "2.0 TSI 204 PS", "2.0 TSI 265 PS", "2.0 TDI 150 PS", "2.0 TDI 193 PS"]]],
+    "Volkswagen|Touran": [["1T", "2003–2015", ["1.4 TSI 140 PS", "1.4 TSI 150 PS", "1.4 TSI 170 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS", "1.9 TDI 105 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS"]], ["5T", "ab 2015", ["1.0 TSI 115 PS", "1.2 TSI 110 PS", "1.4 TSI 150 PS", "1.5 TSI 150 PS", "1.6 TDI 110 PS", "1.6 TDI 115 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS"]]],
+    "Volkswagen|Sharan": [["7N", "2010–2022", ["1.4 TSI 150 PS", "2.0 TSI 200 PS", "2.0 TSI 220 PS", "2.0 TDI 115 PS", "2.0 TDI 140 PS", "2.0 TDI 150 PS", "2.0 TDI 170 PS", "2.0 TDI 177 PS", "2.0 TDI 184 PS"]]],
+    "Volkswagen|Passat": [["B6", "2005–2010", ["1.4 TSI 122 PS", "1.4 TSI 150 PS", "1.8 TSI 160 PS", "2.0 TFSI 200 PS", "3.2 V6 250 PS", "R36 3.6 V6 300 PS", "1.9 TDI 105 PS", "2.0 TDI 110 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS"]], ["B7", "2010–2014", ["1.4 TSI 122 PS", "1.8 TSI 160 PS", "2.0 TSI 211 PS", "1.6 TDI 105 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS"]], ["B8", "2014–2023", ["1.4 TSI 125 PS", "1.4 TSI 150 PS", "1.5 TSI 150 PS", "1.8 TSI 180 PS", "2.0 TSI 220 PS", "2.0 TSI 272 PS", "2.0 TSI 280 PS", "GTE 218 PS", "1.6 TDI 120 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS", "2.0 TDI 200 PS", "2.0 BiTDI 240 PS"]]],
+    "Volkswagen|Arteon": [["3H", "ab 2017", ["1.5 TSI 150 PS", "2.0 TSI 190 PS", "2.0 TSI 280 PS", "R 2.0 TSI 320 PS", "eHybrid 218 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS", "2.0 TDI 200 PS", "2.0 TDI 240 PS"]]],
+    "Volkswagen|Touareg": [["7L", "2002–2010", ["3.2 V6 220 PS", "3.2 V6 241 PS", "3.6 V6 280 PS", "4.2 V8 310 PS", "4.2 V8 350 PS", "2.5 TDI 174 PS", "3.0 TDI 225 PS", "3.0 TDI 240 PS", "5.0 V10 TDI 313 PS", "5.0 V10 TDI 351 PS"]], ["7P", "2010–2018", ["3.6 V6 249 PS", "3.6 V6 280 PS", "Hybrid 333 PS", "3.0 TDI 204 PS", "3.0 TDI 240 PS", "3.0 TDI 245 PS", "3.0 TDI 262 PS", "4.2 V8 TDI 340 PS"]], ["CR", "ab 2018", ["3.0 TSI 340 PS", "R eHybrid 462 PS", "3.0 TDI 231 PS", "3.0 TDI 286 PS", "4.0 V8 TDI 421 PS"]]],
+    "Volkswagen|Caddy": [["2K", "2003–2020", ["1.2 TSI 84 PS", "1.2 TSI 105 PS", "1.4 TSI 125 PS", "1.6 TDI 75 PS", "1.6 TDI 102 PS", "1.9 TDI 105 PS", "2.0 TDI 75 PS", "2.0 TDI 102 PS", "2.0 TDI 110 PS", "2.0 TDI 122 PS", "2.0 TDI 140 PS", "2.0 TDI 150 PS"]], ["SB", "ab 2020", ["1.5 TSI 114 PS", "2.0 TDI 75 PS", "2.0 TDI 102 PS", "2.0 TDI 122 PS"]]],
+    "Volkswagen|Transporter / Multivan": [["T5", "2003–2015", ["2.0 TDI 84 PS", "2.0 TDI 102 PS", "2.0 TDI 140 PS", "2.0 BiTDI 180 PS", "2.5 TDI 130 PS", "2.5 TDI 174 PS"]], ["T6", "2015–2019", ["2.0 TDI 84 PS", "2.0 TDI 102 PS", "2.0 TDI 114 PS", "2.0 TDI 150 PS", "2.0 BiTDI 204 PS"]], ["T6.1", "ab 2019", ["2.0 TDI 90 PS", "2.0 TDI 110 PS", "2.0 TDI 150 PS", "2.0 TDI 199 PS"]]],
+    "Volkswagen|Crafter": [["2E", "2006–2016", ["2.0 TDI 109 PS", "2.0 TDI 136 PS", "2.0 TDI 143 PS", "2.0 TDI 163 PS", "2.5 TDI 88 PS", "2.5 TDI 109 PS", "2.5 TDI 136 PS", "2.5 TDI 163 PS"]], ["SY", "ab 2016", ["2.0 TDI 102 PS", "2.0 TDI 122 PS", "2.0 TDI 140 PS", "2.0 TDI 177 PS"]]],
+    "Volkswagen|Amarok": [["2H", "2010–2020", ["2.0 TDI 122 PS", "2.0 TDI 140 PS", "2.0 BiTDI 163 PS", "2.0 BiTDI 180 PS", "3.0 V6 TDI 163 PS", "3.0 V6 TDI 204 PS", "3.0 V6 TDI 224 PS", "3.0 V6 TDI 258 PS"]]],
+    "Skoda|Fabia": [["5J", "2007–2014", ["1.2 TSI 86 PS", "1.2 TSI 105 PS", "RS 1.4 TSI 180 PS", "1.2 TDI 75 PS", "1.6 TDI 75 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS"]], ["NJ", "2014–2021", ["1.0 TSI 95 PS", "1.0 TSI 110 PS", "1.2 TSI 90 PS", "1.2 TSI 110 PS", "1.4 TDI 75 PS", "1.4 TDI 90 PS", "1.4 TDI 105 PS"]], ["PJ", "ab 2021", ["1.0 TSI 95 PS", "1.0 TSI 110 PS", "1.5 TSI 150 PS"]]],
+    "Skoda|Scala": [["NW", "ab 2019", ["1.0 TSI 95 PS", "1.0 TSI 110 PS", "1.0 TSI 115 PS", "1.5 TSI 150 PS", "1.6 TDI 115 PS"]]],
+    "Skoda|Octavia": [["1Z (Octavia 2)", "2004–2013", ["1.4 TSI 122 PS", "1.8 TSI 160 PS", "RS 2.0 TFSI 200 PS", "1.6 TDI 105 PS", "1.9 TDI 105 PS", "2.0 TDI 140 PS", "RS 2.0 TDI 170 PS"]], ["5E (Octavia 3)", "2013–2020", ["1.0 TSI 115 PS", "1.2 TSI 105 PS", "1.2 TSI 110 PS", "1.4 TSI 140 PS", "1.4 TSI 150 PS", "1.5 TSI 150 PS", "1.8 TSI 180 PS", "RS 2.0 TSI 220 PS", "RS 2.0 TSI 230 PS", "RS 2.0 TSI 245 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS", "1.6 TDI 110 PS", "1.6 TDI 115 PS", "2.0 TDI 150 PS", "RS 2.0 TDI 184 PS"]], ["NX (Octavia 4)", "ab 2020", ["1.0 TSI 110 PS", "1.5 TSI 150 PS", "2.0 TSI 190 PS", "RS 2.0 TSI 245 PS", "RS 2.0 TSI 265 PS", "RS iV 245 PS", "2.0 TDI 115 PS", "2.0 TDI 150 PS", "2.0 TDI 200 PS", "RS 2.0 TDI 200 PS"]]],
+    "Skoda|Superb": [["3T", "2008–2015", ["1.4 TSI 125 PS", "1.8 TSI 160 PS", "2.0 TSI 200 PS", "3.6 V6 260 PS", "1.6 TDI 105 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS"]], ["3V", "2015–2023", ["1.4 TSI 150 PS", "1.5 TSI 150 PS", "2.0 TSI 190 PS", "2.0 TSI 220 PS", "2.0 TSI 272 PS", "2.0 TSI 280 PS", "iV 218 PS", "1.6 TDI 120 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS", "2.0 TDI 200 PS"]], ["3Y", "ab 2024", ["1.5 eTSI 150 PS", "2.0 TSI 204 PS", "2.0 TSI 265 PS", "2.0 TDI 150 PS", "2.0 TDI 193 PS"]]],
+    "Skoda|Kamiq": [["NW4", "ab 2019", ["1.0 TSI 95 PS", "1.0 TSI 110 PS", "1.0 TSI 115 PS", "1.5 TSI 150 PS", "1.6 TDI 115 PS"]]],
+    "Skoda|Karoq": [["NU7", "ab 2017", ["1.0 TSI 115 PS", "1.5 TSI 150 PS", "2.0 TSI 190 PS", "1.6 TDI 115 PS", "2.0 TDI 115 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS"]]],
+    "Skoda|Kodiaq": [["NS7", "2016–2024", ["1.4 TSI 125 PS", "1.4 TSI 150 PS", "1.5 TSI 150 PS", "2.0 TSI 180 PS", "2.0 TSI 190 PS", "RS 2.0 TSI 245 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS", "2.0 TDI 200 PS", "RS 2.0 BiTDI 240 PS"]]],
+    "Skoda|Yeti": [["5L", "2009–2017", ["1.2 TSI 105 PS", "1.2 TSI 110 PS", "1.4 TSI 122 PS", "1.4 TSI 125 PS", "1.8 TSI 152 PS", "1.8 TSI 160 PS", "2.0 TDI 110 PS", "2.0 TDI 140 PS", "2.0 TDI 150 PS", "2.0 TDI 170 PS"]]],
+    "Seat|Ibiza": [["6J", "2008–2017", ["1.2 TSI 90 PS", "1.2 TSI 105 PS", "FR 1.4 TSI 150 PS", "Cupra 1.4 TSI 180 PS", "Cupra 1.8 TSI 192 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS", "2.0 TDI 143 PS"]], ["KJ", "ab 2017", ["1.0 TSI 95 PS", "1.0 TSI 110 PS", "1.0 TSI 115 PS", "1.5 TSI 150 PS", "1.6 TDI 80 PS", "1.6 TDI 95 PS"]]],
+    "Seat|Leon": [["1P", "2005–2012", ["1.4 TSI 125 PS", "1.8 TSI 160 PS", "FR 2.0 TFSI 200 PS", "FR 2.0 TFSI 211 PS", "Cupra 2.0 TFSI 240 PS", "Cupra R 2.0 TFSI 265 PS", "1.6 TDI 90 PS", "1.6 TDI 105 PS", "1.9 TDI 105 PS", "2.0 TDI 140 PS", "2.0 TDI 170 PS"]], ["5F", "2012–2020", ["1.0 TSI 115 PS", "1.2 TSI 110 PS", "1.4 TSI 122 PS", "1.4 TSI 125 PS", "1.4 TSI 150 PS", "1.5 TSI 130 PS", "1.5 TSI 150 PS", "1.8 TSI 180 PS", "Cupra 2.0 TSI 265 PS", "Cupra 2.0 TSI 280 PS", "Cupra 2.0 TSI 290 PS", "Cupra 2.0 TSI 300 PS", "1.6 TDI 110 PS", "1.6 TDI 115 PS", "2.0 TDI 150 PS", "2.0 TDI 184 PS"]], ["KL", "ab 2020", ["1.0 eTSI 110 PS", "1.5 TSI 130 PS", "1.5 TSI 150 PS", "2.0 TSI 190 PS", "e-Hybrid 204 PS", "2.0 TDI 115 PS", "2.0 TDI 150 PS"]]],
+    "Seat|Arona": [["KJ7", "ab 2017", ["1.0 TSI 95 PS", "1.0 TSI 110 PS", "1.0 TSI 115 PS", "1.5 TSI 150 PS", "1.6 TDI 95 PS", "1.6 TDI 115 PS"]]],
+    "Seat|Ateca": [["KH7", "ab 2016", ["1.0 TSI 110 PS", "1.0 TSI 115 PS", "1.4 TSI 150 PS", "1.5 TSI 150 PS", "2.0 TSI 190 PS", "1.6 TDI 115 PS", "2.0 TDI 150 PS", "2.0 TDI 190 PS"]]],
+    "Seat|Tarraco": [["KN2", "ab 2018", ["1.5 TSI 150 PS", "2.0 TSI 190 PS", "2.0 TSI 245 PS", "e-Hybrid 245 PS", "2.0 TDI 150 PS", "2.0 TDI 200 PS"]]],
+    "Seat|Alhambra": [["7N", "2010–2022", ["1.4 TSI 150 PS", "2.0 TSI 200 PS", "2.0 TSI 220 PS", "2.0 TDI 115 PS", "2.0 TDI 150 PS", "2.0 TDI 177 PS", "2.0 TDI 184 PS"]]],
+    "Cupra|Formentor": [["KM", "ab 2020", ["1.5 TSI 150 PS", "2.0 TSI 190 PS", "2.0 TSI 245 PS", "2.0 TSI 310 PS", "2.0 TSI 333 PS", "VZ5 2.5 TFSI 390 PS", "e-Hybrid 204 PS", "e-Hybrid 245 PS", "e-Hybrid 272 PS", "2.0 TDI 150 PS"]]],
+    "Cupra|Leon": [["KL", "ab 2020", ["1.5 TSI 150 PS", "2.0 TSI 245 PS", "2.0 TSI 300 PS", "2.0 TSI 310 PS", "2.0 TSI 333 PS", "e-Hybrid 204 PS", "e-Hybrid 245 PS", "e-Hybrid 272 PS"]]],
+    "Cupra|Ateca": [["KH7", "ab 2018", ["2.0 TSI 300 PS"]]],
+    "Ford|Fiesta": [["Mk7", "2008–2017", ["1.25 82 PS", "1.4 96 PS", "1.0 EcoBoost 100 PS", "1.0 EcoBoost 125 PS", "1.0 EcoBoost 140 PS", "1.6 Ti-VCT 120 PS", "1.6 Ti-VCT 134 PS", "ST 1.6 EcoBoost 182 PS", "ST 1.6 EcoBoost 200 PS", "1.4 TDCi 68 PS", "1.4 TDCi 70 PS", "1.5 TDCi 75 PS", "1.5 TDCi 95 PS", "1.6 TDCi 90 PS", "1.6 TDCi 95 PS"]], ["Mk8", "2017–2023", ["1.1 75 PS", "1.1 85 PS", "1.0 EcoBoost 95 PS", "1.0 EcoBoost 100 PS", "1.0 EcoBoost 125 PS", "1.0 EcoBoost 140 PS", "1.0 EcoBoost 155 PS", "ST 1.5 EcoBoost 200 PS", "1.5 TDCi 85 PS", "1.5 TDCi 120 PS"]]],
+    "Ford|Focus": [["Mk2", "2004–2011", ["1.6 100 PS", "1.6 115 PS", "1.8 125 PS", "2.0 145 PS", "ST 2.5 225 PS", "RS 2.5 305 PS", "1.6 TDCi 90 PS", "1.6 TDCi 109 PS", "1.8 TDCi 115 PS", "2.0 TDCi 136 PS"]], ["Mk3", "2011–2018", ["1.0 EcoBoost 100 PS", "1.0 EcoBoost 125 PS", "1.5 EcoBoost 150 PS", "1.5 EcoBoost 182 PS", "1.6 EcoBoost 150 PS", "1.6 EcoBoost 182 PS", "ST 2.0 EcoBoost 250 PS", "RS 2.3 EcoBoost 350 PS", "1.5 TDCi 95 PS", "1.5 TDCi 120 PS", "1.6 TDCi 95 PS", "1.6 TDCi 115 PS", "2.0 TDCi 150 PS", "2.0 TDCi 163 PS", "ST 2.0 TDCi 185 PS"]], ["Mk4", "ab 2018", ["1.0 EcoBoost 100 PS", "1.0 EcoBoost 125 PS", "1.0 EcoBoost 155 PS", "1.5 EcoBoost 150 PS", "1.5 EcoBoost 182 PS", "ST 2.3 EcoBoost 280 PS", "1.5 EcoBlue 95 PS", "1.5 EcoBlue 120 PS", "2.0 EcoBlue 150 PS", "ST 2.0 EcoBlue 190 PS"]]],
+    "Ford|Mondeo": [["Mk4", "2007–2014", ["1.6 EcoBoost 160 PS", "2.0 EcoBoost 203 PS", "2.0 EcoBoost 240 PS", "2.5 220 PS", "1.6 TDCi 115 PS", "1.8 TDCi 100 PS", "1.8 TDCi 125 PS", "2.0 TDCi 115 PS", "2.0 TDCi 140 PS", "2.0 TDCi 163 PS", "2.2 TDCi 175 PS", "2.2 TDCi 200 PS"]], ["Mk5", "2014–2022", ["1.0 EcoBoost 125 PS", "1.5 EcoBoost 160 PS", "2.0 EcoBoost 203 PS", "2.0 EcoBoost 240 PS", "Hybrid 187 PS", "1.5 TDCi 120 PS", "2.0 TDCi 150 PS", "2.0 TDCi 180 PS", "2.0 TDCi 210 PS", "2.0 EcoBlue 150 PS", "2.0 EcoBlue 190 PS"]]],
+    "Ford|Puma": [["J2K", "ab 2019", ["1.0 EcoBoost 125 PS", "1.0 EcoBoost 155 PS", "ST 1.5 EcoBoost 200 PS", "1.5 EcoBlue 120 PS"]]],
+    "Ford|Kuga": [["Mk1", "2008–2012", ["2.5 200 PS", "2.0 TDCi 136 PS", "2.0 TDCi 140 PS", "2.0 TDCi 163 PS"]], ["Mk2", "2012–2019", ["1.5 EcoBoost 120 PS", "1.5 EcoBoost 150 PS", "1.5 EcoBoost 182 PS", "1.6 EcoBoost 150 PS", "1.6 EcoBoost 182 PS", "2.0 EcoBoost 242 PS", "1.5 TDCi 120 PS", "2.0 TDCi 120 PS", "2.0 TDCi 150 PS", "2.0 TDCi 163 PS", "2.0 TDCi 180 PS"]], ["Mk3", "ab 2019", ["1.5 EcoBoost 120 PS", "1.5 EcoBoost 150 PS", "PHEV 225 PS", "1.5 EcoBlue 120 PS", "2.0 EcoBlue 150 PS", "2.0 EcoBlue 190 PS"]]],
+    "Ford|S-Max": [["Mk1", "2006–2015", ["2.0 EcoBoost 203 PS", "2.0 EcoBoost 240 PS", "2.0 TDCi 140 PS", "2.0 TDCi 163 PS", "2.2 TDCi 175 PS", "2.2 TDCi 200 PS"]], ["Mk2", "2015–2023", ["1.5 EcoBoost 160 PS", "2.0 EcoBoost 240 PS", "2.0 TDCi 150 PS", "2.0 TDCi 180 PS", "2.0 TDCi 210 PS", "2.0 EcoBlue 150 PS", "2.0 EcoBlue 190 PS"]]],
+    "Ford|Galaxy": [["Mk2", "2006–2015", ["2.0 EcoBoost 203 PS", "2.0 TDCi 140 PS", "2.0 TDCi 163 PS", "2.2 TDCi 175 PS", "2.2 TDCi 200 PS"]], ["Mk3", "2015–2023", ["1.5 EcoBoost 160 PS", "2.0 EcoBoost 240 PS", "2.0 TDCi 150 PS", "2.0 TDCi 180 PS", "2.0 TDCi 210 PS", "2.0 EcoBlue 150 PS", "2.0 EcoBlue 190 PS"]]],
+    "Ford|Transit Custom": [["V362", "2012–2023", ["2.2 TDCi 100 PS", "2.2 TDCi 125 PS", "2.2 TDCi 155 PS", "2.0 TDCi 105 PS", "2.0 TDCi 130 PS", "2.0 TDCi 170 PS", "2.0 EcoBlue 105 PS", "2.0 EcoBlue 130 PS", "2.0 EcoBlue 170 PS", "2.0 EcoBlue 185 PS"]]],
+    "Ford|Transit": [["V363", "ab 2014", ["2.2 TDCi 100 PS", "2.2 TDCi 125 PS", "2.2 TDCi 155 PS", "2.0 EcoBlue 105 PS", "2.0 EcoBlue 130 PS", "2.0 EcoBlue 170 PS", "2.0 EcoBlue 185 PS"]]],
+    "Ford|Ranger": [["PX", "2011–2022", ["2.2 TDCi 125 PS", "2.2 TDCi 150 PS", "2.2 TDCi 160 PS", "3.2 TDCi 200 PS", "2.0 EcoBlue 170 PS", "2.0 EcoBlue 213 PS", "Raptor 2.0 EcoBlue 213 PS"]], ["P703", "ab 2022", ["2.0 EcoBlue 170 PS", "2.0 EcoBlue 205 PS", "3.0 V6 Diesel 240 PS", "Raptor 3.0 V6 292 PS"]]],
+    "Ford|Mustang": [["S550", "2015–2023", ["2.3 EcoBoost 290 PS", "2.3 EcoBoost 317 PS", "5.0 V8 421 PS", "5.0 V8 450 PS", "5.0 V8 460 PS"]], ["S650", "ab 2024", ["5.0 V8 446 PS"]]],
+    "Opel|Corsa": [["D", "2006–2014", ["1.2 80 PS", "1.2 85 PS", "1.4 90 PS", "1.4 100 PS", "OPC 1.6 Turbo 192 PS", "OPC 1.6 Turbo 210 PS", "1.3 CDTI 75 PS", "1.3 CDTI 90 PS", "1.3 CDTI 95 PS", "1.7 CDTI 125 PS", "1.7 CDTI 130 PS"]], ["E", "2014–2019", ["1.0 Turbo 90 PS", "1.0 Turbo 115 PS", "1.4 Turbo 100 PS", "1.4 Turbo 150 PS", "OPC 1.6 Turbo 207 PS", "1.3 CDTI 75 PS", "1.3 CDTI 95 PS"]], ["F", "ab 2019", ["1.2 75 PS", "1.2 Turbo 100 PS", "1.2 Turbo 130 PS", "1.5 Diesel 102 PS"]]],
+    "Opel|Astra": [["H", "2004–2010", ["1.6 Turbo 180 PS", "2.0 Turbo 170 PS", "2.0 Turbo 200 PS", "OPC 2.0 Turbo 240 PS", "1.7 CDTI 100 PS", "1.7 CDTI 110 PS", "1.7 CDTI 125 PS", "1.9 CDTI 120 PS", "1.9 CDTI 150 PS"]], ["J", "2009–2015", ["1.4 Turbo 120 PS", "1.4 Turbo 140 PS", "1.6 Turbo 170 PS", "1.6 Turbo 180 PS", "OPC 2.0 Turbo 280 PS", "1.7 CDTI 110 PS", "1.7 CDTI 125 PS", "1.7 CDTI 130 PS", "2.0 CDTI 160 PS", "2.0 CDTI 165 PS", "2.0 BiTurbo CDTI 195 PS"]], ["K", "2015–2021", ["1.0 Turbo 105 PS", "1.2 Turbo 110 PS", "1.2 Turbo 130 PS", "1.2 Turbo 145 PS", "1.4 Turbo 125 PS", "1.4 Turbo 150 PS", "1.6 Turbo 200 PS", "1.6 CDTI 110 PS", "1.6 CDTI 136 PS", "1.6 CDTI 160 PS", "1.5 Diesel 105 PS", "1.5 Diesel 122 PS"]], ["L", "ab 2021", ["1.2 Turbo 110 PS", "1.2 Turbo 130 PS", "Hybrid 180 PS", "Hybrid 225 PS", "1.5 Diesel 130 PS"]]],
+    "Opel|Insignia": [["A", "2008–2017", ["1.4 Turbo 140 PS", "1.6 Turbo 170 PS", "1.6 Turbo 180 PS", "2.0 Turbo 220 PS", "2.0 Turbo 250 PS", "OPC 2.8 V6 325 PS", "2.0 CDTI 110 PS", "2.0 CDTI 130 PS", "2.0 CDTI 140 PS", "2.0 CDTI 160 PS", "2.0 CDTI 163 PS", "2.0 CDTI 170 PS", "2.0 BiTurbo CDTI 195 PS"]], ["B", "2017–2022", ["1.5 Turbo 140 PS", "1.5 Turbo 165 PS", "2.0 Turbo 200 PS", "2.0 Turbo 260 PS", "1.6 CDTI 110 PS", "1.6 CDTI 136 PS", "2.0 CDTI 170 PS", "2.0 CDTI 174 PS", "2.0 BiTurbo CDTI 210 PS"]]],
+    "Opel|Zafira": [["B", "2005–2014", ["1.6 105 PS", "1.6 115 PS", "1.8 140 PS", "OPC 2.0 Turbo 240 PS", "1.7 CDTI 110 PS", "1.7 CDTI 125 PS", "1.9 CDTI 120 PS", "1.9 CDTI 150 PS"]], ["C (Tourer)", "2011–2019", ["1.4 Turbo 120 PS", "1.4 Turbo 140 PS", "1.6 Turbo 170 PS", "1.6 Turbo 200 PS", "1.6 CDTI 120 PS", "1.6 CDTI 134 PS", "2.0 CDTI 110 PS", "2.0 CDTI 130 PS", "2.0 CDTI 165 PS", "2.0 CDTI 170 PS"]]],
+    "Opel|Mokka": [["J13", "2012–2019", ["1.4 Turbo 140 PS", "1.4 Turbo 152 PS", "1.6 CDTI 110 PS", "1.6 CDTI 136 PS", "1.7 CDTI 130 PS"]], ["B", "ab 2021", ["1.2 Turbo 100 PS", "1.2 Turbo 130 PS", "1.2 Turbo 136 PS", "1.5 Diesel 110 PS"]]],
+    "Opel|Grandland": [["A18", "2017–2024", ["1.2 Turbo 130 PS", "1.6 Turbo 180 PS", "Hybrid 224 PS", "Hybrid 300 PS", "1.5 Diesel 130 PS", "2.0 Diesel 177 PS"]]],
+    "Opel|Vivaro": [["B", "2014–2019", ["1.6 CDTI 90 PS", "1.6 CDTI 95 PS", "1.6 CDTI 115 PS", "1.6 CDTI 120 PS", "1.6 CDTI 125 PS", "1.6 CDTI 140 PS", "1.6 CDTI 145 PS"]], ["C", "ab 2019", ["1.5 Diesel 102 PS", "1.5 Diesel 120 PS", "2.0 Diesel 122 PS", "2.0 Diesel 150 PS", "2.0 Diesel 177 PS"]]],
+    "Opel|Movano": [["B", "2010–2021", ["2.3 CDTI 101 PS", "2.3 CDTI 125 PS", "2.3 CDTI 131 PS", "2.3 CDTI 136 PS", "2.3 CDTI 146 PS", "2.3 CDTI 150 PS", "2.3 CDTI 163 PS", "2.3 CDTI 170 PS", "2.3 CDTI 180 PS"]]],
+    "Porsche|911": [["997", "2004–2012", ["Carrera 325 PS", "Carrera 345 PS", "Carrera S 355 PS", "Carrera S 385 PS", "Turbo 480 PS", "Turbo 500 PS", "Turbo S 530 PS", "GT3 415 PS", "GT3 435 PS"]], ["991", "2011–2019", ["Carrera 350 PS", "Carrera 370 PS", "Carrera S 400 PS", "Carrera S 420 PS", "GTS 430 PS", "GTS 450 PS", "Turbo 520 PS", "Turbo 540 PS", "Turbo S 560 PS", "Turbo S 580 PS", "GT3 475 PS", "GT3 500 PS"]], ["992", "ab 2019", ["Carrera 385 PS", "Carrera 394 PS", "Carrera S 450 PS", "Carrera S 480 PS", "GTS 480 PS", "GTS 541 PS", "Turbo 580 PS", "Turbo S 650 PS"]]],
+    "Porsche|Boxster": [["981", "2012–2016", ["Boxster 265 PS", "Boxster S 315 PS", "Boxster GTS 330 PS"]], ["718 (982)", "ab 2016", ["Boxster 300 PS", "Boxster S 350 PS", "Boxster GTS 4.0 400 PS"]]],
+    "Porsche|Cayman": [["981", "2012–2016", ["Cayman 275 PS", "Cayman S 325 PS", "Cayman GTS 340 PS"]], ["718 (982)", "ab 2016", ["Cayman 300 PS", "Cayman S 350 PS", "Cayman GTS 4.0 400 PS"]]],
+    "Porsche|Macan": [["95B", "2014–2024", ["Macan 2.0 245 PS", "Macan 2.0 252 PS", "Macan 2.0 265 PS", "Macan S 340 PS", "Macan S 354 PS", "Macan S 380 PS", "Macan GTS 360 PS", "Macan GTS 380 PS", "Macan GTS 440 PS", "Macan Turbo 400 PS", "Macan Turbo 440 PS", "Macan S Diesel 250 PS", "Macan S Diesel 258 PS"]]],
+    "Porsche|Cayenne": [["92A", "2010–2017", ["3.6 V6 300 PS", "S 400 PS", "S 420 PS", "GTS 420 PS", "GTS 440 PS", "Turbo 500 PS", "Turbo 520 PS", "Turbo S 550 PS", "Turbo S 570 PS", "S E-Hybrid 416 PS", "Diesel 245 PS", "Diesel 262 PS", "S Diesel 382 PS", "S Diesel 385 PS"]], ["9YA / 9YB", "ab 2017", ["Cayenne 340 PS", "Cayenne 353 PS", "S 440 PS", "S 474 PS", "GTS 460 PS", "GTS 500 PS", "Turbo 550 PS", "E-Hybrid 462 PS", "E-Hybrid 470 PS", "Turbo S E-Hybrid 680 PS"]]],
+    "Porsche|Panamera": [["970", "2009–2016", ["3.6 V6 300 PS", "3.6 V6 310 PS", "4S 400 PS", "4S 420 PS", "GTS 430 PS", "GTS 440 PS", "Turbo 500 PS", "Turbo 520 PS", "Turbo S 550 PS", "Turbo S 570 PS", "S E-Hybrid 416 PS", "Diesel 250 PS", "Diesel 300 PS"]], ["971", "ab 2016", ["Panamera 330 PS", "4S 440 PS", "GTS 460 PS", "GTS 480 PS", "Turbo 550 PS", "Turbo S 630 PS", "4 E-Hybrid 462 PS", "4S Diesel 422 PS"]]],
+    "Mini|Mini 3-Türer / 5-Türer": [["R56", "2006–2013", ["One 75 PS", "One 95 PS", "One 98 PS", "Cooper 120 PS", "Cooper 122 PS", "Cooper S 175 PS", "Cooper S 184 PS", "John Cooper Works 211 PS", "Cooper D 109 PS", "Cooper D 112 PS", "Cooper SD 143 PS"]], ["F55 / F56", "2014–2024", ["One 75 PS", "One 102 PS", "Cooper 136 PS", "Cooper S 178 PS", "Cooper S 192 PS", "John Cooper Works 231 PS", "Cooper D 116 PS", "Cooper SD 170 PS"]]],
+    "Mini|Countryman": [["R60", "2010–2016", ["Cooper 122 PS", "Cooper S 184 PS", "Cooper S 190 PS", "John Cooper Works 218 PS", "Cooper D 112 PS", "Cooper SD 143 PS"]], ["F60", "2017–2023", ["Cooper 136 PS", "Cooper S 178 PS", "Cooper S 192 PS", "John Cooper Works 306 PS", "Cooper SE 224 PS", "Cooper D 150 PS", "Cooper SD 190 PS"]]],
+    "Land Rover|Range Rover Evoque": [["L538", "2011–2018", ["Si4 240 PS", "2.0 Si4 240 PS", "2.0 Si4 290 PS", "2.2 TD4 150 PS", "2.2 SD4 190 PS", "2.0 TD4 150 PS", "2.0 TD4 180 PS", "2.0 SD4 240 PS"]], ["L551", "ab 2019", ["P200 200 PS", "P250 249 PS", "P300 300 PS", "P300e 309 PS", "D150 150 PS", "D165 163 PS", "D180 180 PS", "D200 204 PS", "D240 240 PS"]]],
+    "Land Rover|Discovery Sport": [["L550", "ab 2014", ["Si4 240 PS", "Si4 290 PS", "P200 200 PS", "P250 249 PS", "P300e 309 PS", "TD4 150 PS", "TD4 180 PS", "SD4 190 PS", "SD4 240 PS", "D165 163 PS", "D180 180 PS", "D200 204 PS", "D240 240 PS"]]],
+    "Land Rover|Range Rover Velar": [["L560", "ab 2017", ["P250 250 PS", "P300 300 PS", "P380 380 PS", "P400e 404 PS", "D180 180 PS", "D200 204 PS", "D240 240 PS", "D300 300 PS"]]],
+    "Land Rover|Range Rover Sport": [["L320", "2005–2013", ["TDV6 2.7 190 PS", "TDV6 3.0 245 PS", "TDV6 3.0 256 PS", "TDV8 3.6 272 PS", "4.2 V8 Supercharged 390 PS", "5.0 V8 Supercharged 510 PS"]], ["L494", "2013–2022", ["TDV6 258 PS", "SDV6 292 PS", "SDV6 306 PS", "SDV8 339 PS", "D250 249 PS", "D300 300 PS", "P400e 404 PS", "V8 Supercharged 510 PS", "V8 Supercharged 525 PS", "SVR 550 PS", "SVR 575 PS"]], ["L461", "ab 2022", ["D250 249 PS", "D300 300 PS", "D350 350 PS", "P400 400 PS", "P440e 440 PS", "P510e 510 PS", "P530 V8 530 PS"]]],
+    "Land Rover|Range Rover": [["L322", "2002–2012", ["TDV8 3.6 272 PS", "TDV8 4.4 313 PS", "5.0 V8 Supercharged 510 PS"]], ["L405", "2012–2022", ["TDV6 258 PS", "SDV6 292 PS", "SDV8 339 PS", "D300 300 PS", "D350 350 PS", "P400e 404 PS", "V8 Supercharged 510 PS", "V8 Supercharged 525 PS", "V8 Supercharged 565 PS"]], ["L460", "ab 2022", ["D300 300 PS", "D350 350 PS", "P400 400 PS", "P530 V8 530 PS"]]],
+    "Land Rover|Discovery": [["Discovery 4", "2009–2016", ["TDV6 3.0 211 PS", "TDV6 3.0 245 PS", "TDV6 3.0 256 PS", "SDV6 3.0 256 PS"]], ["Discovery 5", "ab 2017", ["Sd4 240 PS", "Td6 258 PS", "D250 249 PS", "D300 300 PS", "Si6 340 PS", "Si6 360 PS"]]],
+    "Land Rover|Defender": [["L663", "ab 2020", ["D200 200 PS", "D240 240 PS", "D250 249 PS", "D300 300 PS", "P300 300 PS", "P400 400 PS", "P400e 404 PS", "V8 525 PS"]]],
+    "Jaguar|XE": [["X760", "ab 2015", ["20t 200 PS", "20t 250 PS", "30t 300 PS", "25t 250 PS", "S 3.0 V6 340 PS", "S 3.0 V6 380 PS", "20d 163 PS", "20d 180 PS", "20d 240 PS"]]],
+    "Jaguar|XF": [["X260", "ab 2015", ["20t 200 PS", "20t 250 PS", "30t 300 PS", "S 3.0 V6 340 PS", "S 3.0 V6 380 PS", "20d 163 PS", "20d 180 PS", "20d 240 PS", "30d 300 PS"]]],
+    "Jaguar|F-Pace": [["X761", "ab 2016", ["25t 250 PS", "30t 300 PS", "S 3.0 V6 380 PS", "SVR 5.0 V8 550 PS", "20d 163 PS", "20d 180 PS", "20d 204 PS", "20d 240 PS", "30d 300 PS"]]],
+    "Jaguar|E-Pace": [["X540", "ab 2017", ["P200 200 PS", "P250 249 PS", "P300 300 PS", "D150 150 PS", "D165 163 PS", "D180 180 PS", "D240 240 PS"]]],
+    "Jaguar|F-Type": [["X152", "ab 2013", ["P300 300 PS", "3.0 V6 340 PS", "3.0 V6 380 PS", "3.0 V6 400 PS", "5.0 V8 550 PS", "5.0 V8 575 PS"]]],
+    "Volvo|V40": [["V40 II", "2012–2019", ["T2 122 PS", "T3 152 PS", "T4 180 PS", "T4 190 PS", "T5 245 PS", "T5 254 PS", "D2 115 PS", "D2 120 PS", "D3 150 PS", "D4 177 PS", "D4 190 PS"]]],
+    "Volvo|V60": [["V60 I", "2010–2018", ["T3 150 PS", "T3 152 PS", "T4 180 PS", "T4 190 PS", "T5 240 PS", "T5 245 PS", "T6 304 PS", "T6 306 PS", "D2 115 PS", "D2 120 PS", "D3 136 PS", "D3 150 PS", "D4 163 PS", "D4 181 PS", "D4 190 PS", "D5 215 PS", "D5 220 PS", "D5 230 PS", "D6 Twin Engine 283 PS"]], ["V60 II", "ab 2018", ["B3 163 PS", "B4 197 PS", "B5 250 PS", "T6 Recharge 340 PS", "T6 Recharge 350 PS", "T8 Recharge 390 PS", "T8 Recharge 455 PS", "D3 150 PS", "D4 190 PS", "B4 Diesel 197 PS"]]],
+    "Volvo|S60": [["S60 II", "2010–2018", ["T3 150 PS", "T4 180 PS", "T4 190 PS", "T5 240 PS", "T5 245 PS", "T6 304 PS", "T6 306 PS", "D2 115 PS", "D2 120 PS", "D3 136 PS", "D3 150 PS", "D4 163 PS", "D4 181 PS", "D4 190 PS", "D5 215 PS", "D5 220 PS"]], ["S60 III", "ab 2018", ["B4 197 PS", "B5 250 PS", "T8 Recharge 390 PS", "T8 Recharge 455 PS"]]],
+    "Volvo|V90": [["V90 II", "ab 2016", ["T4 190 PS", "T5 250 PS", "T6 320 PS", "B4 197 PS", "B5 250 PS", "T8 Recharge 390 PS", "T8 Recharge 407 PS", "T8 Recharge 455 PS", "D3 150 PS", "D4 190 PS", "D5 235 PS"]]],
+    "Volvo|S90": [["S90 II", "ab 2016", ["T4 190 PS", "T5 250 PS", "T6 320 PS", "B5 250 PS", "T8 Recharge 390 PS", "T8 Recharge 407 PS", "T8 Recharge 455 PS", "D3 150 PS", "D4 190 PS", "D5 235 PS"]]],
+    "Volvo|XC40": [["XC40", "ab 2017", ["T2 129 PS", "T3 156 PS", "T3 163 PS", "T4 190 PS", "T4 197 PS", "T5 247 PS", "T5 252 PS", "B4 197 PS", "B5 250 PS", "T5 Recharge 262 PS", "D3 150 PS", "D4 190 PS"]]],
+    "Volvo|XC60": [["XC60 I", "2008–2017", ["T5 240 PS", "T5 245 PS", "T6 304 PS", "T6 306 PS", "D3 136 PS", "D3 150 PS", "D3 163 PS", "D4 163 PS", "D4 181 PS", "D4 190 PS", "D5 185 PS", "D5 205 PS", "D5 215 PS", "D5 220 PS"]], ["XC60 II", "ab 2017", ["T5 250 PS", "T6 310 PS", "T6 320 PS", "B4 197 PS", "B5 250 PS", "T8 Recharge 390 PS", "T8 Recharge 407 PS", "T8 Recharge 455 PS", "D4 190 PS", "D5 235 PS"]]],
+    "Volvo|XC90": [["XC90 I", "2002–2014", ["2.5T 210 PS", "3.2 238 PS", "3.2 243 PS", "V8 315 PS", "D5 163 PS", "D5 185 PS", "D5 200 PS"]], ["XC90 II", "ab 2015", ["T5 250 PS", "T6 310 PS", "T6 320 PS", "B5 235 PS", "B5 250 PS", "B6 300 PS", "T8 Recharge 390 PS", "T8 Recharge 407 PS", "T8 Recharge 455 PS", "D4 190 PS", "D5 225 PS", "D5 235 PS"]]],
+    "Toyota|Hilux": [["AN120 / AN130", "ab 2016", ["2.4 D-4D 150 PS", "2.8 D-4D 177 PS", "2.8 D-4D 204 PS"]], ["AN10 / AN20 / AN30", "2005–2015", ["2.5 D-4D 120 PS", "2.5 D-4D 144 PS", "3.0 D-4D 171 PS"]]],
+    "Toyota|Land Cruiser": [["J150", "2009–2024", ["2.8 D-4D 177 PS", "2.8 D-4D 204 PS", "3.0 D-4D 173 PS", "3.0 D-4D 190 PS", "4.0 V6 282 PS"]]],
+    "Toyota|Supra": [["A90", "ab 2019", ["2.0 258 PS", "3.0 340 PS", "3.0 387 PS"]]],
+    "Toyota|RAV4": [["XA40", "2013–2018", ["2.0 D-4D 124 PS", "2.0 D-4D 143 PS", "2.2 D-4D 150 PS", "2.5 Hybrid 197 PS"]], ["XA50", "ab 2019", ["2.0 175 PS", "2.5 Hybrid 218 PS", "2.5 Hybrid 222 PS", "Plug-in Hybrid 306 PS"]]],
+    "Toyota|Proace": [["MDZ", "ab 2016", ["1.5 D-4D 102 PS", "1.5 D-4D 120 PS", "1.6 D-4D 95 PS", "1.6 D-4D 115 PS", "2.0 D-4D 122 PS", "2.0 D-4D 144 PS", "2.0 D-4D 150 PS", "2.0 D-4D 177 PS", "2.0 D-4D 180 PS"]]],
+    "Hyundai|i30": [["GD", "2012–2017", ["1.4 100 PS", "1.6 GDI 135 PS", "Turbo 1.6 T-GDI 186 PS", "1.4 CRDi 90 PS", "1.6 CRDi 110 PS", "1.6 CRDi 128 PS", "1.6 CRDi 136 PS"]], ["PD / PDE", "ab 2017", ["1.0 T-GDI 120 PS", "1.4 T-GDI 140 PS", "1.5 T-GDI 160 PS", "N 2.0 T-GDI 250 PS", "N 2.0 T-GDI 275 PS", "N 2.0 T-GDI 280 PS", "1.6 CRDi 95 PS", "1.6 CRDi 110 PS", "1.6 CRDi 115 PS", "1.6 CRDi 136 PS"]]],
+    "Hyundai|Tucson": [["TL", "2015–2020", ["1.6 GDI 132 PS", "1.6 T-GDI 177 PS", "1.7 CRDi 116 PS", "1.7 CRDi 141 PS", "2.0 CRDi 136 PS", "2.0 CRDi 185 PS", "1.6 CRDi 115 PS", "1.6 CRDi 136 PS"]], ["NX4", "ab 2020", ["1.6 T-GDI 150 PS", "1.6 T-GDI 180 PS", "Hybrid 230 PS", "Plug-in Hybrid 265 PS", "1.6 CRDi 115 PS", "1.6 CRDi 136 PS"]]],
+    "Hyundai|Santa Fe": [["DM", "2012–2018", ["2.4 GDI 188 PS", "2.0 CRDi 150 PS", "2.2 CRDi 197 PS", "2.2 CRDi 200 PS"]], ["TM", "2018–2020", ["2.4 GDI 185 PS", "2.2 CRDi 200 PS"]], ["TM Facelift / MX5", "ab 2020", ["Hybrid 230 PS", "Plug-in Hybrid 265 PS", "2.2 CRDi 202 PS"]]],
+    "Kia|Ceed": [["JD", "2012–2018", ["1.4 100 PS", "1.6 GDI 135 PS", "GT 1.6 T-GDI 204 PS", "1.4 CRDi 90 PS", "1.6 CRDi 110 PS", "1.6 CRDi 128 PS", "1.6 CRDi 136 PS"]], ["CD", "ab 2018", ["1.0 T-GDI 120 PS", "1.4 T-GDI 140 PS", "1.5 T-GDI 160 PS", "GT 1.6 T-GDI 204 PS", "1.6 CRDi 115 PS", "1.6 CRDi 136 PS"]]],
+    "Kia|Sportage": [["QL", "2016–2021", ["1.6 GDI 132 PS", "1.6 T-GDI 177 PS", "1.7 CRDi 115 PS", "1.7 CRDi 141 PS", "1.6 CRDi 115 PS", "1.6 CRDi 136 PS", "2.0 CRDi 136 PS", "2.0 CRDi 185 PS"]], ["NQ5", "ab 2021", ["1.6 T-GDI 150 PS", "1.6 T-GDI 180 PS", "Hybrid 230 PS", "Plug-in Hybrid 265 PS", "1.6 CRDi 115 PS", "1.6 CRDi 136 PS"]]],
+    "Kia|Sorento": [["UM", "2015–2020", ["2.4 GDI 188 PS", "2.2 CRDi 200 PS"]], ["MQ4", "ab 2020", ["Hybrid 230 PS", "Plug-in Hybrid 265 PS", "2.2 CRDi 193 PS"]]],
+    "Mazda|Mazda3": [["BM / BN", "2013–2019", ["1.5 100 PS", "2.0 120 PS", "2.0 165 PS", "1.5 Skyactiv-D 105 PS", "2.2 Skyactiv-D 150 PS"]], ["BP", "ab 2019", ["2.0 122 PS", "2.0 150 PS", "2.0 Skyactiv-X 180 PS", "2.0 Skyactiv-X 186 PS", "1.8 Skyactiv-D 116 PS"]]],
+    "Mazda|CX-5": [["KE", "2012–2017", ["2.0 160 PS", "2.0 165 PS", "2.5 192 PS", "2.2 Skyactiv-D 150 PS", "2.2 Skyactiv-D 175 PS"]], ["KF", "ab 2017", ["2.0 165 PS", "2.5 194 PS", "2.2 Skyactiv-D 150 PS", "2.2 Skyactiv-D 175 PS", "2.2 Skyactiv-D 184 PS"]]],
+    "Mazda|MX-5": [["ND", "ab 2015", ["1.5 131 PS", "1.5 132 PS", "2.0 160 PS", "2.0 184 PS"]]],
+    "Nissan|Qashqai": [["J11", "2013–2021", ["1.2 DIG-T 115 PS", "1.3 DIG-T 140 PS", "1.3 DIG-T 160 PS", "1.6 DIG-T 163 PS", "1.5 dCi 110 PS", "1.5 dCi 115 PS", "1.6 dCi 130 PS"]], ["J12", "ab 2021", ["1.3 DIG-T Mild-Hybrid 140 PS", "1.3 DIG-T Mild-Hybrid 158 PS", "e-Power 190 PS"]]],
+    "Nissan|Navara": [["D40", "2005–2015", ["2.5 dCi 144 PS", "2.5 dCi 171 PS", "2.5 dCi 190 PS", "3.0 V6 dCi 231 PS"]], ["D23", "ab 2015", ["2.3 dCi 160 PS", "2.3 dCi 190 PS"]]],
+    "Peugeot|208": [["A9", "2012–2019", ["1.2 PureTech 82 PS", "1.2 PureTech 110 PS", "1.6 THP 156 PS", "GTi 1.6 THP 200 PS", "GTi 1.6 THP 208 PS", "1.4 HDi 68 PS", "1.6 BlueHDi 75 PS", "1.6 BlueHDi 100 PS", "1.6 BlueHDi 120 PS"]], ["P21", "ab 2019", ["1.2 PureTech 75 PS", "1.2 PureTech 100 PS", "1.2 PureTech 130 PS", "1.5 BlueHDi 100 PS"]]],
+    "Peugeot|308": [["T9", "2013–2021", ["1.2 PureTech 110 PS", "1.2 PureTech 130 PS", "1.6 THP 125 PS", "1.6 THP 156 PS", "1.6 THP 205 PS", "GTi 1.6 THP 250 PS", "GTi 1.6 THP 270 PS", "1.5 BlueHDi 100 PS", "1.5 BlueHDi 130 PS", "1.6 BlueHDi 100 PS", "1.6 BlueHDi 120 PS", "2.0 BlueHDi 150 PS", "2.0 BlueHDi 180 PS"]], ["P5", "ab 2021", ["1.2 PureTech 110 PS", "1.2 PureTech 130 PS", "Hybrid 180 PS", "Hybrid 225 PS", "1.5 BlueHDi 130 PS"]]],
+    "Peugeot|3008": [["P84", "2016–2023", ["1.2 PureTech 130 PS", "1.6 THP 165 PS", "1.6 THP 180 PS", "Hybrid 225 PS", "Hybrid4 300 PS", "1.5 BlueHDi 130 PS", "1.6 BlueHDi 120 PS", "2.0 BlueHDi 150 PS", "2.0 BlueHDi 180 PS"]]],
+    "Peugeot|5008": [["P87", "2017–2023", ["1.2 PureTech 130 PS", "1.6 THP 165 PS", "1.6 THP 180 PS", "1.5 BlueHDi 130 PS", "1.6 BlueHDi 120 PS", "2.0 BlueHDi 150 PS", "2.0 BlueHDi 180 PS"]]],
+    "Peugeot|508": [["R8", "ab 2018", ["1.6 PureTech 180 PS", "1.6 PureTech 225 PS", "Hybrid 225 PS", "PSE 360 PS", "1.5 BlueHDi 130 PS", "2.0 BlueHDi 160 PS", "2.0 BlueHDi 180 PS"]]],
+    "Peugeot|Expert": [["K0", "ab 2016", ["1.5 BlueHDi 100 PS", "1.5 BlueHDi 102 PS", "1.5 BlueHDi 120 PS", "1.6 BlueHDi 95 PS", "1.6 BlueHDi 115 PS", "2.0 BlueHDi 122 PS", "2.0 BlueHDi 144 PS", "2.0 BlueHDi 150 PS", "2.0 BlueHDi 177 PS", "2.0 BlueHDi 180 PS"]]],
+    "Peugeot|Boxer": [["Boxer III", "ab 2006", ["2.2 HDi 100 PS", "2.2 HDi 120 PS", "2.2 HDi 130 PS", "2.2 HDi 150 PS", "2.0 BlueHDi 110 PS", "2.0 BlueHDi 130 PS", "2.0 BlueHDi 163 PS", "2.2 BlueHDi 120 PS", "2.2 BlueHDi 140 PS", "2.2 BlueHDi 165 PS", "3.0 HDi 157 PS", "3.0 HDi 177 PS"]]],
+    "Citroën|Jumpy": [["K0", "ab 2016", ["1.5 BlueHDi 100 PS", "1.5 BlueHDi 102 PS", "1.5 BlueHDi 120 PS", "1.6 BlueHDi 95 PS", "1.6 BlueHDi 115 PS", "2.0 BlueHDi 122 PS", "2.0 BlueHDi 144 PS", "2.0 BlueHDi 150 PS", "2.0 BlueHDi 177 PS", "2.0 BlueHDi 180 PS"]]],
+    "Citroën|Jumper": [["Jumper III", "ab 2006", ["2.2 HDi 100 PS", "2.2 HDi 120 PS", "2.2 HDi 130 PS", "2.2 HDi 150 PS", "2.0 BlueHDi 110 PS", "2.0 BlueHDi 130 PS", "2.0 BlueHDi 163 PS", "2.2 BlueHDi 120 PS", "2.2 BlueHDi 140 PS", "2.2 BlueHDi 165 PS", "3.0 HDi 157 PS", "3.0 HDi 177 PS"]]],
+    "Citroën|Berlingo": [["K9", "ab 2018", ["1.2 PureTech 110 PS", "1.2 PureTech 130 PS", "1.5 BlueHDi 75 PS", "1.5 BlueHDi 100 PS", "1.5 BlueHDi 102 PS", "1.5 BlueHDi 130 PS"]]],
+    "Renault|Clio": [["Clio IV", "2012–2019", ["0.9 TCe 75 PS", "0.9 TCe 90 PS", "1.2 TCe 120 PS", "RS 1.6 TCe 200 PS", "RS 1.6 TCe 220 PS", "1.5 dCi 75 PS", "1.5 dCi 90 PS", "1.5 dCi 110 PS"]], ["Clio V", "ab 2019", ["1.0 TCe 90 PS", "1.0 TCe 100 PS", "1.3 TCe 130 PS", "E-Tech Hybrid 140 PS", "E-Tech Hybrid 145 PS", "1.5 Blue dCi 85 PS", "1.5 Blue dCi 100 PS", "1.5 Blue dCi 115 PS"]]],
+    "Renault|Megane": [["Megane III", "2008–2016", ["1.2 TCe 115 PS", "1.2 TCe 130 PS", "1.4 TCe 130 PS", "RS 2.0 T 250 PS", "RS 2.0 T 265 PS", "RS 2.0 T 275 PS", "1.5 dCi 90 PS", "1.5 dCi 110 PS", "1.6 dCi 130 PS", "1.9 dCi 130 PS", "2.0 dCi 160 PS"]], ["Megane IV", "2016–2023", ["1.2 TCe 100 PS", "1.2 TCe 130 PS", "1.3 TCe 115 PS", "1.3 TCe 140 PS", "1.3 TCe 160 PS", "RS 1.8 TCe 280 PS", "RS 1.8 TCe 300 PS", "1.5 dCi 90 PS", "1.5 dCi 110 PS", "1.5 dCi 115 PS", "1.6 dCi 130 PS", "1.6 dCi 165 PS", "1.7 Blue dCi 150 PS"]]],
+    "Renault|Captur": [["J87", "2013–2019", ["0.9 TCe 90 PS", "1.2 TCe 120 PS", "1.3 TCe 130 PS", "1.3 TCe 150 PS", "1.5 dCi 90 PS", "1.5 dCi 110 PS"]], ["HF", "ab 2019", ["1.0 TCe 90 PS", "1.0 TCe 100 PS", "1.3 TCe 130 PS", "1.3 TCe 140 PS", "1.3 TCe 155 PS", "1.3 TCe 160 PS", "E-Tech 145 PS", "E-Tech 160 PS", "1.5 Blue dCi 95 PS", "1.5 Blue dCi 115 PS"]]],
+    "Renault|Trafic": [["Trafic III", "ab 2014", ["1.6 dCi 90 PS", "1.6 dCi 95 PS", "1.6 dCi 115 PS", "1.6 dCi 120 PS", "1.6 dCi 125 PS", "1.6 dCi 145 PS", "2.0 Blue dCi 110 PS", "2.0 Blue dCi 120 PS", "2.0 Blue dCi 130 PS", "2.0 Blue dCi 145 PS", "2.0 Blue dCi 150 PS", "2.0 Blue dCi 170 PS"]]],
+    "Renault|Master": [["Master III", "ab 2010", ["2.3 dCi 100 PS", "2.3 dCi 110 PS", "2.3 dCi 125 PS", "2.3 dCi 130 PS", "2.3 dCi 135 PS", "2.3 dCi 145 PS", "2.3 dCi 150 PS", "2.3 dCi 163 PS", "2.3 dCi 165 PS", "2.3 dCi 170 PS", "2.3 dCi 180 PS"]]],
+    "Dacia|Duster": [["HM", "2017–2024", ["1.0 TCe 90 PS", "1.0 TCe 100 PS", "1.3 TCe 130 PS", "1.3 TCe 150 PS", "1.5 dCi 95 PS", "1.5 dCi 115 PS"]]],
+    "Fiat|500": [["312", "ab 2007", ["1.2 69 PS", "0.9 TwinAir 85 PS", "0.9 TwinAir 105 PS", "1.4 100 PS", "1.3 Multijet 75 PS", "1.3 Multijet 95 PS"]]],
+    "Fiat|Ducato": [["250 / 290", "2006–2021", ["2.0 Multijet 115 PS", "2.3 Multijet 120 PS", "2.3 Multijet 130 PS", "2.3 Multijet 150 PS", "2.3 Multijet 160 PS", "2.3 Multijet 180 PS", "3.0 Multijet 157 PS", "3.0 Multijet 177 PS"]], ["Ducato 8", "ab 2021", ["2.2 Multijet 120 PS", "2.2 Multijet 140 PS", "2.2 Multijet 160 PS", "2.2 Multijet 180 PS"]]],
+    "Abarth|500 / 595 / 695": [["312", "ab 2008", ["1.4 T-Jet 135 PS", "1.4 T-Jet 140 PS", "1.4 T-Jet 145 PS", "1.4 T-Jet 160 PS", "1.4 T-Jet 165 PS", "1.4 T-Jet 180 PS"]]],
+    "Alfa Romeo|Giulietta": [["940", "2010–2020", ["1.4 TB 120 PS", "1.4 TB 150 PS", "1.4 TB 170 PS", "1750 TBi 235 PS", "1750 TBi 240 PS", "1.6 JTDM 105 PS", "1.6 JTDM 120 PS", "2.0 JTDM 140 PS", "2.0 JTDM 150 PS", "2.0 JTDM 170 PS", "2.0 JTDM 175 PS"]]],
+    "Alfa Romeo|Giulia": [["952", "ab 2016", ["2.0 Turbo 200 PS", "2.0 Turbo 280 PS", "Quadrifoglio 2.9 V6 510 PS", "Quadrifoglio 2.9 V6 520 PS", "2.2 JTD 136 PS", "2.2 JTD 150 PS", "2.2 JTD 160 PS", "2.2 JTD 180 PS", "2.2 JTD 190 PS", "2.2 JTD 210 PS"]]],
+    "Alfa Romeo|Stelvio": [["949", "ab 2017", ["2.0 Turbo 200 PS", "2.0 Turbo 280 PS", "Quadrifoglio 2.9 V6 510 PS", "Quadrifoglio 2.9 V6 520 PS", "2.2 JTD 160 PS", "2.2 JTD 190 PS", "2.2 JTD 210 PS"]]],
+    "Jeep|Grand Cherokee": [["WK2", "2010–2021", ["3.6 V6 286 PS", "SRT 6.4 V8 468 PS", "3.0 CRD 190 PS", "3.0 CRD 241 PS", "3.0 CRD 250 PS"]]],
+    "Jeep|Wrangler": [["JL", "ab 2018", ["2.0 Turbo 272 PS", "4xe 380 PS", "2.2 CRD 200 PS"]]],
+    "Jeep|Compass": [["M6", "ab 2017", ["1.3 T4 130 PS", "1.3 T4 150 PS", "1.4 MultiAir 140 PS", "1.4 MultiAir 170 PS", "4xe 190 PS", "4xe 240 PS", "1.6 Multijet 120 PS", "1.6 Multijet 130 PS", "2.0 Multijet 140 PS", "2.0 Multijet 170 PS"]]],
+    "Jeep|Renegade": [["BU", "ab 2014", ["1.0 T3 120 PS", "1.3 T4 150 PS", "1.4 MultiAir 140 PS", "1.4 MultiAir 170 PS", "4xe 190 PS", "4xe 240 PS", "1.6 Multijet 120 PS", "1.6 Multijet 130 PS", "2.0 Multijet 140 PS", "2.0 Multijet 170 PS"]]],
+    "Mitsubishi|L200": [["KJ / KK / KL", "2015–2024", ["2.4 DI-D 154 PS", "2.4 DI-D 181 PS", "2.2 DI-D 150 PS"]], ["KB", "2006–2015", ["2.5 DI-D 136 PS", "2.5 DI-D 178 PS"]]],
+    "Mitsubishi|Outlander": [["GF", "2012–2021", ["2.0 150 PS", "2.2 DI-D 150 PS", "Plug-in Hybrid 203 PS", "Plug-in Hybrid 224 PS"]]],
+    "Honda|Civic": [["FK2 / FK8 / FL5 Type R", "2015–2023", ["Type R 310 PS", "Type R 320 PS", "Type R 329 PS"]], ["FK (X)", "2017–2022", ["1.0 VTEC Turbo 126 PS", "1.0 VTEC Turbo 129 PS", "1.5 VTEC Turbo 182 PS", "1.6 i-DTEC 120 PS"]]],
+    "Suzuki|Swift": [["AZ", "ab 2017", ["1.2 90 PS", "Sport 1.4 Boosterjet 129 PS", "Sport 1.4 Boosterjet 140 PS"]]],
+    "Suzuki|Vitara": [["LY", "ab 2015", ["1.0 Boosterjet 111 PS", "1.4 Boosterjet 129 PS", "1.4 Boosterjet 140 PS", "1.6 DDiS 120 PS"]]],
+    "Iveco|Daily": [["Daily VI / VII", "ab 2014", ["2.3 116 PS", "2.3 136 PS", "2.3 156 PS", "3.0 150 PS", "3.0 160 PS", "3.0 170 PS", "3.0 180 PS", "3.0 207 PS", "3.0 210 PS"]]],
+    "MAN|TGE": [["SY", "ab 2017", ["2.0 TDI 102 PS", "2.0 TDI 122 PS", "2.0 TDI 140 PS", "2.0 TDI 177 PS"]]]
+  };
+
+  // Stage-1-Faktoren je Motortyp (von Sinan, 16.11.2026). Mert kann sie hier anpassen.
+  // Angezeigt wird eine Spanne: von 75 % bis 100 % des Zuwachses, auf 5 PS gerundet
+  var FAKTOREN = {
+    turbo:    {name:"Turbobenziner", ps:0.22},
+    diesel:   {name:"Turbodiesel", ps:0.20},
+    leistung: {name:"Performance / Biturbo", ps:0.16},
+    sauger:   {name:"Saugmotor", ps:0.06}
+  };
+  var DIESEL=/TDI|CDI|CRD|\dsd\b|dCi|TDCi|EcoBlue|HDi|Multijet|JTD|D-4D|DI-D|i-DTEC|Skyactiv-D|CDTI|CRDi|DDiS|Diesel|BlueTEC|TDV\d|SDV\d|\bTD4|\bSD4|\bTd6|\bSd4|\bD\d{3}\b|\bD\d\b|\d+d\b|\bd\b|Cooper S?D\b/;
+  var HYBRID=/Hybrid|GTE|\d+e\b|P\d{3}e\b|PHEV|Recharge|\bT8\b|\biV\b|e-Power|E-Tech|4xe|Plug-in|\b\d+ e\b/;
+  var LEISTUNG=/AMG|\bRS\s?\d|\bRS Q\d|RS\d|BiTDI|BiTurbo|^M[2-6]\b|M5|Competition|\bCS\b|Turbo S|\bSVR\b|Quadrifoglio|V8|V10|V12|\bS[4-8] \d\.\d|SQ[5-8]|\b1M\b|GT3|Type R|\bN \d|VZ5|Raptor|SRT|M550d|M50d|M550i|M50i/;
+  // Saugmotoren nach Marke und Baureihe, soweit bekannt (ohne Gewähr)
+  var SAUGER=[
+    ["BMW",/^E46$/,/i\b/],["BMW",/^E90/,/^3(1[68]|2[05]|30)i/],["BMW",/^E60/,/^52[35]i|^530i|^540i|^550i/],["BMW",/^E8[1278]/,/^11[68]i|^120i|^130i/],
+    ["BMW",/^E83/,/si\b/],["BMW",/^E70/,/3\.0si|4\.8i/],["BMW",/^E89/,/^2[3]i|^30i/],
+    ["Audi",null,/3\.2 FSI|2\.8 FSI|3\.6 FSI|4\.2 FSI|4\.2 V8|5\.2 V10/],["Volkswagen",null,/FSI 1|1\.6 FSI|2\.0 FSI|3\.2 V6|3\.6 V6|R32|^1\.0 \d|4\.2 V8/],
+    ["Mercedes-Benz",/W203|W211/,/^[CE] (2[38]0|350|500)\b/],["Mercedes-Benz",/W204|W221|W166/,/^C 350 306|^S 350 272|^ML 350 306/],
+    ["Porsche",/^997$/,/^Carrera|^GT3/],["Porsche",/^991$/,/^Carrera (S )?(350|400)|^GTS 430|^GT3/],["Porsche",/^981$/,/./],["Porsche",/^92A$/,/3\.6 V6|^S 400|^GTS 420/],["Porsche",/^970$/,/3\.6 V6|^4S 400|^GTS/],["Porsche",/718/,/GTS 4\.0/],
+    ["Ford",null,/^1\.25|^1\.4 \d|^1\.6 \d|Ti-VCT|^1\.8 \d|^2\.0 \d|^1\.1 \d|5\.0 V8/],["Opel",null,/^1\.2 \d|^1\.4 \d|^1\.6 \d|^1\.8 \d/],
+    ["Mazda",null,/^1\.5 \d|^2\.0 \d|^2\.5 \d/],["Hyundai",null,/^1\.4 \d|\d\.\d GDI|^2\.4/],["Kia",null,/^1\.4 \d|\d\.\d GDI|^2\.4/],
+    ["Fiat",null,/^1\.2 \d|^1\.4 \d/],["Toyota",/^J150$/,/4\.0 V6/],["Toyota",/^XA50$/,/^2\.0 \d/],["Jeep",null,/3\.6 V6|6\.4 V8/],["Suzuki",null,/^1\.2 \d/],["Mitsubishi",null,/^2\.0 \d/]
+  ];
+  function motortyp(marke,baureihe,motor){
+    if(HYBRID.test(motor))return "hybrid";
+    if(DIESEL.test(motor))return LEISTUNG.test(motor)?"leistung":"diesel";
+    for(var i=0;i<SAUGER.length;i++){var r=SAUGER[i];if(r[0]===marke&&(!r[1]||r[1].test(baureihe))&&r[2].test(motor))return "sauger"}
+    if(LEISTUNG.test(motor))return "leistung";
+    return "turbo";
+  }
+  function rund5(x){return Math.round(x/5)*5}
+
+  var $ = function(id){return document.getElementById(id)};
+  var marke=$("marke"), modell=$("modell"), frei=$("modell-frei"), freiFeld=$("modell-frei-feld"),
+      baujahr=$("baujahr"), kraftstoff=$("kraftstoff"), motor=$("motor"), text=$("text"), senden=$("senden"), fehlt=$("fehlt"),
+      motorWahl=$("motor-wahl"), baureihe=$("baureihe"), motorListe=$("motor-liste"), motorFreiFeld=$("motor-frei-feld"), motorHinweis=$("motor-hinweis");
+  var NICHT_DABEI="__frei";
+  function motorenFuellen(){
+    var daten=MOTOREN[marke.value+"|"+modell.value];
+    baureihe.textContent="";motorListe.textContent="";
+    if(!daten){motorWahl.hidden=true;motorHinweis.hidden=true;motorFreiFeld.hidden=false;return}
+    motorWahl.hidden=false;motorHinweis.hidden=false;
+    baureihe.appendChild(new Option("Bitte wählen",""));
+    daten.forEach(function(b,i){baureihe.appendChild(new Option(b[0]+" ("+b[1]+")",String(i)))});
+    baureihe.appendChild(new Option("Weiß ich nicht",NICHT_DABEI));
+    motorListeFuellen();
+  }
+  function motorListeFuellen(){
+    var daten=MOTOREN[marke.value+"|"+modell.value];motorListe.textContent="";
+    if(!daten)return;
+    var b=daten[Number(baureihe.value)];
+    if(baureihe.value===""||!b){motorListe.disabled=true;motorListe.appendChild(new Option(baureihe.value===NICHT_DABEI?"Bitte unten eintragen":"Erst Baureihe wählen",""));motorFreiFeld.hidden=baureihe.value!==NICHT_DABEI;return}
+    motorListe.disabled=false;
+    motorListe.appendChild(new Option("Bitte wählen",""));
+    b[2].forEach(function(m){motorListe.appendChild(new Option(m,m))});
+    motorListe.appendChild(new Option("Mein Motor ist nicht dabei",NICHT_DABEI));
+    motorFreiFeld.hidden=motorListe.value!==NICHT_DABEI;
+  }
+
+  Object.keys(FAHRZEUGE).sort(function(a,b){return a.localeCompare(b,"de")}).forEach(function(m){
+    var o=document.createElement("option");o.value=m;o.textContent=m;marke.appendChild(o);
+  });
+  var andere=document.createElement("option");andere.value="__andere";andere.textContent="Andere Marke";marke.appendChild(andere);
+  var jahr=new Date().getFullYear();
+  for(var j=jahr;j>=2000;j--){var o=document.createElement("option");o.value=String(j);o.textContent=String(j);baujahr.appendChild(o)}
+  var alt=document.createElement("option");alt.value="vor 2000";alt.textContent="vor 2000";baujahr.appendChild(alt);
+
+  function modelleFuellen(){
+    modell.textContent="";
+    var m=marke.value;
+    if(!m){modell.disabled=true;modell.appendChild(new Option("Erst Marke wählen",""));freiFeld.hidden=true;return}
+    if(m==="__andere"){modell.disabled=true;modell.appendChild(new Option("Bitte unten eintragen",""));freiFeld.hidden=false;return}
+    modell.disabled=false;
+    modell.appendChild(new Option("Bitte wählen",""));
+    FAHRZEUGE[m].forEach(function(x){modell.appendChild(new Option(x,x))});
+    modell.appendChild(new Option("Anderes Modell","__andere"));
+    freiFeld.hidden=true;
+  }
+  function wert(){
+    var m=marke.value==="__andere"?"":marke.value;
+    var mod=(marke.value==="__andere"||modell.value==="__andere")?frei.value.trim():modell.value;
+    var wunsch=(document.querySelector('input[name="wunsch"]:checked')||{}).value||"";
+    var daten=MOTOREN[marke.value+"|"+modell.value], br="", mo=motor.value.trim();
+    if(daten&&!motorWahl.hidden){
+      var b=daten[Number(baureihe.value)];
+      if(baureihe.value!==""&&baureihe.value!==NICHT_DABEI&&b)br=b[0];
+      if(motorListe.value&&motorListe.value!==NICHT_DABEI)mo=motorListe.value;
+      else if(motorFreiFeld.hidden)mo="";
+    }
+    if(br)mod+=" ("+br+")";
+    return {m:m,mod:mod,j:baujahr.value,k:kraftstoff.value,mo:mo,w:wunsch,br:br,gewaehlt:!!(daten&&!motorWahl.hidden&&motorListe.value&&motorListe.value!==NICHT_DABEI)};
+  }
+  var ergebnis=$("ergebnis"), ergZahlen=$("erg-zahlen"), ergKopf=$("erg-kopf"), diagramm=$("diagramm"), svg=$("dia-svg"), balken=$("erg-balken");
+  var NS="http://www.w3.org/2000/svg", lauf=0;
+  var ruhig=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var berechnen=$("berechnen"), buehne=$("buehne"), bSvg=$("buehne-svg"), bSchritt=$("b-schritt"), bFahrzeug=$("b-fahrzeug"), bWert=$("b-wert");
+  var gezeigt="", aktuell=null;
+  /* Schematische Kurven: typische Drehmomentform je Motortyp (Drehzahl, Anteil vom Maximum), Leistung = Drehmoment x Drehzahl,
+     danach auf Serien-PS und geschätzte Stage-1-PS skaliert. Keine Messwerte. */
+  var PROFIL={
+    diesel:{bis:4800,t:[[1000,.45],[1500,.8],[1800,1],[2750,1],[3500,.86],[4200,.72],[4800,.56]]},
+    turbo:{bis:6500,t:[[1000,.45],[1500,.85],[1800,1],[4500,1],[5500,.88],[6500,.72]]},
+    leistung:{bis:7000,t:[[1000,.4],[2000,.85],[2500,1],[5000,1],[6000,.9],[7000,.78]]},
+    sauger:{bis:7000,t:[[1000,.7],[2500,.8],[4500,1],[5500,.98],[6500,.88],[7000,.8]]}
+  };
+  var X0=36,X1=308,Y0=30,Y1=180,PUNKTE=72;
+  function tWert(k,n){for(var i=1;i<k.length;i++){if(n<=k[i][0]){var a=k[i-1],b=k[i],x=(n-a[0])/(b[0]-a[0]);x=(1-Math.cos(x*Math.PI))/2;return a[1]+(b[1]-a[1])*x}}return k[k.length-1][1]}
+  function anhebung(x){return x<.6?.5+.5*Math.sin(Math.PI*x/1.2):1-(x-.6)*.6}
+  function kurven(e){
+    var p=PROFIL[e.typ]||PROFIL.turbo, g=e.hoch/e.ps, roh=[], rohT=[], i, n;
+    for(i=0;i<=PUNKTE;i++){n=1000+(p.bis-1000)*i/PUNKTE;var t=tWert(p.t,n);roh.push(t*n);rohT.push(t*n*(1+g*anhebung(i/PUNKTE)))}
+    function glatt(w){for(var r=0;r<3;r++){w=w.map(function(_,i){var su=0,an=0;for(var j=i-6;j<=i+6;j++){if(j>=0&&j<w.length){su+=w[j];an++}}return su/an})}return w}
+    roh=glatt(roh);rohT=glatt(rohT);
+    var mS=Math.max.apply(null,roh), mT=Math.max.apply(null,rohT), s=[], h=[], l=[];
+    for(i=0;i<=PUNKTE;i++){s.push(roh[i]/mS*e.ps);var hv=rohT[i]/mT*(e.ps+e.hoch);h.push(Math.max(hv,s[i]));l.push(Math.max(hv*(e.ps+e.tief)/(e.ps+e.hoch),s[i]))}
+    return {s:s,h:h,l:l,bis:p.bis};
+  }
+  function skala(oben){var o=oben*1.08,stufe=[10,20,25,50,100,200].find(function(x){return Math.ceil(o/x)<=6})||250;return {max:Math.ceil(o/stufe)*stufe,stufe:stufe}}
+  function yMax(oben){return skala(oben).max}
+  function diagrammBauen(ziel,e,kennung){
+    ziel.textContent="";
+    var k=kurven(e), sk=skala(e.ps+e.hoch), max=sk.max, stufe=sk.stufe;
+    function el(tag,attr,text,eltern){var x=document.createElementNS(NS,tag);for(var a in attr)x.setAttribute(a,attr[a]);if(text!=null)x.textContent=text;(eltern||ziel).appendChild(x);return x}
+    function px(i){return X0+(X1-X0)*i/PUNKTE}
+    function py(v){return Y1-(Y1-Y0)*v/max}
+    function linie(w){return w.map(function(v,i){return (i?"L":"M")+px(i).toFixed(1)+" "+py(v).toFixed(1)}).join(" ")}
+    var defs=el("defs",{});
+    function clip(n){var c=el("clipPath",{id:kennung+n},null,defs);return el("rect",{x:X0-2,y:0,width:0,height:Y1+4},null,c)}
+    var cS=clip("s"), cT=clip("t");
+    for(var j=0;j*stufe<=max;j++){var v=stufe*j,y=py(v);el("line",{"class":"gitter",x1:X0,y1:y,x2:X1,y2:y});el("text",{"class":"achse rechts",x:X0-6,y:y+3.5},String(v))}
+    for(var n=1000;n<=k.bis;n+=1000){var x=X0+(X1-X0)*(n-1000)/(k.bis-1000);el("text",{"class":"achse mitte",x:x,y:Y1+14},String(n/1000))}
+    el("text",{"class":"achse mitte",x:(X0+X1)/2,y:Y1+30},"Drehzahl in 1.000 U/min");
+    el("text",{"class":"achse",x:4,y:Y0-8},"PS");
+    el("line",{"class":"leg-serie",x1:X0,y1:12,x2:X0+16,y2:12});el("text",{"class":"achse",x:X0+21,y:15.5},"Serie");
+    el("line",{"class":"leg-stage",x1:X0+60,y1:12,x2:X0+76,y2:12});el("text",{"class":"achse",x:X0+81,y:15.5},"Stage 1, geschätzt");
+    el("text",{"class":"achse rechts",x:X1,y:15.5},"schematisch");
+    var gT=el("g",{"clip-path":"url(#"+kennung+"t)"});
+    el("path",{"class":"band",d:linie(k.h)+" "+k.l.slice().reverse().map(function(v,i){return "L"+px(PUNKTE-i).toFixed(1)+" "+py(v).toFixed(1)}).join(" ")+" Z"},null,gT);
+    el("path",{"class":"k-stage",d:linie(k.h)},null,gT);
+    el("path",{"class":"k-serie",d:linie(k.s),"clip-path":"url(#"+kennung+"s)"});
+    var zeiger=el("line",{"class":"zeiger",x1:X0,y1:Y0,x2:X0,y2:Y1,opacity:0});
+    function spitze(w){var m=0,i=0;w.forEach(function(v,j){if(v>m){m=v;i=j}});return i}
+    var iS=spitze(k.s), iT=spitze(k.h);
+    var pS=el("circle",{"class":"p-serie",cx:px(iS),cy:py(k.s[iS]),r:3.5,opacity:0}), pT=el("circle",{"class":"p-stage",cx:px(iT),cy:py(k.h[iT]),r:4,opacity:0});
+    function bis(w,f){var m=0,ende=Math.round(f*PUNKTE);for(var i=0;i<=ende;i++)if(w[i]>m)m=w[i];return m}
+    var d={
+      serie:function(f){cS.setAttribute("width",(X1-X0+4)*f);zeiger.setAttribute("opacity",f<1?1:0);zeiger.setAttribute("x1",px(f*PUNKTE));zeiger.setAttribute("x2",px(f*PUNKTE));return bis(k.s,f)},
+      stage:function(f){cT.setAttribute("width",(X1-X0+4)*f);zeiger.setAttribute("opacity",f<1?1:0);zeiger.setAttribute("x1",px(f*PUNKTE));zeiger.setAttribute("x2",px(f*PUNKTE));return bis(k.h,f)},
+      ende:function(){d.serie(1);d.stage(1);pS.setAttribute("opacity",1);pT.setAttribute("opacity",1)}
+    };
+    return d;
+  }
+  function balkenSetzen(e,max){
+    $("b-serie").style.width=(100*e.ps/max)+"%";$("b-tuning").style.width=(100*(e.ps+e.tief)/max)+"%";$("b-rest").style.width=(100*(e.ps+e.hoch)/max)+"%";
+    $("b-serie-w").textContent=e.ps+" PS";$("b-tuning-w").textContent=e.tief<e.hoch?(e.ps+e.tief)+"–"+(e.ps+e.hoch)+" PS":(e.ps+e.hoch)+" PS";
+  }
+  function ergebnisFreigeben(){
+    var e=aktuell;if(!e)return;
+    diagrammBauen(svg,e,"i").ende();balkenSetzen(e,yMax(e.ps+e.hoch));
+    ergebnis.hidden=false;berechnen.hidden=true;gezeigt=e.schluessel;
+  }
+  function show(){
+    var e=aktuell;if(!e)return;
+    if(ruhig){ergebnisFreigeben();return}
+    var d=diagrammBauen(bSvg,e,"b"), id=++lauf;
+    function wert(v){bWert.innerHTML="";bWert.appendChild(document.createTextNode(String(Math.round(v))));var sm=document.createElement("small");sm.textContent="PS";bWert.appendChild(sm)}
+    bFahrzeug.textContent=e.titel;bSchritt.textContent="Serie";wert(0);
+    buehne.hidden=false;requestAnimationFrame(function(){buehne.classList.add("an")});
+    var fertig=false;
+    function schliessen(){if(fertig)return;fertig=true;lauf++;buehne.classList.remove("an");setTimeout(function(){buehne.hidden=true},300);ergebnisFreigeben();ergebnis.scrollIntoView({block:"nearest",behavior:"smooth"})}
+    buehne.onclick=schliessen;
+    function weich(x){return x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2}
+    var A=1250, P=250, C=1350, H=900, start=null;
+    function bild(ts){
+      if(id!==lauf)return;if(start===null)start=ts;var z=ts-start;
+      if(z<A){wert(d.serie(weich(z/A)))}
+      else if(z<A+P){wert(d.serie(1))}
+      else if(z<A+P+C){bSchritt.textContent="Stage 1, geschätzt";wert(d.stage(weich((z-A-P)/C)))}
+      else if(z<A+P+C+H){d.ende();bWert.textContent=e.tief<e.hoch?(e.ps+e.tief)+"–"+(e.ps+e.hoch):String(e.ps+e.hoch);var sm=document.createElement("small");sm.textContent="PS";bWert.appendChild(sm);bSchritt.textContent="ca. +"+(e.tief<e.hoch?e.tief+" bis +":"")+e.hoch+" PS"}
+      else{schliessen();return}
+      requestAnimationFrame(bild);
+    }
+    requestAnimationFrame(bild);
+  }
+  berechnen.addEventListener("click",show);
+  function ergebnisZeigen(v){
+    ergZahlen.textContent="";
+    if(!v.gewaehlt){ergebnis.hidden=true;berechnen.hidden=true;aktuell=null;gezeigt="";return}
+    var ps=Number((v.mo.match(/(\d+) PS/)||[])[1]);
+    var typ=motortyp(marke.value,v.br,v.mo);
+    ergebnis.hidden=false;
+    function el(c,t){var e=document.createElement("span");e.className=c;e.textContent=t;ergZahlen.appendChild(e)}
+    if(typ==="hybrid"||!ps){ergKopf.textContent="Hybrid / Elektro";el("gesamt","Möglichkeiten auf Anfrage");diagramm.hidden=true;balken.hidden=true;berechnen.hidden=true;aktuell=null;return}
+    var f=FAKTOREN[typ];
+    ergKopf.textContent="Stage 1, geschätzt";
+    var hoch=rund5(ps*f.ps), tief=rund5(ps*f.ps*0.75);
+    if(hoch<5){el("gesamt","Möglichkeiten auf Anfrage");diagramm.hidden=true;balken.hidden=true;berechnen.hidden=true;aktuell=null;return}
+    el("serie","Serie "+ps+" PS");
+    el("plus",tief<hoch&&tief>0?"+"+tief+" bis +"+hoch+" PS":"+"+hoch+" PS");
+    el("gesamt",tief<hoch&&tief>0?"ca. "+(ps+tief)+"–"+(ps+hoch)+" PS":"ca. "+(ps+hoch)+" PS");
+    var schluessel=marke.value+"|"+modell.value+"|"+v.br+"|"+v.mo;
+    diagramm.hidden=false;balken.hidden=false;
+    aktuell={ps:ps,tief:tief>0?tief:hoch,hoch:hoch,typ:typ,schluessel:schluessel,titel:[marke.value,v.mod,v.mo.replace(/ \d+ PS$/,"")].join(" ")};
+    if(schluessel===gezeigt){ergebnisFreigeben()}else{ergebnis.hidden=true;berechnen.hidden=false}
+  }
+  function aktualisieren(){
+    freiFeld.hidden=!(marke.value==="__andere"||modell.value==="__andere");
+    var v=wert();
+    ergebnisZeigen(v);
+    var fahrzeug=[v.m,v.mod].filter(Boolean).join(" ")||"…";
+    var zeilen=["Hallo, ich habe einen "+fahrzeug+(v.j?", Baujahr "+v.j:"")+", "+v.k+(v.mo?", "+v.mo:"")+"."];
+    zeilen.push(v.w==="Beratung"?"Ich hätte gern eine Beratung, was bei meinem Auto möglich ist.":"Ich interessiere mich für "+v.w+". Was ist bei meinem Auto möglich?");
+    var nachricht=zeilen.join("\n");
+    text.textContent=nachricht;
+    var ok=!!(v.mod&&v.j);
+    senden.setAttribute("aria-disabled",ok?"false":"true");
+    fehlt.hidden=ok;
+    senden.href=ok?"https://wa.me/"+NUMMER+"?text="+encodeURIComponent(nachricht):"#";
+  }
+  marke.addEventListener("change",function(){modelleFuellen();motorenFuellen();aktualisieren()});
+  modell.addEventListener("change",function(){motorenFuellen();aktualisieren()});
+  baureihe.addEventListener("change",function(){motorListeFuellen();aktualisieren()});
+  motorListe.addEventListener("change",function(){
+    motorFreiFeld.hidden=motorListe.value!==NICHT_DABEI;
+    if(motorListe.value&&motorListe.value!==NICHT_DABEI){var n=motorListe.value.replace(/ \d+ PS$/,"");kraftstoff.value=HYBRID.test(n)?"Hybrid":DIESEL.test(n)?"Diesel":"Benzin"}
+    aktualisieren();
+  });
+  [baujahr,kraftstoff].forEach(function(e){e.addEventListener("change",aktualisieren)});
+  [frei,motor].forEach(function(e){e.addEventListener("input",aktualisieren)});
+  document.querySelectorAll('input[name="wunsch"]').forEach(function(e){e.addEventListener("change",aktualisieren)});
+  $("form").addEventListener("submit",function(e){e.preventDefault()});
+
+  aktualisieren();
+})();
+</script>
+<script>
+// Rechner Schritt für Schritt: 1 Fahrzeug, 2 Motor und Baujahr, 3 Leistung. Rechnen und Daten bleiben im Skript oben.
+(function(){
+  "use strict";
+  var $=function(id){return document.getElementById(id)};
+  var form=$("form"), schritte=[$("schritt-1"),$("schritt-2"),$("schritt-3")];
+  var punkte=[].slice.call(form.querySelectorAll(".fortschritt li"));
+  var ruhig=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches, aktiv=0;
+  function text(sel){var o=sel.options[sel.selectedIndex];return o&&sel.value&&sel.value.indexOf("__")!==0?o.textContent:""}
+  function pruefen(){
+    var marke=$("marke").value, modell=$("modell").value, frei=$("modell-frei").value.trim();
+    var ok1=!!marke&&((marke!=="__andere"&&modell&&modell!=="__andere")||!!frei);
+    $("weiter-1").disabled=!ok1;
+    $("weiter-2").disabled=!$("baujahr").value;
+    // Auswahlzeile ab Schritt 2
+    var teile=[text($("marke")),text($("modell"))||frei];
+    if(aktiv>=2){var mo=text($("motor-liste"))||$("motor").value.trim();teile.push(mo,$("baujahr").value)}
+    $("auswahl").textContent=teile.filter(Boolean).join(" · ");
+    $("auswahl").hidden=aktiv===0||!ok1;
+    // Anfrage erst, wenn nichts mehr zu berechnen ist
+    var b=$("berechnen").hidden;
+    $("anfrage").hidden=!b;
+    $("keine-schaetzung").hidden=!(b&&$("ergebnis").hidden);
+  }
+  function zeige(i,fokus){
+    aktiv=i;
+    schritte.forEach(function(s,j){s.hidden=j!==i});
+    punkte.forEach(function(p,j){p.classList.toggle("fertig",j<i);if(j===i)p.setAttribute("aria-current","step");else p.removeAttribute("aria-current")});
+    pruefen();
+    if(fokus){
+      $("frage-"+(i+1)).focus({preventScroll:true});
+      var oben=form.getBoundingClientRect().top;
+      if(oben<0||oben>innerHeight*.4)form.scrollIntoView({block:"start",behavior:ruhig?"auto":"smooth"});
+    }
+  }
+  form.addEventListener("change",pruefen);
+  form.addEventListener("input",pruefen);
+  ["berechnen","ergebnis"].forEach(function(id){new MutationObserver(pruefen).observe($(id),{attributes:true,attributeFilter:["hidden"]})});
+  $("weiter-1").addEventListener("click",function(){zeige(1,true)});
+  $("weiter-2").addEventListener("click",function(){zeige(2,true)});
+  [].forEach.call(form.querySelectorAll("[data-zurueck]"),function(b){b.addEventListener("click",function(){zeige(aktiv-1,true)})});
+  zeige(0,false);
+})();
+</script>
+</body>
+</html>

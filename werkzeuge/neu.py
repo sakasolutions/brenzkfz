@@ -1,6 +1,7 @@
 """Baut die Entwürfe aus ihren Vorlagen in werkzeuge/:
   neu-vorlage.html       -> champagner-neu.html  (Sinan 16.11.2026)
   entwurf3-vorlage.html  -> entwurf-3.html       (Sinan 17.11.2026, nach Tier-1-Analyse, Grautöne leicht warm)
+  entwurf4-vorlage.html  -> entwurf-4.html       (Sinan 17.11.2026, helles Konzept, Farben Papier, Tinte, Tannengrün, Messing)
 Aus entwurf-3.html abgeleitet (Sinan 17.11.2026, zum Abgleich, Farben außer Rot frei):
   entwurf-3-hell-a.html  hell, warmes Papier, Knöpfe in Tinte, Akzent Messing (aus dem Champagner abgedunkelt)
   entwurf-3-hell-b.html  hell, kühles Weiß, Akzent Petrol
@@ -42,7 +43,7 @@ def ausschnitt(text, anfang, ende, name):
     return text[i:j]
 
 
-ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html"}
+ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html", "entwurf4-vorlage.html": "entwurf-4.html"}
 
 
 def bauen(vorlage, ziel):

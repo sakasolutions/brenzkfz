@@ -282,7 +282,7 @@ button{font:inherit}
 .kontakt-text{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
 .kontakt h2{margin:0;max-width:10em;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
 .kontakt-text p{margin:0;max-width:30em;color:var(--fliess)}
-.nummer{display:grid;gap:4px;margin-top:12px}
+.kontakt-text .nummer{display:grid;gap:4px;margin-top:12px}
 .nummer span{font-size:.875rem;color:var(--leise)}
 .nummer strong{color:var(--text);font-size:clamp(1.75rem,1.2rem + 1.6vw,2.5rem);font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .schreiben{min-width:0;display:grid;gap:22px;padding:28px 22px;background:var(--flaeche);border:1px solid var(--haar);border-radius:8px}
@@ -306,7 +306,7 @@ button{font:inherit}
 .blase .leer{color:#a3a29f}
 .schreiben .knopf{justify-content:center}
 .klein{margin:-8px 0 0;font-size:.8125rem;color:var(--leise)}
-@media (min-width:1000px){.kontakt-raster{grid-template-columns:5fr 6fr;gap:80px}.schreiben{padding:32px}.nummer{margin-top:auto;padding-bottom:4px}}
+@media (min-width:1000px){.kontakt-raster{grid-template-columns:5fr 6fr;gap:80px}.schreiben{padding:32px}.kontakt-text .nummer{margin-top:auto;padding-bottom:4px}}
 
 /* Fuß: Emblem als Abschluss, Menü, Kontakt */
 .fuss{border-top:1px solid var(--haar);padding-block:clamp(56px,7vw,96px) calc(28px + env(safe-area-inset-bottom,0px))}
