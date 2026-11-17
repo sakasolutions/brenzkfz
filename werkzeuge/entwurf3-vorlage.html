@@ -363,6 +363,9 @@ button{font:inherit}
 .fuss{border-top:1px solid var(--haar);padding-block:clamp(56px,7vw,96px) calc(28px + env(safe-area-inset-bottom,0px))}
 .fuss-raster{display:grid;gap:40px}
 .fuss-wappen svg{width:120px;height:120px}
+.fuss-wappen p{margin:16px 0 0;font-size:.9375rem;color:var(--leise)}
+.fuss-zeiten{display:grid;gap:2px;margin-top:14px!important}
+.fuss-zeiten span:first-child{font-size:.875rem;color:var(--leise)}
 .fuss h2{margin:0 0 14px;font-size:.875rem;font-weight:500;color:var(--leise)}
 .fuss ul{list-style:none;margin:0;padding:0;display:grid}
 .fuss-raster a{display:inline-flex;align-items:center;min-height:40px}
@@ -571,17 +574,21 @@ button{font:inherit}
 <footer class="fuss">
   <div class="innen">
     <div class="fuss-raster">
-      <div class="fuss-wappen"><!--LOGO--></div>
+      <div class="fuss-wappen"><!--LOGO--><p>Kfz-Werkstatt im Raum Heidenheim</p></div>
       <nav class="fuss-nav" aria-labelledby="fuss-leistungen"><h2 id="fuss-leistungen">Leistungen</h2>
         <ul><li><a href="kfz-service">Kfz-Service</a></li><li><a href="chiptuning">Chiptuning</a></li><li><a href="fahrzeugaufbereitung">Fahrzeugaufbereitung</a></li><li><a href="chiptuning#rechner">Mehrleistung berechnen</a></li></ul>
       </nav>
       <div class="fuss-kontakt"><h2>Kontakt</h2>
-        <!-- Adresse und Öffnungszeiten hier ergänzen, sobald Mert sie nennt, genau wie im Google-Profil -->
-        <address><p>Brenz KFZ</p><p><a href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener">WhatsApp 0176 62794745</a></p></address>
-        <p class="grau">Tagsüber am besten per WhatsApp, wir melden uns zurück.</p>
+        <!-- Name, Adresse, Nummer und Öffnungszeiten genau so wie im Google-Profil (lokale Suche). Lücken kommen von Mert. -->
+        <address>
+          <p>Brenz KFZ</p>
+          <p><span class="luecke">[Straße und Hausnummer]</span><br><span class="luecke">[PLZ und Ort]</span></p>
+          <p><a href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener">WhatsApp 0176 62794745</a></p>
+        </address>
+        <p class="fuss-zeiten"><span>Öffnungszeiten</span><span class="luecke">[Tage und Uhrzeiten]</span></p>
       </div>
     </div>
-    <div class="fuss-unten"><span>© 2026 Brenz KFZ · Kfz-Werkstatt im Raum Heidenheim</span><!--WENN impressum--><nav class="fuss-recht" aria-label="Rechtliches"><a href="impressum">Impressum</a><a href="datenschutz">Datenschutz</a></nav><!--SONST--><!--ENDE--></div>
+    <div class="fuss-unten"><span>© 2026 Brenz KFZ</span><!--WENN impressum--><nav class="fuss-recht" aria-label="Rechtliches"><a href="impressum">Impressum</a><a href="datenschutz">Datenschutz</a></nav><!--SONST--><!--ENDE--></div>
   </div>
 </footer>
 
