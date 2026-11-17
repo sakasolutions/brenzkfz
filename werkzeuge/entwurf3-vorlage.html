@@ -69,9 +69,18 @@ button{font:inherit}
 .kopf-zeile{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--kopf-h)}
 .marke{display:block;flex:none}
 .marke svg{width:48px;height:48px}
-.nav{display:none;align-items:center;gap:36px}
-.nav a{font-size:.9375rem;font-weight:500;color:color-mix(in srgb,var(--text) 82%,transparent);transition:color .2s}
-.nav a:hover{color:var(--text)}
+.nav{display:none;align-items:center;gap:28px}
+.nav a{position:relative;padding-block:10px;font-size:.9375rem;font-weight:500;color:color-mix(in srgb,var(--text) 82%,transparent);transition:color .2s}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:1px;background:var(--akzent);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.65,.2,1)}
+.nav a:hover,.nav a[aria-current="page"]{color:var(--text)}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
+/* Rechts im Kopf: Desktop ein kleiner Anfrage-Knopf, Handy ein WhatsApp-Symbol und das Menü */
+.kopf-rechts{display:flex;align-items:center;gap:8px}
+.kopf .knopf{display:none;height:40px;padding:0 16px;gap:8px;font-size:.9375rem}
+.kopf .knopf svg{width:16px;height:16px}
+.kopf-wa{display:grid;place-items:center;width:44px;height:44px;border:1px solid color-mix(in srgb,var(--akzent) 55%,transparent);border-radius:50%;color:var(--akzent);transition:border-color .2s}
+.kopf-wa:hover{border-color:var(--akzent)}
+.kopf-wa svg{width:19px;height:19px}
 .menue-knopf{display:inline-flex;align-items:center;gap:12px;height:44px;padding:0;background:none;border:0;color:var(--text);font-weight:500;cursor:pointer}
 .menue-knopf i{position:relative;width:18px;height:8px;border-block:1.5px solid currentColor;transition:transform .2s}
 .kopf.offen .menue-knopf i{height:0;border-bottom:0;transform:rotate(45deg)}
@@ -79,9 +88,12 @@ button{font:inherit}
 .handymenue{position:fixed;inset:0;z-index:19;display:flex;flex-direction:column;overflow-y:auto;background:var(--grund);
   padding:calc(var(--kopf-h) + env(safe-area-inset-top,0px) + 24px) var(--rand-r) calc(28px + env(safe-area-inset-bottom,0px)) var(--rand-l)}
 .handymenue nav{display:grid}
-.handymenue nav a{padding-block:14px;border-bottom:1px solid var(--haar);font-size:2rem;font-weight:500;letter-spacing:-.03em;line-height:1.1}
+.handymenue nav a{display:grid;gap:4px;padding-block:14px;border-bottom:1px solid var(--haar)}
+.handymenue nav span{font-size:1.875rem;font-weight:500;letter-spacing:-.03em;line-height:1.1}
+.handymenue nav small{font-size:.9375rem;color:var(--leise)}
 .handymenue .knopf{margin-top:auto;justify-content:center}
-@media (min-width:900px){.marke svg{width:56px;height:56px}.nav{display:flex}.menue-knopf,.handymenue{display:none!important}}
+@media (min-width:900px){.marke svg{width:56px;height:56px}.nav{display:flex}.kopf .knopf{display:inline-flex}.kopf-rechts{margin-left:8px}.kopf-wa,.menue-knopf,.handymenue{display:none!important}}
+@media (min-width:1100px){.nav{gap:36px}}
 
 /* Start: Film über die ganze Fläche, Text unten links */
 .held{position:relative;isolation:isolate;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;background:#090807}
@@ -96,6 +108,8 @@ button{font:inherit}
 .held-inhalt{display:grid;justify-items:start;gap:28px;padding-top:calc(var(--kopf-h) + 80px);padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
 .held h1{margin:0;max-width:12.5em;font-size:clamp(2.25rem,1rem + 4.8vw,4.75rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;color:#f2f1ef;text-wrap:pretty}
 .held h1 .grau{display:block;color:color-mix(in srgb,#f2f1ef 58%,transparent)}
+.held-aktionen{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+.held .link{color:#f2f1ef}
 .pause{position:absolute;right:var(--rand-r);bottom:calc(40px + env(safe-area-inset-bottom,0px));display:grid;place-items:center;width:44px;height:44px;padding:0;
   border:1px solid rgb(255 255 255 / .32);border-radius:50%;background:rgb(0 0 0 / .25);color:#f2f1ef;cursor:pointer;transition:border-color .2s}
 .pause:hover{border-color:rgb(255 255 255 / .7)}
@@ -337,22 +351,28 @@ button{font:inherit}
 
 <header class="kopf" id="kopf">
   <div class="innen kopf-zeile">
-    <a class="marke" href="#start" aria-label="Brenz KFZ, zum Anfang"><!--LOGO--></a>
+    <a class="marke" href="#start" aria-label="Brenz KFZ, zur Startseite"><!--LOGO--></a>
+    <!-- Links auf die Unterseiten; solange eine Seite fehlt, stellt werkzeuge/neu.py sie auf den Abschnitt der Startseite um -->
     <nav class="nav" aria-label="Hauptmenü">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#rechner">Chiptuning-Rechner</a>
-      <a href="#aufbereitung">Aufbereitung</a>
+      <a href="kfz-service">Kfz-Service</a>
+      <a href="chiptuning">Chiptuning</a>
+      <a href="fahrzeugaufbereitung">Aufbereitung</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
-    <button class="menue-knopf" id="burger" type="button" aria-expanded="false" aria-controls="handymenue" aria-label="Menü öffnen">Menü<i aria-hidden="true"></i></button>
+    <div class="kopf-rechts">
+      <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage</a>
+      <a class="kopf-wa" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener" aria-label="Anfrage per WhatsApp"><svg aria-hidden="true"><use href="#nachricht"/></svg></a>
+      <button class="menue-knopf" id="burger" type="button" aria-expanded="false" aria-controls="handymenue" aria-label="Menü öffnen">Menü<i aria-hidden="true"></i></button>
+    </div>
   </div>
 </header>
 <div class="handymenue" id="handymenue" hidden>
   <nav aria-label="Hauptmenü">
-    <a href="#leistungen">Leistungen</a>
-    <a href="#rechner">Chiptuning-Rechner</a>
-    <a href="#aufbereitung">Aufbereitung</a>
-    <a href="#kontakt">Kontakt</a>
+    <a href="kfz-service"><span>Kfz-Service</span><small>Heidenheim und Umgebung</small></a>
+    <a href="chiptuning"><span>Chiptuning</span><small>Für die ganze Region</small></a>
+    <a href="fahrzeugaufbereitung"><span>Aufbereitung</span><small>Heidenheim und Umgebung</small></a>
+    <a href="chiptuning#rechner"><span>Leistung berechnen</span><small>Stage 1 grob berechnen</small></a>
+    <a href="#kontakt"><span>Kontakt</span><small>Am schnellsten per WhatsApp</small></a>
   </nav>
   <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
 </div>
@@ -366,7 +386,10 @@ button{font:inherit}
     </div>
     <div class="innen held-inhalt">
       <h1 id="held-titel">Kfz-Service, Chiptuning und Aufbereitung. <span class="grau">Im Raum Heidenheim.</span></h1>
-      <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+      <div class="held-aktionen">
+        <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+        <a class="link" href="chiptuning#rechner"><span>Leistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+      </div>
     </div>
     <button class="pause" id="film-pause" type="button" aria-label="Film anhalten" hidden><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
   </section>
@@ -484,7 +507,7 @@ button{font:inherit}
     <div class="fuss-raster">
       <div class="fuss-wappen"><!--LOGO--></div>
       <nav class="fuss-nav" aria-labelledby="fuss-leistungen"><h2 id="fuss-leistungen">Leistungen</h2>
-        <ul><li><a href="#service">Kfz-Service</a></li><li><a href="#software">Softwareoptimierung</a></li><li><a href="#aufbereitung">Fahrzeugaufbereitung</a></li><li><a href="#rechner">Chiptuning-Rechner</a></li></ul>
+        <ul><li><a href="kfz-service">Kfz-Service</a></li><li><a href="chiptuning">Chiptuning</a></li><li><a href="fahrzeugaufbereitung">Fahrzeugaufbereitung</a></li><li><a href="chiptuning#rechner">Leistung berechnen</a></li></ul>
       </nav>
       <div class="fuss-kontakt"><h2>Kontakt</h2>
         <p><a href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener">WhatsApp 0176 62794745</a></p>

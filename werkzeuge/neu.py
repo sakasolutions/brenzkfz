@@ -44,6 +44,19 @@ def ausschnitt(text, anfang, ende, name):
     return text[i:j]
 
 
+# Links auf Unterseiten: solange die Seite noch nicht gebaut ist, zeigt der Link auf den passenden Abschnitt der Startseite.
+# Zuerst der Link mit Anker, damit "chiptuning#rechner" nicht von "chiptuning" erfasst wird.
+UNTERSEITEN = [("chiptuning#rechner", "chiptuning", "#rechner"), ("kfz-service", "kfz-service", "#service"),
+               ("chiptuning", "chiptuning", "#software"), ("fahrzeugaufbereitung", "fahrzeugaufbereitung", "#aufbereitung")]
+
+
+def unterseiten_verlinken(html):
+    for href, datei, anker in UNTERSEITEN:
+        if not os.path.exists(os.path.join(WURZEL, datei + ".html")):
+            html = html.replace('href="' + href + '"', 'href="' + anker + '"')
+    return html
+
+
 ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html", "entwurf4-vorlage.html": "entwurf-4.html"}
 
 
@@ -68,6 +81,7 @@ def bauen(vorlage, ziel, schreiben=True):
         if platz not in html:
             raise SystemExit("Vorlage: " + platz + " fehlt")
         html = html.replace(platz, neu)
+    html = unterseiten_verlinken(html)
     html = re.sub(r"<!-- Vorlage für .*? -->", "<!-- Automatisch erzeugt aus werkzeuge/" + vorlage
                   + " mit werkzeuge/neu.py. Nicht von Hand bearbeiten. -->", html, count=1)
     if schreiben:
