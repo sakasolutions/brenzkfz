@@ -3,6 +3,7 @@
   entwurf3-vorlage.html  -> entwurf-3.html       (Sinan 17.11.2026, nach Tier-1-Analyse, Grautöne leicht warm)
   chiptuning-vorlage.html -> chiptuning.html   (erste Unterseite, Rechner als dunkle Konsole, Sinan 17.11.2026)
   kfz-service-vorlage.html -> kfz-service.html (Gerüst, Leistungen vorläufig, Terminanfrage als Konsole, Sinan 17.11.2026)
+  aufbereitung-vorlage.html -> fahrzeugaufbereitung.html (Gerüst, Vorher-Nachher, Anfrage als Konsole, Sinan 17.11.2026)
   entwurf4-vorlage.html  -> entwurf-4.html       (Sinan 17.11.2026: Film filmisch, darunter hell und dunkel im Wechsel,
                          Akzent zum Umschalten: Champagner, Monochrom, Eisblau)
 Aus entwurf-3.html abgeleitet (Sinan 17.11.2026, zum Abgleich, Farben außer Rot frei):
@@ -91,6 +92,7 @@ SEITEN = {
     "entwurf-3.html": dict(START="#start", AKTIV=None, THEMA="service"),
     "chiptuning.html": dict(START=START_ENTWURF, AKTIV="chiptuning", THEMA="software"),
     "kfz-service.html": dict(START=START_ENTWURF, AKTIV="kfz-service", THEMA="service"),
+    "fahrzeugaufbereitung.html": dict(START=START_ENTWURF, AKTIV="fahrzeugaufbereitung", THEMA="aufbereitung"),
 }
 
 
@@ -114,7 +116,8 @@ def teile_einsetzen(html, ziel):
 
 
 ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html", "entwurf4-vorlage.html": "entwurf-4.html",
-         "chiptuning-vorlage.html": "chiptuning.html", "kfz-service-vorlage.html": "kfz-service.html"}
+         "chiptuning-vorlage.html": "chiptuning.html", "kfz-service-vorlage.html": "kfz-service.html",
+         "aufbereitung-vorlage.html": "fahrzeugaufbereitung.html"}
 
 
 def bauen(vorlage, ziel, schreiben=True):

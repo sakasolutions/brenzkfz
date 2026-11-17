@@ -475,6 +475,25 @@ button{font:inherit}
 .konsole .fehlt:empty{display:none}
 .konsole .knopf.wa[aria-disabled="true"]{opacity:.5}
 
+/* Aufbereitung: Kopf und Vorher-Nachher nebeneinander, Auswahl auch mehrfach (Kästchen statt Kreis) */
+.angebot-oben{display:grid;gap:32px;margin-bottom:clamp(40px,5vw,64px)}
+.angebot-oben .abschnitt-kopf{margin-bottom:0}
+@media (min-width:1000px){.angebot-oben{grid-template-columns:5fr 7fr;gap:64px;align-items:center}}
+.vergleich-rahmen{margin:0;display:grid;gap:12px;min-width:0}
+.vergleich-rahmen figcaption{font-size:.9375rem}
+.vergleich{--pos:50%;position:relative;max-width:100%;aspect-ratio:3/2;border-radius:16px;overflow:hidden;background:#12110f}
+.vergleich img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:var(--ton)}
+.vergleich .vorher{clip-path:inset(0 calc(100% - var(--pos)) 0 0);filter:var(--ton) saturate(.35) brightness(.6) contrast(.85) sepia(.3)}
+.v-marke{position:absolute;top:12px;padding:6px 12px;border-radius:999px;background:rgb(18 17 15 / .72);color:#f2f1ef;font-size:.8125rem;font-weight:500;line-height:1.2;pointer-events:none}
+.v-marke.links{left:12px}
+.v-marke.rechts{right:12px}
+.griff{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:#f2f1ef;pointer-events:none}
+.griff svg{position:absolute;top:50%;left:50%;width:44px;max-width:none;height:44px;padding:11px;border-radius:50%;background:#f2f1ef;color:#12110f;transform:translate(-50%,-50%);fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;box-shadow:0 2px 12px rgb(0 0 0 / .25)}
+.vergleich input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+.vergleich:has(input:focus-visible){outline:2px solid var(--text);outline-offset:3px}
+.wahl-karte input[type="checkbox"]{border-radius:6px}
+.wahl-karte input[type="checkbox"]::after{border-radius:2px}
+
 /* Ablauf mit vier Schritten, ohne Kontakt direkt darunter */
 .ablauf.allein{padding-bottom:clamp(88px,11vw,160px)}
 @media (min-width:900px){.schritte.vier{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px}}

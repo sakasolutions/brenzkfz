@@ -1,0 +1,31 @@
+      <!-- Anfrage Aufbereitung: Auswahl und Fahrzeuggrößen sind ein Vorschlag (KLAERUNG-MERT.md, Abschnitt 5). Pakete kommen hier rein, falls es welche gibt. -->
+      <form class="konsole" id="auf-form" novalidate>
+        <fieldset class="anliegen">
+          <legend class="schritt-frage">Was soll gemacht werden?</legend>
+          <div class="wahl zwei">
+            <label class="wahl-karte"><input type="checkbox" name="auf-was" value="Innenraum"><span class="wahl-titel">Innenraum</span><span class="wahl-zeile">Reinigung, Polster, Geruch</span></label>
+            <label class="wahl-karte"><input type="checkbox" name="auf-was" value="Außen"><span class="wahl-titel">Außen</span><span class="wahl-zeile">Wäsche, Felgen, Scheiben</span></label>
+            <label class="wahl-karte"><input type="checkbox" name="auf-was" value="Lack"><span class="wahl-titel">Lack</span><span class="wahl-zeile">Politur, Versiegelung</span></label>
+            <label class="wahl-karte"><input type="checkbox" name="auf-was" value="beraten"><span class="wahl-titel">Erst beraten lassen</span><span class="wahl-zeile">Was ist sinnvoll?</span></label>
+          </div>
+        </fieldset>
+
+        <div class="termin-felder" id="auf-felder" hidden>
+          <label class="feld-r" for="auf-fahrzeug"><span>Fahrzeug</span><input type="text" id="auf-fahrzeug" maxlength="60" autocomplete="off" placeholder="z. B. Audi A4 Avant, 2019"></label>
+          <fieldset class="themen"><legend>Fahrzeuggröße</legend>
+            <label><input type="radio" name="auf-groesse" value="Kleinwagen"><span>Kleinwagen</span></label>
+            <label><input type="radio" name="auf-groesse" value="Mittelklasse oder Kombi"><span>Mittelklasse, Kombi</span></label>
+            <label><input type="radio" name="auf-groesse" value="SUV oder Van"><span>SUV, Van</span></label>
+            <label><input type="radio" name="auf-groesse" value="Transporter"><span>Transporter</span></label>
+          </fieldset>
+          <div class="termin-wunsch">
+            <label class="feld-r" for="auf-tag"><span>Wunschtag</span><select id="auf-tag"><option value="">So bald wie möglich</option></select></label>
+          </div>
+          <label class="feld-r" for="auf-anm"><span>Anmerkung (optional)</span><textarea id="auf-anm" rows="2" placeholder="z. B. Hundehaare, Kratzer an der Fahrertür"></textarea></label>
+
+          <div class="blase-wrap"><span>So kommt Ihre Nachricht bei uns an</span><p class="blase" id="auf-text"></p></div>
+          <p class="fehlt" id="auf-fehlt" aria-live="polite"></p>
+          <a class="knopf wa" id="auf-senden" href="#anfrage" target="_blank" rel="noopener" aria-disabled="true"><span>Per WhatsApp senden</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
+          <p class="klein">Gesendet wird erst, wenn Sie die Nachricht in WhatsApp abschicken.</p>
+        </div>
+      </form>

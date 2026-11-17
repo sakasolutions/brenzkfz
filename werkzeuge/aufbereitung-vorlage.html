@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="de">
+<head>
+<!-- Vorlage für fahrzeugaufbereitung.html. Nicht direkt öffnen: python3 werkzeuge/neu.py setzt Teile, Logo und WhatsApp-Links ein. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>(Entwurf 3) Fahrzeugaufbereitung im Raum Heidenheim · Brenz KFZ</title>
+<!-- Leistungen in der Beschreibung erst nennen, wenn sie bestätigt sind. Bis dahin noindex (SEITENPLAN.md). -->
+<meta name="description" content="Fahrzeugaufbereitung und Detailing im Raum Heidenheim. Was gemacht wird, besprechen wir vorher mit Ihnen. Anfrage per WhatsApp.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#12110f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/SchibstedGrotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/kapitel-aufbereitung.webp" as="image" media="(max-width: 899px)">
+<link rel="preload" href="img/aufbereitung.webp" as="image" media="(min-width: 900px)">
+<!-- Für die echte Domain. Einzelne Leistungen und Pakete erst auszeichnen, wenn sie bestätigt sind. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Fahrzeugaufbereitung",
+      "serviceType": "Fahrzeugaufbereitung und Detailing",
+      "url": "https://brenzkfz.de/fahrzeugaufbereitung",
+      "provider": { "@type": "AutoRepair", "name": "Brenz KFZ", "url": "https://brenzkfz.de/" },
+      "areaServed": { "@type": "AdministrativeArea", "name": "Landkreis Heidenheim" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://brenzkfz.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Fahrzeugaufbereitung", "item": "https://brenzkfz.de/fahrzeugaufbereitung" }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+<!--TEIL stil.css--></style>
+</head>
+<body>
+
+<!--TEIL sprite.html--><!--TEIL kopf.html--><main>
+  <section class="held unter" id="start" aria-labelledby="held-titel">
+    <figure class="held-bild" aria-hidden="true">
+      <!-- Foto: Herkunft offen, nur für den Entwurf; später eigene Aufnahmen vom Bruder bei der Arbeit -->
+      <picture>
+        <source media="(min-width: 900px)" srcset="img/aufbereitung.webp" width="1600" height="1067">
+        <img src="img/kapitel-aufbereitung.webp" width="800" height="1000" alt="" fetchpriority="high">
+      </picture>
+    </figure>
+    <div class="innen held-inhalt">
+      <nav class="brotkrumen" aria-label="Brotkrumen"><a href="{{START}}">Start</a><span aria-hidden="true">/</span><span aria-current="page">Fahrzeugaufbereitung</span></nav>
+      <h1 id="held-titel">Fahrzeug&shy;aufbereitung im Raum&nbsp;Heidenheim. <span class="grau">Autoaufbereitung und Detailing.</span></h1>
+      <div class="held-aktionen">
+        <a class="knopf" href="#anfrage"><span>Aufbereitung anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        <a class="link" href="{{WA_AUFBEREITUNG}}" target="_blank" rel="noopener"><span>Per WhatsApp anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="hell angebot" id="leistungen" aria-labelledby="leistungen-titel">
+    <div class="innen">
+      <div class="angebot-oben">
+        <div class="abschnitt-kopf">
+          <p class="kennzeile">Leistungen</p>
+          <h2 id="leistungen-titel">Innenraum, Außen und Lack</h2>
+          <!-- freigegeben (KLAERUNG-MERT.md, Abschnitt 5) -->
+          <p>Was gemacht wird, besprechen wir vorher mit Ihnen, dann wissen Sie genau, was Sie bekommen.</p>
+        </div>
+        <!-- Vorher und Nachher: Platzhalter, beide Seiten sind dasselbe Foto. Echte Fotos vom Bruder, Kennzeichen unkenntlich (KLAERUNG-MERT.md, Abschnitt 5). -->
+        <figure class="vergleich-rahmen">
+          <div class="vergleich">
+            <img class="nachher" src="img/aufbereitung.webp" width="1600" height="1067" alt="Nachher: Felge und Reifen sauber" loading="lazy" decoding="async">
+            <img class="vorher" src="img/aufbereitung.webp" width="1600" height="1067" alt="Vorher" loading="lazy" decoding="async">
+            <span class="v-marke links" aria-hidden="true">Vorher</span><span class="v-marke rechts" aria-hidden="true">Nachher</span>
+            <span class="griff" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span>
+            <input type="range" min="0" max="100" value="50" aria-label="Vorher und Nachher vergleichen">
+          </div>
+          <figcaption><span class="luecke">[Beispiel mit Platzhalterfoto. Hier kommen echte Vorher-Nachher-Fotos.]</span></figcaption>
+        </figure>
+      </div>
+      <!-- Liste aus der Klärungsliste, noch nicht bestätigt. Pakete ergänzen, falls es welche gibt. -->
+      <p class="vorlaeufig"><span class="luecke">[Vorläufige Auswahl. Was es gibt und ob es feste Pakete gibt, bestätigt Mert.]</span></p>
+      <div class="gruppen">
+        <section class="gruppe" aria-labelledby="g-innen">
+          <h3 id="g-innen">Innenraum</h3>
+          <ul><li>Innenreinigung</li><li>Polster und Leder</li><li>Geruch entfernen</li></ul>
+        </section>
+        <section class="gruppe" aria-labelledby="g-aussen">
+          <h3 id="g-aussen">Außen</h3>
+          <ul><li>Außenwäsche</li><li>Felgen</li><li>Scheiben</li><li>Motorraum</li></ul>
+        </section>
+        <section class="gruppe" aria-labelledby="g-lack">
+          <h3 id="g-lack">Lack</h3>
+          <ul><li>Politur</li><li>Lackkorrektur</li><li>Versiegelung</li></ul>
+        </section>
+      </div>
+      <p class="gruppen-fuss">Sie wissen nicht genau, was Ihr Fahrzeug braucht? <a class="link" href="#anfrage"><span>Lassen Sie sich beraten</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></p>
+    </div>
+  </section>
+
+  <section class="rechner-dunkel" id="anfrage" aria-labelledby="anfrage-titel">
+    <div class="innen rechner-raster">
+      <div class="rechner-text">
+        <p class="kennzeile">Aufbereitung anfragen</p>
+        <h2 id="anfrage-titel">Was braucht Ihr Fahrzeug?</h2>
+        <p class="rechner-unter">Wählen Sie aus, was gemacht werden soll, und geben Sie Ihr Fahrzeug an. Daraus entsteht Ihre WhatsApp-Nachricht.</p>
+        <!-- (bestätigen) Fotos helfen bei der Einschätzung -->
+        <p class="tipp">Fotos vom Innenraum und vom Lack helfen bei der Einschätzung. Schicken Sie sie einfach im Chat hinterher.</p>
+      </div>
+<!--TEIL anfrage-aufbereitung.html-->    </div>
+  </section>
+
+  <section class="ablauf allein" id="ablauf" aria-labelledby="ablauf-titel">
+    <div class="innen">
+      <h2 id="ablauf-titel">So läuft es ab</h2>
+      <!-- (bestätigen) alle drei Schritte, KLAERUNG-MERT.md Abschnitt 5 und 7 -->
+      <ol class="schritte">
+        <li><h3>Anfrage schicken</h3><p>Mit dem Formular oben oder direkt per WhatsApp, gern mit ein paar Fotos.</p></li>
+        <li><h3>Besprechen</h3><p>Wir besprechen mit Ihnen, was gemacht wird und was es kostet.</p></li>
+        <li><h3>Termin</h3><p>Sie bringen das Fahrzeug, wir sagen Bescheid, sobald es fertig ist.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="faq" id="fragen" aria-labelledby="fragen-titel">
+    <div class="innen faq-raster">
+      <div class="faq-kopf">
+        <h2 id="fragen-titel">Häufige Fragen</h2>
+      </div>
+      <div class="fragen-spalte">
+        <!-- (bestätigen) erste Antwort. Lücken füllt Mert (KLAERUNG-MERT.md, Abschnitt 5). -->
+        <div class="fragen">
+          <details><summary>Was kostet eine Aufbereitung?</summary><p>Das hängt vom Fahrzeug, seinem Zustand und dem Umfang ab. Was gemacht wird und was es kostet, besprechen wir vorher mit Ihnen.</p></details>
+          <details><summary>Gibt es feste Pakete?</summary><p><span class="luecke">[Antwort von Mert]</span></p></details>
+          <details><summary>Wie lange dauert eine Aufbereitung?</summary><p><span class="luecke">[Antwort von Mert]</span></p></details>
+        </div>
+        <nav class="weitere" aria-labelledby="weitere-titel">
+          <h2 id="weitere-titel">Auch bei uns</h2>
+          <ul>
+            <li><a href="kfz-service"><span class="w-titel">Kfz-Service</span><span class="w-zeile">Wartung und Reparatur</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+            <li><a href="chiptuning"><span class="w-titel">Chiptuning</span><span class="w-zeile">Mehrleistung für Ihren Motor berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+<!--TEIL kontakt.html--></main>
+
+<!--TEIL fuss.html-->
+<script>
+<!--TEIL skript.js--></script>
+<script>
+<!--TEIL anfrage-aufbereitung.js--></script>
+</body>
+</html>
