@@ -1,0 +1,26 @@
+  <section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
+    <div class="innen kontakt-raster">
+      <div class="kontakt-text">
+        <h2 id="kontakt-titel">Schreiben Sie uns</h2>
+        <!-- (bestätigen) Mert ist tagsüber nicht erreichbar (TEXTE.md) -->
+        <p>Tagsüber kommen wir nicht immer ans Telefon, deshalb läuft alles per WhatsApp. Die Antwort haben Sie dann schriftlich.</p>
+        <p class="nummer"><span>WhatsApp</span><strong>0176 62794745</strong></p>
+      </div>
+      <form class="schreiben" id="schreiben" novalidate>
+        <fieldset class="themen">
+          <legend>Worum geht es?</legend>
+          <label><input type="radio" name="thema" value="service"{{AN_service}}><span>Kfz-Service</span></label>
+          <label><input type="radio" name="thema" value="software"{{AN_software}}><span>Chiptuning</span></label>
+          <label><input type="radio" name="thema" value="aufbereitung"{{AN_aufbereitung}}><span>Aufbereitung</span></label>
+        </fieldset>
+        <label class="feld"><span>Fahrzeug</span><input id="s-fahrzeug" type="text" autocomplete="off" placeholder="z. B. VW Golf 7, 2016"></label>
+        <label class="feld"><span id="s-frage">Was steht an?</span><textarea id="s-anliegen" rows="2" placeholder="Optional"></textarea></label>
+        <div class="blase-wrap">
+          <span>So kommt Ihre Nachricht bei uns an</span>
+          <p class="blase" id="s-blase"></p>
+        </div>
+        <a class="knopf wa" id="s-senden" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><span>In WhatsApp öffnen</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
+        <p class="klein">Gesendet wird erst, wenn Sie die Nachricht in WhatsApp abschicken.</p>
+      </form>
+    </div>
+  </section>

@@ -1,0 +1,28 @@
+<header class="kopf" id="kopf">
+  <div class="innen kopf-zeile">
+    <a class="marke" href="{{START}}" aria-label="Brenz KFZ, zur Startseite"><!--LOGO--></a>
+    <!-- Links auf die Unterseiten; solange eine Seite fehlt, stellt werkzeuge/neu.py sie auf den Abschnitt der Startseite um -->
+    <nav class="nav" aria-label="Hauptmenü">
+      <a href="kfz-service">Kfz-Service</a>
+      <a href="chiptuning">Chiptuning</a>
+      <a href="fahrzeugaufbereitung">Aufbereitung</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="kopf-rechts">
+      <a class="knopf wa" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><span>Anfrage</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
+      <a class="kopf-wa" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener" aria-label="Anfrage per WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg></a>
+      <button class="menue-knopf" id="burger" type="button" aria-expanded="false" aria-controls="handymenue" aria-label="Menü öffnen">Menü<i aria-hidden="true"></i></button>
+    </div>
+  </div>
+</header>
+<div class="handymenue" id="handymenue" hidden>
+  <nav aria-label="Hauptmenü">
+    <a href="kfz-service"><span>Kfz-Service</span><small>Heidenheim und Umgebung</small></a>
+    <a href="chiptuning"><span>Chiptuning</span><small>Für die ganze Region</small></a>
+    <a href="fahrzeugaufbereitung"><span>Aufbereitung</span><small>Nach Absprache</small></a>
+    <a href="chiptuning#rechner"><span>Mehrleistung berechnen</span><small>Stage 1, grobe Schätzung</small></a>
+    <a href="#kontakt"><span>Kontakt</span><small>Per WhatsApp</small></a>
+  </nav>
+  <a class="knopf wa" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><span>Per WhatsApp anfragen</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
+</div>
+

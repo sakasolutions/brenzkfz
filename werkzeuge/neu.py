@@ -50,10 +50,15 @@ UNTERSEITEN = [("chiptuning#rechner", "chiptuning", "#rechner"), ("kfz-service",
                ("chiptuning", "chiptuning", "#software"), ("fahrzeugaufbereitung", "fahrzeugaufbereitung", "#aufbereitung")]
 
 
+def vorhanden(seite):
+    """Gibt es seite.html schon, oder wird sie in diesem Lauf gebaut?"""
+    return os.path.exists(os.path.join(WURZEL, seite + ".html")) or seite + ".html" in ZIELE.values()
+
+
 def weichen(html):
-    """<!--WENN seite-->A<!--SONST-->B<!--ENDE-->: A, wenn seite.html schon gebaut ist, sonst B."""
+    """<!--WENN seite-->A<!--SONST-->B<!--ENDE-->: A, wenn seite.html gebaut ist oder wird, sonst B."""
     def wahl(m):
-        return m.group(2) if os.path.exists(os.path.join(WURZEL, m.group(1) + ".html")) else m.group(3)
+        return m.group(2) if vorhanden(m.group(1)) else m.group(3)
     return re.sub(r"<!--WENN ([a-z-]+)-->(.*?)<!--SONST-->(.*?)<!--ENDE-->", wahl, html, flags=re.S)
 
 
@@ -67,10 +72,39 @@ def marken(quelle):
     return "".join(zeilen) + '<option value="__andere">Andere Marke</option>'
 
 
-def unterseiten_verlinken(html):
+def unterseiten_verlinken(html, start=""):
+    """start: Adresse der Startseite für die Rücksprung-Anker (auf der Startseite leer, auf Unterseiten zum Beispiel entwurf-3.html)."""
     for href, datei, anker in UNTERSEITEN:
-        if not os.path.exists(os.path.join(WURZEL, datei + ".html")):
-            html = html.replace('href="' + href + '"', 'href="' + anker + '"')
+        if not vorhanden(datei):
+            html = html.replace('href="' + href + '"', 'href="' + start + anker + '"')
+    return html
+
+
+# Gemeinsame Teile (werkzeuge/teile/): <!--TEIL name--> wird durch die Datei ersetzt. Seitenabhängige Werte als {{NAME}}.
+TEILE = os.path.join(HIER, "teile")
+START_ENTWURF = "entwurf-3.html"   # solange die neue Startseite noch ein Entwurf ist; später "./"
+SEITEN = {
+    "entwurf-3.html": dict(START="#start", AKTIV=None, THEMA="service"),
+    "chiptuning.html": dict(START=START_ENTWURF, AKTIV="chiptuning", THEMA="software"),
+}
+
+
+def teile_einsetzen(html, ziel):
+    for _ in range(3):   # Teile dürfen Teile enthalten
+        neu = re.sub(r"<!--TEIL ([a-z.\-]+)-->", lambda m: open(os.path.join(TEILE, m.group(1)), encoding="utf-8").read(), html)
+        if neu == html:
+            break
+        html = neu
+    seite = SEITEN.get(ziel)
+    if not seite:
+        return html
+    werte = {"START": seite["START"]}
+    for thema in ("service", "software", "aufbereitung"):
+        werte["AN_" + thema] = " checked" if thema == seite["THEMA"] else ""
+    for k, v in werte.items():
+        html = html.replace("{{" + k + "}}", v)
+    if seite["AKTIV"]:   # Menüpunkt der aktuellen Seite markieren (Kopf und Handymenü)
+        html = html.replace('<a href="' + seite["AKTIV"] + '">', '<a href="' + seite["AKTIV"] + '" aria-current="page">')
     return html
 
 
@@ -89,6 +123,7 @@ def bauen(vorlage, ziel, schreiben=True):
     rechner = ausschnitt(quelle, '<form class="zettel" id="form"', "</section>", "Rechner-Formular")
     skripte = ausschnitt(quelle, "<script>\n// Leistungsrechner", "</body>", "Rechner-Skripte")
 
+    html = teile_einsetzen(html, ziel)
     html = weichen(html)
     ersetzen = {"<!--LOGO-->": svg, "<!--RECHNER-FORM-->": "      " + rechner.rstrip() + "\n",
                 "<!--RECHNER-SKRIPTE-->": skripte.rstrip(), "<!--MARKEN-->": marken(quelle)}
@@ -102,7 +137,7 @@ def bauen(vorlage, ziel, schreiben=True):
         if platz not in html:
             raise SystemExit("Vorlage: " + platz + " fehlt")
         html = html.replace(platz, neu)
-    html = unterseiten_verlinken(html)
+    html = unterseiten_verlinken(html, "" if SEITEN.get(ziel, {}).get("START", "#start") == "#start" else SEITEN[ziel]["START"])
     html = re.sub(r"<!-- Vorlage für .*? -->", "<!-- Automatisch erzeugt aus werkzeuge/" + vorlage
                   + " mit werkzeuge/neu.py. Nicht von Hand bearbeiten. -->", html, count=1)
     if schreiben:
