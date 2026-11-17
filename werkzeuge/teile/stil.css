@@ -382,7 +382,7 @@ button{font:inherit}
 /* Zwei Stufen (hell) */
 .stufenwahl{padding-block:clamp(88px,11vw,160px)}
 .stufenwahl-kopf{display:grid;gap:16px;max-width:40em;margin-bottom:clamp(32px,4vw,56px)}
-.stufenwahl h2,.rechner-dunkel h2,.faq h2{margin:0;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.stufenwahl h2,.rechner-dunkel h2,.faq h2,.angebot h2{margin:0;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
 .stufenwahl-kopf p{margin:0;color:var(--fliess)}
 .stufen-karten{display:grid;gap:16px}
 .stufen-karte{display:grid;gap:12px;align-content:start;justify-items:start;padding:clamp(24px,3vw,36px);background:var(--flaeche);border:1px solid var(--haar);border-radius:16px}
@@ -446,6 +446,34 @@ button{font:inherit}
 .konsole .knopf.wa{width:100%}
 .konsole .knopf.wa>span:first-child{min-width:0;white-space:normal;line-height:1.2}
 .konsole .klein{margin:-8px 0 0}
+
+/* Kfz-Service: Leistungen in Gruppen (hell), Terminanfrage als Konsole (dunkel) */
+.angebot{padding-block:clamp(88px,11vw,160px)}
+.abschnitt-kopf{display:grid;gap:16px;max-width:40em;margin-bottom:clamp(32px,4vw,56px)}
+.abschnitt-kopf p{margin:0;color:var(--fliess)}
+.abschnitt-kopf .kennzeile{margin-bottom:-4px;color:var(--leise)}
+.hell .luecke{color:var(--text)}
+.vorlaeufig{margin:0 0 20px;font-size:.9375rem}
+.gruppen{display:grid;gap:16px}
+.gruppe{min-width:0;padding:clamp(24px,3vw,32px);background:var(--flaeche);border:1px solid var(--haar);border-radius:16px}
+.gruppe h3{margin:0 0 12px;font-size:1.25rem;font-weight:500;letter-spacing:-.015em}
+.gruppe ul{list-style:none;margin:0;padding:0}
+.gruppe li{padding-block:12px;border-top:1px solid var(--haar);color:var(--fliess)}
+.gruppen-fuss{display:flex;flex-wrap:wrap;align-items:center;gap:0 12px;margin:24px 0 0;color:var(--fliess)}
+.gruppen-fuss .link svg{color:var(--text)}
+@media (min-width:900px){.gruppen{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}}
+.rechner-dunkel .tipp{margin:0;padding-top:20px;border-top:1px solid var(--haar);font-size:.9375rem;color:var(--leise)}
+.konsole fieldset{margin:0;padding:0;border:0;min-width:0}
+.konsole legend{padding:0}
+.anliegen{display:grid;gap:20px}
+.konsole .anliegen legend{margin-bottom:20px}
+.wahl.zwei .wahl-karte{min-height:60px}
+@media (min-width:600px){.wahl.zwei{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.termin-felder,.termin-felder .nur,.termin-wunsch{display:grid;gap:20px}
+.konsole .themen span{min-height:44px}
+.konsole .fehlt{margin:0;font-size:.875rem;color:var(--fliess)}
+.konsole .fehlt:empty{display:none}
+.konsole .knopf.wa[aria-disabled="true"]{opacity:.5}
 
 /* Ablauf mit vier Schritten, ohne Kontakt direkt darunter */
 .ablauf.allein{padding-bottom:clamp(88px,11vw,160px)}

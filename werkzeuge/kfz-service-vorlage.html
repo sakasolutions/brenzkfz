@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="de">
+<head>
+<!-- Vorlage für kfz-service.html. Nicht direkt öffnen: python3 werkzeuge/neu.py setzt Teile, Logo und WhatsApp-Links ein. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>(Entwurf 3) Kfz-Service im Raum Heidenheim · Brenz KFZ</title>
+<!-- Beschreibung und Titel ergänzen, sobald Merts Leistungsliste steht (Hauptleistung in den Titel). Bis dahin noindex (SEITENPLAN.md). -->
+<meta name="description" content="Kfz-Service im Raum Heidenheim: Wartung und Reparatur. Termin per WhatsApp anfragen, was es kostet, erfahren Sie vorher.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#12110f">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/SchibstedGrotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/kapitel-service-hoch.webp" as="image" media="(max-width: 899px)">
+<link rel="preload" href="img/kapitel-service-breit.webp" as="image" media="(min-width: 900px)">
+<!-- Für die echte Domain. Einzelne Leistungen erst auszeichnen, wenn Mert sie bestätigt hat. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Kfz-Service",
+      "serviceType": "Wartung und Reparatur von Kraftfahrzeugen",
+      "url": "https://brenzkfz.de/kfz-service",
+      "provider": { "@type": "AutoRepair", "name": "Brenz KFZ", "url": "https://brenzkfz.de/" },
+      "areaServed": { "@type": "AdministrativeArea", "name": "Landkreis Heidenheim" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://brenzkfz.de/" },
+        { "@type": "ListItem", "position": 2, "name": "Kfz-Service", "item": "https://brenzkfz.de/kfz-service" }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+<!--TEIL stil.css--></style>
+</head>
+<body>
+
+<!--TEIL sprite.html--><!--TEIL kopf.html--><main>
+  <section class="held unter" id="start" aria-labelledby="held-titel">
+    <figure class="held-bild" aria-hidden="true">
+      <!-- Werkstattfoto: Platzhalter (Pexels), später eigene Aufnahme aus Merts Werkstatt -->
+      <picture>
+        <source media="(min-width: 900px)" srcset="img/kapitel-service-breit.webp" width="1200" height="750">
+        <img src="img/kapitel-service-hoch.webp" width="720" height="900" alt="" fetchpriority="high">
+      </picture>
+    </figure>
+    <div class="innen held-inhalt">
+      <nav class="brotkrumen" aria-label="Brotkrumen"><a href="{{START}}">Start</a><span aria-hidden="true">/</span><span aria-current="page">Kfz-Service</span></nav>
+      <h1 id="held-titel">Kfz-Service im Raum&nbsp;Heidenheim. <span class="grau">Wartung und Reparatur.</span></h1>
+      <div class="held-aktionen">
+        <a class="knopf" href="#termin"><span>Termin anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+        <a class="link" href="{{WA_SERVICE}}" target="_blank" rel="noopener"><span>Per WhatsApp anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="hell angebot" id="leistungen" aria-labelledby="leistungen-titel">
+    <div class="innen">
+      <div class="abschnitt-kopf">
+        <p class="kennzeile">Leistungen</p>
+        <h2 id="leistungen-titel">Wartung, Reparatur und Reifen</h2>
+        <!-- (bestätigen) wie auf der Startseite: Preis vorher, KLAERUNG-MERT.md Abschnitt 3 -->
+        <p>Bevor wir anfangen, erfahren Sie, was gemacht wird und was es kostet.</p>
+      </div>
+      <!-- Liste aus der Klärungsliste, noch nicht von Mert bestätigt. Erst danach geht die Seite in den Index. -->
+      <p class="vorlaeufig"><span class="luecke">[Vorläufige Auswahl. Welche Leistungen es gibt, bestätigt Mert.]</span></p>
+      <div class="gruppen">
+        <section class="gruppe" aria-labelledby="g-wartung">
+          <h3 id="g-wartung">Wartung</h3>
+          <ul><li>Inspektion</li><li>Ölwechsel</li><li>Klimaservice</li><li>Vorbereitung auf HU und AU</li></ul>
+        </section>
+        <section class="gruppe" aria-labelledby="g-reparatur">
+          <h3 id="g-reparatur">Diagnose und Reparatur</h3>
+          <ul><li>Fehlerdiagnose</li><li>Bremsen</li><li>Kupplung</li><li>Zahnriemen</li><li>Auspuff</li><li>Batterie</li></ul>
+        </section>
+        <section class="gruppe" aria-labelledby="g-reifen">
+          <h3 id="g-reifen">Reifen</h3>
+          <ul><li>Reifenwechsel</li><li>Reifeneinlagerung</li></ul>
+        </section>
+      </div>
+      <p class="gruppen-fuss">Ihr Anliegen ist nicht dabei? <a class="link" href="#termin"><span>Fragen Sie trotzdem</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></p>
+    </div>
+  </section>
+
+  <section class="rechner-dunkel" id="termin" aria-labelledby="termin-titel">
+    <div class="innen rechner-raster">
+      <div class="rechner-text">
+        <p class="kennzeile">Termin anfragen</p>
+        <h2 id="termin-titel">Was steht an?</h2>
+        <p class="rechner-unter">Wählen Sie, worum es geht. Das Formular fragt nur ab, was wir zum Planen brauchen, und stellt daraus Ihre WhatsApp-Nachricht zusammen.</p>
+        <!-- (bestätigen) wie im Ablauf der Startseite -->
+        <p class="tipp">Ein Foto vom Fahrzeugschein hilft. Schicken Sie es einfach im Chat hinterher.</p>
+      </div>
+<!--TEIL termin.html-->    </div>
+  </section>
+
+  <section class="ablauf allein" id="ablauf" aria-labelledby="ablauf-titel">
+    <div class="innen">
+      <h2 id="ablauf-titel">So läuft es ab</h2>
+      <!-- (bestätigen) alle drei Schritte, KLAERUNG-MERT.md Abschnitt 7 -->
+      <ol class="schritte">
+        <li><h3>Anfrage schicken</h3><p>Mit dem Formular oben oder direkt per WhatsApp. Fahrzeug und Anliegen reichen.</p></li>
+        <li><h3>Rückmeldung</h3><p>Sie bekommen eine Einschätzung mit Preis und einen Terminvorschlag.</p></li>
+        <li><h3>Termin</h3><p>Sie bringen das Fahrzeug, wir sagen Bescheid, sobald es fertig ist.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="faq" id="fragen" aria-labelledby="fragen-titel">
+    <div class="innen faq-raster">
+      <div class="faq-kopf">
+        <h2 id="fragen-titel">Häufige Fragen</h2>
+      </div>
+      <div class="fragen-spalte">
+        <!-- (bestätigen) die ersten beiden Antworten (Preis vorher, alles per WhatsApp). Lücken füllt Mert (KLAERUNG-MERT.md, Abschnitt 3). -->
+        <div class="fragen">
+          <details><summary>Was kostet das?</summary><p>Das hängt vom Fahrzeug und der Arbeit ab. Was es kostet, erfahren Sie, bevor wir anfangen.</p></details>
+          <details><summary>Muss ich anrufen?</summary><p>Nein. Schreiben Sie uns per WhatsApp, dann haben Sie die Antwort schriftlich.</p></details>
+          <details><summary>Welche Marken machen Sie?</summary><p><span class="luecke">[Antwort von Mert]</span></p></details>
+          <details><summary>Kann ich eigene Teile mitbringen?</summary><p><span class="luecke">[Antwort von Mert]</span></p></details>
+        </div>
+        <nav class="weitere" aria-labelledby="weitere-titel">
+          <h2 id="weitere-titel">Auch bei uns</h2>
+          <ul>
+            <li><a href="chiptuning"><span class="w-titel">Chiptuning</span><span class="w-zeile">Mehrleistung für Ihren Motor berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+            <li><a href="fahrzeugaufbereitung"><span class="w-titel">Fahrzeugaufbereitung</span><span class="w-zeile">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+<!--TEIL kontakt.html--></main>
+
+<!--TEIL fuss.html-->
+<script>
+<!--TEIL skript.js--></script>
+<script>
+<!--TEIL termin.js--></script>
+</body>
+</html>

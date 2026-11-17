@@ -1,0 +1,62 @@
+      <!-- Terminanfrage: Anliegen und Felder sind ein Vorschlag. Was Mert je Leistung wirklich braucht, steht in KLAERUNG-MERT.md, Abschnitt 3. -->
+      <form class="konsole" id="termin-form" novalidate>
+        <fieldset class="anliegen">
+          <legend class="schritt-frage">Worum geht es?</legend>
+          <div class="wahl zwei">
+            <label class="wahl-karte"><input type="radio" name="anliegen" value="reifen"><span class="wahl-titel">Reifenwechsel</span></label>
+            <label class="wahl-karte"><input type="radio" name="anliegen" value="oel"><span class="wahl-titel">Ölwechsel</span></label>
+            <label class="wahl-karte"><input type="radio" name="anliegen" value="inspektion"><span class="wahl-titel">Inspektion</span></label>
+            <label class="wahl-karte"><input type="radio" name="anliegen" value="anderes"><span class="wahl-titel">Etwas anderes</span></label>
+          </div>
+        </fieldset>
+
+        <div class="termin-felder" id="t-felder" hidden>
+          <label class="feld-r" for="t-fahrzeug"><span>Fahrzeug</span><input type="text" id="t-fahrzeug" maxlength="60" autocomplete="off" placeholder="z. B. VW Golf 7, 2.0 TDI, 2016"></label>
+
+          <div class="nur" data-fuer="reifen" hidden>
+            <fieldset class="themen"><legend>Welche Reifen kommen drauf?</legend>
+              <label><input type="radio" name="t-reifen" value="Sommerreifen"><span>Sommer</span></label>
+              <label><input type="radio" name="t-reifen" value="Winterreifen"><span>Winter</span></label>
+              <label><input type="radio" name="t-reifen" value="Ganzjahresreifen"><span>Ganzjahr</span></label>
+            </fieldset>
+            <fieldset class="themen"><legend>Wo sind die Reifen?</legend>
+              <label><input type="radio" name="t-lager" value="bei Ihnen eingelagert"><span>Bei Ihnen eingelagert</span></label>
+              <label><input type="radio" name="t-lager" value="bringe ich mit"><span>Bringe ich mit</span></label>
+              <label><input type="radio" name="t-lager" value="neue Reifen gewünscht"><span>Neue Reifen</span></label>
+            </fieldset>
+            <label class="feld-r" for="t-groesse"><span>Reifengröße (optional)</span><input type="text" id="t-groesse" maxlength="30" autocomplete="off" placeholder="z. B. 205/55 R16, steht auf dem Reifen"></label>
+          </div>
+
+          <div class="nur" data-fuer="oel inspektion" hidden>
+            <label class="feld-r" for="t-km"><span>Kilometerstand, ungefähr (optional)</span><input type="text" id="t-km" maxlength="12" inputmode="numeric" autocomplete="off" placeholder="z. B. 120.000"></label>
+          </div>
+
+          <div class="nur" data-fuer="inspektion" hidden>
+            <fieldset class="themen"><legend>Serviceheft vorhanden?</legend>
+              <label><input type="radio" name="t-heft" value="ja"><span>Ja</span></label>
+              <label><input type="radio" name="t-heft" value="nein"><span>Nein</span></label>
+              <label><input type="radio" name="t-heft" value="weiß ich nicht"><span>Weiß nicht</span></label>
+            </fieldset>
+          </div>
+
+          <div class="nur" data-fuer="anderes" hidden>
+            <label class="feld-r" for="t-was"><span>Was steht an?</span><textarea id="t-was" rows="3" placeholder="z. B. Bremsen quietschen, Kontrollleuchte leuchtet"></textarea></label>
+          </div>
+
+          <div class="termin-wunsch">
+            <label class="feld-r" for="t-tag"><span>Wunschtag</span><select id="t-tag"><option value="">So bald wie möglich</option></select></label>
+            <fieldset class="themen"><legend>Tageszeit</legend>
+              <label><input type="radio" name="t-zeit" value="" checked><span>Egal</span></label>
+              <label><input type="radio" name="t-zeit" value="vormittags"><span>Vormittag</span></label>
+              <label><input type="radio" name="t-zeit" value="nachmittags"><span>Nachmittag</span></label>
+            </fieldset>
+          </div>
+
+          <label class="feld-r" for="t-anm"><span>Anmerkung (optional)</span><textarea id="t-anm" rows="2" placeholder="z. B. Fahrzeug steht ab 15 Uhr bereit"></textarea></label>
+
+          <div class="blase-wrap"><span>So kommt Ihre Nachricht bei uns an</span><p class="blase" id="t-text"></p></div>
+          <p class="fehlt" id="t-fehlt" aria-live="polite"></p>
+          <a class="knopf wa" id="t-senden" href="#termin" target="_blank" rel="noopener" aria-disabled="true"><span>Per WhatsApp senden</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
+          <p class="klein">Gesendet wird erst, wenn Sie die Nachricht in WhatsApp abschicken.</p>
+        </div>
+      </form>
