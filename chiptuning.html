@@ -1326,13 +1326,13 @@ document.documentElement.classList.add("js");
 })();
 </script>
 <script>
-// Marke aus dem Einstieg der Startseite übernehmen (chiptuning?marke=…) und zum Rechner springen
+// Marke aus dem Einstieg der Startseite übernehmen (chiptuning?marke=…#rechner)
 (function(){
   var m = new URLSearchParams(location.search).get("marke"), s = document.getElementById("marke");
   if (!m || !s || ![].some.call(s.options, function(o){ return o.value === m; })) return;
   s.value = m;
   s.dispatchEvent(new Event("change", { bubbles: true }));
-  document.getElementById("rechner").scrollIntoView();
+  // Den Sprung zum Rechner macht der Browser über #rechner in der Adresse (Formular auf der Startseite)
 })();
 </script>
 </body>
