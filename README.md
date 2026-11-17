@@ -95,6 +95,14 @@ Kopf nach Seitenplan (17.11.2026, Plan in `plan-brenz-kfz/konzepte/brenz-kfz/web
 - **Links:** Sie zeigen auf `kfz-service`, `chiptuning`, `fahrzeugaufbereitung`, `chiptuning#rechner`. Solange eine Seite fehlt, stellt `werkzeuge/neu.py` den Link auf den passenden Abschnitt der Startseite um (`UNTERSEITEN`).
 - **Geprüft:** in sieben Breiten von 600 bis 1920 px ohne Überlauf, live auf 390 px Tippflächen 44 px, Menü sperrt die Seite, Sprung zum Abschnitt landet unter dem Kopf.
 
+Knöpfe (Sinan, 17.11.2026: „Pillen moderner, weiße Pille mit Kapsel, aber originale WhatsApp-Kapsel“):
+- **Form:** Alle Knöpfe und Auswahlfelder sind Pillen.
+- **Farben:** Auf Dunkel weiß (`--knopf`), im hellen Rechner dunkel, „Leistung berechnen“ als einziger Knopf in Champagner.
+- **WhatsApp:** Jeder WhatsApp-Knopf hat rechts die grüne WhatsApp-Kapsel (`.knopf.wa` mit `.wa-kapsel`, im Rechner per `::after`), im Handy-Kopf das grüne Symbol. Das Zeichen ist eine Marke von WhatsApp/Meta, unverändert verwenden. Vektor übernommen von saka-it.de.
+- **Radien:** Felder 12 px, Karten und Bildtafeln 16 px.
+
+Abschnitt 1 nach Textentwurf (17.11.2026): h1 „Ihre Kfz-Werkstatt im Raum Heidenheim.“, darunter grau „Service, Chiptuning und Aufbereitung.“. „Kfz-Werkstatt“ bricht nie um, „im Raum“ ist mit festem Leerzeichen verbunden. Knopf „Per WhatsApp anfragen“, Textlink „Mehrleistung berechnen“. Geprüft live auf 360 und 390 px.
+
 Startseite nach Seitenplan (17.11.2026):
 - **Ablauf:** Film, die drei Bildtafeln (verlinken auf die Unterseiten: „Mehr zum Kfz-Service“ usw.), Rechner-Einstieg (hell), Kontakt, Fuß. Die Übersicht unter dem Film ist raus, die Tafeln übernehmen ihre Aufgabe.
 - **Rechner-Einstieg:** Marke wählen, dann weiter zum Rechner auf `chiptuning?marke=…`. Ein normales Formular, funktioniert ohne Skript. Die Marken erzeugt `neu.py` aus `FAHRZEUGE` im Rechner.
