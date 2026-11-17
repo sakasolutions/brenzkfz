@@ -30,6 +30,8 @@
   --f:"Schibsted Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
   /* Ein Farbton für Film und Fotos: fast schwarz-weiß, leicht warm */
   --ton:saturate(.18) sepia(.2) contrast(1.06) brightness(.82);
+  /* Filmkorn, still: im Film und auf den Bildtafeln */
+  --korn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E");
   --kopf-h:72px;
   --rand-l:max(20px,env(safe-area-inset-left,0px));
   --rand-r:max(20px,env(safe-area-inset-right,0px));
@@ -90,7 +92,7 @@ button{font:inherit}
   background:linear-gradient(to top,var(--grund),rgb(18 17 15 / .82) 16%,rgb(0 0 0 / .3) 50%,rgb(0 0 0 / 0) 72%),linear-gradient(to bottom,rgb(0 0 0 / .5),rgb(0 0 0 / 0) 160px)}
 /* Filmkorn, still */
 .held::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E")}
+  background-image:var(--korn)}
 .held-inhalt{display:grid;justify-items:start;gap:28px;padding-top:calc(var(--kopf-h) + 80px);padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
 .held h1{margin:0;max-width:12.5em;font-size:clamp(2.25rem,1rem + 4.8vw,4.75rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;color:#f2f1ef;text-wrap:pretty}
 .held h1 .grau{display:block;color:color-mix(in srgb,#f2f1ef 58%,transparent)}
@@ -105,10 +107,10 @@ button{font:inherit}
 }
 
 /* Unter dem Film: die vier Bereiche als Übersicht, wie die Modellreihe bei Porsche. Schließt den Film ruhig ab. */
-.uebersicht{padding-block:clamp(24px,3vw,40px) clamp(104px,12vw,168px)}
+.uebersicht{padding-block:clamp(24px,3vw,40px) clamp(56px,7vw,96px)}
 .uebersicht ul{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--haar)}
 .uebersicht li{position:relative;border-bottom:1px solid var(--haar)}
-.uebersicht a{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 16px;padding-block:20px}
+.uebersicht a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;padding-block:20px}
 .u-titel{font-size:1.25rem;font-weight:500;letter-spacing:-.015em;line-height:1.2}
 .u-gebiet{grid-column:1;font-size:.9375rem;color:var(--leise)}
 .uebersicht svg{grid-column:2;grid-row:1/span 2;width:18px;height:18px;color:var(--akzent);transition:transform .25s}
@@ -124,27 +126,50 @@ button{font:inherit}
 
 /* Leistungen als Kapitel: Standbild und Text im Wechsel */
 .leistungen{padding-bottom:clamp(96px,12vw,168px)}
-.kapitel{display:grid;gap:28px}
-.kapitel+.kapitel{margin-top:clamp(72px,10vw,152px)}
-.kapitel-bild{margin:0;overflow:hidden;aspect-ratio:4/3;background:#090807}
+/* Leistungen als Bildtafeln: Text im Bild unten links wie beim Film, derselbe Bildton und dasselbe Korn, die ganze Tafel ist klickbar.
+   Handy und Tablet untereinander, Desktop: Service hochkant neben Software breit, Aufbereitung über die volle Breite.
+   Abgerundet über clip-path statt overflow, damit eine Tafel mitwächst, wenn der Text länger ist als das Bild hoch. */
+.leistungen .innen{display:grid;gap:16px}
+.kapitel{position:relative;isolation:isolate;clip-path:inset(0 round 8px);display:flex;flex-direction:column;justify-content:flex-end;min-width:0;
+  aspect-ratio:3/4;border-radius:8px;background:#090807;color:#f2f1ef}
+.kapitel-bild{position:absolute;inset:0;z-index:-3;margin:0}
 .kapitel-bild img{width:100%;height:100%;object-fit:cover;filter:var(--ton)}
-.kapitel-text{display:grid;justify-items:start;gap:16px;max-width:30em}
-.kapitel h3{margin:0;font-size:clamp(2rem,1rem + 3.2vw,3.75rem);text-wrap:balance;font-weight:500;line-height:1.02;letter-spacing:-.035em}
-.gebiet{margin:0;font-size:.9375rem;color:var(--leise)}
-.kapitel-text p.text{margin:0 0 8px;color:var(--fliess)}
+.kapitel::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:linear-gradient(to top,rgb(9 8 7 / .94),rgb(9 8 7 / .86) 35%,rgb(9 8 7 / .66) 60%,rgb(9 8 7 / .32) 80%,rgb(9 8 7 / 0) 96%)}
+.kapitel::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;background-image:var(--korn)}
+.kapitel-text{display:grid;justify-items:start;gap:12px;min-width:0;max-width:32em;padding:24px}
+.kapitel h3{margin:0;font-size:clamp(1.75rem,1rem + 1.6vw,2.75rem);font-weight:500;line-height:1.04;letter-spacing:-.03em;text-wrap:balance}
+.gebiet{margin:0;font-size:.9375rem;color:rgb(242 241 239 / .82)}
+.kapitel-text p.text{margin:0 0 4px;color:rgb(242 241 239 / .88)}
+.kapitel .link{color:#f2f1ef}
+.kapitel .link::after{content:"";position:absolute;inset:0;z-index:1}
+.kapitel .link:focus-visible{outline:none}
+.kapitel:has(.link:focus-visible){outline:2px solid var(--akzent);outline-offset:-4px}
+#aufbereitung .kapitel-bild img{object-position:50% 55%}
+@media (min-width:600px){
+  .leistungen .innen{gap:20px}
+  .kapitel{aspect-ratio:4/3}
+  .kapitel-text{padding:28px}
+}
 @media (min-width:900px){
-  .kapitel{grid-template-columns:repeat(12,minmax(0,1fr));gap:0 32px;align-items:center}
-  .kapitel-bild{grid-column:1/span 6;aspect-ratio:4/5}
-  .kapitel-text{grid-column:8/span 5;gap:20px}
-  .kapitel-text p.text{font-size:1.125rem}
-  .kapitel:nth-of-type(even) .kapitel-bild{grid-column:7/span 6;grid-row:1}
-  .kapitel:nth-of-type(even) .kapitel-text{grid-column:2/span 5;grid-row:1}
+  .leistungen .innen{grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+  #service{grid-column:1/span 5}
+  #software{grid-column:6/span 7}
+  #aufbereitung{grid-column:1/-1}
+  #service,#software{aspect-ratio:auto;min-height:clamp(520px,46vw,640px)}
+  #aufbereitung{aspect-ratio:auto;min-height:clamp(440px,38vw,560px)}
+  .kapitel::before{background:linear-gradient(to top,rgb(9 8 7 / .94),rgb(9 8 7 / .84) 30%,rgb(9 8 7 / .6) 52%,rgb(9 8 7 / .22) 72%,rgb(9 8 7 / 0) 88%)}
+  #aufbereitung::before{background:linear-gradient(to right,rgb(9 8 7 / .85),rgb(9 8 7 / .55) 40%,rgb(9 8 7 / 0) 68%),linear-gradient(to top,rgb(9 8 7 / .6),rgb(9 8 7 / 0) 55%)}
+  .kapitel-text{padding:clamp(28px,3vw,44px);gap:14px}
+  .kapitel-text p.text{font-size:1.0625rem}
 }
 
 /* Langsames Aufziehen beim Hineinscrollen (nur mit Skript und ohne Wunsch nach weniger Bewegung) */
 @media (prefers-reduced-motion:no-preference){
-  .js .kapitel-bild img{transform:scale(1.08);transition:transform 1.6s cubic-bezier(.2,.65,.2,1)}
+  .kapitel-bild img{transition:transform 1.6s cubic-bezier(.2,.65,.2,1)}
+  .js .kapitel-bild img{transform:scale(1.08)}
   .js .kapitel.da .kapitel-bild img{transform:none}
+  .kapitel:hover .kapitel-bild img,.js .kapitel.da:hover .kapitel-bild img{transform:scale(1.03)}
   .js .kapitel-text{opacity:0;transform:translateY(16px);transition:opacity .8s .15s,transform .8s .15s cubic-bezier(.2,.65,.2,1)}
   .js .kapitel.da .kapitel-text{opacity:1;transform:none}
 }
@@ -301,7 +326,7 @@ button{font:inherit}
 
 /* Hell B, kühles Weiß mit Petrol: Seite hell. Film, Kopf über dem Film, Rechner-Vollbild und Fuß bleiben dunkel. Erzeugt von werkzeuge/neu.py */
 :root{color-scheme:light;--grund:#f5f7f9;--flaeche:#ffffff;--linie:#d1d5d8;--text:#12181e;--leise:#5e646b;--akzent:#13676f;--auf-akzent:#ffffff;--fliess:color-mix(in srgb,var(--text) 74%,var(--grund));--haar:color-mix(in srgb,var(--text) 13%,transparent);}
-.held,.fuss{color-scheme:dark;--grund:#12110f;--flaeche:#181715;--linie:#34332f;--text:#e0dfde;--leise:#8a8780;--akzent:#86cccf;--auf-akzent:#11100f;--fliess:color-mix(in srgb,var(--text) 74%,var(--grund));--haar:color-mix(in srgb,var(--text) 13%,transparent);color:var(--text)}
+.held,.fuss,.kapitel{color-scheme:dark;--grund:#12110f;--flaeche:#181715;--linie:#34332f;--text:#e0dfde;--leise:#8a8780;--akzent:#86cccf;--auf-akzent:#11100f;--fliess:color-mix(in srgb,var(--text) 74%,var(--grund));--haar:color-mix(in srgb,var(--text) 13%,transparent);color:var(--text)}
 .fuss{background:var(--grund);border-top:0}
 .r-buehne{--akzent:#86cccf}
 .rechner{--grund:#eaedf0;--flaeche:#ffffff;--linie:#d1d5d8;--text:#12181e;--leise:#5e646b;--fliess:color-mix(in srgb,var(--text) 74%,var(--grund));--haar:color-mix(in srgb,var(--text) 13%,transparent);}
@@ -366,8 +391,8 @@ button{font:inherit}
     <div class="innen">
       <ul>
         <li><a href="#service"><span class="u-titel">Kfz-Service</span><span class="u-gebiet">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
-        <li><a href="#software"><span class="u-titel">Softwareoptimierung</span><span class="u-gebiet">Für die ganze Region</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
-        <li><a href="#aufbereitung"><span class="u-titel">Fahrzeugaufbereitung</span><span class="u-gebiet">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+        <li><a href="#software"><span class="u-titel">Software&shy;optimierung</span><span class="u-gebiet">Für die ganze Region</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
+        <li><a href="#aufbereitung"><span class="u-titel">Fahrzeug&shy;aufbereitung</span><span class="u-gebiet">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
         <li><a href="#rechner"><span class="u-titel">Chiptuning-Rechner</span><span class="u-gebiet">Stage 1 grob berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
       </ul>
     </div>
@@ -379,10 +404,11 @@ button{font:inherit}
 
       <article class="kapitel" id="service" aria-labelledby="k1">
         <figure class="kapitel-bild">
-          <!-- Standbilder aus den Platzhalter-Filmen. Breit: Bild aus dem Hochkant-Film, schmal: aus dem Querformat, damit kein Bild doppelt erscheint -->
+          <!-- Standbilder aus den Platzhalter-Filmen, immer aus dem Film, der oben gerade nicht läuft: Desktop aus dem Hochkant-Film, darunter aus dem Querformat -->
           <picture>
-            <source media="(min-width: 900px)" srcset="img/kapitel-service-hoch.webp">
-            <img src="img/kapitel-service-quer.webp" width="675" height="844" alt="Mechaniker bei der Arbeit an einem Motor" loading="lazy" decoding="async">
+            <source media="(min-width: 900px)" srcset="img/kapitel-service-hoch.webp" width="720" height="900">
+            <source media="(min-width: 600px)" srcset="img/kapitel-service-breit.webp" width="1200" height="750">
+            <img src="img/kapitel-service-quer.webp" width="674" height="844" alt="Mechaniker bei der Arbeit an einem Motor" loading="lazy" decoding="async">
           </picture>
         </figure>
         <div class="kapitel-text">
@@ -396,10 +422,13 @@ button{font:inherit}
       <article class="kapitel" id="software" aria-labelledby="k2">
         <figure class="kapitel-bild">
           <!-- Herkunft des Motorfotos offen, nur für den Entwurf -->
-          <img src="img/kapitel-software.webp" width="800" height="1000" alt="Motorraum mit Ansaugtrakt" loading="lazy" decoding="async">
+          <picture>
+            <source media="(min-width: 600px)" srcset="img/kapitel-software-breit.webp" width="1400" height="1202">
+            <img src="img/kapitel-software.webp" width="800" height="1000" alt="Motorraum mit Ansaugtrakt" loading="lazy" decoding="async">
+          </picture>
         </figure>
         <div class="kapitel-text">
-          <h3 id="k2">Softwareoptimierung</h3>
+          <h3 id="k2">Software&shy;optimierung</h3>
           <p class="gebiet">Für Fahrzeuge aus der ganzen Region</p>
           <p class="text">Mehr Leistung durch angepasste Motorsoftware, als Partner von Tuningfiles Germany. Stage 1 können Sie unten grob berechnen, Stage 2 gibt es auf Anfrage.</p>
           <a class="link" href="#rechner"><span>Leistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
@@ -409,10 +438,13 @@ button{font:inherit}
       <article class="kapitel" id="aufbereitung" aria-labelledby="k3">
         <figure class="kapitel-bild">
           <!-- Herkunft des Fotos offen, nur für den Entwurf -->
-          <img src="img/kapitel-aufbereitung.webp" width="800" height="1000" alt="Felge wird mit einem Pinsel gereinigt" loading="lazy" decoding="async">
+          <picture>
+            <source media="(min-width: 600px)" srcset="img/aufbereitung.webp" width="1600" height="1067">
+            <img src="img/kapitel-aufbereitung.webp" width="800" height="1000" alt="Felge wird mit einem Pinsel gereinigt" loading="lazy" decoding="async">
+          </picture>
         </figure>
         <div class="kapitel-text">
-          <h3 id="k3">Fahrzeugaufbereitung</h3>
+          <h3 id="k3">Fahrzeug&shy;aufbereitung</h3>
           <p class="gebiet">Heidenheim und Umgebung</p>
           <p class="text">Ihr Fahrzeug wird bei uns gründlich aufbereitet. Was gemacht werden soll, besprechen wir vorher mit Ihnen, dann wissen Sie genau, was Sie bekommen.</p>
           <a class="link" href="#kontakt" data-thema="aufbereitung"><span>Aufbereitung anfragen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>

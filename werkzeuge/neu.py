@@ -4,7 +4,7 @@
 Aus entwurf-3.html abgeleitet (Sinan 17.11.2026, zum Abgleich, Farben außer Rot frei):
   entwurf-3-hell-a.html  hell, warmes Papier, Knöpfe in Tinte, Akzent Messing (aus dem Champagner abgedunkelt)
   entwurf-3-hell-b.html  hell, kühles Weiß, Akzent Petrol
-  entwurf-3-mix.html     Kfz-Service hell, Softwareoptimierung mit Rechner und Aufbereitung dunkel (Idee für die Unterseiten)
+  entwurf-3-mix.html     Kfz-Service als helle Karte, Softwareoptimierung mit Rechner und Aufbereitung dunkel (Idee für die Unterseiten)
 
 
     python3 werkzeuge/neu.py
@@ -114,7 +114,7 @@ def hell_css(name, p, akzent, akzent_dunkel, knopf, knopf_hover):
     return f"""
 /* {name}: Seite hell. Film, Kopf über dem Film, Rechner-Vollbild und Fuß bleiben dunkel. Erzeugt von werkzeuge/neu.py */
 :root{{color-scheme:light;{tokens(p, akzent, knopf[1])}}}
-.held,.fuss{{color-scheme:dark;{tokens(d, akzent_dunkel, d["tinte"])}color:var(--text)}}
+.held,.fuss,.kapitel{{color-scheme:dark;{tokens(d, akzent_dunkel, d["tinte"])}color:var(--text)}}
 .fuss{{background:var(--grund);border-top:0}}
 .r-buehne{{--akzent:{akzent_dunkel}}}
 .rechner{{{tokens(dict(p, grund=p["rgrund"]))}}}
@@ -133,11 +133,25 @@ def hell_css(name, p, akzent, akzent_dunkel, knopf, knopf_hover):
 def mix_css():
     return f"""
 /* Mix (Sinans Idee 17.11.): Kfz-Service hell, Softwareoptimierung mit Rechner und Aufbereitung dunkel.
-   Zusammenhalt: derselbe warme Farbton (90°) in Hell und Dunkel, eine Schrift, ein Bildton, Champagner bzw. Messing.
-   Auf echten Unterseiten wäre jede Seite ganz in ihrer Welt, hier zeigt ein heller Abschnitt den Wechsel. */
-.uebersicht{{padding-bottom:clamp(64px,8vw,104px)}}
-#service{{color-scheme:light;{tokens(PAPIER, MESSING)}position:relative;background:var(--grund);color:var(--text);
-  box-shadow:0 0 0 100vmax var(--grund);clip-path:inset(0 -100vmax);padding-block:clamp(72px,9vw,128px)}}
+   Zusammenhalt: derselbe warme Farbton (90°) in Hell und Dunkel, eine Schrift, ein Bildton, dasselbe Raster und dieselben Ecken.
+   Kfz-Service als helle Karte (Bild oben, Text auf Papier), daneben die dunklen Bildtafeln. Auf echten Unterseiten wäre jede
+   Seite ganz in ihrer Welt. */
+#service{{color-scheme:light;{tokens(PAPIER, MESSING)}aspect-ratio:auto;justify-content:flex-start;background:var(--grund);color:var(--text)}}
+#service::before{{display:none}}
+#service::after{{bottom:auto;aspect-ratio:4/3}}
+#service .kapitel-bild{{position:relative;inset:auto;z-index:0;flex:none;aspect-ratio:4/3;overflow:hidden}}
+#service .kapitel-bild img{{position:absolute;inset:0}}
+#service .gebiet{{color:var(--leise)}}
+#service .kapitel-text p.text{{color:var(--fliess)}}
+#service .link{{color:var(--text)}}
+@media (min-width:600px){{
+  #service .kapitel-bild{{aspect-ratio:16/9}}
+  #service::after{{aspect-ratio:16/9}}
+}}
+@media (min-width:900px){{
+  #service .kapitel-bild{{flex:1 1 0;aspect-ratio:auto;min-height:220px}}
+  #service::after{{display:none}}
+}}
 .rechner{{color-scheme:dark;{tokens(DUNKEL)}border-top:1px solid var(--haar)}}
 .rechner .zettel select,.rechner .zettel input[type="text"],.rechner .zettel .stufen input:not(:checked)+span{{background:var(--grund)}}
 .rechner .zettel .dia .k-stage,.rechner .zettel .dia .leg-stage{{stroke:var(--akzent)}}
