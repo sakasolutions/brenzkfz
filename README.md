@@ -65,3 +65,23 @@ Steht vorerst direkt unter dem Startbereich (`#rechner`), damit Mert ihn sehen k
 - Leistungen der Fahrzeugaufbereitung konkret von Mert (bisher bewusst allgemein formuliert)
 - Kursivschnitt von Barlow Condensed als Datei ergänzen, bis dahin erzeugt der Browser die Schräglage
 - Lizenztexte der Schriften (alle SIL Open Font License 1.1) in `fonts/` legen
+
+## Entwurf 3: entwurf-3.html
+
+Sinan fand auch champagner-neu.html zu generisch, vor allem die Schrift. Neuer Ansatz nach einer Messung echter Tier-1-Seiten im Browser (17.11.2026, Startbereich bei 1024 px Breite):
+
+| Seite | Schrift | Überschrift | Knöpfe im Startbereich |
+|---|---|---|---|
+| Porsche | Porsche Next (eigene) | Stärke 400, normal geschrieben, „Macan GTS.“ | einer, dazu Pause-Knopf fürs Video |
+| Polestar | Polestar Unica (eigene) | 30 px, Stärke 400, Laufweite −1,2 px, zweite Zeile grau | einer mit Rahmen und Pfeil |
+| Apple | SF Pro (eigene) | 48 px, Stärke 600 | einer |
+| Rivian | Adventure (eigene) | 56 px, Stärke 600, Laufweite −2,5 px | zwei |
+| Singer | Söhne Schmal (lizenziert) | 62 px, Stärke 300, Großbuchstaben | keiner, nur Textlinks |
+
+Was alle gemeinsam haben: eine Schriftfamilie für alles, nie fette schmale Schrift (schmal nur ganz leicht wie bei Singer), Film oder Foto trägt die Seite, wenig Text pro Abschnitt.
+
+- Schrift: Schibsted Grotesk (SIL Open Font License), eine Familie für alles, Stärke 400 und 500, große Größen mit engerer Laufweite. Datei `fonts/SchibstedGrotesk-var.woff2`, lokal.
+- Film bleibt (Platzhalter von Pexels), mit Pause-Knopf. Film und alle Fotos im selben Farbton (fast schwarz-weiß, leicht warm), dazu stilles Filmkorn.
+- Leistungen als drei Kapitel mit Standbild im Wechsel. Die Standbilder `img/kapitel-*.webp` sind aus den Platzhalter-Filmen und den Entwurfsfotos geschnitten; breit und schmal zeigen verschiedene Bilder, damit nichts doppelt erscheint.
+- Kontakt: Nachricht vorbereiten (Thema, Fahrzeug, Anliegen) mit Vorschau, wie sie bei Mert ankommt, dann „In WhatsApp öffnen“.
+- Erzeugt mit `python3 werkzeuge/neu.py` aus `werkzeuge/entwurf3-vorlage.html` (baut auch champagner-neu.html).

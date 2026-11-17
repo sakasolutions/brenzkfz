@@ -1,8 +1,11 @@
-"""Baut champagner-neu.html (neuer Entwurf, Sinan 16.11.2026) aus werkzeuge/neu-vorlage.html:
+"""Baut die Entwürfe aus ihren Vorlagen in werkzeuge/:
+  neu-vorlage.html       -> champagner-neu.html  (Sinan 16.11.2026)
+  entwurf3-vorlage.html  -> entwurf-3.html       (Sinan 17.11.2026, nach Tier-1-Analyse)
+
 
     python3 werkzeuge/neu.py
 
-Setzt ein: Emblem in Champagner (img/logo-champagner.svg), Formular und Skripte des Leistungsrechners unverändert
+Setzt in beide ein: Emblem in Champagner (img/logo-champagner.svg), Formular und Skripte des Leistungsrechners unverändert
 aus index.html, WhatsApp-Links mit Vorlage. Nach Änderungen am Rechner in index.html neu ausführen.
 """
 import os
@@ -34,8 +37,11 @@ def ausschnitt(text, anfang, ende, name):
     return text[i:j]
 
 
-def main():
-    html = lesen("werkzeuge", "neu-vorlage.html")
+ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html"}
+
+
+def bauen(vorlage, ziel):
+    html = lesen("werkzeuge", vorlage)
     quelle = lesen("index.html")
 
     svg = lesen("img", "logo-champagner.svg")
@@ -49,16 +55,21 @@ def main():
     ersetzen = {"<!--LOGO-->": svg, "<!--RECHNER-FORM-->": "      " + rechner.rstrip() + "\n",
                 "<!--RECHNER-SKRIPTE-->": skripte.rstrip()}
     for platz, text in VORLAGEN.items():
-        ersetzen[platz] = "https://wa.me/" + NUMMER + "?text=" + quote(text, safe="")
+        if platz in html:   # nicht jede Vorlage nutzt jede WhatsApp-Vorlage
+            ersetzen[platz] = "https://wa.me/" + NUMMER + "?text=" + quote(text, safe="")
     for platz, neu in ersetzen.items():
         if platz not in html:
             raise SystemExit("Vorlage: " + platz + " fehlt")
         html = html.replace(platz, neu)
-    html = html.replace("<!-- Vorlage für champagner-neu.html. Nicht direkt öffnen: python3 werkzeuge/neu.py setzt Logo, Rechner "
-                        "und WhatsApp-Links ein. -->",
-                        "<!-- Automatisch erzeugt aus werkzeuge/neu-vorlage.html mit werkzeuge/neu.py. Nicht von Hand bearbeiten. -->")
-    open(os.path.join(WURZEL, "champagner-neu.html"), "w", encoding="utf-8").write(html)
-    print("champagner-neu.html erzeugt")
+    html = re.sub(r"<!-- Vorlage für .*? -->", "<!-- Automatisch erzeugt aus werkzeuge/" + vorlage
+                  + " mit werkzeuge/neu.py. Nicht von Hand bearbeiten. -->", html, count=1)
+    open(os.path.join(WURZEL, ziel), "w", encoding="utf-8").write(html)
+    print(ziel, "erzeugt")
+
+
+def main():
+    for vorlage, ziel in ZIELE.items():
+        bauen(vorlage, ziel)
 
 
 if __name__ == "__main__":
