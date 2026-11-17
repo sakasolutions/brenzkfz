@@ -276,7 +276,7 @@ button{font:inherit}
 .blase-wrap{display:grid;gap:8px;justify-items:end;padding:20px 16px;background:var(--grund);border-radius:4px}
 .blase-wrap>span{justify-self:start;font-size:.8125rem;color:var(--leise)}
 .blase{max-width:min(100%,24em);margin:0;padding:12px 14px;background:#2a2926;border-radius:12px 12px 4px 12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.9375rem;line-height:1.45;color:#ecebe8}
-.blase .leer{color:#8b8b8b}
+.blase .leer{color:#a3a29f}
 .schreiben .knopf{justify-content:center}
 .klein{margin:-8px 0 0;font-size:.8125rem;color:var(--leise)}
 @media (min-width:1000px){.kontakt-raster{grid-template-columns:5fr 6fr;gap:80px}.schreiben{padding:32px}.nummer{margin-top:auto;padding-bottom:4px}}
@@ -286,10 +286,11 @@ button{font:inherit}
 .fuss-raster{display:grid;gap:40px}
 .fuss-wappen svg{width:120px;height:120px}
 .fuss h2{margin:0 0 14px;font-size:.875rem;font-weight:500;color:var(--leise)}
-.fuss ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.fuss ul{list-style:none;margin:0;padding:0;display:grid}
+.fuss-raster a{display:inline-flex;align-items:center;min-height:40px}
 .fuss-raster a{transition:color .2s}
 .fuss-raster a:hover{color:var(--akzent)}
-.fuss-kontakt p{margin:0 0 10px}
+.fuss-kontakt p{margin:0 0 6px}
 .fuss-unten{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:clamp(48px,6vw,80px);padding-top:20px;border-top:1px solid var(--haar);font-size:.875rem;color:var(--leise)}
 @media (min-width:900px){
   .fuss-raster{grid-template-columns:repeat(12,minmax(0,1fr));gap:32px}
