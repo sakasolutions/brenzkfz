@@ -100,21 +100,18 @@ Zum Abgleich (Sinan, 17.11.2026, Farben außer Rot frei), alle aus derselben Vor
 | `entwurf-3-hell-b.html` | hell, kühles Weiß, Akzent Petrol, Emblem in Petrol. Bewusst das Gegenteil zum warmen Film. |
 | `entwurf-3-mix.html` | Sinans Idee für die Unterseiten: Kfz-Service hell, Softwareoptimierung mit Rechner und Aufbereitung dunkel. Auf der Startseite als helle Karte (Bild oben, Text auf Papier) neben den dunklen Bildtafeln. |
 
-## Entwurf 4, hell: drei Paletten
+## Entwurf 4: entwurf-4.html
 
-Sinan, 17.11.2026: „ein Konzept in hell“. Eigene Vorlage `werkzeuge/entwurf4-vorlage.html`, gebaut mit `werkzeuge/neu.py`. Schrift, Texte, Rechner und WhatsApp-Vorschau wie Entwurf 3, aber hell gedacht:
+Sinan, 17.11.2026: „hero immer cinematic“, darunter hell und dunkel im Wechsel, neue Akzentfarben. Eigene Vorlage `werkzeuge/entwurf4-vorlage.html`, gebaut mit `werkzeuge/neu.py`.
 
-- **Start:** Überschrift auf Papier, rechts daneben die Unterzeile aus `TEXTE.md` und der Knopf, darunter der Film in einem gerahmten Feld, das über den unteren Rand hinausläuft. Im Kopf ein kleiner Knopf „Anfrage“.
-- **Leistungen:** Bildkarten mit einem Etikett aus Papier (Titel, Gebiet, Text, Link). Auf dem Handy unter dem Bild, ab Tablet unten links im Bild. Ganze Karte klickbar.
-- **Farben:** Die erste Fassung (Tannengrün auf Papier) war zu nah an saka-it (`#357A66` auf `#f7f7f5`) und ist entfernt. Jetzt drei Paletten zur Auswahl, jede Farbe kommt aus einer Variable, `neu.py` setzt die Palette ein (`PALETTEN`):
-
-| Seite | Palette | Idee |
-|---|---|---|
-| `entwurf-4-nachtblau.html` | Sand `#f7f0e5`, Nachtblau `#1e3663`, Messing `#9b722c`, Fuß Nachtblau `#0e1c36` | klassisch und seriös, Blau und Gold passen zum Emblem |
-| `entwurf-4-kupfer.html` | Betongrau `#edf1f3`, Graphit `#1a1e24`, Kupfer `#a04f18`, Fuß Graphit | technisch und warm |
-| `entwurf-4-signalgelb.html` | Weiß, Anthrazit `#191b1d`, Signalgelb `#f6d236` (nur als Fläche, auf Weiß zu schwach für Schrift und Pfeile), Fuß Anthrazit | Werkstatt und Werkzeug, Gelb wie in Merts erster Fassung |
-
-Alle Paare geprüft: Text mindestens 7:1, graue Schrift, Pfeile, Fußschrift und Vorschau mindestens 4,5:1. Layout geprüft in neun Breiten von 600 bis 1920 px (kein Überlauf, alle Titel einzeilig).
+- **Ablauf:** Film über die volle Breite wie in Entwurf 3 (dunkel), Übersicht dunkel, Leistungen hell (Bildkarten mit Etikett aus Papier), Rechner dunkel, Kontakt hell, Fuß dunkel. Dunkle Abschnitte tragen die Klasse `dunkel`.
+- **Grundtöne:** Dunkel wie Entwurf 3 (`#12110f`), Hell ein Kalkstein `#f0ece4` (oklch .945 .012 85), tiefer und wärmer als das Off-White von saka-it (`#f7f7f5`).
+- **Akzent zum Umschalten** (unten links, nur im Entwurf; auch per Link `?akzent=champagner|monochrom|eisblau`, die Wahl wird gemerkt):
+  - Champagner: Farbe des Emblems, auf Dunkel `#e4cc7f`, auf Hell als Knopf `#deb866`, Pfeile in Bronze `#7e5d1d`
+  - Monochrom: Weiß auf Dunkel, Tinte `#1a1916` auf Hell, Farbe nur im Emblem
+  - Eisblau: auf Dunkel `#a4d2eb`, auf Hell Stahlblau `#21547b`
+- Vorher verworfen: Tannengrün (zu nah an saka-it), Nachtblau, Kupfer, Signalgelb.
+- Alle Paare geprüft: Text mindestens 7:1, graue Schrift, Pfeile, Knopfschrift und Vorschau mindestens 4,5:1. Layout geprüft in acht Breiten von 600 bis 1920 px (kein Überlauf, alle Titel einzeilig).
 
 Nebenbei behoben (Entwurf 3 und 4): Die Telefonnummer im Kontakt stand auf dem Desktop nicht unten, weil `.kontakt-text p` den Abstand überschrieb.
 

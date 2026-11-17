@@ -1,8 +1,8 @@
 """Baut die Entwürfe aus ihren Vorlagen in werkzeuge/:
   neu-vorlage.html       -> champagner-neu.html  (Sinan 16.11.2026)
   entwurf3-vorlage.html  -> entwurf-3.html       (Sinan 17.11.2026, nach Tier-1-Analyse, Grautöne leicht warm)
-  entwurf4-vorlage.html  -> entwurf-4-nachtblau.html, entwurf-4-kupfer.html, entwurf-4-signalgelb.html
-                         (Sinan 17.11.2026, helles Konzept, drei Paletten zur Auswahl; die erste grüne war zu nah an saka-it)
+  entwurf4-vorlage.html  -> entwurf-4.html       (Sinan 17.11.2026: Film filmisch, darunter hell und dunkel im Wechsel,
+                         Akzent zum Umschalten: Champagner, Monochrom, Eisblau)
 Aus entwurf-3.html abgeleitet (Sinan 17.11.2026, zum Abgleich, Farben außer Rot frei):
   entwurf-3-hell-a.html  hell, warmes Papier, Knöpfe in Tinte, Akzent Messing (aus dem Champagner abgedunkelt)
   entwurf-3-hell-b.html  hell, kühles Weiß, Akzent Petrol
@@ -44,7 +44,7 @@ def ausschnitt(text, anfang, ende, name):
     return text[i:j]
 
 
-ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html"}
+ZIELE = {"neu-vorlage.html": "champagner-neu.html", "entwurf3-vorlage.html": "entwurf-3.html", "entwurf4-vorlage.html": "entwurf-4.html"}
 
 
 def bauen(vorlage, ziel, schreiben=True):
@@ -182,60 +182,12 @@ def ableiten(html, ziel, name, css):
     print(ziel, "erzeugt")
 
 
-W = (1, 0, 0)
-# Entwurf 4, hell: drei Paletten (oklch L, C, h oder Hex). Alle Paare geprüft: Text mindestens 7:1, leise, zeichen, Fußschrift
-# und Vorschau mindestens 4,5:1, detail und emblem mindestens 3:1. Weit weg von saka-it (Grüntürkis #357A66 auf Off-White).
-PALETTEN = {
-    "nachtblau": ("Nachtblau", "Sand, Nachtblau, Messing: klassisch und seriös, Blau und Gold passen zum Emblem", dict(
-        papier=(.958, .016, 82), stein=(.928, .02, 80), flaeche=(.992, .005, 82), linie=(.86, .02, 80), text=(.24, .045, 262),
-        leise=(.49, .035, 258), akzent=(.34, .085, 262), akzent_tief=(.28, .075, 262), auf_akzent=(.992, .005, 82),
-        zeichen=(.34, .085, 262), detail=(.58, .10, 78), bild=(.22, .03, 262), fuss_grund=(.23, .055, 262),
-        fuss_text=(.94, .012, 82), fuss_leise=(.75, .03, 250), fuss_zeichen=CHAMPAGNER, emblem=CHAMPAGNER,
-        blase=(.925, .03, 245), blase_leer=(.46, .035, 255), band=".16")),
-    "kupfer": ("Kupfer", "Betongrau, Graphit, Kupfer: technisch und warm, Kupfer wie Leitungen und Bronze im Motorraum", dict(
-        papier=(.955, .005, 240), stein=(.925, .006, 240), flaeche=W, linie=(.86, .008, 240), text=(.235, .012, 255),
-        leise=(.49, .015, 250), akzent=(.52, .125, 50), akzent_tief=(.45, .11, 48), auf_akzent=W,
-        zeichen=(.50, .12, 50), detail=(.55, .12, 52), bild=(.22, .01, 255), fuss_grund=(.23, .012, 255),
-        fuss_text=(.94, .004, 240), fuss_leise=(.72, .012, 250), fuss_zeichen=(.78, .09, 60), emblem=CHAMPAGNER,
-        blase=(.94, .022, 60), blase_leer=(.47, .025, 50), band=".16")),
-    "signalgelb": ("Signalgelb", "Weiß, Anthrazit, Signalgelb: Werkstatt und Werkzeug, Gelb wie in Merts erster Fassung", dict(
-        papier=W, stein=(.955, .005, 95), flaeche=W, linie=(.88, .005, 95), text=(.22, .006, 260),
-        leise=(.48, .008, 260), akzent=(.87, .165, 95), akzent_tief=(.82, .16, 90), auf_akzent=(.22, .006, 260),
-        zeichen=(.22, .006, 260), detail=(.62, .12, 88), bild=(.2, .005, 260), fuss_grund=(.22, .006, 260),
-        fuss_text=(.95, .003, 95), fuss_leise=(.72, .006, 260), fuss_zeichen=(.87, .165, 95), emblem=(.87, .165, 95),
-        blase=(.965, .05, 100), blase_leer=(.45, .03, 90), band=".45")),
-}
-
-
-def palette_einsetzen(html, schluessel):
-    name, idee, werte = PALETTEN[schluessel]
-    farbe = lambda v: v if isinstance(v, str) else oklch(*v)
-    zeilen = []
-    for k, v in werte.items():
-        wert = v if k == "band" else farbe(v)
-        zeilen.append("--" + k.replace("_", "-") + ":" + wert + ";")
-    block = "  /* PALETTE " + name + ": " + idee + " */\n  " + " ".join(zeilen) + "\n  /* /PALETTE */"
-    a, e = html.index("  /* PALETTE */"), html.index("/* /PALETTE */") + len("/* /PALETTE */")
-    html = html[:a] + block + html[e:]
-    for alt, neu in (("{{PAPIER}}", farbe(werte["papier"])), ("<title>(Entwurf 4, hell)", "<title>(Entwurf 4 " + name + ")"),
-                     ("mit werkzeuge/neu.py.", "mit werkzeuge/neu.py, Palette " + name + ".")):
-        if alt not in html:
-            raise SystemExit("Entwurf 4: nicht gefunden: " + alt)
-        html = html.replace(alt, neu, 1)
-    return html
-
-
 def main():
     for vorlage, ziel in ZIELE.items():
         html = bauen(vorlage, ziel)
         if ziel == "entwurf-3.html":
             for z, (name, css) in ABGELEITET.items():
                 ableiten(html, z, name, css)
-    html = bauen("entwurf4-vorlage.html", None, schreiben=False)
-    for schluessel in PALETTEN:
-        ziel = "entwurf-4-" + schluessel + ".html"
-        open(os.path.join(WURZEL, ziel), "w", encoding="utf-8").write(palette_einsetzen(html, schluessel))
-        print(ziel, "erzeugt")
 
 
 if __name__ == "__main__":

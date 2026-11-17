@@ -7,25 +7,28 @@
 <title>(Entwurf 4, hell) Kfz-Service und Chiptuning im Raum Heidenheim · Brenz KFZ</title>
 <meta name="description" content="Brenz KFZ: Kfz-Service und Fahrzeugaufbereitung für Heidenheim und Umgebung, Softwareoptimierung (Chiptuning) für die ganze Region. Leistung berechnen oder per WhatsApp anfragen.">
 <meta name="robots" content="noindex,follow">
-<meta name="theme-color" content="{{PAPIER}}">
+<meta name="theme-color" content="#12110f">
+<script>/* Nur im Entwurf: Akzentfarbe aus ?akzent= oder der letzten Wahl */try{var a=new URLSearchParams(location.search).get("akzent")||localStorage.getItem("brenz-akzent");if(/^(champagner|monochrom|eisblau)$/.test(a))document.documentElement.dataset.akzent=a}catch(e){}</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/SchibstedGrotesk-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="img/film-hoch.webp" as="image" media="(max-width: 899px)">
 <link rel="preload" href="img/film-quer.webp" as="image" media="(min-width: 900px)">
 <style>
-/* Entwurf 4, hell (Sinan, 17.11.2026: „ein Konzept in hell“). Aufbau und Schrift wie Entwurf 3 (Schibsted Grotesk, Stärke 400 bis 500,
-   ein Gedanke pro Abschnitt), aber hell gedacht: Überschrift auf Papier, der Film im Rahmen darunter, Leistungen als Bildkarten mit Etikett.
-   Farben: drei Paletten zur Auswahl, eingesetzt von werkzeuge/neu.py zwischen den Markierungen PALETTE (nicht hier von Hand ändern).
-   Rollen: papier, stein (abgesetzte Flächen), flaeche (Karten), linie, text, leise; akzent (Knopffläche), akzent-tief (Überfahren),
-   auf-akzent (Schrift auf dem Knopf), zeichen (Pfeile, Fokus, Kurve, mindestens 4,5:1), detail (Emblem im Kopf), bild (Bildgrund),
-   fuss-grund, fuss-text, fuss-leise, fuss-zeichen, emblem (Emblem im Fuß), blase und blase-leer (WhatsApp-Vorschau), band (Deckkraft Kurvenband). */
+/* Entwurf 4 (Sinan, 17.11.2026): Film oben immer filmisch wie in Entwurf 3, darunter hell und dunkel im Wechsel:
+   Film und Übersicht dunkel, Leistungen hell (Bildkarten mit Etikett), Rechner dunkel, Kontakt hell, Fuß dunkel.
+   Dunkel wie Entwurf 3 (warmes Anthrazit), Hell ein Kalkstein (oklch .945 .012 85), tiefer und wärmer als das Off-White von saka-it.
+   Akzent zur Auswahl (Umschalter unten links, nur im Entwurf): Champagner aus dem Emblem, Monochrom, Eisblau.
+   Je Akzent ein Satz für Hell (h-) und Dunkel (d-): akzent = Knopffläche, auf = Schrift darauf, zeichen = Pfeile, Fokus, Kurve (mind. 4,5:1). */
 @font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 900;font-display:swap;src:url("fonts/SchibstedGrotesk-var.woff2") format("woff2")}
 
 :root{
-  /* PALETTE */
-  /* /PALETTE */
+  /* Hell */
+  --papier:#f0ece4; --stein:#e7e2d9; --flaeche:#fdfcf9; --linie:#cfcac0; --text:#1a1916; --leise:#615d56; --bild:#1b1a17;
+  /* Dunkel wie Entwurf 3 */
+  --d-grund:#12110f; --d-flaeche:#181715; --d-linie:#34332f; --d-text:#e0dfde; --d-leise:#8a8780;
   --grund:var(--papier);
+  --akzent:var(--h-akzent); --akzent-tief:var(--h-tief); --auf-akzent:var(--h-auf); --zeichen:var(--h-zeichen);
   --fliess:color-mix(in srgb,var(--text) 78%,var(--grund));
   --haar:color-mix(in srgb,var(--text) 12%,transparent);
   --f:"Schibsted Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
@@ -38,6 +41,19 @@
   --rand-r:max(20px,env(safe-area-inset-right,0px));
   color-scheme:light;
 }
+/* Akzente (oklch geprüft): Champagner wie das Emblem, auf Hell etwas kräftiger, Pfeile in Bronze */
+:root,:root[data-akzent="champagner"]{--d-akzent:#e4cc7f;--d-tief:#edd696;--d-auf:#11100f;--d-zeichen:#e4cc7f;
+  --h-akzent:#deb866;--h-tief:#d1a757;--h-auf:#1a1916;--h-zeichen:#7e5d1d;--blase:#f4e9cc;--blase-leer:#635a48;--band:.2}
+/* Monochrom: Weiß auf Dunkel, Tinte auf Hell, Farbe nur im Emblem */
+:root[data-akzent="monochrom"]{--d-akzent:#f2f1ef;--d-tief:#ffffff;--d-auf:#11100f;--d-zeichen:#e0dfde;
+  --h-akzent:#1a1916;--h-tief:#34332f;--h-auf:#fdfcf9;--h-zeichen:#1a1916;--blase:#fbfaf8;--blase-leer:#615d56;--band:.14}
+/* Eisblau: kühle Gegenprobe, Stahlblau auf Hell */
+:root[data-akzent="eisblau"]{--d-akzent:#a4d2eb;--d-tief:#bbe1f7;--d-auf:#11100f;--d-zeichen:#a4d2eb;
+  --h-akzent:#21547b;--h-tief:#124367;--h-auf:#ffffff;--h-zeichen:#21547b;--blase:#d7edfb;--blase-leer:#495b67;--band:.18}
+/* Dunkle Abschnitte */
+.dunkel{color-scheme:dark;--grund:var(--d-grund);--flaeche:var(--d-flaeche);--linie:var(--d-linie);--text:var(--d-text);--leise:var(--d-leise);
+  --akzent:var(--d-akzent);--akzent-tief:var(--d-tief);--auf-akzent:var(--d-auf);--zeichen:var(--d-zeichen);
+  --fliess:color-mix(in srgb,var(--text) 74%,var(--grund));--haar:color-mix(in srgb,var(--text) 12%,transparent);color:var(--text)}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--kopf-h) + env(safe-area-inset-top,0px))}
 html.gesperrt{overflow:hidden}
@@ -64,20 +80,15 @@ button{font:inherit}
 .link svg{width:16px;height:16px;flex:none;color:var(--zeichen);transition:transform .25s}
 .link:hover svg{transform:translateX(4px)}
 
-/* Kopf: immer auf Papier, Emblem in Tinte und Messing, beim Scrollen mit Haarlinie */
-.kopf{position:fixed;inset:0 0 auto;z-index:20;padding-top:env(safe-area-inset-top,0px);background:var(--grund);transition:box-shadow .3s}
-.kopf.fest,.kopf.offen{box-shadow:0 1px 0 var(--haar)}
+/* Kopf: über dem Film durchsichtig, danach fest */
+.kopf{position:fixed;inset:0 0 auto;z-index:20;padding-top:env(safe-area-inset-top,0px);transition:background-color .3s,box-shadow .3s}
+.kopf.fest,.kopf.offen{background:var(--grund);box-shadow:0 1px 0 var(--haar)}
 .kopf-zeile{display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--kopf-h)}
 .marke{display:block;flex:none}
 .marke svg{width:48px;height:48px}
-.marke svg path:first-of-type{fill:var(--text)}
-.marke svg path:last-of-type{fill:var(--detail)}
 .nav{display:none;align-items:center;gap:28px}
 .nav a{font-size:.9375rem;font-weight:500;color:color-mix(in srgb,var(--text) 82%,transparent);transition:color .2s}
 .nav a:hover{color:var(--text)}
-.nav .knopf{height:40px;padding:0 16px;gap:8px;font-size:.9375rem;color:var(--auf-akzent)}
-.nav .knopf:hover{color:var(--auf-akzent)}
-.nav .knopf svg{width:16px;height:16px}
 .menue-knopf{display:inline-flex;align-items:center;gap:12px;height:44px;padding:0;background:none;border:0;color:var(--text);font-weight:500;cursor:pointer}
 .menue-knopf i{position:relative;width:18px;height:8px;border-block:1.5px solid currentColor;transition:transform .2s}
 .kopf.offen .menue-knopf i{height:0;border-bottom:0;transform:rotate(45deg)}
@@ -87,38 +98,37 @@ button{font:inherit}
 .handymenue nav{display:grid}
 .handymenue nav a{padding-block:14px;border-bottom:1px solid var(--haar);font-size:2rem;font-weight:500;letter-spacing:-.03em;line-height:1.1}
 .handymenue .knopf{margin-top:auto;justify-content:center}
+.nav .knopf{height:40px;padding:0 16px;gap:8px;font-size:.9375rem;color:var(--auf-akzent)}
+.nav .knopf:hover{color:var(--auf-akzent)}
+.nav .knopf svg{width:16px;height:16px}
 @media (min-width:900px){.marke svg{width:56px;height:56px}.nav{display:flex}.menue-knopf,.handymenue{display:none!important}}
 @media (min-width:1100px){.nav{gap:36px}}
 
-/* Start: Überschrift auf Papier, der Film im Rahmen darunter. Er beginnt im ersten Bild und läuft über den unteren Rand hinaus. */
-.held{padding-top:calc(var(--kopf-h) + env(safe-area-inset-top,0px) + clamp(28px,5vw,72px))}
-.held-raster{display:grid;gap:24px}
-.held h1{margin:0;max-width:12.5em;font-size:clamp(2.25rem,1rem + 4.8vw,4.75rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:pretty}
-.held h1 .grau{display:block}
-.held-seite{display:grid;justify-items:start;gap:20px;max-width:28em}
-.held-seite p{margin:0;color:var(--fliess)}
-.film-rahmen{position:relative;isolation:isolate;overflow:hidden;margin-top:12px;aspect-ratio:4/5;border-radius:10px;background:var(--bild)}
+/* Start: Film über die ganze Fläche, Text unten links */
+.held{position:relative;isolation:isolate;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;background:#090807}
 .film{position:absolute;inset:0;z-index:-2}
 .film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:var(--ton)}
 .film .quer{display:none}
+.held::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(to top,var(--grund),rgb(18 17 15 / .82) 16%,rgb(0 0 0 / .3) 50%,rgb(0 0 0 / 0) 72%),linear-gradient(to bottom,rgb(0 0 0 / .5),rgb(0 0 0 / 0) 160px)}
 /* Filmkorn, still */
-.film-rahmen::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;background-image:var(--korn)}
-.pause{position:absolute;right:16px;bottom:16px;display:grid;place-items:center;width:44px;height:44px;padding:0;
-  border:1px solid rgb(255 255 255 / .4);border-radius:50%;background:rgb(0 0 0 / .3);color:#f2f1ef;cursor:pointer;transition:border-color .2s}
-.pause:hover{border-color:rgb(255 255 255 / .8)}
+.held::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
+  background-image:var(--korn)}
+.held-inhalt{display:grid;justify-items:start;gap:28px;padding-top:calc(var(--kopf-h) + 80px);padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))}
+.held h1{margin:0;max-width:12.5em;font-size:clamp(2.25rem,1rem + 4.8vw,4.75rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;color:#f2f1ef;text-wrap:pretty}
+.held h1 .grau{display:block;color:color-mix(in srgb,#f2f1ef 58%,transparent)}
+.pause{position:absolute;right:var(--rand-r);bottom:calc(40px + env(safe-area-inset-bottom,0px));display:grid;place-items:center;width:44px;height:44px;padding:0;
+  border:1px solid rgb(255 255 255 / .32);border-radius:50%;background:rgb(0 0 0 / .25);color:#f2f1ef;cursor:pointer;transition:border-color .2s}
+.pause:hover{border-color:rgb(255 255 255 / .7)}
 .pause svg{width:14px;height:14px}
-@media (min-width:600px){.film-rahmen{aspect-ratio:1/1}}
 @media (min-width:900px){
-  .held-raster{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:0;align-items:end}
-  .held h1{grid-column:1/span 8;max-width:none;font-size:clamp(3rem,6vw,5rem)}
-  .held-seite{grid-column:9/span 4;padding-bottom:8px}
-  .film-rahmen{grid-column:1/-1;margin-top:clamp(40px,4.5vw,64px);aspect-ratio:auto;height:clamp(440px,50vw,700px)}
   .film .hoch{display:none}.film .quer{display:block}
-  .pause{right:24px;bottom:24px}
+  .held-inhalt{gap:36px;padding-bottom:64px}
+  .pause{bottom:68px}
 }
 
 /* Unter dem Film: die vier Bereiche als Übersicht, wie die Modellreihe bei Porsche. Schließt den Film ruhig ab. */
-.uebersicht{padding-block:clamp(24px,3vw,40px) clamp(56px,7vw,96px)}
+.uebersicht{padding-block:clamp(24px,3vw,40px) clamp(64px,8vw,104px);background:var(--grund)}
 .uebersicht ul{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--haar)}
 .uebersicht li{position:relative;border-bottom:1px solid var(--haar)}
 .uebersicht a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 16px;padding-block:20px}
@@ -136,7 +146,7 @@ button{font:inherit}
 }
 
 /* Leistungen als Kapitel: Standbild und Text im Wechsel */
-.leistungen{padding-bottom:clamp(96px,12vw,168px)}
+.leistungen{padding-block:clamp(72px,9vw,128px) clamp(96px,12vw,168px)}
 /* Leistungen als Bildkarten: Foto im Rahmen, darauf ein Etikett aus Papier mit Titel, Gebiet, Text und Link. Die ganze Karte ist klickbar.
    Handy: Etikett unter dem Bild, etwas hineingeschoben. Ab Tablet: Etikett unten links im Bild.
    Desktop: Service neben Software, Aufbereitung über die volle Breite. */
@@ -182,10 +192,8 @@ button{font:inherit}
   .js .kapitel.da .kapitel-text{opacity:1;transform:none}
 }
 
-/* Rechner: auf Stein, Karte weiß */
-.rechner{color-scheme:light;
-  --grund:var(--stein); --fliess:color-mix(in srgb,var(--text) 78%,var(--grund));
-  --haar:color-mix(in srgb,var(--text) 12%,transparent);
+/* Rechner: dunkel */
+.rechner{
   background:var(--grund);color:var(--text);padding-block:clamp(80px,10vw,144px)}
 .rechner-raster{display:grid;gap:40px}
 .rechner-text{display:grid;gap:20px;align-content:start}
@@ -216,13 +224,13 @@ button{font:inherit}
 .zettel .reihe{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
 .zettel label{display:grid;gap:6px;min-width:0}
 .zettel label>span,.r-feldtitel{display:block;font:500 .875rem/1.2 var(--f);color:var(--fliess)}
-.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:400 1rem var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px}
+.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:400 1rem var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:4px}
 .zettel select:disabled{opacity:.55}
 .zettel select:focus-visible,.zettel input:focus-visible{outline:2px solid var(--text);outline-offset:1px}
 .zettel .stufen{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .zettel .stufen input{position:absolute;opacity:0;pointer-events:none}
 .zettel .stufen label{display:block}
-.zettel .stufen label span{display:flex;align-items:center;min-height:44px;padding:0 16px;font:500 .9375rem/1 var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px;cursor:pointer}
+.zettel .stufen label span{display:flex;align-items:center;min-height:44px;padding:0 16px;font:500 .9375rem/1 var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:4px;cursor:pointer}
 .zettel .stufen input:checked+span{background:var(--text);color:var(--flaeche);border-color:var(--text)}
 .zettel .stufen input:focus-visible+span{outline:2px solid var(--text);outline-offset:2px}
 .vorschau{padding:12px 14px;font-size:.9375rem;white-space:pre-wrap;background:var(--grund);border-left:2px solid var(--linie);border-radius:0 4px 4px 0}
@@ -269,9 +277,9 @@ button{font:inherit}
 .zettel .dia .p-stage{fill:var(--zeichen)}
 .zettel .dia .band{fill:var(--akzent);opacity:var(--band,.16)}
 .balken{display:grid;gap:8px}
-/* Vollbild beim Berechnen, hell wie die Seite */
+/* Vollbild beim Berechnen, dunkel wie der Rechner */
 .r-buehne{position:fixed;inset:0;z-index:50;display:grid;place-items:center;align-content:center;gap:12px;cursor:pointer;opacity:0;
-  color-scheme:light;--grund:var(--papier);--fliess:color-mix(in srgb,var(--text) 78%,var(--grund));background:var(--grund);color:var(--text);
+  background:var(--grund);color:var(--text);
   padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .r-buehne.an{opacity:1}
 .r-buehne svg{width:min(92vw,560px);height:auto}
@@ -316,10 +324,7 @@ button{font:inherit}
 @media (min-width:1000px){.kontakt-raster{grid-template-columns:5fr 6fr;gap:80px}.schreiben{padding:32px}.kontakt-text .nummer{margin-top:auto;padding-bottom:4px}}
 
 /* Fuß: dunkel, darauf das Emblem, Menü, Kontakt */
-.fuss-wappen svg path:last-of-type{fill:var(--emblem)}
-.fuss{color-scheme:dark;--grund:var(--fuss-grund);--text:var(--fuss-text);--leise:var(--fuss-leise);--zeichen:var(--fuss-zeichen);
-  --fliess:color-mix(in srgb,var(--text) 80%,var(--grund));--haar:color-mix(in srgb,var(--text) 14%,transparent);
-  background:var(--grund);color:var(--text);padding-block:clamp(56px,7vw,96px) calc(28px + env(safe-area-inset-bottom,0px))}
+.fuss{background:var(--grund);padding-block:clamp(56px,7vw,96px) calc(28px + env(safe-area-inset-bottom,0px))}
 .fuss-raster{display:grid;gap:40px}
 .fuss-wappen svg{width:120px;height:120px}
 .fuss h2{margin:0 0 14px;font-size:.875rem;font-weight:500;color:var(--leise)}
@@ -333,6 +338,14 @@ button{font:inherit}
   .fuss-raster{grid-template-columns:repeat(12,minmax(0,1fr));gap:32px}
   .fuss-wappen{grid-column:1/span 4}.fuss-nav{grid-column:7/span 3}.fuss-kontakt{grid-column:10/span 3}
 }
+
+/* Umschalter für die Akzentfarbe, nur im Entwurf */
+.akzentwahl{position:fixed;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:2px;
+  padding:4px 4px 4px 12px;border-radius:999px;background:rgb(18 17 15 / .9);color:#e0dfde;font-size:.8125rem;box-shadow:0 6px 20px rgb(0 0 0 / .28)}
+.akzentwahl span{margin-right:4px;color:#a8a59e}
+.akzentwahl button{min-height:40px;padding:0 12px;border:0;border-radius:999px;background:transparent;color:inherit;font:500 .8125rem/1 var(--f);cursor:pointer}
+.akzentwahl button[aria-pressed="true"]{background:#e0dfde;color:#12110f}
+.akzentwahl button:focus-visible{outline:2px solid #e0dfde;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -345,7 +358,7 @@ button{font:inherit}
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></symbol>
 </svg>
 
-<header class="kopf" id="kopf">
+<header class="kopf dunkel" id="kopf">
   <div class="innen kopf-zeile">
     <a class="marke" href="#start" aria-label="Brenz KFZ, zum Anfang"><!--LOGO--></a>
     <nav class="nav" aria-label="Hauptmenü">
@@ -358,7 +371,7 @@ button{font:inherit}
     <button class="menue-knopf" id="burger" type="button" aria-expanded="false" aria-controls="handymenue" aria-label="Menü öffnen">Menü<i aria-hidden="true"></i></button>
   </div>
 </header>
-<div class="handymenue" id="handymenue" hidden>
+<div class="handymenue dunkel" id="handymenue" hidden>
   <nav aria-label="Hauptmenü">
     <a href="#leistungen">Leistungen</a>
     <a href="#rechner">Chiptuning-Rechner</a>
@@ -369,25 +382,20 @@ button{font:inherit}
 </div>
 
 <main>
-  <section class="held" id="start" aria-labelledby="held-titel">
-    <div class="innen held-raster">
-      <h1 id="held-titel">Kfz-Service, Chiptuning und Aufbereitung. <span class="grau">Im Raum Heidenheim.</span></h1>
-      <div class="held-seite">
-        <p>Kfz-Service und Fahrzeugaufbereitung für Heidenheim und Umgebung. Softwareoptimierung auch für Fahrzeuge aus der ganzen Region.</p>
-        <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
-      </div>
-      <div class="film-rahmen">
-        <div class="film" aria-hidden="true">
-          <!-- Platzhalter von Pexels (Nr. 8987289 und 4488712), bis es eigene Aufnahmen aus der Werkstatt gibt -->
-          <video class="hoch" muted loop playsinline preload="none" disablepictureinpicture poster="img/film-hoch.webp"><source src="img/werkstatt-hoch.mp4" type="video/mp4"></video>
-          <video class="quer" muted loop playsinline preload="none" disablepictureinpicture poster="img/film-quer.webp"><source src="img/werkstatt-quer.mp4" type="video/mp4"></video>
-        </div>
-        <button class="pause" id="film-pause" type="button" aria-label="Film anhalten" hidden><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
-      </div>
+  <section class="held dunkel" id="start" aria-labelledby="held-titel">
+    <div class="film" aria-hidden="true">
+      <!-- Platzhalter von Pexels (Nr. 8987289 und 4488712), bis es eigene Aufnahmen aus der Werkstatt gibt -->
+      <video class="hoch" muted loop playsinline preload="none" disablepictureinpicture poster="img/film-hoch.webp"><source src="img/werkstatt-hoch.mp4" type="video/mp4"></video>
+      <video class="quer" muted loop playsinline preload="none" disablepictureinpicture poster="img/film-quer.webp"><source src="img/werkstatt-quer.mp4" type="video/mp4"></video>
     </div>
+    <div class="innen held-inhalt">
+      <h1 id="held-titel">Kfz-Service, Chiptuning und Aufbereitung. <span class="grau">Im Raum Heidenheim.</span></h1>
+      <a class="knopf" href="{{WA_ALLGEMEIN}}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
+    </div>
+    <button class="pause" id="film-pause" type="button" aria-label="Film anhalten" hidden><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
   </section>
 
-  <nav class="uebersicht" aria-label="Leistungen im Überblick">
+  <nav class="uebersicht dunkel" aria-label="Leistungen im Überblick">
     <div class="innen">
       <ul>
         <li><a href="#service"><span class="u-titel">Kfz-Service</span><span class="u-gebiet">Heidenheim und Umgebung</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a></li>
@@ -453,7 +461,7 @@ button{font:inherit}
     </div>
   </section>
 
-  <section class="rechner" id="rechner" aria-labelledby="rechner-titel">
+  <section class="rechner dunkel" id="rechner" aria-labelledby="rechner-titel">
     <div class="innen rechner-raster">
       <div class="rechner-text">
         <h2 id="rechner-titel">Was geht bei Ihrem Motor?</h2>
@@ -495,7 +503,7 @@ button{font:inherit}
   </section>
 </main>
 
-<footer class="fuss">
+<footer class="fuss dunkel">
   <div class="innen">
     <div class="fuss-raster">
       <div class="fuss-wappen"><!--LOGO--></div>
@@ -511,8 +519,25 @@ button{font:inherit}
   </div>
 </footer>
 
+<div class="akzentwahl" role="group" aria-label="Akzentfarbe, nur im Entwurf">
+  <span>Akzent</span>
+  <button type="button" data-wahl="champagner">Champagner</button>
+  <button type="button" data-wahl="monochrom">Monochrom</button>
+  <button type="button" data-wahl="eisblau">Eisblau</button>
+</div>
 <script>
 document.documentElement.classList.add("js");
+// Nur im Entwurf: Akzentfarbe umschalten und merken
+(function(){
+  var w = document.documentElement, knoepfe = document.querySelectorAll(".akzentwahl button");
+  function setze(a){
+    w.dataset.akzent = a;
+    knoepfe.forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.wahl === a)); });
+    try { localStorage.setItem("brenz-akzent", a); } catch (e) {}
+  }
+  knoepfe.forEach(function(b){ b.addEventListener("click", function(){ setze(b.dataset.wahl); }); });
+  setze(w.dataset.akzent || "champagner");
+})();
 (function(){
   "use strict";
   var kopf = document.getElementById("kopf"), burger = document.getElementById("burger"), handymenue = document.getElementById("handymenue");
