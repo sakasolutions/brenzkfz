@@ -90,10 +90,12 @@ Aufgeräumt nach Audit (17.11.2026): Unter dem Film eine Übersicht der vier Ber
 
 Grautöne leicht warm (Sinan, 17.11.2026): Film und Fotos haben nach dem Bildton `--ton` in den Mitteltönen einen warmen Farbton (oklch um 90°), die dunklen Töne sind fast neutral. Deshalb wird der Grund nur ein Hauch wärmer (`#12110f` statt `#121212`), Linien und graue Schrift bekommen den Filmton voll. Text und Champagner bleiben wie gemessen.
 
+Leistungen als Bildtafeln (Sinan, 17.11.2026: „Bilder nur reingeklatscht“, Überlauf bei „Softwareoptimierung“ auf dem Desktop): Text steht im Bild unten links wie beim Film, gleicher Bildton und gleiches Korn, die ganze Tafel ist klickbar. Desktop: Service hochkant neben Software breit, Aufbereitung über die volle Breite; darunter untereinander. Standbilder für Service immer aus dem Film, der oben gerade nicht läuft (Querfilm ist eine einzige Einstellung). Weiche Trennungen in langen Wörtern, Übersicht erst ab 1200 px vierspaltig. Geprüft in acht Breiten von 600 bis 1920 px (kein Überlauf, alle Titel einzeilig) und live auf 390, 1000 und 1440 px.
+
 Zum Abgleich (Sinan, 17.11.2026, Farben außer Rot frei), alle aus derselben Vorlage mit `werkzeuge/neu.py`:
 
 | Seite | Idee |
 |---|---|
 | `entwurf-3-hell-a.html` | hell, warmes Papier im Farbton des Films, Knöpfe in Tinte, Akzent Messing (Champagner abgedunkelt). Film und Fuß bleiben dunkel. |
 | `entwurf-3-hell-b.html` | hell, kühles Weiß, Akzent Petrol, Emblem in Petrol. Bewusst das Gegenteil zum warmen Film. |
-| `entwurf-3-mix.html` | Sinans Idee für die Unterseiten: Kfz-Service hell, Softwareoptimierung mit Rechner und Aufbereitung dunkel. Hier als heller Abschnitt auf der Startseite gezeigt. |
+| `entwurf-3-mix.html` | Sinans Idee für die Unterseiten: Kfz-Service hell, Softwareoptimierung mit Rechner und Aufbereitung dunkel. Auf der Startseite als helle Karte (Bild oben, Text auf Papier) neben den dunklen Bildtafeln. |
