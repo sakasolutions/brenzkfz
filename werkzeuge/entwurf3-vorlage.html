@@ -181,11 +181,15 @@ button{font:inherit}
 }
 
 /* Rechner: hell, ruhig */
-.rechner{color-scheme:light;
+/* Helle Abschnitte (Rechner, Kontakt): Töne aus der Palette gemischt, Knöpfe dunkel, Fokus in Tinte statt Champagner */
+.rechner,.kontakt{color-scheme:light;
   --grund:color-mix(in srgb,#ffffff 93%,#8a8780); --flaeche:#ffffff; --linie:color-mix(in srgb,#ffffff 78%,#8a8780);
   --text:#11100f; --leise:color-mix(in srgb,#11100f 45%,#8a8780); --fliess:color-mix(in srgb,#11100f 80%,#8a8780);
   --haar:color-mix(in srgb,#11100f 12%,transparent);
-  background:var(--grund);color:var(--text);padding-block:clamp(80px,10vw,144px)}
+  --knopf:#11100f; --auf-knopf:#ffffff; --knopf-hover:#34332f;
+  background:var(--grund);color:var(--text)}
+.rechner :focus-visible,.kontakt :focus-visible,.kontakt .themen input:focus-visible+span{outline-color:var(--text)}
+.rechner{padding-block:clamp(80px,10vw,144px)}
 .rechner-raster{display:grid;gap:40px}
 .rechner-text{display:grid;gap:20px;align-content:start}
 .rechner h2{margin:0;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
@@ -293,6 +297,26 @@ button{font:inherit}
 /* Gleich breite Ziffern nur bei reinen Zahlen: Schibsted setzt damit auch Punkt und Komma breit */
 /* Kontakt: Nachricht vorbereiten, Vorschau sehen, in WhatsApp öffnen */
 .kontakt{padding-block:clamp(88px,11vw,160px)}
+/* Über uns: dunkel, Foto der beiden (folgt) und ein paar Sätze. Lücken in Champagner, damit klar ist, was noch fehlt. */
+.ueber{padding-block:clamp(88px,11vw,160px)}
+.ueber-raster{display:grid;gap:40px;align-items:center}
+.team-bild{margin:0;display:grid;gap:12px}
+.team-rahmen{position:relative;isolation:isolate;display:grid;place-items:center;align-content:center;gap:16px;aspect-ratio:4/3;border:1px solid var(--haar);border-radius:16px;background:var(--flaeche);overflow:hidden;text-align:center;padding:24px}
+.team-rahmen::after{content:"";position:absolute;inset:0;z-index:-1;opacity:.14;mix-blend-mode:overlay;background-image:var(--korn)}
+.team-rahmen svg{width:96px;height:96px;opacity:.55}
+.team-rahmen p{margin:0;max-width:18em;font-size:.9375rem;color:var(--leise)}
+.team-bild figcaption{font-size:.9375rem;color:var(--leise)}
+.ueber-text{display:grid;gap:20px;max-width:34em}
+.ueber h2{margin:0;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+.ueber-text p{margin:0;color:var(--fliess)}
+@media (min-width:900px){.ueber-text p{font-size:1.125rem}}
+.luecke{color:var(--akzent);text-decoration:underline dotted;text-underline-offset:4px}
+@media (min-width:900px){
+  .ueber-raster{grid-template-columns:repeat(12,minmax(0,1fr));gap:0 32px}
+  .team-bild{grid-column:1/span 5}
+  .team-rahmen{aspect-ratio:4/5}
+  .ueber-text{grid-column:7/span 6}
+}
 .kontakt-raster{display:grid;gap:48px}
 .kontakt-text{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
 .kontakt h2{margin:0;max-width:10em;font-size:clamp(2.25rem,1.2rem + 3.4vw,4rem);font-weight:500;line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
@@ -478,6 +502,21 @@ button{font:inherit}
 <!--SONST-->
 <!--RECHNER-FORM-->
 <!--ENDE-->
+  </section>
+
+  <!-- Über uns: Satzbau steht, Fakten kommen von Mert (KLAERUNG-MERT.md, Abschnitt 6). Ohne seine Angaben fällt der Abschnitt weg. -->
+  <section class="ueber" id="ueber-uns" aria-labelledby="ueber-titel">
+    <div class="innen ueber-raster">
+      <figure class="team-bild">
+        <div class="team-rahmen"><!--LOGO--><p>Hier kommt ein Foto von euch beiden in der Werkstatt hin.</p></div>
+        <figcaption><span class="luecke">[Mert]</span> und <span class="luecke">[Name des Bruders]</span></figcaption>
+      </figure>
+      <div class="ueber-text">
+        <h2 id="ueber-titel">Wer hier schraubt</h2>
+        <p>Brenz KFZ, das sind <span class="luecke">[Mert Nachname]</span> und sein Bruder <span class="luecke">[Name]</span>. <span class="luecke">[Mert]</span> kümmert sich um Service und Chiptuning, <span class="luecke">[Name]</span> um die Aufbereitung.</p>
+        <p><span class="luecke">[Was ihr gelernt habt und seit wann ihr schraubt.]</span> Die Werkstatt ist in <span class="luecke">[Ort]</span>.</p>
+      </div>
+    </div>
   </section>
 
   <section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
