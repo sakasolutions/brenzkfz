@@ -25,6 +25,8 @@
 :root{
   --grund:#12110f; --flaeche:#181715; --linie:#34332f; --text:#e0dfde; --leise:#8a8780;
   --akzent:#e4cc7f; --auf-akzent:#11100f;
+  /* Knöpfe (Pillen, Sinan 17.11.): auf Dunkel weiß, im hellen Rechner dunkel */
+  --knopf:#f2f1ef; --auf-knopf:#12110f; --knopf-hover:#ffffff;
   --fliess:color-mix(in srgb,var(--text) 74%,var(--grund));
   --haar:color-mix(in srgb,var(--text) 12%,transparent);
   --f:"Schibsted Grotesk","Helvetica Neue",Arial,system-ui,sans-serif;
@@ -54,10 +56,15 @@ button{font:inherit}
 @media (min-width:900px){:root{--kopf-h:84px;--rand-l:max(40px,env(safe-area-inset-left,0px));--rand-r:max(40px,env(safe-area-inset-right,0px))}}
 
 /* Knopf (einer pro Bereich) und Textlink mit Pfeil */
-.knopf{display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 22px;border-radius:4px;background:var(--akzent);color:var(--auf-akzent);
+.knopf{display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 24px;border-radius:999px;background:var(--knopf);color:var(--auf-knopf);
   font:500 1rem/1 var(--f);white-space:nowrap;transition:background-color .2s}
-.knopf:hover{background:color-mix(in srgb,var(--akzent) 86%,#ffffff)}
+.knopf:hover{background:var(--knopf-hover)}
 .knopf svg{width:18px;height:18px;flex:none}
+/* WhatsApp-Knöpfe: Text links, rechts die grüne WhatsApp-Kapsel */
+.knopf.wa{justify-content:space-between;gap:16px;padding:0 4px 0 24px}
+.wa-kapsel{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;background:#25d366;color:#ffffff;transition:transform .35s cubic-bezier(.2,.65,.2,1)}
+.wa-kapsel svg{width:22px;height:22px}
+.knopf.wa:hover .wa-kapsel{transform:rotate(-12deg) scale(1.05)}
 .link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:500;color:var(--text)}
 .link span{background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;padding-bottom:2px}
 .link svg{width:16px;height:16px;flex:none;color:var(--akzent);transition:transform .25s}
@@ -76,11 +83,13 @@ button{font:inherit}
 .nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1)}
 /* Rechts im Kopf: Desktop ein kleiner Anfrage-Knopf, Handy ein WhatsApp-Symbol und das Menü */
 .kopf-rechts{display:flex;align-items:center;gap:8px}
-.kopf .knopf{display:none;height:40px;padding:0 16px;gap:8px;font-size:.9375rem}
-.kopf .knopf svg{width:16px;height:16px}
-.kopf-wa{display:grid;place-items:center;width:44px;height:44px;border:1px solid color-mix(in srgb,var(--akzent) 55%,transparent);border-radius:50%;color:var(--akzent);transition:border-color .2s}
-.kopf-wa:hover{border-color:var(--akzent)}
-.kopf-wa svg{width:19px;height:19px}
+.kopf .knopf{display:none;height:40px;font-size:.9375rem}
+.kopf .knopf.wa{gap:10px;padding:0 4px 0 16px}
+.kopf .wa-kapsel{width:32px;height:32px}
+.kopf .wa-kapsel svg{width:17px;height:17px}
+.kopf-wa{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#25d366;color:#ffffff;transition:transform .35s cubic-bezier(.2,.65,.2,1)}
+.kopf-wa:hover{transform:rotate(-12deg)}
+.kopf-wa svg{width:22px;height:22px}
 .menue-knopf{display:inline-flex;align-items:center;gap:12px;height:44px;padding:0;background:none;border:0;color:var(--text);font-weight:500;cursor:pointer}
 .menue-knopf i{position:relative;width:18px;height:8px;border-block:1.5px solid currentColor;transition:transform .2s}
 .kopf.offen .menue-knopf i{height:0;border-bottom:0;transform:rotate(45deg)}
@@ -91,7 +100,7 @@ button{font:inherit}
 .handymenue nav a{display:grid;gap:4px;padding-block:14px;border-bottom:1px solid var(--haar)}
 .handymenue nav span{font-size:1.875rem;font-weight:500;letter-spacing:-.03em;line-height:1.1}
 .handymenue nav small{font-size:.9375rem;color:var(--leise)}
-.handymenue .knopf{margin-top:auto;justify-content:center}
+.handymenue .knopf{margin-top:auto}
 @media (min-width:900px){.marke svg{width:56px;height:56px}.nav{display:flex}.kopf .knopf{display:inline-flex}.kopf-rechts{margin-left:8px}.kopf-wa,.menue-knopf,.handymenue{display:none!important}}
 @media (min-width:1100px){.nav{gap:36px}}
 
@@ -127,8 +136,8 @@ button{font:inherit}
    Handy und Tablet untereinander, Desktop: Service hochkant neben Software breit, Aufbereitung über die volle Breite.
    Abgerundet über clip-path statt overflow, damit eine Tafel mitwächst, wenn der Text länger ist als das Bild hoch. */
 .leistungen .innen{display:grid;gap:16px}
-.kapitel{position:relative;isolation:isolate;clip-path:inset(0 round 8px);display:flex;flex-direction:column;justify-content:flex-end;min-width:0;
-  aspect-ratio:3/4;border-radius:8px;background:#090807;color:#f2f1ef}
+.kapitel{position:relative;isolation:isolate;clip-path:inset(0 round 16px);display:flex;flex-direction:column;justify-content:flex-end;min-width:0;
+  aspect-ratio:3/4;border-radius:16px;background:#090807;color:#f2f1ef}
 .kapitel-bild{position:absolute;inset:0;z-index:-3;margin:0;overflow:hidden}
 .kapitel-bild img{width:100%;height:100%;object-fit:cover;filter:var(--ton)}
 .kapitel::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;
@@ -186,7 +195,7 @@ button{font:inherit}
 .daten dt{color:var(--leise)}
 .daten dd{margin:0}
 @media (min-width:1000px){.rechner-raster{grid-template-columns:5fr 6fr;gap:80px}}
-.zettel{min-width:0;display:grid;gap:22px;padding:28px 22px;background:var(--flaeche);border:1px solid var(--haar);border-radius:8px}
+.zettel{min-width:0;display:grid;gap:22px;padding:28px 22px;background:var(--flaeche);border:1px solid var(--haar);border-radius:16px}
 .fortschritt{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;counter-reset:fs}
 .fortschritt li{counter-increment:fs;padding-top:10px;border-top:2px solid var(--linie);font:500 .8125rem/1.3 var(--f);color:var(--leise)}
 .fortschritt li::before{content:counter(fs) ". "}
@@ -196,17 +205,17 @@ button{font:inherit}
 .schritt{display:grid;gap:18px}
 .schritt-frage{margin:4px 0 0;font:500 1.5rem/1.2 var(--f);letter-spacing:-.02em;outline:none}
 .schritt-knoepfe{display:flex;align-items:center;gap:12px;margin-top:4px}
-.weiter{flex:1;display:flex;align-items:center;justify-content:center;height:52px;border:0;border-radius:4px;background:var(--text);color:var(--flaeche);font:500 1rem/1 var(--f);cursor:pointer}
+.weiter{flex:1;display:flex;align-items:center;justify-content:center;height:52px;border:0;border-radius:999px;background:var(--text);color:var(--flaeche);font:500 1rem/1 var(--f);cursor:pointer}
 .weiter:hover{background:color-mix(in srgb,var(--text) 82%,#ffffff)}
 .weiter:disabled{background:var(--linie);color:var(--leise);cursor:not-allowed}
 .zurueck{height:52px;padding:0 6px;border:0;background:transparent;color:var(--leise);font:500 1rem/1 var(--f);cursor:pointer}
 .zurueck:hover{color:var(--text)}
 .anfrage{display:grid;gap:18px}
-.keine-schaetzung{margin:0;padding:14px 16px;background:var(--grund);border:1px solid var(--haar);border-radius:4px;font-size:.9375rem}
+.keine-schaetzung{margin:0;padding:14px 16px;background:var(--grund);border:1px solid var(--haar);border-radius:12px;font-size:.9375rem}
 .zettel .reihe{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}
 .zettel label{display:grid;gap:6px;min-width:0}
 .zettel label>span,.r-feldtitel{display:block;font:500 .875rem/1.2 var(--f);color:var(--fliess)}
-.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:400 1rem var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px}
+.zettel select,.zettel input[type="text"]{width:100%;min-width:0;height:50px;padding:0 12px;font:400 1rem var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:12px}
 .zettel select:disabled{opacity:.55}
 .zettel select:focus-visible,.zettel input:focus-visible{outline:2px solid var(--text);outline-offset:1px}
 .einstieg{align-self:start;align-content:start}
@@ -214,7 +223,7 @@ button{font:inherit}
 .zettel .stufen{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .zettel .stufen input{position:absolute;opacity:0;pointer-events:none}
 .zettel .stufen label{display:block}
-.zettel .stufen label span{display:flex;align-items:center;min-height:44px;padding:0 16px;font:500 .9375rem/1 var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:4px;cursor:pointer}
+.zettel .stufen label span{display:flex;align-items:center;min-height:44px;padding:0 16px;font:500 .9375rem/1 var(--f);color:var(--text);background:#ffffff;border:1px solid var(--linie);border-radius:999px;cursor:pointer}
 .zettel .stufen input:checked+span{background:var(--text);color:var(--flaeche);border-color:var(--text)}
 .zettel .stufen input:focus-visible+span{outline:2px solid var(--text);outline-offset:2px}
 .vorschau{padding:12px 14px;font-size:.9375rem;white-space:pre-wrap;background:var(--grund);border-left:2px solid var(--linie);border-radius:0 4px 4px 0}
@@ -225,11 +234,13 @@ button{font:inherit}
 .vorschau-auf summary:hover{color:var(--text)}
 .vorschau-auf .vorschau{margin-top:12px}
 .vorschau b{display:block;margin-bottom:4px;font:500 .8125rem/1.2 var(--f);color:var(--leise)}
-.r-senden,.berechnen{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;border-radius:4px;font:500 1rem/1 var(--f);cursor:pointer}
+.r-senden,.berechnen{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;border-radius:999px;font:500 1rem/1 var(--f);cursor:pointer}
+.r-senden{justify-content:space-between;padding:0 4px 0 24px}
+.r-senden::after{content:"";flex:none;width:44px;height:44px;border-radius:50%;background:#25d366 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.884 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z'/%3E%3C/svg%3E") center/22px no-repeat}
 .r-senden{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1px var(--linie)}
 .r-senden:hover{box-shadow:inset 0 0 0 1px var(--text)}
-#berechnen[hidden]~.anfrage .r-senden{background:var(--akzent);color:var(--auf-akzent);box-shadow:none}
-#berechnen[hidden]~.anfrage .r-senden:hover{background:color-mix(in srgb,var(--akzent) 88%,#000000)}
+#berechnen[hidden]~.anfrage .r-senden{background:var(--text);color:var(--flaeche);box-shadow:none}
+#berechnen[hidden]~.anfrage .r-senden:hover{background:color-mix(in srgb,var(--text) 85%,#ffffff)}
 #erg-balken[hidden]~.schaetzung{display:none}
 .r-senden[aria-disabled="true"]{opacity:.45;pointer-events:none}
 .berechnen{background:var(--akzent);color:var(--auf-akzent);border:0}
@@ -284,26 +295,25 @@ button{font:inherit}
 .kontakt-text .nummer{display:grid;gap:4px;margin-top:12px}
 .nummer span{font-size:.875rem;color:var(--leise)}
 .nummer strong{color:var(--text);font-size:clamp(1.75rem,1.2rem + 1.6vw,2.5rem);font-weight:500;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.schreiben{min-width:0;display:grid;gap:22px;padding:28px 22px;background:var(--flaeche);border:1px solid var(--haar);border-radius:8px}
+.schreiben{min-width:0;display:grid;gap:22px;padding:28px 22px;background:var(--flaeche);border:1px solid var(--haar);border-radius:16px}
 .themen{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;border:0;min-width:0}
 .themen legend{float:left;width:100%;margin-bottom:10px;padding:0;font-size:.875rem;font-weight:500;color:var(--fliess)}
 .themen label{position:relative}
 .themen input{position:absolute;opacity:0;pointer-events:none}
-.themen span{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--linie);border-radius:4px;font-size:.9375rem;font-weight:500;line-height:1;cursor:pointer;transition:border-color .2s}
+.themen span{display:flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--linie);border-radius:999px;font-size:.9375rem;font-weight:500;line-height:1;cursor:pointer;transition:border-color .2s}
 .themen span:hover{border-color:var(--leise)}
 .themen input:checked+span{background:var(--text);border-color:var(--text);color:var(--grund)}
 .themen input:focus-visible+span{outline:2px solid var(--akzent);outline-offset:2px}
 .feld{display:grid;gap:6px;min-width:0}
 .feld span{font-size:.875rem;font-weight:500;color:var(--fliess)}
-.feld input,.feld textarea{width:100%;min-width:0;padding:0 14px;height:50px;font:400 1rem/1.4 var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:4px}
+.feld input,.feld textarea{width:100%;min-width:0;padding:0 14px;height:50px;font:400 1rem/1.4 var(--f);color:var(--text);background:var(--grund);border:1px solid var(--linie);border-radius:12px}
 .feld textarea{height:auto;min-height:84px;padding-block:12px;resize:vertical}
 .feld input::placeholder,.feld textarea::placeholder{color:var(--leise)}
 .feld input:focus-visible,.feld textarea:focus-visible{outline:2px solid var(--akzent);outline-offset:1px}
-.blase-wrap{display:grid;gap:8px;justify-items:end;padding:20px 16px;background:var(--grund);border-radius:4px}
+.blase-wrap{display:grid;gap:8px;justify-items:end;padding:20px 16px;background:var(--grund);border-radius:12px}
 .blase-wrap>span{justify-self:start;font-size:.8125rem;color:var(--leise)}
 .blase{max-width:min(100%,24em);margin:0;padding:12px 14px;background:#2a2926;border-radius:12px 12px 4px 12px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.9375rem;line-height:1.45;color:#ecebe8}
 .blase .leer{color:#a3a29f}
-.schreiben .knopf{justify-content:center}
 .klein{margin:-8px 0 0;font-size:.8125rem;color:var(--leise)}
 @media (min-width:1000px){.kontakt-raster{grid-template-columns:5fr 6fr;gap:80px}.schreiben{padding:32px}.kontakt-text .nummer{margin-top:auto;padding-bottom:4px}}
 
@@ -351,6 +361,8 @@ button{font:inherit}
   <symbol id="nachricht" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
   <symbol id="pfeil" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 4h3v16H7zM14 4h3v16h-3z" fill="currentColor"/></symbol>
+  <!-- WhatsApp-Zeichen (Marke von WhatsApp/Meta, unverändert verwenden), Vektor wie auf saka-it.de -->
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.884 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></symbol>
 </svg>
 
@@ -365,8 +377,8 @@ button{font:inherit}
       <a href="#kontakt">Kontakt</a>
     </nav>
     <div class="kopf-rechts">
-      <a class="knopf" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage</a>
-      <a class="kopf-wa" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener" aria-label="Anfrage per WhatsApp"><svg aria-hidden="true"><use href="#nachricht"/></svg></a>
+      <a class="knopf wa" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><span>Anfrage</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
+      <a class="kopf-wa" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener" aria-label="Anfrage per WhatsApp"><svg aria-hidden="true"><use href="#wa"/></svg></a>
       <button class="menue-knopf" id="burger" type="button" aria-expanded="false" aria-controls="handymenue" aria-label="Menü öffnen">Menü<i aria-hidden="true"></i></button>
     </div>
   </div>
@@ -379,7 +391,7 @@ button{font:inherit}
     <a href="#rechner"><span>Mehrleistung berechnen</span><small>Stage 1, grobe Schätzung</small></a>
     <a href="#kontakt"><span>Kontakt</span><small>Per WhatsApp</small></a>
   </nav>
-  <a class="knopf" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Per WhatsApp anfragen</a>
+  <a class="knopf wa" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><span>Per WhatsApp anfragen</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
 </div>
 
 <main>
@@ -392,7 +404,7 @@ button{font:inherit}
     <div class="innen held-inhalt">
       <h1 id="held-titel">Ihre <span class="zus">Kfz-Werkstatt</span> <span class="ort">im&nbsp;Raum Heidenheim.</span> <span class="grau">Service, Chiptuning und Aufbereitung.</span></h1>
       <div class="held-aktionen">
-        <a class="knopf" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Per WhatsApp anfragen</a>
+        <a class="knopf wa" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><span>Per WhatsApp anfragen</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
         <a class="link" href="#rechner"><span>Mehrleistung berechnen</span><svg aria-hidden="true"><use href="#pfeil"/></svg></a>
       </div>
     </div>
@@ -562,7 +574,7 @@ button{font:inherit}
           <span>So kommt Ihre Nachricht bei uns an</span>
           <p class="blase" id="s-blase"></p>
         </div>
-        <a class="knopf" id="s-senden" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>In WhatsApp öffnen</a>
+        <a class="knopf wa" id="s-senden" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><span>In WhatsApp öffnen</span><span class="wa-kapsel" aria-hidden="true"><svg><use href="#wa"/></svg></span></a>
         <p class="klein">Gesendet wird erst, wenn Sie die Nachricht in WhatsApp abschicken.</p>
       </form>
     </div>
