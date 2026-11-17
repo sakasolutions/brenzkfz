@@ -281,8 +281,8 @@ button{font:inherit}
   <!-- Icons: Lucide (ISC-Lizenz) -->
   <symbol id="nachricht" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></symbol>
   <symbol id="pfeil" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="pause" viewBox="0 0 24 24"><path d="M7 4h3v16H7zM14 4h3v16h-3z" fill="currentColor"/></symbol>
-  <symbol id="play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 4h3v16H7zM14 4h3v16h-3z" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="currentColor"/></symbol>
 </svg>
 
 <header class="kopf" id="kopf">
@@ -318,7 +318,7 @@ button{font:inherit}
       <h1 id="held-titel">Kfz-Service, Chiptuning und Aufbereitung. <span class="grau">Im Raum Heidenheim.</span></h1>
       <a class="knopf" href="https://wa.me/4917662794745?text=Hallo%20Brenz%20KFZ%2C%20ich%20habe%20eine%20Anfrage.%0AFahrzeug%20%28Marke%2C%20Modell%2C%20Baujahr%29%3A%20%0AWorum%20geht%20es%20%28Service%2C%20Chiptuning%2C%20Aufbereitung%29%3A%20" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#nachricht"/></svg>Anfrage per WhatsApp</a>
     </div>
-    <button class="pause" id="pause" type="button" aria-label="Film anhalten" hidden><svg aria-hidden="true"><use href="#pause"/></svg></button>
+    <button class="pause" id="film-pause" type="button" aria-label="Film anhalten" hidden><svg aria-hidden="true"><use href="#i-pause"/></svg></button>
   </section>
 
   <section class="einleitung" aria-label="Über Brenz KFZ">
@@ -523,7 +523,7 @@ document.documentElement.classList.add("js");
     { rootMargin: "-90px 0px 0px 0px" }).observe(held);
 
   // Film: nur das passende Video laden, bei weniger Bewegung nicht automatisch starten, Pause-Knopf wie bei Porsche
-  var breit = matchMedia("(min-width: 900px)"), knopf = document.getElementById("pause"), angehalten = ruhig.matches, sichtbar = true;
+  var breit = matchMedia("(min-width: 900px)"), knopf = document.getElementById("film-pause"), angehalten = ruhig.matches, sichtbar = true;
   function video(){ return held.querySelector(breit.matches ? "video.quer" : "video.hoch"); }
   function anzeigen(){
     var v = video(), laeuft = !angehalten && sichtbar;
@@ -532,7 +532,7 @@ document.documentElement.classList.add("js");
     else v.pause();
     knopf.hidden = false;
     knopf.setAttribute("aria-label", angehalten ? "Film abspielen" : "Film anhalten");
-    knopf.firstElementChild.firstElementChild.setAttribute("href", angehalten ? "#play" : "#pause");
+    knopf.firstElementChild.firstElementChild.setAttribute("href", angehalten ? "#i-play" : "#i-pause");
   }
   knopf.addEventListener("click", function(){ angehalten = !angehalten; anzeigen(); });
   breit.addEventListener("change", anzeigen);
